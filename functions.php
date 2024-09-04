@@ -858,3 +858,270 @@ function vw_pest_control_pro_professional_appoinment_section_shortcode() {
 	return $output;
 }
 add_shortcode('section-appoinment-sec', 'vw_pest_control_pro_professional_appoinment_section_shortcode');
+
+add_action('woocommerce_single_product_summary', 'add_download_link_for_virtual_products', 20);
+
+function add_download_link_for_virtual_products() {
+    global $product;
+
+    // Check if the product is virtual and downloadable
+    if ($product->is_virtual() && $product->is_downloadable()) {
+        // Get the download links
+        $downloads = $product->get_downloads();
+        
+        // Display the download link
+        if (!empty($downloads)) {
+            echo '<h2>Download Your Product</h2>';
+            echo '<ul>';
+            foreach ($downloads as $download_id => $download) {
+                $download_url = $download['file'];
+                echo '<a href="' . esc_url($download_url) . '" download>' . esc_html('Dowinload Image') . '</a>';
+            }
+            echo '</ul>';
+        }
+    }
+}
+
+
+
+
+
+// custom search from query 
+add_action('pre_get_posts', 'filter_search_by_category');
+
+function filter_search_by_category($query) {
+    if ($query->is_search && !is_admin() && $query->is_main_query()) {
+        if (!empty($_GET['image_category'])) {
+            $category = sanitize_text_field($_GET['image_category']);
+            $query->set('tax_query', array(
+                array(
+                    'taxonomy' => 'image_category',
+                    'field'    => 'slug',
+                    'terms'    => $category,
+                ),
+            ));
+        }
+    }
+}
+
+
+
+function create_product_images_cpt() {
+    $labels = array(
+        'name' => _x('Product Images', 'Post Type General Name'),
+        'singular_name' => _x('Product Image', 'Post Type Singular Name'),
+        'menu_name' => __('Product Images'),
+        'name_admin_bar' => __('Product Image'),
+    );
+    
+    $args = array(
+        'label' => __('Product Image'),
+        'labels' => $labels,
+        'supports' => array('title', 'editor', 'thumbnail','author'),
+        'public' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'show_in_admin_bar' => true,
+        'has_archive' => true,
+        'can_export' => true,
+        'capability_type'    => array('product_image', 'product_images'), // Custom capability type
+        'capabilities'       => array(
+            'publish_posts'       => 'publish_product_images',
+            'edit_posts'          => 'edit_product_images',
+            'edit_others_posts'   => 'edit_others_product_images',
+            'delete_posts'        => 'delete_product_images',
+            'delete_others_posts' => 'delete_others_product_images',
+            'read_private_posts'  => 'read_private_product_images',
+            'edit_post'           => 'edit_product_image',
+            'delete_post'         => 'delete_product_image',
+            'read_post'           => 'read_product_image',
+        ),
+    );
+    
+    register_post_type('product_images', $args);
+}
+add_action('init', 'create_product_images_cpt');
+
+function add_custom_role_with_cpt_access() {
+    // Remove the role if it already exists to avoid duplication
+    remove_role('product_images_manager');
+
+    // Add the custom role with specific capabilities
+    add_role('product_images_manager', 'Contributer', array(
+        // Basic capabilities (deny general access)
+        'read'                     => true, // No general read access
+        'edit_posts'               => false, // Cannot edit regular posts
+        'delete_posts'             => false, // Cannot delete regular posts
+        'edit_pages'               => false, // Cannot edit pages
+        'delete_pages'             => false, // Cannot delete pages
+        'edit_theme_options'       => false, // Cannot access theme options or editor
+        'edit_files'               => false, // Cannot access the file editor
+        'manage_options'           => false, // Cannot manage options/settings
+
+        // Product Images custom post type capabilities
+        'edit_product_images'      => true,  // Can edit product images
+        'publish_product_images'   => true,  // Can publish product images
+        'delete_product_images'    => true,  // Can delete product images
+        'edit_others_product_images' => true, // Can edit others' product images
+        'delete_others_product_images' => true, // Can delete others' product images
+        'read_product_image'       => true,  // Can read individual product images
+        'read_private_product_images' => true, // Can read private product images
+        'delete_product_image'     => true,  // Can delete individual product images
+		 // Ensure create capabilities
+		 'edit_product_image'       => true,  // Can edit a single product image
+		 'create_posts'             => true,  // Allow creating new product images
+    ));
+}
+add_action('init', 'add_custom_role_with_cpt_access');
+
+function assign_product_images_caps_to_admin() {
+    // Get the administrator role
+    $role = get_role('administrator');
+
+    // Add custom capabilities
+    $role->add_cap('edit_product_images');
+    $role->add_cap('publish_product_images');
+    $role->add_cap('edit_others_product_images');
+    $role->add_cap('delete_product_images');
+    $role->add_cap('delete_others_product_images');
+    $role->add_cap('read_private_product_images');
+    $role->add_cap('edit_product_image');
+    $role->add_cap('delete_product_image');
+    $role->add_cap('read_product_image');
+}
+add_action('admin_init', 'assign_product_images_caps_to_admin');
+
+
+
+
+
+
+// keeping track of number of images upoded by user 
+
+
+function add_post_count_meta_field($user_id) {
+    if (!get_user_meta($user_id, 'post_count', true)) {
+        add_user_meta($user_id, 'post_count', 0, true);
+    }
+}
+add_action('profile_update', 'add_post_count_meta_field');
+add_action('user_register', 'add_post_count_meta_field');
+
+
+
+function get_post_count_by_user($user_id) {
+    $query = new WP_Query(array(
+        'author' => $user_id,
+        'post_type' => 'post', // Change if you need to count for a custom post type
+        'post_status' => 'publish', // Only count published posts
+        'fields' => 'ids', // Retrieve only the IDs
+        'posts_per_page' => -1, // Retrieve all posts
+    ));
+
+    return $query->found_posts;
+}
+function update_post_count_on_publish($post_id) {
+    // Ensure this function only runs on a 'publish' action
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+
+    // Avoid running this function for revisions
+    if (wp_is_post_revision($post_id)) {
+        return;
+    }
+
+    // Check if the post is published
+    $post_status = get_post_status($post_id);
+    if ($post_status !== 'publish') {
+        return;
+    }
+
+    $post_author_id = get_post_field('post_author', $post_id);
+    $user = get_userdata($post_author_id);
+
+    if ($user && in_array('product_images_manager', $user->roles)) {
+        $post_count = (int) get_user_meta($post_author_id, 'post_count', true);
+        update_user_meta($post_author_id, 'post_count', $post_count + 1);
+    }
+}
+add_action('save_post', 'update_post_count_on_publish');
+function decrement_post_count_on_delete($post_id) {
+	error_log("Function triggered for post ID: $post_id");
+    // Avoid running for revisions or non-posts
+    if (wp_is_post_revision($post_id)) {
+        return;
+    }
+	
+    // Get the post author ID
+    $post_author_id = get_post_field('post_author', $post_id);
+	
+    // Check if the user has the specific role
+    $user = get_userdata($post_author_id);
+    if ($user && in_array('product_images_manager', $user->roles)) {
+     
+        $post_count = (int) get_user_meta($post_author_id, 'post_count', true);
+        $new_post_count = max(0, $post_count - 1); 
+
+        update_user_meta($post_author_id, 'post_count', $new_post_count);
+    }
+}
+add_action('wp_trash_post', 'decrement_post_count_on_delete');
+
+function show_post_count_in_user_profile($user) {
+    $post_count = get_user_meta($user->ID, 'post_count', true);
+    ?>
+    <h3><?php _e('Post Count', 'vw-stock-images-pro'); ?></h3>
+    <table class="form-table">
+        <tr>
+            <th><label for="post_count"><?php _e('Post Count'); ?></label></th>
+            <td>
+                <input type="text" name="post_count" id="post_count" value="<?php echo esc_attr($post_count); ?>" class="regular-text" readonly />
+            </td>
+        </tr>
+    </table>
+    <?php
+}
+add_action('show_user_profile', 'show_post_count_in_user_profile');
+add_action('edit_user_profile', 'show_post_count_in_user_profile');
+
+
+
+
+
+function filter_custom_post_type_posts_by_author($query) {
+    // Check if we're in the admin area and it's a post list query
+    if (is_admin() && $query->is_main_query() && $query->post_type === 'product_images') {
+        // Restrict to posts authored by the current user
+        if (!current_user_can('manage_options')) { // 'manage_options' is usually for admins
+            $query->set('author', get_current_user_id());
+        }
+    }
+}
+add_action('pre_get_posts', 'filter_custom_post_type_posts_by_author');
+
+
+function restrict_custom_post_type_editing($allcaps, $cap, $args, $user) {
+    if ($args[0] === 'edit_post') {
+        $post_id = $args[2];
+        $post = get_post($post_id);
+
+        // If the post exists and the user is not the author, deny edit access
+        if ($post && $post->post_author != $user->ID) {
+            $allcaps[$cap[0]] = false;
+        }
+    }
+
+    if ($args[0] === 'delete_post') {
+        $post_id = $args[2];
+        $post = get_post($post_id);
+
+        // If the post exists and the user is not the author, deny delete access
+        if ($post && $post->post_author != $user->ID) {
+            $allcaps[$cap[0]] = false;
+        }
+    }
+
+    return $allcaps;
+}
+add_filter('user_has_cap', 'restrict_custom_post_type_editing', 10, 4);

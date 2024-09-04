@@ -62,7 +62,5 @@ if ( get_theme_mod('vw_stock_images_pro_header_section_sticky',true) == "1" ) {
 
 
     <div class="clearfix"></div>
-    <?php if(get_theme_mod('vw_stock_images_pro_slider_additonal_img_one')!=''){ ?>
-    <img class="slider-spider-img" src="<?php echo esc_html(get_theme_mod('vw_stock_images_pro_slider_additonal_img_one')); ?>">
-    <?php } ?>
+
   </header>

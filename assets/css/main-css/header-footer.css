@@ -686,7 +686,8 @@ font-size: 18px;
   height: 220px;
 }
 
-.profile-search a i {
-    color: var(--cherry);
-}
 
+
+.profile-search div, .profile-search a {
+  color: #fff;
+}

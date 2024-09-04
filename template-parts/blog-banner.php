@@ -11,11 +11,6 @@ if($vw_title_banner_image_title_on_off == 'on') $display = 'style=display:none;'
 $vw_title_banner_image_title_below_on_off = get_post_meta($post->ID, 'vw_title_banner_image_title_below_on_off', true);
 if($vw_title_banner_image_title_below_on_off != 'on') $display_title_bbanner = 'style=display:none;';
 if( $img != '' ){ ?>
-
-
-	<?php if(get_theme_mod('vw_stock_images_pro_slider_additonal_img_one')!=''){ ?>
-	<img class="slider-spider-img" src="<?php echo esc_html(get_theme_mod('vw_stock_images_pro_slider_additonal_img_one')); ?>">
-	<?php } ?>
 	<div class="title-box banner-img" style="background-image:url(<?php echo esc_url( $img); ?>)">
 	  <div class="banner-page-text container">
 	    <div class="row">

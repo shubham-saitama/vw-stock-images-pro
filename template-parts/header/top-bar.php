@@ -21,11 +21,11 @@ $img_bg = get_theme_mod('vw_stock_images_pro_topbar_bgimage_setting');
 
 
 ?>
-<div id="site_top" style="<?php echo esc_attr($topbar_back); ?>" class="<?php echo esc_attr($img_bg); ?>">
+<!-- <div id="site_top" style="<?php echo esc_attr($topbar_back); ?>" class="<?php echo esc_attr($img_bg); ?>">
   <div class="container">
     <div class="row py-2 align-items-center">
         <p class="text-center p-0">Freshly Baked Delights Daily! Enjoy 10% Off on Your First Order with Code WELCOME10!</p>
     </div>
   </div>
 </div>
-</div>
+</div> -->

@@ -21,7 +21,7 @@ VW Stock Images WordPress Theme is released under the terms of GNU GPL
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 :root{
   --cherry: #E94C4C;
-  --green: #5fcac7;
+  --green: #00963F;
 }
 
 /* Basic Style */
@@ -125,7 +125,7 @@ VW Stock Images WordPress Theme is released under the terms of GNU GPL
 .theme-para{
   font: 400 15px/25px Rubik;
   letter-spacing: 0px;
-  color: #000000;
+  color: #fff;
 }
  .screen-reader-text {
      position: absolute;
@@ -137,12 +137,12 @@ VW Stock Images WordPress Theme is released under the terms of GNU GPL
 /*------------------------- Headings --------------------------*/
  section h2 {
    font: 700 30px / 44px Rubik;
-   color: #000000;
+   color: #ffff;
 
 }
  section h3 {
    font-weight: 500;
-   color: #000;
+   color: #fff;
    font-size: 26px;
 }
  section h5 {
@@ -151,13 +151,13 @@ VW Stock Images WordPress Theme is released under the terms of GNU GPL
      padding: 0;
 }
 
-/*----------------- Section Title--------------*/
+/*----------------- Banner form--------------*/
 
 
 
 
 .vw-logo {
-  max-width: 90px;
+  max-width: 170px;
 }
 div#site_top {
   border: 1px solid #E94C4C;
@@ -166,6 +166,37 @@ div#site_top {
 div#site_top p {
   margin: 0px;
 }
-div#header{
-  background-color: #fff;
+
+select#image_category {
+  font: normal normal 600 18px / 23px Outfit;
+  text-align: center;
+  width: 130px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+input#s {
+  width: 570px;
+}
+input#searchsubmit {
+  font: normal normal normal 18px / 23px Outfit;
+  color: #fff;
+  background: #00963F;
+  border: none;
+  padding: 10px 42px;
+  border-radius: 6px;
+}
+form#searchform {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 20px auto;
+  width: max-content;
+  padding: 6px;
+  backdrop-filter: blur(30px);
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+}
+.slider-left-content {
+  padding: 150px 0px;
 }

@@ -1,3 +1,25 @@
-section#slider {
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+/* section#slider {
   background: var(--cherry);
+} */
+h1.slider-heading {
+  color: #fff;
+  font: normal normal bold 44px / 55px Outfit;
+}
+.slider-left-content {
+  padding: 150px 0px;
+  border-radius: 30px;
+  margin-bottom: -10%;
+}
+section#slider {
+  padding-top: 3%;
+}
+
+
+
+/* section after sllider  */
+section#pests-problem {
+  margin-top: 100px;
 }

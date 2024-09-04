@@ -13,7 +13,7 @@ if (get_theme_mod('vw_stock_images_pro_header_widgets_bgcolor', '')) {
 
 <div id="vw-sticky-menu">
   <div class="container header-inner">
-    <div class="row align-items-center">
+    <div class="row align-items-center justify-content-between">
       <div class="col-lg-3 col-md-3 col-12">
         <div class="vw-logo" id="site-sticky-menu1">
           <?php
@@ -31,8 +31,7 @@ if (get_theme_mod('vw_stock_images_pro_header_widgets_bgcolor', '')) {
           <?php } ?>
           <div class="logo-text">
             <?php if (get_theme_mod('vw_stock_images_pro_display_title') != false) { ?>
-              <h2><a href="<?php echo esc_url(home_url('/')); ?>"
-                  rel="home"><?php esc_attr(bloginfo('name')); ?></a></h2>
+              <h2><a href="<?php echo esc_url(home_url('/')); ?>" rel="home"><?php esc_attr(bloginfo('name')); ?></a></h2>
             <?php }
             if (get_theme_mod('vw_stock_images_pro_display_tagline') != false) {
               $description = get_bloginfo('description', 'display');
@@ -46,7 +45,7 @@ if (get_theme_mod('vw_stock_images_pro_header_widgets_bgcolor', '')) {
           </div>
         </div>
       </div>
-      <div class="col-xl-7 col-1">
+      <div class="col-xl-7 col-1 d-none">
         <div class="innermenubox">
           <div class="toggle-nav mobile-menu">
             <div role="button" on="tap:sidebar1.toggle" tabindex="0" class="hamburger" id="open_nav"><span
@@ -91,10 +90,15 @@ if (get_theme_mod('vw_stock_images_pro_header_widgets_bgcolor', '')) {
         </div>
       </div>
       <div class="col-lg-2 col-md-2 col-6">
-            <div class="profile-search">
-                <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
-                <a href="#"><i class="fa-solid fa-user"></i></a>
-            </div>
+        <div class="profile-search">
+          <div class="login">
+            <a href="#">Login</a>
+          </div>
+          <div class="sign-in">
+            <a href="#">Sign In</a>
+          </div>
+          <div class="menu"><i class="fa-solid fa-bars"></i></div>
+        </div>
       </div>
     </div>
   </div>

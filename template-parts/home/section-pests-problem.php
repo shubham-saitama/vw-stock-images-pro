@@ -21,7 +21,7 @@ $query = new WP_Query( $args );
 
 
 ?>
-<section id="pests-problem"  style="<?php echo esc_attr( $pests_back ); ?>"  class="<?php echo esc_attr($img_bg); ?>">
+<section id="pests-problem"  style="<?php echo esc_attr( $pests_back ); ?>"  class="<?php echo esc_attr($img_bg); ?>" >
   <div class="container">
     <div class="row">
       <div class="col-lg-10">

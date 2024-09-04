@@ -12,9 +12,7 @@
  $background_img = get_theme_mod('vw_stock_images_pro_inner_page_banner_bgimage');
 get_header();
 ?>
-<?php if(get_theme_mod('vw_stock_images_pro_slider_additonal_img_one')!=''){ ?>
-<img class="slider-spider-img" src="<?php echo esc_html(get_theme_mod('vw_stock_images_pro_slider_additonal_img_one')); ?>">
-<?php } ?>
+
 <div class="title-box banner-img" style="background-image:url(<?php echo esc_url( $background_img); ?>)">
   <div class="banner-page-text container">
     <div class="row">
