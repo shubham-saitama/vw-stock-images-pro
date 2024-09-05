@@ -947,32 +947,35 @@ function add_custom_role_with_cpt_access() {
     remove_role('product_images_manager');
 
     // Add the custom role with specific capabilities
-    add_role('product_images_manager', 'Contributer', array(
+    add_role('product_images_manager', 'Contributor', array(
         // Basic capabilities (deny general access)
-        'read'                     => true, // No general read access
-        'edit_posts'               => false, // Cannot edit regular posts
-        'delete_posts'             => false, // Cannot delete regular posts
-        'edit_pages'               => false, // Cannot edit pages
-        'delete_pages'             => false, // Cannot delete pages
-        'edit_theme_options'       => false, // Cannot access theme options or editor
-        'edit_files'               => false, // Cannot access the file editor
-        'manage_options'           => false, // Cannot manage options/settings
+        'read'                        => true, // No general read access
+        'edit_posts'                  => false, // Cannot edit regular posts
+        'delete_posts'                => false, // Cannot delete regular posts
+        'edit_pages'                  => false, // Cannot edit pages
+        'delete_pages'                => false, // Cannot delete pages
+        'edit_theme_options'          => false, // Cannot access theme options or editor
+        'edit_files'                  => false, // Cannot access the file editor
+        'manage_options'              => false, // Cannot manage options/settings
 
         // Product Images custom post type capabilities
-        'edit_product_images'      => true,  // Can edit product images
-        'publish_product_images'   => true,  // Can publish product images
-        'delete_product_images'    => true,  // Can delete product images
-        'edit_others_product_images' => true, // Can edit others' product images
-        'delete_others_product_images' => true, // Can delete others' product images
-        'read_product_image'       => true,  // Can read individual product images
-        'read_private_product_images' => true, // Can read private product images
-        'delete_product_image'     => true,  // Can delete individual product images
-		 // Ensure create capabilities
-		 'edit_product_image'       => true,  // Can edit a single product image
-		 'create_posts'             => true,  // Allow creating new product images
+        'edit_product_images'         => true,  // Can edit product images
+        'publish_product_images'      => true,  // Can publish product images
+        'delete_product_images'       => true,  // Can delete product images
+        'edit_others_product_images'  => true,  // Can edit others' product images
+        'delete_others_product_images'=> true,  // Can delete others' product images
+        'read_product_image'          => true,  // Can read individual product images
+        'read_private_product_images' => true,  // Can read private product images
+        'delete_product_image'        => true,  // Can delete individual product images
+        'edit_product_image'          => true,  // Can edit a single product image
+        'create_posts'                => true,  // Allow creating new product images
+
+        // Capability to upload featured images
+        'upload_files'                => true,  // Can upload media files, including featured images
     ));
 }
 add_action('init', 'add_custom_role_with_cpt_access');
+
 
 function assign_product_images_caps_to_admin() {
     // Get the administrator role
@@ -1125,3 +1128,101 @@ function restrict_custom_post_type_editing($allcaps, $cap, $args, $user) {
     return $allcaps;
 }
 add_filter('user_has_cap', 'restrict_custom_post_type_editing', 10, 4);
+
+
+
+// code to manage number of download count in mambership level 
+function pmpro_add_download_limit_field() {
+    $level_id = intval($_REQUEST['edit']);
+    $download_limit = get_option('pmpro_download_limit_' . $level_id, 10); // Default to 10 downloads
+
+    ?>
+    <h3 class="topborder"><?php esc_html_e('Download Limit', 'pmpro'); ?></h3>
+    <table class="form-table">
+        <tr>
+            <th scope="row" valign="top"><label for="download_limit"><?php esc_html_e('Number of Downloads Allowed', 'pmpro'); ?>:</label></th>
+            <td>
+                <input name="download_limit" type="number" id="download_limit" value="<?php echo esc_attr($download_limit); ?>" class="regular-text" />
+                <p class="description"><?php esc_html_e('Set the maximum number of downloads allowed for this membership level.', 'pmpro'); ?></p>
+            </td>
+        </tr>
+    </table>
+    <?php
+}
+add_action('pmpro_membership_level_after_other_settings', 'pmpro_add_download_limit_field');
+
+function pmpro_save_download_limit($level_id) {
+    if (isset($_REQUEST['download_limit'])) {
+        $download_limit = intval($_REQUEST['download_limit']);
+        update_option('pmpro_download_limit_' . $level_id, $download_limit);
+    }
+}
+add_action('pmpro_save_membership_level', 'pmpro_save_download_limit');
+
+
+// code to manage number of download count in mambership level 
+function handle_image_download_request() {
+    if (isset($_GET['download_image'])) {
+        $post_id = intval($_GET['download_image']);
+        $user_id = get_current_user_id();
+
+        if (!can_user_download($user_id)) {
+            wp_die('You have reached your download limit.');
+        }
+
+        // Get the URL of the featured image
+        $image_url = wp_get_attachment_url(get_post_thumbnail_id($post_id));
+
+        if ($image_url) {
+            // Increment the download count
+            increment_user_download_count($user_id);
+
+            // Set headers to force download
+            header('Content-Type: application/octet-stream');
+            header('Content-Disposition: attachment; filename="' . basename($image_url) . '"');
+            readfile($image_url);
+            exit;
+        } else {
+            wp_die('Image not found.');
+        }
+    }
+}
+add_action('template_redirect', 'handle_image_download_request');
+
+function increment_user_download_count($user_id) {
+    $download_count = get_user_meta($user_id, '_download_count', true);
+    $download_count = $download_count ? $download_count + 1 : 1;
+    update_user_meta($user_id, '_download_count', $download_count);
+}
+
+function get_user_download_count($user_id) {
+    return get_user_meta($user_id, '_download_count', true);
+}
+
+function add_download_button() {
+    if (is_singular('product_images')) {
+        $user_id = get_current_user_id();
+        $post_id = get_the_ID();
+
+        // Check if the user can download
+        if (can_user_download($user_id)) {
+            $download_url = add_query_arg('download_image', $post_id, get_permalink($post_id));
+            echo '<a href="' . esc_url($download_url) . '" class="download-button">Download Image</a>';
+        } else {
+            echo '<p>You have reached your download limit.</p>';
+        }
+    }
+}
+add_action('the_content', 'add_download_button');
+
+function get_user_download_limit($user_id) {
+    $level_id = pmpro_getMembershipLevelForUser($user_id)->id;
+    $download_limit = get_option('pmpro_download_limit_' . $level_id, 10); // Default to 10 downloads
+    return $download_limit;
+}
+
+function can_user_download($user_id) {
+    $allowed_downloads = get_user_download_limit($user_id);
+    $current_download_count = get_user_download_count($user_id);
+    return $current_download_count < $allowed_downloads;
+}
