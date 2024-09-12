@@ -1,9 +1,10 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 
-/* section#slider {
-  background: var(--cherry);
-} */
+:root{
+  --gray: #F2F2F2;
+  --green: #00963F;
+}
 h1.slider-heading {
   color: #fff;
   font: normal normal bold 44px / 55px Outfit;
@@ -20,6 +21,7 @@ section#slider {
 
 
 /* section after sllider  */
+
 section#pests-problem {
   margin-top: 100px;
 }

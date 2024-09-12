@@ -76,7 +76,7 @@
 
             <li class="">
               <label class="d-flex gap-3 mb-3">
-                <input class="category-filter-checkbox" type="checkbox" name="products_categories" value="<?php echo $term_value->term_id; ?>" />
+                <input class="category-filter-checkbox" type="checkbox" name="image_cat" value="<?php echo $term_value->term_id; ?>" />
                 <span class="align-self-center"><?php echo $term_value->name; ?></span>
               </label>
 

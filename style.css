@@ -20,8 +20,8 @@ VW Stock Images WordPress Theme is released under the terms of GNU GPL
 @import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300..700;1,300..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 :root{
-  --cherry: #E94C4C;
-  --green: #00963F;
+  --gray: #F2F2F2;
+  --primary: #00963F;
 }
 
 /* Basic Style */

@@ -1143,6 +1143,7 @@ class ThemeWhizzie
 			);
 			$page_id = wp_insert_post($page);
 			add_post_meta($page_id, 'vw_title_banner_image_wp_custom_attachment', $banner_attachment_url);
+
 			$page_title = 'Page Left Sidebar';
 			$content = 'Te obtinuit ut adepto satis somno. Aliisque institoribus iter deliciae vivet vita. Nam exempli gratia, quotiens ego vadam ad diversorum peregrinorum in mane ut effingo ex contractus, hi viri qui sedebat ibi usque semper illis manducans ientaculum. Solum cum bulla ut debui; EGO youd adepto a macula proiciendi. Sed quis scit si forte quod esset optima res pro me. sicut ea quae sentio. Qui vellem cadunt off ius desk ejus! Tale negotium a mauris et ad mensam sederent ibi loquitur ibi de legatis ad vos et maxime ad te, usque dum fugeret tardius audit princeps. Bene tamen fiduciam Ego got off semelTe obtinuit ut adepto satis somno. Aliisque institoribus iter deliciae vivet vita. Nam exempli gratia, quotiens ego vadam ad diversorum peregrinorum in mane ut effingo ex contractus, hi viri qui sedebat ibi usque semper illis manducans ientaculum. Solum cum bulla ut debui; EGO youd adepto a macula proiciendi. Sed quis scit si forte quod esset optima res pro me. sicut ea quae sentio. Qui vellem cadunt off ius desk ejus! Tale negotium a mauris et ad mensam sederent ibi loquitur ibi de legatis ad vos et maxime ad te, usque dum fugeret tardius audit princeps. Bene tamen fiduciam Ego got off semel.';
 
@@ -1211,19 +1212,19 @@ class ThemeWhizzie
 		add_post_meta($services_id, 'vw_title_banner_image_wp_custom_attachment', $banner_attachment_url);
 
 		//-----Pests Problem-------
-		$pests_library_title = 'Pest Library';
-		$pests_library_check = get_page_by_title($pests_library_title);
-		$pests_library = array(
+		$collections_title = 'Collections Page';
+		$collections_check = get_page_by_title($collections_title);
+		$collections = array(
 			'post_type' => 'page',
-			'post_title' => $pests_library_title,
+			'post_title' => $collections_title,
 			'post_status' => 'publish',
 			'post_author' => 1,
-			'post_slug' => 'pests_library'
+			'post_slug' => 'collections'
 		);
-		$pests_library_id = wp_insert_post($pests_library);
+		$collections_id = wp_insert_post($collections);
 
-		add_post_meta($pests_library_id, '_wp_page_template', 'page-template/pests-library.php');
-		add_post_meta($pests_library_id, 'vw_title_banner_image_wp_custom_attachment', $banner_attachment_url);
+		add_post_meta($collections_id, '_wp_page_template', 'page-template/collections-template.php');
+		add_post_meta($collections_id, 'vw_title_banner_image_wp_custom_attachment', $banner_attachment_url);
 
 		//---------------FAQ-------------
 
@@ -1244,19 +1245,19 @@ class ThemeWhizzie
 
 		//---------------Appointment-------------
 
-		$appoinment_title = 'Appointment';
-		$appoinment_check = get_page_by_title($appoinment_title);
-		$appoinment = array(
+		$like_page_title = 'Liked Page';
+		$like_page_check = get_page_by_title($like_page_title);
+		$like_page = array(
 			'post_type' => 'page',
-			'post_title' => $appoinment_title,
+			'post_title' => $like_page_title,
 			'post_status' => 'publish',
 			'post_author' => 1,
-			'post_slug' => 'appoinment'
+			'post_slug' => 'like_page'
 		);
-		$appoinment_id = wp_insert_post($appoinment);
+		$like_page_id = wp_insert_post($like_page);
 
-		add_post_meta($appoinment_id, '_wp_page_template', 'page-template/Appointment.php');
-		add_post_meta($appoinment_id, 'vw_title_banner_image_wp_custom_attachment', $banner_attachment_url);
+		add_post_meta($like_page_id, '_wp_page_template', 'page-template/like-page-templaate.php');
+		add_post_meta($like_page_id, 'vw_title_banner_image_wp_custom_attachment', $banner_attachment_url);
 
 
 		// / Create a Terms page and assigned the template
@@ -1607,37 +1608,71 @@ class ThemeWhizzie
 		set_theme_mod('vw_stock_images_pro_pests_problem_btn_url', get_permalink(ThemeWhizzie::get_page_id_by_title('Pest Library')));
 
 
+		//========================================== adding terms and setting term meta images =====================================================
+		 // Define the terms with their meta images
+		 $terms = array(
+			'Photos'     => get_template_directory_uri() . '/assets/images/shop-page/icons/photos.png',
+			'Videos'     => get_template_directory_uri() . '/assets/images/shop-page/icons/video.png',
+			'Vectors'    => get_template_directory_uri() . '/assets/images/shop-page/icons/vector.png',
+			'Icons'      => get_template_directory_uri() . '/assets/images/shop-page/icons/icons.png',
+			'Gallery'    => get_template_directory_uri() . '/assets/images/shop-page/icons/search.png',
+			'Wallpapers' => get_template_directory_uri() . '/assets/images/shop-page/icons/search.png',
+			'Games'      => get_template_directory_uri() . '/assets/images/shop-page/icons/search.png',
+			'Graphics'   => get_template_directory_uri() . '/assets/images/shop-page/icons/search.png'
+		);
+	
+		// Define the taxonomy slug
+		$taxonomy = 'image_cat'; // Replace with your custom taxonomy slug
+	
+		// Add the terms and set their meta data
+		foreach ($terms as $term_name => $meta_image_url) {
+			// Add term if it doesn't already exist
+			if (!term_exists($term_name, $taxonomy)) {
+				$term = wp_insert_term($term_name, $taxonomy);
+				// Check if term was created successfully
+				if (!is_wp_error($term)) {
+					$term_id = $term['term_id']; // Access term ID from the returned array
+				} else {
+					echo 'Error adding term: ' . $term->get_error_message();
+					continue; // Skip to the next term if there's an error
+				}
+			} else {
+				$term = get_term_by('name', $term_name, $taxonomy);
+				$term_id = $term->term_id; // Access term ID from the term object
+			}
+	
+			// Set term meta
+			update_term_meta($term_id, 'image_cat_image', $meta_image_url);
+		}
+		//========================================== adding terms and setting term meta images end =====================================================
 
-		$content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim ad minim veniam, q.";
-		$pests_title = array('Termites', 'Bed bugs', 'Mosquitos', 'Cockroaches', 'Gnats', 'Beetles', 'Flies', 'Ticks');
-		for ($i = 1; $i <= 8; $i++) {
+
+
+		$content = "Image description.";
+		$posts_title = array('Furniture', 'Swarwberry Cake', 'Beach Sunset', 'Pancake', 'Office Dark Furniture', 'Sity Skyline', 'Highway Exotic Car', 'Modern Office Architectue', 'Hot Air Baloon', 'Sunset Beach Blue', 'City Skyscrapers', 'Clothing Store', 'Sunset People', 'Gym Fitness Man', 'Food Bowl Asia', 'Gym Powerlifting', 'Hotel green Gallery', 'Science Doctor Microscope', 'Beach Colonut Tree', 'Camera Tech', 'Flowers Pink', 'Garden Temple', 'Gym Yoga Women', 'Laptop Store', 'Bars Graphics', 'Flower Tree Mansion', 'Sakura Garden', 'Fly Micro Image', 'Women Working', 'Steam Engine Trian', 'Lake Lamps', 'Wedding Bride Groom', 'Tech', 'Squreel Brown Drinking', 'Lake Boy Yellow', 'Lake Reflection', 'Gym Image Back', 'Northen Lights');
+		for ($i = 1; $i <= 38; $i++) {
 			// Create post object
 			$my_post = array(
-				'post_title' => wp_strip_all_tags($pests_title[$i - 1]),
+				'post_title' => wp_strip_all_tags($posts_title[$i - 1]),
 				'post_content' => $content,
 				'post_status' => 'publish',
-				'post_type' => 'pests-problem'
+				'post_type' => 'product_images'
 			);
 
 			// Insert the post into the database
 			$post_id = wp_insert_post($my_post);
 
-			update_post_meta($post_id, 'pests-para-one', "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.");
-			update_post_meta($post_id, 'pests-list-heading', "Solutions");
-			update_post_meta($post_id, 'pests-list-one', "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce laoreet, ligula condimentum tincidunt, arcu orci laoreet massa,");
-			update_post_meta($post_id, 'pests-list-two', "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce laoreet, ligula condimentum tincidunt, arcu orci laoreet massa,.");
-			update_post_meta($post_id, 'pests-list-three', "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce laoreet, ligula condimentum tincidunt, arcu orci laoreet massa.");
-			update_post_meta($post_id, 'pests-list-four', "Lorem Ipsum is simply dummy text of the printing.");
-			update_post_meta($post_id, 'pests-list-five', "Lorem Ipsum is simply dummy text of the printing.");
-			update_post_meta($post_id, 'pests-para-two', "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla ariatur");
-
+			// select if free or premium 
+			$values = ['free', 'premium'];
+			$random_value = $values[array_rand($values)];
+			update_post_meta($post_id, '_image_type', $random_value);
 
 			add_post_meta($post_id, 'vw_title_banner_image_wp_custom_attachment', $banner_attachment_url);
 
+			// selection images 
 
-			update_post_meta($post_id, 'service-para', "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.");
-
-			$image_url = get_template_directory_uri() . '/assets/images/pests-problem/problem' . $i . '.png';
+			$image_url = get_template_directory_uri() . '/assets/images/shop-page/product-' . $i . '.png';
+			error_log('Image Url ==============>' . $image_url);
 
 			$image_name = 'problem' . $i . '.png';
 			$upload_dir = wp_upload_dir();
@@ -1955,7 +1990,7 @@ class ThemeWhizzie
 			'Pest Prevention' => array('Herbicide Sprayer', 'Protective Sunglasses', 'Aerosol Spray Machine', 'Garden Fertilisers', 'Weed Lawn Biological'),
 			'Anti-Cockroach' => array('Anti Cockroach Oil', 'Rat Trap Rodent'),
 		);
-		
+
 		$k = 0;
 		foreach ($product_category as $product_name => $product_title) {
 			// Insert product categories
@@ -1968,7 +2003,7 @@ class ThemeWhizzie
 					'slug' => 'product_cat' . $k
 				)
 			);
-		
+
 			$l = 0;
 			// Create products
 			$review_text = array(
@@ -1978,24 +2013,24 @@ class ThemeWhizzie
 				'I like this Product',
 				'Nice Product',
 			);
-		
+
 			foreach ($product_title as $key => $pro_text) {
 				$content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit...";
 				$product_excerpt = "Lorem ipsum dolor sit amet, consectetur adipiscing elit...";
-				
+
 				// Create post object
 				$my_post = array(
-					'post_title'    => wp_strip_all_tags($pro_text),
-					'post_content'  => $content,
-					'post_status'   => 'publish',
-					'post_type'     => 'product',
-					'post_excerpt'  => $product_excerpt
+					'post_title' => wp_strip_all_tags($pro_text),
+					'post_content' => $content,
+					'post_status' => 'publish',
+					'post_type' => 'product',
+					'post_excerpt' => $product_excerpt
 				);
-				
+
 				// Insert the post into the database
 				$post_id = wp_insert_post($my_post);
 				wp_set_object_terms($post_id, $product_name, 'product_cat', true);
-		
+
 				// Insert reviews and ratings
 				for ($c = 0; $c <= 4; $c++) {
 					$comment_id = wp_insert_comment(array(
@@ -2008,54 +2043,54 @@ class ThemeWhizzie
 						'comment_date' => date('Y-m-d H:i:s'),
 						'comment_approved' => 1,
 					));
-		
+
 					update_comment_meta($comment_id, 'rating', 4);
 				}
-		
+
 				// Set pricing
 				$random_price = 0;
 				update_post_meta($post_id, '_sale_price', $random_price);
 				update_post_meta($post_id, '_price', $random_price);
 				update_post_meta($post_id, '_regular_price', $random_price);
-		
+
 				// Downloadable product settings
 				update_post_meta($post_id, '_downloadable', 'yes');
 				update_post_meta($post_id, '_virtual', 'yes');
-				
+
 				// Generate the image URL
 				$image_url = get_template_directory_uri() . '/assets/images/product/' . str_replace(' ', '-', $pro_text) . '.png';
 				$image_name = $pro_text . '.png';
-				
+
 				// Upload image to media library
 				$upload_dir = wp_upload_dir();
 				$image_data = file_get_contents(esc_url($image_url));
 				$unique_file_name = wp_unique_filename($upload_dir['path'], $image_name);
 				$filename = basename($unique_file_name);
-		
+
 				if (wp_mkdir_p($upload_dir['path'])) {
 					$file = $upload_dir['path'] . '/' . $filename;
 				} else {
 					$file = $upload_dir['basedir'] . '/' . $filename;
 				}
-		
+
 				file_put_contents($file, $image_data);
-		
+
 				$wp_filetype = wp_check_filetype($filename, null);
-		
+
 				$attachment = array(
 					'post_mime_type' => $wp_filetype['type'],
 					'post_title' => sanitize_file_name($filename),
 					'post_type' => 'product',
 					'post_status' => 'inherit',
 				);
-		
+
 				$attach_id = wp_insert_attachment($attachment, $file, $post_id);
-		
+
 				require_once(ABSPATH . 'wp-admin/includes/image.php');
-		
+
 				$attach_data = wp_generate_attachment_metadata($attach_id, $file);
 				wp_update_attachment_metadata($attach_id, $attach_data);
-		
+
 				// Set as downloadable file
 				$downloadable_files = array(
 					md5($filename) => array(
@@ -2063,15 +2098,15 @@ class ThemeWhizzie
 						'file' => wp_get_attachment_url($attach_id),
 					),
 				);
-		
+
 				update_post_meta($post_id, '_downloadable_files', $downloadable_files);
 				set_post_thumbnail($post_id, $attach_id);
-		
+
 				++$l;
 			}
 			++$k;
 		}
-		
+
 
 		// ---------------------------Faq------------------
 
@@ -3808,13 +3843,13 @@ This e-mail was sent from a contact form on [_site_title] ([_site_url])',
 						for (var i = 0; i < premium_data.length; i++) {
 							var premium_product = premium_data[i];
 							var card_content = `<div class="o-products-col" data-id="` + premium_product.id + `">
-											  <div class="o-products-image">
-												  <img src="`+ premium_product.image + `">
-											  </div>
-											  <h3>`+ premium_product.title + `</h3>
-											  <a href="`+ premium_product.permalink + `" target="_blank">Buy Now</a>
-											  <a href="`+ premium_product.demo_url + `" target="_blank">View Demo</a>
-										  </div>`;
+																			  <div class="o-products-image">
+																				  <img src="`+ premium_product.image + `">
+																			  </div>
+																			  <h3>`+ premium_product.title + `</h3>
+																			  <a href="`+ premium_product.permalink + `" target="_blank">Buy Now</a>
+																			  <a href="`+ premium_product.demo_url + `" target="_blank">View Demo</a>
+																		  </div>`;
 							jQuery('.wz-spinner-wrap').css('display', 'none');
 							jQuery('#other-products .o-product-row').append(card_content);
 						}
@@ -3830,8 +3865,8 @@ This e-mail was sent from a contact form on [_site_title] ([_site_url])',
 							}
 							let premium_product = premium_category[i];
 							let card_content = `<li data-ids="` + premium_product.product_ids + `" onclick="other_products(this);" class="` + active_class + `">
-											  `+ premium_product.name + `<span class="badge badge-info">` + premium_product.product_ids.length + `</span>
-										  </li>`;
+																			  `+ premium_product.name + `<span class="badge badge-info">` + premium_product.product_ids.length + `</span>
+																		  </li>`;
 							jQuery('.o-product-col-1 ul').append(card_content);
 						}
 					});

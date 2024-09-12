@@ -1,5 +1,6 @@
 <?php
-function get_shop_page_filter(){
+function get_shop_page_filter()
+{
 
 	$paged_from_post = isset($_POST['data']['paged']) ? $_POST['data']['paged'] : null;
 	$paged_from_query = get_query_var('paged');
@@ -7,16 +8,16 @@ function get_shop_page_filter(){
 	$paged = $paged_from_post ? $paged_from_post : ($paged_from_query ? $paged_from_query : 1);
 
 	$args = array(
-		'post_type'       =>  'product',
-		'post_status'     =>  'publish',
-		'posts_per_page'  =>  9,
-		'paged'           => $paged
+		'post_type' => 'product_images',
+		'post_status' => 'publish',
+		'posts_per_page' => 12,
+		'paged' => $paged
 	);
 
-	if ( $_POST['data'] ) {
+	if ($_POST['data']) {
 		$post_data = $_POST['data'];
 
-		if ( isset( $post_data['search_value'] ) ) {
+		if (isset($post_data['search_value'])) {
 			$args['s'] = $post_data['search_value'];
 		}
 
@@ -26,36 +27,84 @@ function get_shop_page_filter(){
 			'relation' => 'AND'
 		);
 
-		if( isset( $post_data['products_categories'] ) && count( $post_data['products_categories'] ) ) {
-			$category = $post_data['products_categories'];
+		// Check if 'image_cat' or 'orientation' exist in $post_data and if they are arrays
+		if (
+			(isset($post_data['image_cat']) && is_array($post_data['image_cat']) && count($post_data['image_cat']) > 0) ||
+			(isset($post_data['orientation']) && is_array($post_data['orientation']) && count($post_data['orientation']) > 0) ||
+			(isset($post_data['color']) && is_array($post_data['color']) && count($post_data['color']) > 0) ||
+			(isset($post_data['file_type']) && is_array($post_data['file_type']) && count($post_data['file_type']) > 0)
+		) {
+			// Check and sanitize the 'image_cat' if it exists
+			if (isset($post_data['image_cat']) && is_array($post_data['image_cat'])) {
+				$category = array_filter($post_data['image_cat']); // Removes empty values
 
-			array_push( $tax_query_array, array(
-			  'taxonomy'  =>  'product_cat',
-			  'field'     =>  'term_id',
-			  'terms'     =>  $category
-			));
+				// Add 'image_cat' to tax_query if categories are present
+				if (!empty($category)) {
+					array_push($tax_query_array, array(
+						'taxonomy' => 'image_cat',
+						'field' => 'slug',
+						'terms' => $category,
+					));
+				}
+			}
+
+			// Check and sanitize the 'orientation' if it exists
+			if (isset($post_data['orientation']) && is_array($post_data['orientation'])) {
+				$orientation_cat = array_filter($post_data['orientation']); // Removes empty values
+
+				// Add 'orientation' to tax_query if orientations are present
+				if (!empty($orientation_cat)) {
+					array_push($tax_query_array, array(
+						'taxonomy' => 'orientation',
+						'field' => 'slug',
+						'terms' => $orientation_cat,
+					));
+				}
+			}
+			// Check and sanitize the 'orientation' if it exists
+			if (isset($post_data['color']) && is_array($post_data['color'])) {
+				$colors_cat = array_filter($post_data['color']); // Removes empty values
+
+				// Add 'colors' to tax_query if colorss are present
+				if (!empty($colors_cat)) {
+					array_push($tax_query_array, array(
+						'taxonomy' => 'colors',
+						'field' => 'slug',
+						'terms' => $colors_cat,
+					));
+				}
+			}
+			// Check and sanitize the 'orientation' if it exists
+			if (isset($post_data['file_type']) && is_array($post_data['file_type'])) {
+				$file_types_cat = array_filter($post_data['file_type']); // Removes empty values
+
+				// Add 'file_types' to tax_query if file_typess are present
+				if (!empty($file_types_cat)) {
+					array_push($tax_query_array, array(
+						'taxonomy' => 'file_type',
+						'field' => 'slug',
+						'terms' => $file_types_cat,
+					));
+				}
+			}
 		}
 
 
-		if( isset( $post_data['values'] ) && count( $post_data['values'] ) ) {
 
-			array_push( $meta_query_array,
-			array(
-				array(
-					'key' => '_price',
-					'value' => array($post_data['values'][0], $post_data['values'][1]),
-					'compare' => 'BETWEEN',
-					'type' => 'numeric',
-					)
-					)
-				);
-
+		if (isset($post_data['licence']) && is_array($post_data['licence'])) {
+			$meta_query_array[] = array(
+				'key' => '_image_type',
+				'value' => $post_data['licence'], // Array of values
+				'compare' => 'IN'
+			);
 		}
 
-		$args['meta_query'] = $meta_query_array;
 		$args['tax_query'] = $tax_query_array;
+		$args['meta_query'] = $meta_query_array;
+		// $args['orientation_query'] = $orientation_query_array;
 	}
 
+	error_log('query args===========>' . print_r($args, true));
 	$loop = new WP_Query($args);
 	$shop_page_loop_html = '';
 
@@ -63,51 +112,18 @@ function get_shop_page_filter(){
 	if ($loop->have_posts()):
 		while ($loop->have_posts()):
 			$loop->the_post();
-			global $product;
+			// Get the post's categories (or custom taxonomy terms) for filtering
+			$post_categories = wp_get_post_terms(get_the_ID(), 'image_cat'); // Change 'category' to your custom taxonomy if needed
+			$category_classes = '';
+			foreach ($post_categories as $post_category) {
+				$category_classes .= ' category-' . $post_category->term_id;
+			}
 
-
+			// global $product;
 			?>
-
-			<div class="col-lg-4 col-md-6 col-sm-6 col-12 mb-3">
-				<div class="popular-pro-box d-flex flex-column">
-					<div class="position-relative">
-						<div class="pro-img">
-							<div class="content-overlay"></div>
-							<?php the_post_thumbnail();?>
-						</div>
-						<div class="product-icon d-flex justify-content-center  gap-2">
-								<div class="cart-btn">
-									<?php if( $product->is_type( 'simple' ) ){ woocommerce_template_loop_add_to_cart( $loop->post, $product ); } ?>
-								</div>
-								<?php if ( class_exists( 'YITH_WCWL' ) ) {  ?>
-										<div class="wishlist_text">
-											<?php echo do_shortcode(get_theme_mod('vw_stock_images_pro_popular_products_add_to_wishlist', '[yith_wcwl_add_to_wishlist]')); ?>
-										</div>
-									<?php } else {
-										echo "Please install and activate YITH WooCommerce Wishlist to add product wishlist";
-									} ?>
-							</div>
-					</div>
-
-					<div class="pro-content  text-center">
-						<h2 class="product-title">
-							<a href="<?php the_permalink(); ?>">
-							<?php echo get_the_title(); ?>
-							</a>
-						</h2>
-						<div class="product-content mb-2">
-							<?php //echo the_content(); ?>
-								 <p><?php $excerpt = get_the_excerpt(); echo esc_html(vw_stock_images_pro_string_limit_words($excerpt,12)); ?></p>
-						</div>
-						<div class="">
-								<?php echo $product->get_price_html(); ?>
-						</div>
-
-					</div>
-				</div>
+			<div class="grid-item col-lg-3 col-md-6 col-12 <?php echo esc_attr($category_classes); ?>">
+				<?php get_template_part('template-parts/product-image'); ?>
 			</div>
-
-
 		<?php endwhile;
 	endif;
 
@@ -116,42 +132,42 @@ function get_shop_page_filter(){
 	$base = $_POST['data']['base_url'];
 
 	if (str_contains($base, '?')) {
-	  $base .= '&paged=999999999';
+		$base .= '&paged=999999999';
 	} else {
-	  $base .= '?paged=999999999';
+		$base .= '?paged=999999999';
 	}
 
-	$base = str_replace( 999999999, '%#%', $base );
+	$base = str_replace(999999999, '%#%', $base);
 
 	$current = 1;
 	$total = $loop->max_num_pages;
 
 	$pages = paginate_links(
 		array(
-			'base'      => add_query_arg('paged', '%#%'),
-			'format'    => '',
-			'current'   => max(1, $paged),
-			'total'     => $total,
+			'base' => add_query_arg('paged', '%#%'),
+			'format' => '',
+			'current' => max(1, $paged),
+			'total' => $total,
 			'prev_text' => '<i class="fas fa-chevron-left"></i>',
 			'next_text' => '<i class="fas fa-chevron-right"></i>',
-			'type'      => 'list',
-			'add_args'  => array(
+			'type' => 'list',
+			'add_args' => array(
 				'search_value' => isset($_POST['data']['search_value']) ? $_POST['data']['search_value'] : '',
-				'products_categories' => isset($_POST['data']['products_categories']) ? $_POST['data']['products_categories'] : '',
+				'image_cat' => isset($_POST['data']['image_cat']) ? $_POST['data']['image_cat'] : '',
 				'values' => isset($_POST['data']['values']) ? $_POST['data']['values'] : ''
 			)
 		)
 	);
 
 	$response_data = array(
-		'html'          =>  $shop_page_loop_html,
-		'pagination'    =>  $pages
+		'html' => $shop_page_loop_html,
+		'pagination' => $pages
 	);
 
-	wp_send_json( $response_data );
+	wp_send_json($response_data);
 	exit;
 }
 
-add_action('wp_ajax_get_shop_page_filter','get_shop_page_filter');
-add_action('wp_ajax_nopriv_get_shop_page_filter','get_shop_page_filter');
+add_action('wp_ajax_get_shop_page_filter', 'get_shop_page_filter');
+add_action('wp_ajax_nopriv_get_shop_page_filter', 'get_shop_page_filter');
 ?>
