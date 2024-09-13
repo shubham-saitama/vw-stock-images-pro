@@ -1029,7 +1029,7 @@ jQuery(document).on('click', '.remove-post-from-collection-btn', function(e) {
 
 jQuery(document).on('click', '.remove-liked-post-btn', function(e) {
   e.preventDefault();
-
+  e.stopPropagation();
   var postID = jQuery(this).data('post-id');
 
   jQuery.ajax({
