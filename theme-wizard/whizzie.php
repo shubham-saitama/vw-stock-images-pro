@@ -886,7 +886,6 @@ class ThemeWhizzie
 		}
 	}
 
-	//  }
 
 	// ------- Create Footer Menu --------
 	public function theme_create_customizer_footer_quick_links_menu()
@@ -1243,7 +1242,7 @@ class ThemeWhizzie
 		add_post_meta($faq_id, 'vw_title_banner_image_wp_custom_attachment', $banner_attachment_url);
 
 
-		//---------------Appointment-------------
+		//---------------Liked-------------
 
 		$like_page_title = 'Liked Page';
 		$like_page_check = get_page_by_title($like_page_title);
@@ -1258,6 +1257,23 @@ class ThemeWhizzie
 
 		add_post_meta($like_page_id, '_wp_page_template', 'page-template/like-page-templaate.php');
 		add_post_meta($like_page_id, 'vw_title_banner_image_wp_custom_attachment', $banner_attachment_url);
+
+		// create shop page  
+
+
+		$shop_page_title = 'Shop Page';
+		$shop_page_check = get_page_by_title($shop_page_title);
+		$shop_page = array(
+			'post_type' => 'page',
+			'post_title' => $shop_page_title,
+			'post_status' => 'publish',
+			'post_author' => 1,
+			'post_slug' => 'shop_page'
+		);
+		$shop_page_id = wp_insert_post($shop_page);
+
+		add_post_meta($shop_page_id, '_wp_page_template', 'page-template/shop-page.php');
+		add_post_meta($shop_page_id, 'vw_title_banner_image_wp_custom_attachment', $banner_attachment_url);
 
 
 		// / Create a Terms page and assigned the template
@@ -1609,21 +1625,21 @@ class ThemeWhizzie
 
 
 		//========================================== adding terms and setting term meta images =====================================================
-		 // Define the terms with their meta images
-		 $terms = array(
-			'Photos'     => get_template_directory_uri() . '/assets/images/shop-page/icons/photos.png',
-			'Videos'     => get_template_directory_uri() . '/assets/images/shop-page/icons/video.png',
-			'Vectors'    => get_template_directory_uri() . '/assets/images/shop-page/icons/vector.png',
-			'Icons'      => get_template_directory_uri() . '/assets/images/shop-page/icons/icons.png',
-			'Gallery'    => get_template_directory_uri() . '/assets/images/shop-page/icons/search.png',
+		// Define the terms with their meta images
+		$terms = array(
+			'Photos' => get_template_directory_uri() . '/assets/images/shop-page/icons/photos.png',
+			'Videos' => get_template_directory_uri() . '/assets/images/shop-page/icons/video.png',
+			'Vectors' => get_template_directory_uri() . '/assets/images/shop-page/icons/vector.png',
+			'Icons' => get_template_directory_uri() . '/assets/images/shop-page/icons/icons.png',
+			'Gallery' => get_template_directory_uri() . '/assets/images/shop-page/icons/search.png',
 			'Wallpapers' => get_template_directory_uri() . '/assets/images/shop-page/icons/search.png',
-			'Games'      => get_template_directory_uri() . '/assets/images/shop-page/icons/search.png',
-			'Graphics'   => get_template_directory_uri() . '/assets/images/shop-page/icons/search.png'
+			'Games' => get_template_directory_uri() . '/assets/images/shop-page/icons/search.png',
+			'Graphics' => get_template_directory_uri() . '/assets/images/shop-page/icons/search.png'
 		);
-	
+
 		// Define the taxonomy slug
 		$taxonomy = 'image_cat'; // Replace with your custom taxonomy slug
-	
+
 		// Add the terms and set their meta data
 		foreach ($terms as $term_name => $meta_image_url) {
 			// Add term if it doesn't already exist
@@ -1640,11 +1656,14 @@ class ThemeWhizzie
 				$term = get_term_by('name', $term_name, $taxonomy);
 				$term_id = $term->term_id; // Access term ID from the term object
 			}
-	
+
 			// Set term meta
 			update_term_meta($term_id, 'image_cat_image', $meta_image_url);
 		}
 		//========================================== adding terms and setting term meta images end =====================================================
+
+
+
 
 
 
@@ -1672,7 +1691,7 @@ class ThemeWhizzie
 			// selection images 
 
 			$image_url = get_template_directory_uri() . '/assets/images/shop-page/product-' . $i . '.png';
-			error_log('Image Url ==============>' . $image_url);
+			// error_log('Image Url ==============>' . $image_url);
 
 			$image_name = 'problem' . $i . '.png';
 			$upload_dir = wp_upload_dir();
@@ -3843,13 +3862,13 @@ This e-mail was sent from a contact form on [_site_title] ([_site_url])',
 						for (var i = 0; i < premium_data.length; i++) {
 							var premium_product = premium_data[i];
 							var card_content = `<div class="o-products-col" data-id="` + premium_product.id + `">
-																			  <div class="o-products-image">
-																				  <img src="`+ premium_product.image + `">
-																			  </div>
-																			  <h3>`+ premium_product.title + `</h3>
-																			  <a href="`+ premium_product.permalink + `" target="_blank">Buy Now</a>
-																			  <a href="`+ premium_product.demo_url + `" target="_blank">View Demo</a>
-																		  </div>`;
+																					  <div class="o-products-image">
+																						  <img src="`+ premium_product.image + `">
+																					  </div>
+																					  <h3>`+ premium_product.title + `</h3>
+																					  <a href="`+ premium_product.permalink + `" target="_blank">Buy Now</a>
+																					  <a href="`+ premium_product.demo_url + `" target="_blank">View Demo</a>
+																				  </div>`;
 							jQuery('.wz-spinner-wrap').css('display', 'none');
 							jQuery('#other-products .o-product-row').append(card_content);
 						}
@@ -3865,8 +3884,8 @@ This e-mail was sent from a contact form on [_site_title] ([_site_url])',
 							}
 							let premium_product = premium_category[i];
 							let card_content = `<li data-ids="` + premium_product.product_ids + `" onclick="other_products(this);" class="` + active_class + `">
-																			  `+ premium_product.name + `<span class="badge badge-info">` + premium_product.product_ids.length + `</span>
-																		  </li>`;
+																					  `+ premium_product.name + `<span class="badge badge-info">` + premium_product.product_ids.length + `</span>
+																				  </li>`;
 							jQuery('.o-product-col-1 ul').append(card_content);
 						}
 					});

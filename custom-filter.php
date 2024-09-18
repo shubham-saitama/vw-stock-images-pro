@@ -17,12 +17,12 @@ function get_shop_page_filter()
 	if ($_POST['data']) {
 		$post_data = $_POST['data'];
 
+		// Handle search value
 		if (isset($post_data['search_value'])) {
-			$args['s'] = $post_data['search_value'];
+			$args['s'] = sanitize_text_field($post_data['search_term']);
 		}
 
 		$meta_query_array = array();
-
 		$tax_query_array = array(
 			'relation' => 'AND'
 		);
@@ -89,19 +89,46 @@ function get_shop_page_filter()
 			}
 		}
 
+		// Check for taxonomy_term
+		if (isset($post_data['taxonomy_term'])) {
+			$taxonomy_term = sanitize_text_field($post_data['taxonomy_term']);
+
+			// Ensure there is a colon in the taxonomy term
+			if (strpos($taxonomy_term, ':') !== false) {
+				list($taxonomy, $term_slug) = explode(':', $taxonomy_term, 2); // Limit explode to 2 elements
+
+				// Ensure both $taxonomy and $term_slug are non-empty
+				if (!empty($taxonomy) && !empty($term_slug)) {
+					$tax_query_array[] = array(
+						'taxonomy' => $taxonomy,
+						'field' => 'slug',
+						'terms' => $term_slug,
+					);
+				}
+			} else {
+				// Handle the case where there is no colon
+				// For example, you might log an error or set a default behavior
+				error_log('Invalid taxonomy_term format: ' . $taxonomy_term);
+			}
+		}
 
 
+		// Check and sanitize meta queries
 		if (isset($post_data['licence']) && is_array($post_data['licence'])) {
 			$meta_query_array[] = array(
 				'key' => '_image_type',
-				'value' => $post_data['licence'], // Array of values
+				'value' => array_map('sanitize_text_field', $post_data['licence']),
 				'compare' => 'IN'
 			);
 		}
 
-		$args['tax_query'] = $tax_query_array;
-		$args['meta_query'] = $meta_query_array;
-		// $args['orientation_query'] = $orientation_query_array;
+		if (!empty($tax_query_array)) {
+			$args['tax_query'] = $tax_query_array;
+		}
+
+		if (!empty($meta_query_array)) {
+			$args['meta_query'] = $meta_query_array;
+		}
 	}
 
 	error_log('query args===========>' . print_r($args, true));

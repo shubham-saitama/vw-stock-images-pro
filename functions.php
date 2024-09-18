@@ -919,24 +919,24 @@ function add_download_link_for_virtual_products()
 
 
 
-// custom search from query 
-add_action('pre_get_posts', 'filter_search_by_category');
+// // custom search from query 
+// add_action('pre_get_posts', 'filter_search_by_category');
 
-function filter_search_by_category($query)
-{
-	if ($query->is_search && !is_admin() && $query->is_main_query()) {
-		if (!empty($_GET['image_category'])) {
-			$category = sanitize_text_field($_GET['image_category']);
-			$query->set('tax_query', array(
-				array(
-					'taxonomy' => 'image_category',
-					'field' => 'slug',
-					'terms' => $category,
-				),
-			));
-		}
-	}
-}
+// function filter_search_by_category($query)
+// {
+// 	if ($query->is_search && !is_admin() && $query->is_main_query()) {
+// 		if (!empty($_GET['image_cat'])) {
+// 			$category = sanitize_text_field($_GET['image_cat']);
+// 			$query->set('tax_query', array(
+// 				array(
+// 					'taxonomy' => 'image_cat',
+// 					'field' => 'slug',
+// 					'terms' => $category,
+// 				),
+// 			));
+// 		}
+// 	}
+// }
 
 
 
@@ -1476,6 +1476,7 @@ function pmpro_save_download_limit($level_id)
 add_action('pmpro_save_membership_level', 'pmpro_save_download_limit');
 
 
+
 // ---------------------------------code to manage number of download count in mambership level -------------------------------
 
 function download_image_file($file_url)
@@ -1772,7 +1773,7 @@ function is_post_saved_by_user($post_id, $user_id)
 
 
 // Function to display the save or remove post button
-function add_save_post_buttons($post_id, $context = '')
+function add_save_post_buttons($post_id, $context="")
 {
     $user_id = get_current_user_id();
     $is_saved = is_post_saved_by_user($post_id, $user_id);
@@ -1801,8 +1802,9 @@ function add_save_post_buttons($post_id, $context = '')
             echo '<a class="save-post-button ' . esc_attr($button_class) . '" data-post-id="' . esc_attr($post_id) . '" ' . $href_attr . '>' . $button_text . '</a>';
         }
     } else {
+		
         // Show login prompt when the user is not logged in
-        echo '<a href="#" class="save-post-button" data-type="like"><i class="fa-solid fa-heart"></i> Like</a>';
+        echo '<a href="#" class="save-post-button" data-type="like"><i class="fa-solid fa-heart"></i> </a>';
     }
 }
 
@@ -2063,7 +2065,11 @@ function handle_add_collection() {
         ));
         
         if ($post_id) {
-            wp_send_json_success('Collection added successfully');
+            wp_send_json_success(array(
+                'message' => 'Collection added successfully',
+                'new_collection_id' => $post_id
+            ));
+			
         } else {
             wp_send_json_error('Failed to add collection');
         }
@@ -2228,3 +2234,57 @@ function render_remove_post_from_collection_button($collection_id, $post_id) {
 
 
 //==================================Collections functionality ===================================================================================
+// function ajax_search() {
+//     $s = sanitize_text_field( $_GET['s'] );
+//     $cat = isset( $_GET['cat'] ) ? intval( $_GET['cat'] ) : 0;
+
+//     $args = array(
+//         's' => $s,
+//         'posts_per_page' => 10,
+//         'cat' => $cat,
+//     );
+
+//     $search_query = new WP_Query( $args );
+
+//     if ( $search_query->have_posts() ) {
+//         while ( $search_query->have_posts() ) {
+//             $search_query->the_post();
+//             echo '<li><a href="' . get_permalink() . '">' . get_the_title() . '</a></li>';
+//         }
+//     } else {
+//         echo '<li>No results found.</li>';
+//     }
+
+//     wp_die(); // Terminate and return the response
+// }
+// add_action( 'wp_ajax_ajax_search', 'ajax_search' );
+// add_action( 'wp_ajax_nopriv_ajax_search', 'ajax_search' );
+
+
+function custom_search_filter($query) {
+    if (!is_admin() && $query->is_search() && $query->is_main_query()) {
+        $query->set('post_type', 'product_images');
+
+        if (!empty($_GET['taxonomy_term'])) {
+            $taxonomy_term = sanitize_text_field($_GET['taxonomy_term']);
+
+            if (strpos($taxonomy_term, ':') !== false) {
+                list($taxonomy, $term_slug) = explode(':', $taxonomy_term, 2);
+
+                if (taxonomy_exists($taxonomy)) {
+                    $query->set('tax_query', array(
+                        array(
+                            'taxonomy' => $taxonomy,
+                            'field'    => 'slug',
+                            'terms'    => $term_slug,
+                        ),
+                    ));
+                }
+            }
+        }
+
+        // Ensure pagination is working correctly
+        $query->set('posts_per_page', -1); // For debugging, retrieve all posts
+    }
+}
+add_action('pre_get_posts', 'custom_search_filter');

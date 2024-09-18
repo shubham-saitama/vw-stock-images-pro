@@ -55,13 +55,13 @@ jQuery(document).ready(function () {
 })
 
 function setQueryParams(data_obj) {
-  let url = new URL(window.location.href)
-  let params = new URLSearchParams(url.search)
+  let url = new URL(window.location.href);
+  let params = new URLSearchParams(url.search);
 
-  const data_obj_keys = Object.keys(data_obj)
+  const data_obj_keys = Object.keys(data_obj);
 
   for (let index = 0; index < data_obj_keys.length; index++) {
-    const element = data_obj_keys[index]
+    const element = data_obj_keys[index];
 
     if ((element != 'base_url') && (element != 'values')) {
 
@@ -89,14 +89,17 @@ function checkCategoryCheckboxFromURL() {
   const categoriesParam = params.get('image_cat');
 
   const search_value = params.get('search_value');
-  jQuery(`input[name="products_search"]`).val(search_value);
+  const searched_cat = params.get('taxonomy_term')
 
+  jQuery(`input[name="products_search"]`).val(search_value);
+  // if(searched_cat){
+  //   categoryCheckbox.parent('label').addClass('active-cat');
+  // }
   if (categoriesParam) {
 
     const categorySlugs = categoriesParam.split(',');
 
     categorySlugs.forEach(categoryslug => {
-
       const categoryCheckbox = jQuery(`input[name="image_cat"][value="${categoryslug}"]`);
 
       if (categoryCheckbox.length) {
@@ -106,28 +109,49 @@ function checkCategoryCheckboxFromURL() {
     });
   }
 }
+// jQuery(document).ready(function ($) {
 
+// });
 function vw_stock_images_pro_filters(page) {
+  // Get the URL parameters
+  const urlParams = new URLSearchParams(window.location.search);
+
   var data_obj = {};
 
-  // data_obj['values'] = jQuery('#product-price-slider').slider("values");
-  // data_obj['search_value'] = jQuery('[name="products_search"]').val();
+  // Correctly capture the 's' parameter (search term)
+  data_obj['search_term'] = urlParams.get('s') ? urlParams.get('s') : ''; // 's' is the search term in the URL
 
+  // Correctly capture the 'taxonomy_term' parameter
+  data_obj['taxonomy_term'] = urlParams.get('taxonomy_term') ? urlParams.get('taxonomy_term') : '';
+
+  // Capture search input value from the page, if it exists
+  data_obj['search_value'] = jQuery('.search-home').val() || ''; // Ensure this is a string
+
+  // Collect checked filters (checkboxes)
   jQuery('.sidebar-filter [type="checkbox"]:checked').each(function (index, element) {
-    if (!Array.isArray(data_obj[jQuery(element).attr('name')])) {
-      data_obj[jQuery(element).attr('name')] = new Array();
+    const name = jQuery(element).attr('name');
+    const value = jQuery(element).val();
+    if (!Array.isArray(data_obj[name])) {
+      data_obj[name] = [];
     }
-    data_obj[jQuery(element).attr('name')].push(jQuery(element).val())
+    data_obj[name].push(value);
   });
 
+  // Handle pagination if applicable
   if (page) {
     data_obj['paged'] = page;
   }
 
+  // Optional: Update the URL with new parameters
   setQueryParams(data_obj);
 
+  // Optional: Add base URL to data_obj for debugging
   data_obj.base_url = window.location.href;
-  // console.log('data obj===========>', data_obj);
+
+  // Debug: Log the data_obj to check the values
+  // console.log('here', data_obj);
+
+  // AJAX request to update the filtered content
   jQuery.post(vw_stock_images_pro_customscripts_obj.ajaxurl, {
     'action': 'get_shop_page_filter',
     'data': data_obj
@@ -139,11 +163,17 @@ function vw_stock_images_pro_filters(page) {
       jQuery('.row.grid').empty();
       jQuery('.row.grid').prepend($newItems).isotope('prepended', $newItems);
       jQuery('#filters .button').first().click();
+    })
+    .fail(function (xhr, textStatus, errorThrown) {
+      // console.error('req failed');
     });
-
 }
 
+
+
+
 jQuery(document).ready(function ($) {
+  const urlParams = new URLSearchParams(window.location.search);
 
   checkCategoryCheckboxFromURL()
 
@@ -156,17 +186,32 @@ jQuery(document).ready(function ($) {
   const StartAmountProduct = get_woocommerce_currency_symbol + 0;
 
 
-  jQuery("#product-amount-final").text(finalAmount);
-  jQuery("#product-amount-start").text(StartAmountProduct);
+  // jQuery("#product-amount-final").text(finalAmount);
+  // jQuery("#product-amount-start").text(StartAmountProduct);
 
   jQuery('.sidebar-filter [type="checkbox"]').on('change', function (event) {
     vw_stock_images_pro_filters();
     jQuery(this).parent('label').toggleClass('active-cat');
+
   });
 
 
-  jQuery('[name="products_search"').on('input', function (event) {
+  // jQuery('[name="products_search"').on('input', function (event) {
+  //   vw_stock_images_pro_filters();
+  // });
+  jQuery('.searchform').on('submit', function () {
     vw_stock_images_pro_filters();
+  })
+  jQuery('#taxonomy_dropdown').on('change', function () {
+    // console.log('Dropdown changed');
+
+    // Assuming you want to update the query params with the dropdown's value
+    const selectedValue = jQuery(this).val();
+    const data_obj = {
+      taxonomy_term: selectedValue // Update the `taxonomy_term` with the dropdown value
+    };
+    // Call the setQueryParams function to update the URL
+    setQueryParams(data_obj);
   });
 
   if ($("#product-price-slider").length) {
@@ -667,15 +712,17 @@ function run_isotope() {
     itemSelector: '.grid-item',
     layoutMode: 'masonry'
   });
-  // Filter items on button click
+
+  // Event delegation for filter buttons
   jQuery('#filters').on('click', 'button', function () {
     var filterValue = jQuery(this).attr('data-filter');
     $grid.isotope({ filter: filterValue });
-  });
-  jQuery('.filter-button').on('click', function () {
+
+    // Update active state for filter buttons
     jQuery('.filter-button').removeClass('active');
     jQuery(this).addClass('active');
   });
+
   // Function to add new items
   function addItems(newItems) {
     // Append new items to the grid
@@ -684,8 +731,12 @@ function run_isotope() {
       .isotope('appended', newItems);
   }
 
+  // Make sure `addItems` function is accessible outside if needed
+  window.addItems = addItems;
 }
-jQuery(document).ready(function ($) {
+
+// Initialize Isotope
+jQuery(document).ready(function () {
   run_isotope();
 });
 
@@ -761,6 +812,8 @@ jQuery(document).ready(function ($) {
 });
 // Handle product image click
 jQuery(document).on('click', '.product-image', function (e) {
+
+
   e.preventDefault();
   var postID = jQuery(this).data('post-id');
 
@@ -812,22 +865,22 @@ jQuery(document).on('click', '.close-one', function () {
 jQuery(document).on('click', '.collection-btn', function (e) {
   e.preventDefault();
   e.stopPropagation(); // Ensure the click does not propagate to other handlers
- // Log the value to check if the post ID is captured correctly
- var postId = jQuery(this).attr('data-post-id');
- console.log("Post ID sdsdsd: ", postId);
- 
- if (!postId) {
-   alert("Post ID is missing.");
-   return;
- }
- 
+  // Log the value to check if the post ID is captured correctly
+  var postId = jQuery(this).attr('data-post-id');
+  // console.log("Post ID sdsdsd: ", postId);
+
+  if (!postId) {
+    alert("Post ID is missing.");
+    return;
+  }
+
   // Send an AJAX request to load the collection content
   jQuery.ajax({
     url: vw_stock_images_pro_customscripts_obj.ajaxurl,
     type: 'POST',
     data: {
       action: 'load_collections_content', // New action for collections
-      post_id: postId, 
+      post_id: postId,
     },
     success: function (response) {
       // Display the new modal on top of the current post modal
@@ -856,138 +909,144 @@ jQuery(document).on('click', '.modal', function (e) {
 
 
 
-jQuery(document).ready(function($) {
+jQuery(document).ready(function ($) {
   // Use event delegation for Add Collection Form submission
-  $(document).on('submit', '#add-collection-form', function(e) {
-      e.preventDefault(); // Prevent default form submission
+  $(document).on('submit', '#add-collection-form', function (e) {
+    e.preventDefault(); // Prevent default form submission
 
-      var formData = $(this).serialize(); // Serialize form data
-      // console.log('Form Data:', formData); // Debug form data
+    var formData = $(this).serialize(); // Serialize form data
+    // console.log('Form Data:', formData); // Debug form data
+    let collectionName = $('input[name="collection_name"]').val();
 
-      $.ajax({
-          url: vw_stock_images_pro_customscripts_obj.ajax_url, // Ensure this is correct
-          type: 'POST',
-          data: {
-              action: 'add_collection',
-              collection_name: $('input[name="collection_name"]').val()
-          },
-          success: function(response) {
-              console.log('Response:', response); // Debug AJAX response
-              if (response.success) {
-                  alert(response.data); // Success message
-                  $('#add-collection-form')[0].reset(); // Reset the form
-                  updateCollectionSelect(); // Optionally update the select options
-              } else {
-                  alert(response.data); // Error message
-              }
-          },
-          error: function(xhr, status, error) {
-              console.log('AJAX Error:', status, error); // Debug AJAX error
-              alert('An error occurred while adding the collection.');
-          }
-      });
+    $.ajax({
+      url: vw_stock_images_pro_customscripts_obj.ajax_url, // Ensure this is correct
+      type: 'POST',
+      data: {
+        action: 'add_collection',
+        collection_name: collectionName
+      },
+      success: function (response) {
+        // console.log('Response collection:', response); // Debug AJAX response
+        if (response.success) {
+          alert(response.data); // Success message
+          $('#add-collection-form')[0].reset(); // Reset the form
+          // updateCollectionSelect(); // Optionally update the select options
+
+          // Append new option correctly
+          $("#post_collection_id").append(`<option value="${response.data.new_collection_id}">${collectionName}</option>`);
+        } else {
+          alert(response.data.message); // Error message
+        }
+      },
+      error: function (xhr, status, error) {
+        // console.log('AJAX Error:', status, error); // Debug AJAX error
+        alert('An error occurred while adding the collection.');
+      }
+    });
   });
 
-  // Use event delegation for Remove Collection Form submission
-  $(document).on('submit', '#remove-collection-form', function(e) {
-      e.preventDefault(); // Prevent default form submission
 
-      var formData = $(this).serialize(); // Serialize form data
-      console.log('Form Data:', formData); // Debug form data
+// Use event delegation for Remove Collection Form submission
+$(document).on('submit', '#remove-collection-form', function (e) {
+  e.preventDefault(); // Prevent default form submission
 
-      $.ajax({
-          url: vw_stock_images_pro_customscripts_obj.ajax_url, // Ensure this is correct
-          type: 'POST',
-          data: {
-              action: 'remove_collection',
-              collection_id: $('select[name="collection_id"]').val()
-          },
-          success: function(response) {
-              console.log('Response:', response); // Debug AJAX response
-              if (response.success) {
-                  alert(response.data); // Success message
-                  updateCollectionSelect(); // Optionally update the select options
-              } else {
-                  alert(response.data); // Error message
-              }
-          },
-          error: function(xhr, status, error) {
-              console.log('AJAX Error:', status, error); // Debug AJAX error
-              alert('An error occurred while removing the collection.');
-          }
-      });
+  var formData = $(this).serialize(); // Serialize form data
+  // console.log('Form Data:', formData); // Debug form data
+
+  $.ajax({
+    url: vw_stock_images_pro_customscripts_obj.ajax_url, // Ensure this is correct
+    type: 'POST',
+    data: {
+      action: 'remove_collection',
+      collection_id: $('select[name="collection_id"]').val()
+    },
+    success: function (response) {
+      // console.log('Response:', response); // Debug AJAX response
+      if (response.success) {
+        alert(response.data); // Success message
+        updateCollectionSelect(); // Optionally update the select options
+      } else {
+        alert(response.data); // Error message
+      }
+    },
+    error: function (xhr, status, error) {
+      // console.log('AJAX Error:', status, error); // Debug AJAX error
+      alert('An error occurred while removing the collection.');
+    }
   });
+});
 
-  // Use event delegation for Add Post to Collection Form submission
-  $(document).on('submit', '#add-post-to-collection-form', function(e) {
-      e.preventDefault(); // Prevent default form submission
+// Use event delegation for Add Post to Collection Form submission
+$(document).on('submit', '#add-post-to-collection-form', function (e) {
+  e.preventDefault(); // Prevent default form submission
 
-      var formData = $(this).serialize(); // Serialize form data
-      console.log('Form Data:', formData); // Debug form data
+  var formData = $(this).serialize(); // Serialize form data
+  // console.log('Form Data:', formData); // Debug form data
 
-      $.ajax({
-          url: vw_stock_images_pro_customscripts_obj.ajax_url, // Ensure this is correct
-          type: 'POST',
-          data: {
-              action: 'add_post_to_collection',
-              post_id: $('input[name="post_id"]').val(),
-              collection_id: $('select[name="post_collection_id"]').val()
-          },
-          success: function(response) {
-              console.log('Response:', response); // Debug AJAX response
-              if (response.success) {
-                  alert(response.data); // Success message
-                  $('#add-post-to-collection-form')[0].reset(); // Reset the form
-              } else {
-                  alert(response.data); // Error message
-              }
-          },
-          error: function(xhr, status, error) {
-              console.log('AJAX Error:', status, error); // Debug AJAX error
-              alert('An error occurred while adding the post to the collection.');
-          }
-      });
+  $.ajax({
+    url: vw_stock_images_pro_customscripts_obj.ajax_url, // Ensure this is correct
+    type: 'POST',
+    data: {
+      action: 'add_post_to_collection',
+      post_id: $('input[name="post_id"]').val(),
+      collection_id: $('select[name="post_collection_id"]').val()
+    },
+    success: function (response) {
+      // console.log('Response:', response); // Debug AJAX response
+      if (response.success) {
+        alert(response.data); // Success message
+        $('#add-post-to-collection-form')[0].reset(); // Reset the form
+
+      } else {
+        alert(response.data); // Error message
+      }
+    },
+    error: function (xhr, status, error) {
+      // console.log('AJAX Error:', status, error); // Debug AJAX error
+      alert('An error occurred while adding the post to the collection.');
+    }
   });
+});
 });
 
 
 // remove collection button in single collections page 
 
 
-jQuery(document).ready(function($) {
+jQuery(document).ready(function ($) {
   // Handle the delete collection button click event
-  $('.delete-collection-btn').on('click', function(e) {
-      e.preventDefault();
+  $('.delete-collection-btn').on('click', function (e) {
+    e.preventDefault();
 
-      var collectionId = $(this).data('collection-id'); // Get the collection ID
+    var collectionId = $(this).data('collection-id'); // Get the collection ID
 
-      if (confirm('Are you sure you want to delete this collection?')) {
-          $.ajax({
-              url: vw_stock_images_pro_customscripts_obj.ajax_url,
-              type: 'POST',
-              data: {
-                  action: 'remove_collection', // Hooked to our remove function
-                  collection_id: collectionId,
-              },
-              success: function(response) {
-                  if (response.success) {
-                      alert('Collection removed successfully');
-                      location.reload(); // Reload the page to reflect changes
-                  } else {
-                      alert('Error: ' + response.data);
-                  }
-              },
-              error: function() {
-                  alert('There was an error processing your request.');
-              }
-          });
-      }
+    if (confirm('Are you sure you want to delete this collection?')) {
+      $.ajax({
+        url: vw_stock_images_pro_customscripts_obj.ajax_url,
+        type: 'POST',
+        data: {
+          action: 'remove_collection', // Hooked to our remove function
+          collection_id: collectionId,
+        },
+        success: function (response) {
+          if (response.success) {
+            alert('Collection removed successfully');
+            location.reload(); // Reload the page to reflect changes
+          } else {
+            alert('Error: ' + response.data);
+          }
+        },
+        error: function () {
+          alert('There was an error processing your request.');
+        }
+      });
+    }
   });
 });
 
 // remove from collection 
 
-jQuery(document).on('click', '.remove-post-from-collection-btn', function(e) {
+jQuery(document).on('click', '.remove-post-from-collection-btn', function (e) {
   e.preventDefault();
   e.stopPropagation();
 
@@ -995,31 +1054,31 @@ jQuery(document).on('click', '.remove-post-from-collection-btn', function(e) {
   var postID = jQuery(this).data('post-id');
 
   jQuery.ajax({
-      url: vw_stock_images_pro_customscripts_obj.ajax_url, // This is typically defined by WordPress in the frontend
-      type: 'POST',
-      dataType: 'json',
-      data: {
-          action: 'remove_post_from_collection',
-          collection_id: collectionID,
-          post_id: postID,
-          // nonce: manage_collection_nonce // Ensure you pass your nonce for security
-      },
-      success: function(response) {
-          if (response.success) {
-              alert(response.data.message);
+    url: vw_stock_images_pro_customscripts_obj.ajax_url, // This is typically defined by WordPress in the frontend
+    type: 'POST',
+    dataType: 'json',
+    data: {
+      action: 'remove_post_from_collection',
+      collection_id: collectionID,
+      post_id: postID,
+      // nonce: manage_collection_nonce // Ensure you pass your nonce for security
+    },
+    success: function (response) {
+      if (response.success) {
+        alert(response.data.message);
 
-              // Optionally: Remove the post visually from the UI or refresh the collection
-              jQuery('.product-image[data-post-id="' + postID + '"]').parent('.grid-item').fadeOut(function() {
-                  jQuery(this).remove(); // Remove the element from the DOM after fadeOut
-                  run_isotope();
-              });
-          } else {
-              alert(response.data.message);
-          }
-      },
-      error: function() {
-          alert('There was an error processing your request.');
+        // Optionally: Remove the post visually from the UI or refresh the collection
+        jQuery('.product-image[data-post-id="' + postID + '"]').parent('.grid-item').fadeOut(function () {
+          jQuery(this).remove(); // Remove the element from the DOM after fadeOut
+          run_isotope();
+        });
+      } else {
+        alert(response.data.message);
       }
+    },
+    error: function () {
+      alert('There was an error processing your request.');
+    }
   });
 });
 
@@ -1027,34 +1086,85 @@ jQuery(document).on('click', '.remove-post-from-collection-btn', function(e) {
 // remove liked posts
 
 
-jQuery(document).on('click', '.remove-liked-post-btn', function(e) {
+jQuery(document).on('click', '.remove-liked-post-btn', function (e) {
   e.preventDefault();
   e.stopPropagation();
   var postID = jQuery(this).data('post-id');
 
   jQuery.ajax({
-      url: vw_stock_images_pro_customscripts_obj.ajax_url, // Make sure this variable is set in your scripts
-      type: 'POST',
-      dataType: 'json',
-      data: {
-          action: 'remove_saved_post',
-          post_id: postID,
-          // nonce: manage_saved_posts_nonce // Add nonce if needed for security
-      },
-      success: function(response) {
-          if (response.success) {
-              // alert('Post removed from your saved posts.');
-              jQuery('.product-image[data-post-id="' + postID + '"]').parent('.grid-item').fadeOut(function() {
-                jQuery(this).remove(); // Remove the element from the DOM after fadeOut
-                run_isotope();
-            });
-          } else {
-              alert(response.data.message);
-          }
-      },
-      error: function(xhr, status, error) {
-          console.error('AJAX Error:', status, error);
-          alert('An error occurred while removing the post.');
+    url: vw_stock_images_pro_customscripts_obj.ajax_url, // Make sure this variable is set in your scripts
+    type: 'POST',
+    dataType: 'json',
+    data: {
+      action: 'remove_saved_post',
+      post_id: postID,
+      // nonce: manage_saved_posts_nonce // Add nonce if needed for security
+    },
+    success: function (response) {
+      if (response.success) {
+        // alert('Post removed from your saved posts.');
+        jQuery('.product-image[data-post-id="' + postID + '"]').parent('.grid-item').fadeOut(function () {
+          jQuery(this).remove(); // Remove the element from the DOM after fadeOut
+          run_isotope();
+        });
+      } else {
+        alert(response.data.message);
       }
+    },
+    error: function (xhr, status, error) {
+      // console.error('AJAX Error:', status, error);
+      alert('An error occurred while removing the post.');
+    }
   });
 });
+
+
+jQuery('.filter-dropdown').on('click', function () {
+  jQuery(this).parents('.filter-head').siblings('.filter-body').slideToggle();
+  jQuery(this).parents('.filter-head').toggleClass('active');
+})
+
+// jQuery(document).ready(function($) {
+//   $('#searchform').on('submit', function(e) {
+//       e.preventDefault();
+//       var s = $('#s').val();
+//       var cat = $('#cat').val();
+
+//       $.ajax({
+//           url: vw_stock_images_pro_customscripts_obj.ajax_url,
+//           type: 'GET',
+//           data: {
+//               action: 'ajax_search',
+//               s: s,
+//               cat: cat
+//           },
+//           success: function(response) {
+//               $('.search-results').html(response);
+//           }
+//       });
+//   });
+
+
+
+// });
+// window.addEventListener('load', function () {
+//   // Get the current URL
+//   let currentUrl = window.location.href;
+//   console.log('Current URL:', currentUrl);
+
+//   // Create a URL object
+//   let url = new URL(currentUrl);
+//   console.log('Original URL object:', url);
+
+//   // Remove the 'taxonomy_term' parameter from the URL
+//   if (url.searchParams.has('taxonomy_term')) {
+//     url.searchParams.delete('taxonomy_term');
+//     console.log('Updated URL object after removing taxonomy_term:', url);
+
+//     // Update the URL in the browser without reloading the page
+//     window.history.replaceState({}, document.title, url.toString());
+//     console.log('New URL:', url.toString());
+//   } else {
+//     console.log('No "taxonomy_term" parameter found in URL.');
+//   }
+// });

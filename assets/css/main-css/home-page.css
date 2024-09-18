@@ -25,3 +25,53 @@ section#slider {
 section#pests-problem {
   margin-top: 100px;
 }
+
+/* banner  */
+label {
+  display: inline-block;
+  width: 100%;
+}
+#taxonomy_dropdown {
+  width: 120px;
+  height: 46px;
+  border-radius: 5px;
+  text-align: center;
+  font: normal normal 600 18px / 23px Outfit;
+  letter-spacing: 0px;
+  color: #000000;
+  background: #fff;
+}
+.screen-reader-text {
+  display: none !important;
+}
+button.search-submit {
+  background: #00963F 0% 0% no-repeat padding-box;
+  border-radius: 5px;
+  color: #fff;
+  font: normal normal normal 18px / 23px Outfit;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  padding: 10px 30px 10px 50px;
+  background: var(--primary) !important;
+}
+button.search-submit {
+  position: relative;
+}
+
+button.search-submit::after {
+  content: "\f002";
+  position: absolute;
+  left: 16px;
+  font-family: "FontAwesome";
+  font-size: 15px;
+}
+
+input.search-home {
+  max-width: 560px;
+  width: 560px;
+  height: 46px;
+  border-radius: 6px;
+  padding-left: 20px;
+  border: none;
+}
+

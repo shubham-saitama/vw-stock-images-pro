@@ -63,6 +63,7 @@
                 foreach ($user_collections as $collection) {
                     echo '<option value="' . $collection->ID . '">' . $collection->post_title . '</option>';
                 }
+                
                 ?>
             </select>
 

@@ -2623,7 +2623,9 @@ div#filters button {
 .sidebar-filter {
   background-color: var(--gray);
 }
-
+.filter-head.active {
+  margin-bottom: 0px;
+}
 button.button img {
   width: 20px;
   height: 20px;
@@ -2725,7 +2727,7 @@ a.save-post-button {
   flex-direction: column;
 }
 
-.product-image:hover .post-options{
+.product-image:hover .post-options {
   animation-name: fadeInUp_custom;
 }
 
@@ -3233,12 +3235,14 @@ button.delete-collection-btn {
   border-radius: 3px;
   color: #fff;
 }
+
 button.remove-post-from-collection-btn {
   border: none;
   padding: 5px 10px;
   background: #fff;
   border-radius: 4px;
 }
+
 a.remove-liked-post-btn {
   font-size: 17px;
   background: #fff;
@@ -3248,4 +3252,17 @@ a.remove-liked-post-btn {
   align-items: center;
   border-radius: 3px;
   color: red;
+}
+
+.filter-dropdown {
+  width: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* search page  */
+h1.page-title {
+  font-size: 28px;
+  margin: 30px 20px;
 }
