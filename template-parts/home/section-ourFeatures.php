@@ -27,10 +27,10 @@ $img_bg = get_theme_mod('vw_stock_images_pro_features_bgimage_setting');
                 ?>
                 <div class="feature-card col-lg-3 col-md-6 col-6 text-center">
                     <div class="feature-img-wrap">
-                        <img src="<?php echo get_theme_mod('vw_stock_images_pro_features_image_'.$i); ?>" alt="Feature Image">
+                        <img src="<?php echo get_theme_mod('vw_stock_images_pro_our_features_sec_image'.$i); ?>" alt="Feature Image">
                     </div>
-                    <h4 class="text-center"><?php echo get_theme_mod('vw_stock_images_pro_features_title_'.$i); ?></h4>
-                    <p class="feature-text text-center"><?php echo get_theme_mod('vw_stock_images_pro_features_text_'.$i); ?></p>
+                    <h4 class="text-center"><?php echo get_theme_mod('vw_stock_images_pro_our_features_sec_feature_title_'.$i); ?></h4>
+                    <p class="feature-text text-center"><?php echo get_theme_mod('vw_stock_images_pro_our_features_sec_feature_desc_'.$i); ?></p>
                 </div>
                 <?php
             } ?>

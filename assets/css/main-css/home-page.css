@@ -648,6 +648,7 @@ button.custom-next.slick-next.slick-arrow {
   margin-bottom: 20px;
   padding: 30px 25px;
 }
+
 .plan-name {
   font: normal normal 500 20px / 25px Outfit;
   letter-spacing: 0px;
@@ -655,15 +656,18 @@ button.custom-next.slick-next.slick-arrow {
   text-transform: capitalize;
   margin-bottom: 5px;
 }
+
 .plan-price {
   font: normal normal bold 32px / 40px Outfit;
   letter-spacing: 0px;
   margin-bottom: 5px;
 }
+
 .plan-price span {
   font: normal normal 500 22px / 28px Outfit;
   letter-spacing: 0px;
 }
+
 .plan-desc ul {
   list-style: none;
 }
@@ -685,57 +689,68 @@ button.custom-next.slick-next.slick-arrow {
   margin-top: 6px;
   border-radius: 6px;
 }
+
 .plan-right {
   width: calc(100% - 210px);
 }
+
 .plan-left {
   width: max-content;
 }
+
 .isbest {
-    font: normal normal 600 18px / 23px Outfit;
-    letter-spacing: 0px;
-    color: #FFFFFF;
-    background: var(--primary);
-    padding: 8px 18px;
-    width: max-content;
-    border-radius: 6px;
-    margin-bottom: 10px;
-    margin: 0px auto 5px;
+  font: normal normal 600 18px / 23px Outfit;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  background: var(--primary);
+  padding: 8px 18px;
+  width: max-content;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  margin: 0px auto 5px;
 }
 
 section#category-slider {
   z-index: 0;
   position: relative;
 }
-section#partner,#plans{
-    background: #FBFBFB;
+
+section#partner,
+#plans {
+  background: #FBFBFB;
 }
+
 .pricing-table th {
   font: normal normal 600 20px / 25px Outfit;
   letter-spacing: 0px;
   color: #000000;
   padding: 10px;
 }
+
 .pricing-table td {
   font: normal normal normal 16px / 20px Outfit;
   letter-spacing: 0px;
   color: #000000;
   padding: 10px;
 }
+
 a.table-read-more {
   font: normal normal 600 14px / 18px Outfit;
   letter-spacing: 0px;
   color: var(--primary);
 }
+
 .table-head {
   box-shadow: 0px 3px 6px #00000029;
   border-radius: 20px;
   padding: 10px 15px 20px;
   overflow: hidden;
 }
-thead{
+
+thead {
   position: relative;
 }
+
 thead::after {
   content: "";
   background: #cccccc;
@@ -746,5 +761,24 @@ thead::after {
   bottom: 0px;
   position: absolute;
   margin: auto;
+}
+
+section#pests-problem .preimum-icon {
+  display: none;
+}
+
+section#pests-problem .product-btns-wrap {
+  justify-content: flex-end;
+}
+
+section#pests-problem .author-download {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+
+
+.vw-fixed {
+  background-attachment: fixed;
 }
 

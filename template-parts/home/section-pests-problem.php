@@ -58,7 +58,7 @@ $query = new WP_Query($args);
 
           ?>
           <div class="grid-item popular-posts <?php echo esc_attr($category_classes); ?>">
-            <?php get_template_part('template-parts/product-image'); ?>
+            <?php get_template_part('template-parts/product-image-home'); ?>
           </div>
           <?php
         }

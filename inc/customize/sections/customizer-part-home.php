@@ -1,6 +1,6 @@
 <?php
 $wp_customize->add_section('vw_stock_images_pro_pest_problem_sec', array(
-	'title' => __('Pest Problem Section', 'vw-stock-images-pro'),
+	'title' => __('Trending Images and vids', 'vw-stock-images-pro'),
 	'description' => __('Add Pest Problem setting here.', 'vw-stock-images-pro'),
 	'panel' => 'vw_stock_images_pro_panel_id',
 ));
@@ -99,27 +99,6 @@ $wp_customize->add_control('vw_stock_images_pro_pests_problem_paragraph', array(
 	'setting' => 'vw_stock_images_pro_pests_problem_paragraph',
 	'type' => 'text'
 ));
-$wp_customize->add_setting('vw_stock_images_pro_pests_problem_btn_text', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_text_field'
-));
-$wp_customize->add_control('vw_stock_images_pro_pests_problem_btn_text', array(
-	'label' => __('View More Button', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_pest_problem_sec',
-	'setting' => 'vw_stock_images_pro_pests_problem_btn_text',
-	'type' => 'text'
-));
-$wp_customize->add_setting('vw_stock_images_pro_pests_problem_btn_url', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_text_field'
-));
-$wp_customize->add_control('vw_stock_images_pro_pests_problem_btn_url', array(
-	'label' => __('View More Button Url', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_pest_problem_sec',
-	'setting' => 'vw_stock_images_pro_pests_problem_btn_url',
-	'type' => 'text'
-));
-
 $wp_customize->add_setting(
 	'vw_stock_images_pro_pests_problem_section_color_font_settings',
 	array(
@@ -204,266 +183,75 @@ $wp_customize->add_control(
 		'choices' => $font_array
 	)
 );
-$wp_customize->add_setting('vw_stock_images_pro_pests_problem_btn_color', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_hex_color'
-));
-$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vw_stock_images_pro_pests_problem_btn_color', array(
-	'label' => __('Button Color', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_pest_problem_sec',
-	'settings' => 'vw_stock_images_pro_pests_problem_btn_color',
-)));
-$wp_customize->add_setting('vw_stock_images_pro_pests_problem_btn_font_size', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_text_field'
-));
-$wp_customize->add_control('vw_stock_images_pro_pests_problem_btn_font_size', array(
-	'label' => __(' Button Font Size', 'vw-stock-images-pro'),
-	'description' => __('Add font size in px', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_pest_problem_sec',
-	'setting' => 'vw_stock_images_pro_pests_problem_btn_font_size',
-	'type' => 'number'
-));
-$wp_customize->add_setting('vw_stock_images_pro_pests_problem_btn_font_family', array(
-	'default' => '',
-	'capability' => 'edit_theme_options',
-	'sanitize_callback' => 'vw_stock_images_pro_sanitize_choices'
-));
-$wp_customize->add_control(
-	'vw_stock_images_pro_pests_problem_btn_font_family',
-	array(
-		'section' => 'vw_stock_images_pro_pest_problem_sec',
-		'label' => __('Button Font Family', 'vw-stock-images-pro'),
-		'type' => 'select',
-		'choices' => $font_array
-	)
-);
 
-$wp_customize->add_setting('vw_stock_images_pro_pests_problem_btn_bg_color', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_hex_color'
-));
-$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vw_stock_images_pro_pests_problem_btn_bg_color', array(
-	'label' => __('Button Background Color', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_pest_problem_sec',
-	'settings' => 'vw_stock_images_pro_pests_problem_btn_bg_color',
-)));
-$wp_customize->add_setting('vw_stock_images_pro_pests_problem_btn_hover_bg_color', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_hex_color'
-));
-$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vw_stock_images_pro_pests_problem_btn_hover_bg_color', array(
-	'label' => __('Button Hover Background Color', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_pest_problem_sec',
-	'settings' => 'vw_stock_images_pro_pests_problem_btn_hover_bg_color',
-)));
-$wp_customize->add_setting(
-	'vw_stock_images_pro_pests_problem_card_color_font_settings',
-	array(
-		'default' => '',
-		'transport' => 'postMessage',
-		'sanitize_callback' => 'vw_stock_images_pro_text_sanitization'
-	)
-);
-$wp_customize->add_control(new VW_Themes_Seperator_custom_Control(
-	$wp_customize,
-	'vw_stock_images_pro_pests_problem_card_color_font_settings',
-	array(
-		'label' => __('Section Card Color & font Setting', 'vw-stock-images-pro'),
-		'section' => 'vw_stock_images_pro_pest_problem_sec'
-	)
-));
 
-$wp_customize->add_setting('vw_stock_images_pro_pests_problem_card_heading_color', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_hex_color'
-));
-$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vw_stock_images_pro_pests_problem_card_heading_color', array(
-	'label' => __('Card Heading Color', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_pest_problem_sec',
-	'settings' => 'vw_stock_images_pro_pests_problem_card_heading_color',
-)));
-$wp_customize->add_setting('vw_stock_images_pro_pests_problem_card_heading_font_size', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_text_field'
-));
-$wp_customize->add_control('vw_stock_images_pro_pests_problem_card_heading_font_size', array(
-	'label' => __(' Card Heading Font Size', 'vw-stock-images-pro'),
-	'description' => __('Add font size in px', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_pest_problem_sec',
-	'setting' => 'vw_stock_images_pro_pests_problem_card_heading_font_size',
-	'type' => 'number'
-));
-$wp_customize->add_setting('vw_stock_images_pro_pests_problem_card_heading_font_family', array(
-	'default' => '',
-	'capability' => 'edit_theme_options',
-	'sanitize_callback' => 'vw_stock_images_pro_sanitize_choices'
-));
-$wp_customize->add_control(
-	'vw_stock_images_pro_pests_problem_card_heading_font_family',
-	array(
-		'section' => 'vw_stock_images_pro_pest_problem_sec',
-		'label' => __('Card Heading Font Family', 'vw-stock-images-pro'),
-		'type' => 'select',
-		'choices' => $font_array
-	)
-);
-$wp_customize->add_setting('vw_stock_images_pro_pests_problem_card_header_border_bottom_color', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_hex_color'
-));
-$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vw_stock_images_pro_pests_problem_card_header_border_bottom_color', array(
-	'label' => __('Card Header Border Bottom Color', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_pest_problem_sec',
-	'settings' => 'vw_stock_images_pro_pests_problem_card_header_border_bottom_color',
-)));
-$wp_customize->add_setting('vw_stock_images_pro_pests_problem_card_paragraph_color', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_hex_color'
-));
-$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vw_stock_images_pro_pests_problem_card_paragraph_color', array(
-	'label' => __('Card Paragraph Color', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_pest_problem_sec',
-	'settings' => 'vw_stock_images_pro_pests_problem_card_paragraph_color',
-)));
-$wp_customize->add_setting('vw_stock_images_pro_pests_problem_card_paragraph_font_size', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_text_field'
-));
-$wp_customize->add_control('vw_stock_images_pro_pests_problem_card_paragraph_font_size', array(
-	'label' => __(' Card Paragraph Font Size', 'vw-stock-images-pro'),
-	'description' => __('Add font size in px', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_pest_problem_sec',
-	'setting' => 'vw_stock_images_pro_pests_problem_card_paragraph_font_size',
-	'type' => 'number'
-));
-$wp_customize->add_setting('vw_stock_images_pro_pests_problem_card_paragraph_font_family', array(
-	'default' => '',
-	'capability' => 'edit_theme_options',
-	'sanitize_callback' => 'vw_stock_images_pro_sanitize_choices'
-));
-$wp_customize->add_control(
-	'vw_stock_images_pro_pests_problem_card_paragraph_font_family',
-	array(
-		'section' => 'vw_stock_images_pro_pest_problem_sec',
-		'label' => __('Card Paragraph Font Family', 'vw-stock-images-pro'),
-		'type' => 'select',
-		'choices' => $font_array
-	)
-);
-
-$wp_customize->add_setting('vw_stock_images_pro_pests_problem_card_background_color', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_hex_color'
-));
-$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vw_stock_images_pro_pests_problem_card_background_color', array(
-	'label' => __('Card Background Color', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_pest_problem_sec',
-	'settings' => 'vw_stock_images_pro_pests_problem_card_background_color',
-)));
-$wp_customize->add_setting('vw_stock_images_pro_pests_problem_card_hover_background_color', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_hex_color'
-));
-$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vw_stock_images_pro_pests_problem_card_hover_background_color', array(
-	'label' => __('Card Hover Background Color', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_pest_problem_sec',
-	'settings' => 'vw_stock_images_pro_pests_problem_card_hover_background_color',
-)));
-$wp_customize->add_setting('vw_stock_images_pro_pests_problem_card_hover_image_background_color', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_hex_color'
-));
-$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vw_stock_images_pro_pests_problem_card_hover_image_background_color', array(
-	'label' => __('Card Hover Image Background Color', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_pest_problem_sec',
-	'settings' => 'vw_stock_images_pro_pests_problem_card_hover_image_background_color',
-)));
-
-$wp_customize->add_setting('vw_stock_images_pro_pests_problem_owl_dots_color', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_hex_color'
-));
-$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vw_stock_images_pro_pests_problem_owl_dots_color', array(
-	'label' => __('Dots Color', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_pest_problem_sec',
-	'settings' => 'vw_stock_images_pro_pests_problem_owl_dots_color',
-)));
-$wp_customize->add_setting('vw_stock_images_pro_pests_problem_owl_dots_active_color', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_hex_color'
-));
-$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vw_stock_images_pro_pests_problem_owl_dots_active_color', array(
-	'label' => __('Dots Active Color', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_pest_problem_sec',
-	'settings' => 'vw_stock_images_pro_pests_problem_owl_dots_active_color',
-)));
-/*-----------------------About Section Settings--------------------------*/
-$wp_customize->add_section('vw_stock_images_pro_about_sec', array(
-	'title' => __('About Section', 'vw-stock-images-pro'),
-	'description' => __('Add About setting here.', 'vw-stock-images-pro'),
+/*-----------------------category_slider Section Settings--------------------------*/
+$wp_customize->add_section('vw_stock_images_pro_category_slider', array(
+	'title' => __('Category Slider Section', 'vw-stock-images-pro'),
+	'description' => __('Add category_slider setting here.', 'vw-stock-images-pro'),
 	'panel' => 'vw_stock_images_pro_panel_id',
 ));
 $wp_customize->add_setting(
-	'vw_stock_images_pro_about_enable',
+	'vw_stock_images_pro_category_slider_enable',
 	array(
 		'default' => 'Enable',
 		'sanitize_callback' => 'vw_stock_images_pro_sanitize_choices'
 	)
 );
 $wp_customize->add_control(
-	'vw_stock_images_pro_about_enable',
+	'vw_stock_images_pro_category_slider_enable',
 	array(
 		'type' => 'radio',
 		'label' => __('Do you want this section', 'vw-stock-images-pro'),
-		'section' => 'vw_stock_images_pro_about_sec',
+		'section' => 'vw_stock_images_pro_category_slider',
 		'choices' => array(
 			'Enable' => __('Enable', 'vw-stock-images-pro'),
 			'Disable' => __('Disable', 'vw-stock-images-pro')
 		),
 	)
 );
-$wp_customize->selective_refresh->add_partial('vw_stock_images_pro_about_enable', array(
-	'selector' => '#about-us .container',
-	'render_callback' => 'vw_kids_pro_customize_partial_vw_stock_images_pro_about_enable',
+$wp_customize->selective_refresh->add_partial('vw_stock_images_pro_category_slider_enable', array(
+	'selector' => '#category_slider-us .container',
+	'render_callback' => 'vw_kids_pro_customize_partial_vw_stock_images_pro_category_slider_enable',
 ));
 
-$wp_customize->add_setting('vw_stock_images_pro_about_bgcolor', array(
+$wp_customize->add_setting('vw_stock_images_pro_our_category_slider_bg_color', array(
 	'default' => '',
 	'sanitize_callback' => 'sanitize_hex_color'
 ));
-$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vw_stock_images_pro_about_bgcolor', array(
+$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vw_stock_images_pro_our_category_slider_bg_color', array(
 	'label' => __('Background Color', 'vw-stock-images-pro'),
 	'description' => __('Either add background color or background image, if you add both background color will be top most priority', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'settings' => 'vw_stock_images_pro_about_bgcolor',
+	'section' => 'vw_stock_images_pro_category_slider',
+	'settings' => 'vw_stock_images_pro_our_category_slider_bg_color',
 )));
-$wp_customize->add_setting('vw_stock_images_pro_about_bgimage', array(
+$wp_customize->add_setting('vw_stock_images_pro_our_category_slider_bg_image', array(
 	'default' => '',
 	'sanitize_callback' => 'esc_url_raw',
 ));
-$wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'vw_stock_images_pro_about_bgimage', array(
+$wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'vw_stock_images_pro_our_category_slider_bg_image', array(
 	'label' => __('Background image ', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'settings' => 'vw_stock_images_pro_about_bgimage'
+	'section' => 'vw_stock_images_pro_category_slider',
+	'settings' => 'vw_stock_images_pro_our_category_slider_bg_image'
 )));
 
-$wp_customize->add_setting('vw_stock_images_pro_about_bgimage_setting', array(
+$wp_customize->add_setting('vw_stock_images_pro_our_category_slider_image_bg_attachement', array(
 	'default' => '',
 	'sanitize_callback' => 'vw_stock_images_pro_sanitize_choices'
 ));
-$wp_customize->add_control('vw_stock_images_pro_about_bgimage_setting', array(
+$wp_customize->add_control('vw_stock_images_pro_our_category_slider_image_bg_attachement', array(
 	'type' => 'radio',
 	'label' => __('Choose image option', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
+	'section' => 'vw_stock_images_pro_category_slider',
 	'choices' => array(
 		'vw-fixed' => __('Fixed', 'vw-stock-images-pro'),
 		'vw-scroll' => __('Scroll', 'vw-stock-images-pro'),
 	)
 ));
 
+
 $wp_customize->add_setting(
-	'vw_stock_images_pro_about_section_settings',
+	'vw_stock_images_pro_category_slider_heading_settings',
 	array(
 		'default' => '',
 		'transport' => 'postMessage',
@@ -472,249 +260,87 @@ $wp_customize->add_setting(
 );
 $wp_customize->add_control(new VW_Themes_Seperator_custom_Control(
 	$wp_customize,
-	'vw_stock_images_pro_about_section_settings',
+	'vw_stock_images_pro_category_slider_heading_settings',
 	array(
-		'label' => __('Section Typoghraphy', 'vw-stock-images-pro'),
-		'section' => 'vw_stock_images_pro_about_sec	'
+		'label' => __('Section Heading', 'vw-stock-images-pro'),
+		'section' => 'vw_stock_images_pro_category_slider'
 	)
 ));
-
-$wp_customize->add_setting('vw_stock_images_pro_about_heading', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_text_field'
-));
-$wp_customize->add_control('vw_stock_images_pro_about_heading', array(
-	'label' => __('Heading', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'setting' => 'vw_stock_images_pro_about_heading',
-	'type' => 'text'
-));
-$wp_customize->add_setting('vw_stock_images_pro_about_paragraph', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_text_field'
-));
-$wp_customize->add_control('vw_stock_images_pro_about_paragraph', array(
-	'label' => __('Paragraph', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'setting' => 'vw_stock_images_pro_about_paragraph',
-	'type' => 'text'
-));
-$wp_customize->add_setting('vw_stock_images_pro_about_left_img_one', array(
-	'default' => get_theme_mod('vw_stock_images_pro_about_left_img_one'),
-	'sanitize_callback' => 'esc_url_raw',
-));
-$wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'vw_stock_images_pro_about_left_img_one', array(
-	'label' => __('Image one', 'vw-stock-images-pro'),
-	'description' => __('Add image size maximum 37×49', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'settings' => 'vw_stock_images_pro_about_left_img_one'
-)));
-$wp_customize->add_setting('vw_stock_images_pro_about_left_heading_one', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_text_field'
-));
-$wp_customize->add_control('vw_stock_images_pro_about_left_heading_one', array(
-	'label' => __('Heading Name', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'setting' => 'vw_stock_images_pro_about_left_heading_one',
-	'type' => 'text'
-));
-$wp_customize->add_setting('vw_stock_images_pro_about_left_paragraph_one', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_text_field'
-));
-$wp_customize->add_control('vw_stock_images_pro_about_left_paragraph_one', array(
-	'label' => __('Paragraph One', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'setting' => 'vw_stock_images_pro_about_left_paragraph_one',
-	'type' => 'text'
-));
-$wp_customize->add_setting('vw_stock_images_pro_about_left_img_two', array(
-	'default' => get_theme_mod('vw_stock_images_pro_about_left_img_two'),
-	'sanitize_callback' => 'esc_url_raw',
-));
-$wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'vw_stock_images_pro_about_left_img_two', array(
-	'label' => __('Image Two', 'vw-stock-images-pro'),
-	'description' => __('Add image size maximum 37×49', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'settings' => 'vw_stock_images_pro_about_left_img_two'
-)));
-$wp_customize->add_setting('vw_stock_images_pro_about_left_heading_two', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_text_field'
-));
-$wp_customize->add_control('vw_stock_images_pro_about_left_heading_two', array(
-	'label' => __('Heading Two', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'setting' => 'vw_stock_images_pro_about_left_heading_two',
-	'type' => 'text'
-));
-$wp_customize->add_setting('vw_stock_images_pro_about_left_paragraph_two', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_text_field'
-));
-$wp_customize->add_control('vw_stock_images_pro_about_left_paragraph_two', array(
-	'label' => __('Paragraph Two', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'setting' => 'vw_stock_images_pro_about_left_paragraph_two',
-	'type' => 'text'
-));
-
-$wp_customize->add_setting('vw_stock_images_pro_about_left_btn_text', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_text_field'
-));
-$wp_customize->add_control('vw_stock_images_pro_about_left_btn_text', array(
-	'label' => __('Button Text', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'setting' => 'vw_stock_images_pro_about_left_btn_text',
-	'type' => 'text'
-));
-$wp_customize->add_setting('vw_stock_images_pro_about_left_btn_url', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_text_field'
-));
-$wp_customize->add_control('vw_stock_images_pro_about_left_btn_url', array(
-	'label' => __('Button Url', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'setting' => 'vw_stock_images_pro_about_left_btn_url',
-	'type' => 'text'
-));
-
-$wp_customize->add_setting('vw_stock_images_pro_about_manager_img', array(
-	'default' => get_theme_mod('vw_stock_images_pro_about_manager_img'),
-	'sanitize_callback' => 'esc_url_raw',
-));
-$wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'vw_stock_images_pro_about_manager_img', array(
-	'label' => __('Manager Image', 'vw-stock-images-pro'),
-	'description' => __('Add image size maximum 70×70', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'settings' => 'vw_stock_images_pro_about_manager_img'
-)));
-$wp_customize->add_setting('vw_stock_images_pro_about_manager_name', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_text_field'
-));
-$wp_customize->add_control('vw_stock_images_pro_about_manager_name', array(
-	'label' => __('Manager Name', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'setting' => 'vw_stock_images_pro_about_manager_name',
-	'type' => 'text'
-));
-$wp_customize->add_setting('vw_stock_images_pro_about_manager_text', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_text_field'
-));
-$wp_customize->add_control('vw_stock_images_pro_about_manager_text', array(
-	'label' => __('Manager Text', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'setting' => 'vw_stock_images_pro_about_manager_text',
-	'type' => 'text'
-));
-
-$wp_customize->add_setting('vw_stock_images_pro_about_manager_sign_img', array(
-	'default' => get_theme_mod('vw_stock_images_pro_about_manager_sign_img'),
-	'sanitize_callback' => 'esc_url_raw',
-));
-$wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'vw_stock_images_pro_about_manager_sign_img', array(
-	'label' => __('Sign Image', 'vw-stock-images-pro'),
-	'description' => __('Add image size maximum 152×30', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'settings' => 'vw_stock_images_pro_about_manager_sign_img'
-)));
-$wp_customize->add_setting('vw_stock_images_pro_about_img_one', array(
-	'default' => get_theme_mod('vw_stock_images_pro_about_img_one'),
-	'sanitize_callback' => 'esc_url_raw',
-));
-$wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'vw_stock_images_pro_about_img_one', array(
-	'label' => __('Right Image one', 'vw-stock-images-pro'),
-	'description' => __('Add image size maximum 295×280', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'settings' => 'vw_stock_images_pro_about_img_one'
-)));
-$wp_customize->add_setting('vw_stock_images_pro_about_img_two', array(
-	'default' => get_theme_mod('vw_stock_images_pro_about_img_two'),
-	'sanitize_callback' => 'esc_url_raw',
-));
-$wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'vw_stock_images_pro_about_img_two', array(
-	'label' => __('Right Image one', 'vw-stock-images-pro'),
-	'description' => __('Add image size maximum 360×250', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'settings' => 'vw_stock_images_pro_about_img_two'
-)));
-$wp_customize->add_setting('vw_stock_images_pro_about_img_three', array(
-	'default' => get_theme_mod('vw_stock_images_pro_about_img_three'),
-	'sanitize_callback' => 'esc_url_raw',
-));
-$wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'vw_stock_images_pro_about_img_three', array(
-	'label' => __('Right Image one', 'vw-stock-images-pro'),
-	'description' => __('Add image size maximum 225×265', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'settings' => 'vw_stock_images_pro_about_img_three'
-)));
-$wp_customize->add_setting('vw_stock_images_pro_about_year_number', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_text_field'
-));
-$wp_customize->add_control('vw_stock_images_pro_about_year_number', array(
-	'label' => __('Year Number', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'setting' => 'vw_stock_images_pro_about_year_number',
-	'type' => 'text'
-));
-$wp_customize->add_setting('vw_stock_images_pro_about_year_text', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_text_field'
-));
-$wp_customize->add_control('vw_stock_images_pro_about_year_text', array(
-	'label' => __('Year Text', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'setting' => 'vw_stock_images_pro_about_year_text',
-	'type' => 'text'
-));
 $wp_customize->add_setting(
-	'vw_stock_images_pro_about_phone_icon',
+	'vw_stock_images_pro_category_slider_heading',
 	array(
-		'default' => get_theme_mod('vw_stock_images_pro_about_phone_icon'),
+		'default' => '',
 		'sanitize_callback' => 'sanitize_text_field'
 	)
 );
 $wp_customize->add_control(
-	new vw_stock_images_pro_Fontawesome_Icon_Chooser(
+	'vw_stock_images_pro_category_slider_heading',
+	array(
+		'label' => __('heading Text', 'vw-stock-images-pro'),
+		'section' => 'vw_stock_images_pro_category_slider',
+		'setting' => 'vw_stock_images_pro_category_slider_heading',
+		'type' => 'text'
+	)
+);
+
+$wp_customize->add_setting(
+	'vw_stock_images_pro_category_slider_heading_font_family',
+	array(
+		'default' => '',
+		'capability' => 'edit_theme_options',
+		'sanitize_callback' => 'vw_stock_images_pro_sanitize_choices'
+	)
+);
+$wp_customize->add_control(
+	'vw_stock_images_pro_category_slider_heading_font_family',
+	array(
+		'section' => 'vw_stock_images_pro_category_slider',
+		'label' => __('Font Family', 'vw-stock-images-pro'),
+		'type' => 'select',
+		'choices' => $font_array,
+	)
+);
+
+$wp_customize->add_setting(
+	'vw_stock_images_pro_category_slider_heading_font_size',
+	array(
+		'default' => '',
+		'sanitize_callback' => 'sanitize_text_field'
+	)
+);
+$wp_customize->add_control(
+	'vw_stock_images_pro_category_slider_heading_font_size',
+	array(
+		'label' => __('Font Size', 'vw-stock-images-pro'),
+		'description' => __('Add font size in px', 'vw-stock-images-pro'),
+		'section' => 'vw_stock_images_pro_category_slider',
+		'setting' => 'vw_stock_images_pro_category_slider_heading_font_size',
+		'type' => 'number'
+	)
+);
+$wp_customize->add_setting(
+	'vw_stock_images_pro_category_slider_heading_color',
+	array(
+		'default' => '',
+		'sanitize_callback' => 'sanitize_hex_color'
+	)
+);
+$wp_customize->add_control(
+	new WP_Customize_Color_Control(
 		$wp_customize,
-		'vw_stock_images_pro_about_phone_icon',
+		'vw_stock_images_pro_category_slider_heading_color',
 		array(
-			'settings' => 'vw_stock_images_pro_about_phone_icon',
-			'section' => 'vw_stock_images_pro_about_sec',
-			'type' => 'icon',
-			'label' => esc_html__('Choose  Icon', 'vw-stock-images-pro'),
+			'label' => __('Color', 'vw-stock-images-pro'),
+			'section' => 'vw_stock_images_pro_category_slider',
+			'settings' => 'vw_stock_images_pro_category_slider_heading_color',
 		)
 	)
 );
 
-$wp_customize->add_setting('vw_stock_images_pro_about_number', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_text_field'
-));
-$wp_customize->add_control('vw_stock_images_pro_about_number', array(
-	'label' => __('Emergency Text', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'setting' => 'vw_stock_images_pro_about_number',
-	'type' => 'text'
-));
-$wp_customize->add_setting('vw_stock_images_pro_about_emergency_number', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_text_field'
-));
-$wp_customize->add_control('vw_stock_images_pro_about_emergency_number', array(
-	'label' => __('Emergency Number', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'setting' => 'vw_stock_images_pro_about_emergency_number',
-	'type' => 'text'
-));
+
 
 $wp_customize->add_setting(
-	'vw_stock_images_pro_about_color_font_settings',
+	'vw_stock_images_pro_category_slider_heading_text_settings',
 	array(
 		'default' => '',
 		'transport' => 'postMessage',
@@ -723,473 +349,246 @@ $wp_customize->add_setting(
 );
 $wp_customize->add_control(new VW_Themes_Seperator_custom_Control(
 	$wp_customize,
-	'vw_stock_images_pro_about_color_font_settings',
+	'vw_stock_images_pro_category_slider_heading_text_settings',
 	array(
-		'label' => __('Section Color & font Setting', 'vw-stock-images-pro'),
-		'section' => 'vw_stock_images_pro_about_sec'
+		'label' => __('Section Heading Text', 'vw-stock-images-pro'),
+		'section' => 'vw_stock_images_pro_category_slider'
 	)
 ));
 
-$wp_customize->add_setting('vw_stock_images_pro_about_heading_color', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_hex_color'
-));
-$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vw_stock_images_pro_about_heading_color', array(
-	'label' => __('Heading Color', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'settings' => 'vw_stock_images_pro_about_heading_color',
-)));
-$wp_customize->add_setting('vw_stock_images_pro_about_heading_font_size', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_text_field'
-));
-$wp_customize->add_control('vw_stock_images_pro_about_heading_font_size', array(
-	'label' => __(' Heading Font Size', 'vw-stock-images-pro'),
-	'description' => __('Add font size in px', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'setting' => 'vw_stock_images_pro_about_heading_font_size',
-	'type' => 'number'
-));
-$wp_customize->add_setting('vw_stock_images_pro_about_heading_font_family', array(
-	'default' => '',
-	'capability' => 'edit_theme_options',
-	'sanitize_callback' => 'vw_stock_images_pro_sanitize_choices'
-));
-$wp_customize->add_control(
-	'vw_stock_images_pro_about_heading_font_family',
+$wp_customize->add_setting(
+	'vw_stock_images_pro_category_slider_heading_text',
 	array(
-		'section' => 'vw_stock_images_pro_about_sec',
-		'label' => __('Heading Font Family', 'vw-stock-images-pro'),
-		'type' => 'select',
-		'choices' => $font_array
+		'default' => '',
+		'sanitize_callback' => 'sanitize_text_field'
 	)
 );
-$wp_customize->add_setting('vw_stock_images_pro_about_paragraph_color', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_hex_color'
-));
-$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vw_stock_images_pro_about_paragraph_color', array(
-	'label' => __('Paragraph Color', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'settings' => 'vw_stock_images_pro_about_paragraph_color',
-)));
-$wp_customize->add_setting('vw_stock_images_pro_about_paragraph_font_size', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_text_field'
-));
-$wp_customize->add_control('vw_stock_images_pro_about_paragraph_font_size', array(
-	'label' => __(' Paragraph Font Size', 'vw-stock-images-pro'),
-	'description' => __('Add font size in px', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'setting' => 'vw_stock_images_pro_about_paragraph_font_size',
-	'type' => 'number'
-));
-$wp_customize->add_setting('vw_stock_images_pro_about_paragraph_font_family', array(
-	'default' => '',
-	'capability' => 'edit_theme_options',
-	'sanitize_callback' => 'vw_stock_images_pro_sanitize_choices'
-));
 $wp_customize->add_control(
-	'vw_stock_images_pro_about_paragraph_font_family',
+	'vw_stock_images_pro_category_slider_heading_text',
 	array(
-		'section' => 'vw_stock_images_pro_about_sec',
-		'label' => __('Paragraph Font Family', 'vw-stock-images-pro'),
-		'type' => 'select',
-		'choices' => $font_array
+		'label' => __('heading_text Text', 'vw-stock-images-pro'),
+		'section' => 'vw_stock_images_pro_category_slider',
+		'setting' => 'vw_stock_images_pro_category_slider_heading_text',
+		'type' => 'text'
 	)
 );
-$wp_customize->add_setting('vw_stock_images_pro_about_inner_heading_color', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_hex_color'
-));
-$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vw_stock_images_pro_about_inner_heading_color', array(
-	'label' => __('Inner Heading Color', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'settings' => 'vw_stock_images_pro_about_inner_heading_color',
-)));
-$wp_customize->add_setting('vw_stock_images_pro_about_inner_heading_font_size', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_text_field'
-));
-$wp_customize->add_control('vw_stock_images_pro_about_inner_heading_font_size', array(
-	'label' => __(' Inner Heading Font Size', 'vw-stock-images-pro'),
-	'description' => __('Add font size in px', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'setting' => 'vw_stock_images_pro_about_inner_heading_font_size',
-	'type' => 'number'
-));
-$wp_customize->add_setting('vw_stock_images_pro_about_inner_heading_font_family', array(
-	'default' => '',
-	'capability' => 'edit_theme_options',
-	'sanitize_callback' => 'vw_stock_images_pro_sanitize_choices'
-));
-$wp_customize->add_control(
-	'vw_stock_images_pro_about_inner_heading_font_family',
+
+$wp_customize->add_setting(
+	'vw_stock_images_pro_category_slider_heading_text_font_family',
 	array(
-		'section' => 'vw_stock_images_pro_about_sec',
-		'label' => __('Inner Heading Font Family', 'vw-stock-images-pro'),
-		'type' => 'select',
-		'choices' => $font_array
+		'default' => '',
+		'capability' => 'edit_theme_options',
+		'sanitize_callback' => 'vw_stock_images_pro_sanitize_choices'
 	)
 );
-$wp_customize->add_setting('vw_stock_images_pro_about_inner_paragraph_color', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_hex_color'
-));
-$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vw_stock_images_pro_about_inner_paragraph_color', array(
-	'label' => __('Inner Paragraph Color', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'settings' => 'vw_stock_images_pro_about_inner_paragraph_color',
-)));
-$wp_customize->add_setting('vw_stock_images_pro_about_inner_paragraph_font_size', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_text_field'
-));
-$wp_customize->add_control('vw_stock_images_pro_about_inner_paragraph_font_size', array(
-	'label' => __(' Inner Paragraph Font Size', 'vw-stock-images-pro'),
-	'description' => __('Add font size in px', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'setting' => 'vw_stock_images_pro_about_inner_paragraph_font_size',
-	'type' => 'number'
-));
-$wp_customize->add_setting('vw_stock_images_pro_about_inner_paragraph_font_family', array(
-	'default' => '',
-	'capability' => 'edit_theme_options',
-	'sanitize_callback' => 'vw_stock_images_pro_sanitize_choices'
-));
 $wp_customize->add_control(
-	'vw_stock_images_pro_about_inner_paragraph_font_family',
+	'vw_stock_images_pro_category_slider_heading_text_font_family',
 	array(
-		'section' => 'vw_stock_images_pro_about_sec',
-		'label' => __('Inner Paragraph Font Family', 'vw-stock-images-pro'),
+		'section' => 'vw_stock_images_pro_category_slider',
+		'label' => __('Font Family', 'vw-stock-images-pro'),
 		'type' => 'select',
-		'choices' => $font_array
+		'choices' => $font_array,
+	)
+);
+
+$wp_customize->add_setting(
+	'vw_stock_images_pro_category_slider_heading_text_font_size',
+	array(
+		'default' => '',
+		'sanitize_callback' => 'sanitize_text_field'
+	)
+);
+$wp_customize->add_control(
+	'vw_stock_images_pro_category_slider_heading_text_font_size',
+	array(
+		'label' => __('Font Size', 'vw-stock-images-pro'),
+		'description' => __('Add font size in px', 'vw-stock-images-pro'),
+		'section' => 'vw_stock_images_pro_category_slider',
+		'setting' => 'vw_stock_images_pro_category_slider_heading_text_font_size',
+		'type' => 'number'
+	)
+);
+$wp_customize->add_setting(
+	'vw_stock_images_pro_category_slider_heading_text_color',
+	array(
+		'default' => '',
+		'sanitize_callback' => 'sanitize_hex_color'
+	)
+);
+$wp_customize->add_control(
+	new WP_Customize_Color_Control(
+		$wp_customize,
+		'vw_stock_images_pro_category_slider_heading_text_color',
+		array(
+			'label' => __('Color', 'vw-stock-images-pro'),
+			'section' => 'vw_stock_images_pro_category_slider',
+			'settings' => 'vw_stock_images_pro_category_slider_heading_text_color',
+		)
 	)
 );
 
 
-$wp_customize->add_setting('vw_stock_images_pro_about_left_btn_color', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_hex_color'
-));
-$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vw_stock_images_pro_about_left_btn_color', array(
-	'label' => __('Button Color', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'settings' => 'vw_stock_images_pro_about_left_btn_color',
-)));
-$wp_customize->add_setting('vw_stock_images_pro_about_left_btn_font_size', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_text_field'
-));
-$wp_customize->add_control('vw_stock_images_pro_about_left_btn_font_size', array(
-	'label' => __(' Button Font Size', 'vw-stock-images-pro'),
-	'description' => __('Add font size in px', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'setting' => 'vw_stock_images_pro_about_left_btn_font_size',
-	'type' => 'number'
-));
-$wp_customize->add_setting('vw_stock_images_pro_about_left_btn_font_family', array(
-	'default' => '',
-	'capability' => 'edit_theme_options',
-	'sanitize_callback' => 'vw_stock_images_pro_sanitize_choices'
-));
-$wp_customize->add_control(
-	'vw_stock_images_pro_about_left_btn_font_family',
+$wp_customize->add_setting(
+	'vw_stock_images_pro_category_slider_category_name_text_settings',
 	array(
-		'section' => 'vw_stock_images_pro_about_sec',
-		'label' => __('Button Font Family', 'vw-stock-images-pro'),
+		'default' => '',
+		'transport' => 'postMessage',
+		'sanitize_callback' => 'vw_stock_images_pro_text_sanitization'
+	)
+);
+$wp_customize->add_control(new VW_Themes_Seperator_custom_Control(
+	$wp_customize,
+	'vw_stock_images_pro_category_slider_category_name_text_settings',
+	array(
+		'label' => __('Category Name Settings', 'vw-stock-images-pro'),
+		'section' => 'vw_stock_images_pro_category_slider'
+	)
+));
+$wp_customize->add_setting(
+	'vw_stock_images_pro_category_slider_category_name_text_font_family',
+	array(
+		'default' => '',
+		'capability' => 'edit_theme_options',
+		'sanitize_callback' => 'vw_stock_images_pro_sanitize_choices'
+	)
+);
+$wp_customize->add_control(
+	'vw_stock_images_pro_category_slider_category_name_text_font_family',
+	array(
+		'section' => 'vw_stock_images_pro_category_slider',
+		'label' => __('Font Family', 'vw-stock-images-pro'),
 		'type' => 'select',
-		'choices' => $font_array
+		'choices' => $font_array,
 	)
 );
 
-$wp_customize->add_setting('vw_stock_images_pro_about_left_btn_bg_color', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_hex_color'
-));
-$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vw_stock_images_pro_about_left_btn_bg_color', array(
-	'label' => __('Button Background Color', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'settings' => 'vw_stock_images_pro_about_left_btn_bg_color',
-)));
-$wp_customize->add_setting('vw_stock_images_pro_about_left_btn_hover_bg_color', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_hex_color'
-));
-$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vw_stock_images_pro_about_left_btn_hover_bg_color', array(
-	'label' => __('Button Hover Background Color', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'settings' => 'vw_stock_images_pro_about_left_btn_hover_bg_color',
-)));
-
-$wp_customize->add_setting('vw_stock_images_pro_about_manager_color', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_hex_color'
-));
-$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vw_stock_images_pro_about_manager_color', array(
-	'label' => __('Manager Color', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'settings' => 'vw_stock_images_pro_about_manager_color',
-)));
-$wp_customize->add_setting('vw_stock_images_pro_about_manager_font_size', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_text_field'
-));
-$wp_customize->add_control('vw_stock_images_pro_about_manager_font_size', array(
-	'label' => __(' Manager Font Size', 'vw-stock-images-pro'),
-	'description' => __('Add font size in px', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'setting' => 'vw_stock_images_pro_about_manager_font_size',
-	'type' => 'number'
-));
-$wp_customize->add_setting('vw_stock_images_pro_about_manager_font_family', array(
-	'default' => '',
-	'capability' => 'edit_theme_options',
-	'sanitize_callback' => 'vw_stock_images_pro_sanitize_choices'
-));
-$wp_customize->add_control(
-	'vw_stock_images_pro_about_manager_font_family',
+$wp_customize->add_setting(
+	'vw_stock_images_pro_category_slider_category_name_text_font_size',
 	array(
-		'section' => 'vw_stock_images_pro_about_sec',
-		'label' => __('Manager Font Family', 'vw-stock-images-pro'),
-		'type' => 'select',
-		'choices' => $font_array
+		'default' => '',
+		'sanitize_callback' => 'sanitize_text_field'
 	)
 );
-$wp_customize->add_setting('vw_stock_images_pro_about_manager_text_color', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_hex_color'
-));
-$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vw_stock_images_pro_about_manager_text_color', array(
-	'label' => __('Manager Text Color', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'settings' => 'vw_stock_images_pro_about_manager_text_color',
-)));
-$wp_customize->add_setting('vw_stock_images_pro_about_manager_text_font_size', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_text_field'
-));
-$wp_customize->add_control('vw_stock_images_pro_about_manager_text_font_size', array(
-	'label' => __(' Manager Text Font Size', 'vw-stock-images-pro'),
-	'description' => __('Add font size in px', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'setting' => 'vw_stock_images_pro_about_manager_text_font_size',
-	'type' => 'number'
-));
-$wp_customize->add_setting('vw_stock_images_pro_about_manager_text_font_family', array(
-	'default' => '',
-	'capability' => 'edit_theme_options',
-	'sanitize_callback' => 'vw_stock_images_pro_sanitize_choices'
-));
 $wp_customize->add_control(
-	'vw_stock_images_pro_about_manager_text_font_family',
+	'vw_stock_images_pro_category_slider_category_name_text_font_size',
 	array(
-		'section' => 'vw_stock_images_pro_about_sec',
-		'label' => __('Manager Text Font Family', 'vw-stock-images-pro'),
-		'type' => 'select',
-		'choices' => $font_array
+		'label' => __('Font Size', 'vw-stock-images-pro'),
+		'description' => __('Add font size in px', 'vw-stock-images-pro'),
+		'section' => 'vw_stock_images_pro_category_slider',
+		'setting' => 'vw_stock_images_pro_category_slider_category_name_text_font_size',
+		'type' => 'number'
+	)
+);
+$wp_customize->add_setting(
+	'vw_stock_images_pro_category_slider_category_name_text_color',
+	array(
+		'default' => '',
+		'sanitize_callback' => 'sanitize_hex_color'
+	)
+);
+$wp_customize->add_control(
+	new WP_Customize_Color_Control(
+		$wp_customize,
+		'vw_stock_images_pro_category_slider_category_name_text_color',
+		array(
+			'label' => __('Color', 'vw-stock-images-pro'),
+			'section' => 'vw_stock_images_pro_category_slider',
+			'settings' => 'vw_stock_images_pro_category_slider_category_name_text_color',
+		)
 	)
 );
 
-$wp_customize->add_setting('vw_stock_images_pro_about_year_number_color', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_hex_color'
-));
-$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vw_stock_images_pro_about_year_number_color', array(
-	'label' => __('Year Number Color', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'settings' => 'vw_stock_images_pro_about_year_number_color',
-)));
-$wp_customize->add_setting('vw_stock_images_pro_about_year_number_font_size', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_text_field'
-));
-$wp_customize->add_control('vw_stock_images_pro_about_year_number_font_size', array(
-	'label' => __(' Year Number Font Size', 'vw-stock-images-pro'),
-	'description' => __('Add font size in px', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'setting' => 'vw_stock_images_pro_about_year_number_font_size',
-	'type' => 'number'
-));
-$wp_customize->add_setting('vw_stock_images_pro_about_year_number_font_family', array(
-	'default' => '',
-	'capability' => 'edit_theme_options',
-	'sanitize_callback' => 'vw_stock_images_pro_sanitize_choices'
-));
-$wp_customize->add_control(
-	'vw_stock_images_pro_about_year_number_font_family',
+$wp_customize->add_setting(
+	'vw_stock_images_pro_category_slider_category_desc_settings',
 	array(
-		'section' => 'vw_stock_images_pro_about_sec',
-		'label' => __('Year Number Font Family', 'vw-stock-images-pro'),
-		'type' => 'select',
-		'choices' => $font_array
+		'default' => '',
+		'transport' => 'postMessage',
+		'sanitize_callback' => 'vw_stock_images_pro_text_sanitization'
 	)
 );
-$wp_customize->add_setting('vw_stock_images_pro_about_year_text_color', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_hex_color'
-));
-$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vw_stock_images_pro_about_year_text_color', array(
-	'label' => __('Year Text Color', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'settings' => 'vw_stock_images_pro_about_year_text_color',
-)));
-$wp_customize->add_setting('vw_stock_images_pro_about_year_text_font_size', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_text_field'
-));
-$wp_customize->add_control('vw_stock_images_pro_about_year_text_font_size', array(
-	'label' => __(' Year Text Font Size', 'vw-stock-images-pro'),
-	'description' => __('Add font size in px', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'setting' => 'vw_stock_images_pro_about_year_text_font_size',
-	'type' => 'number'
-));
-$wp_customize->add_setting('vw_stock_images_pro_about_year_text_font_family', array(
-	'default' => '',
-	'capability' => 'edit_theme_options',
-	'sanitize_callback' => 'vw_stock_images_pro_sanitize_choices'
-));
-$wp_customize->add_control(
-	'vw_stock_images_pro_about_year_text_font_family',
+$wp_customize->add_control(new VW_Themes_Seperator_custom_Control(
+	$wp_customize,
+	'vw_stock_images_pro_category_slider_category_desc_settings',
 	array(
-		'section' => 'vw_stock_images_pro_about_sec',
-		'label' => __('Year Text Font Family', 'vw-stock-images-pro'),
-		'type' => 'select',
-		'choices' => $font_array
+		'label' => __('Category Descreption Settings', 'vw-stock-images-pro'),
+		'section' => 'vw_stock_images_pro_category_slider'
+	)
+));
+$wp_customize->add_setting(
+	'vw_stock_images_pro_category_slider_category_desc_font_family',
+	array(
+		'default' => '',
+		'capability' => 'edit_theme_options',
+		'sanitize_callback' => 'vw_stock_images_pro_sanitize_choices'
 	)
 );
-$wp_customize->add_setting('vw_stock_images_pro_about_year_background_color', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_hex_color'
-));
-$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vw_stock_images_pro_about_year_background_color', array(
-	'label' => __('Year Background Color', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'settings' => 'vw_stock_images_pro_about_year_background_color',
-)));
+$wp_customize->add_control(
+	'vw_stock_images_pro_category_slider_category_desc_font_family',
+	array(
+		'section' => 'vw_stock_images_pro_category_slider',
+		'label' => __('Font Family', 'vw-stock-images-pro'),
+		'type' => 'select',
+		'choices' => $font_array,
+	)
+);
 
-
-$wp_customize->add_setting('vw_stock_images_pro_about_number_color', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_hex_color'
-));
-$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vw_stock_images_pro_about_number_color', array(
-	'label' => __('Emergency Text Color', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'settings' => 'vw_stock_images_pro_about_number_color',
-)));
-$wp_customize->add_setting('vw_stock_images_pro_about_number_font_size', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_text_field'
-));
-$wp_customize->add_control('vw_stock_images_pro_about_number_font_size', array(
-	'label' => __(' Emergency Text Font Size', 'vw-stock-images-pro'),
-	'description' => __('Add font size in px', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'setting' => 'vw_stock_images_pro_about_number_font_size',
-	'type' => 'number'
-));
-$wp_customize->add_setting('vw_stock_images_pro_about_number_font_family', array(
-	'default' => '',
-	'capability' => 'edit_theme_options',
-	'sanitize_callback' => 'vw_stock_images_pro_sanitize_choices'
-));
-$wp_customize->add_control(
-	'vw_stock_images_pro_about_number_font_family',
+$wp_customize->add_setting(
+	'vw_stock_images_pro_category_slider_category_desc_font_size',
 	array(
-		'section' => 'vw_stock_images_pro_about_sec',
-		'label' => __('Emergency Text Font Family', 'vw-stock-images-pro'),
-		'type' => 'select',
-		'choices' => $font_array
+		'default' => '',
+		'sanitize_callback' => 'sanitize_text_field'
 	)
 );
-$wp_customize->add_setting('vw_stock_images_pro_about_emergency_number_color', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_hex_color'
-));
-$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vw_stock_images_pro_about_emergency_number_color', array(
-	'label' => __('Emergency Number Color', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'settings' => 'vw_stock_images_pro_about_emergency_number_color',
-)));
-$wp_customize->add_setting('vw_stock_images_pro_about_emergency_number_font_size', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_text_field'
-));
-$wp_customize->add_control('vw_stock_images_pro_about_emergency_number_font_size', array(
-	'label' => __(' Emergency Number Font Size', 'vw-stock-images-pro'),
-	'description' => __('Add font size in px', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'setting' => 'vw_stock_images_pro_about_emergency_number_font_size',
-	'type' => 'number'
-));
-$wp_customize->add_setting('vw_stock_images_pro_about_emergency_number_font_family', array(
-	'default' => '',
-	'capability' => 'edit_theme_options',
-	'sanitize_callback' => 'vw_stock_images_pro_sanitize_choices'
-));
 $wp_customize->add_control(
-	'vw_stock_images_pro_about_emergency_number_font_family',
+	'vw_stock_images_pro_category_slider_category_desc_font_size',
 	array(
-		'section' => 'vw_stock_images_pro_about_sec',
-		'label' => __('Emergency Number Font Family', 'vw-stock-images-pro'),
-		'type' => 'select',
-		'choices' => $font_array
+		'label' => __('Font Size', 'vw-stock-images-pro'),
+		'description' => __('Add font size in px', 'vw-stock-images-pro'),
+		'section' => 'vw_stock_images_pro_category_slider',
+		'setting' => 'vw_stock_images_pro_category_slider_category_desc_font_size',
+		'type' => 'number'
 	)
 );
-$wp_customize->add_setting('vw_stock_images_pro_about_emergency_phone_icon_color', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_hex_color'
-));
-$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vw_stock_images_pro_about_emergency_phone_icon_color', array(
-	'label' => __('Phone Icon Color', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'settings' => 'vw_stock_images_pro_about_emergency_phone_icon_color',
-)));
-$wp_customize->add_setting('vw_stock_images_pro_about_emergency_phone_icon_font_size', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_text_field'
-));
-$wp_customize->add_control('vw_stock_images_pro_about_emergency_phone_icon_font_size', array(
-	'label' => __(' Phone Icon Font Size', 'vw-stock-images-pro'),
-	'description' => __('Add font size in px', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'setting' => 'vw_stock_images_pro_about_emergency_phone_icon_font_size',
-	'type' => 'number'
-));
-
-$wp_customize->add_setting('vw_stock_images_pro_about_emergency_number_background_color', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_hex_color'
-));
-$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vw_stock_images_pro_about_emergency_number_background_color', array(
-	'label' => __('Number Background Color', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_sec',
-	'settings' => 'vw_stock_images_pro_about_emergency_number_background_color',
-)));
+$wp_customize->add_setting(
+	'vw_stock_images_pro_category_slider_category_desc_color',
+	array(
+		'default' => '',
+		'sanitize_callback' => 'sanitize_hex_color'
+	)
+);
+$wp_customize->add_control(
+	new WP_Customize_Color_Control(
+		$wp_customize,
+		'vw_stock_images_pro_category_slider_category_desc_color',
+		array(
+			'label' => __('Color', 'vw-stock-images-pro'),
+			'section' => 'vw_stock_images_pro_category_slider',
+			'settings' => 'vw_stock_images_pro_category_slider_category_desc_color',
+		)
+	)
+);
 
 /*-----------------------Professional Services Settings--------------------------*/
 
-$wp_customize->add_section('vw_stock_images_pro_professional_services_sec', array(
-	'title' => __('Professional Services Section', 'vw-stock-images-pro'),
+$wp_customize->add_section('vw_stock_images_pro_our_features_sec', array(
+	'title' => __('Our Features Section', 'vw-stock-images-pro'),
 	'description' => __('Add Professional Services setting here.', 'vw-stock-images-pro'),
 	'panel' => 'vw_stock_images_pro_panel_id',
 ));
 
 $wp_customize->add_setting(
-	'vw_stock_images_pro_radio_professional_services_enable',
+	'vw_stock_images_pro_radio_our_features_enable',
 	array(
 		'default' => 'Enable',
 		'sanitize_callback' => 'vw_stock_images_pro_sanitize_choices'
 	)
 );
 $wp_customize->add_control(
-	'vw_stock_images_pro_radio_professional_services_enable',
+	'vw_stock_images_pro_radio_our_features_enable',
 	array(
 		'type' => 'radio',
 		'label' => __('Do you want this section', 'vw-stock-images-pro'),
-		'section' => 'vw_stock_images_pro_professional_services_sec',
+		'section' => 'vw_stock_images_pro_our_features_sec',
 		'choices' => array(
 			'Enable' => __('Enable', 'vw-stock-images-pro'),
 			'Disable' => __('Disable', 'vw-stock-images-pro')
@@ -1197,47 +596,99 @@ $wp_customize->add_control(
 	)
 );
 
-$wp_customize->selective_refresh->add_partial('vw_stock_images_pro_radio_professional_services_enable', array(
+$wp_customize->selective_refresh->add_partial('vw_stock_images_pro_radio_our_features_enable', array(
 	'selector' => '#professional-services .container',
-	'render_callback' => 'vw_kids_pro_customize_partial_vw_stock_images_pro_radio_professional_services_enable',
+	'render_callback' => 'vw_kids_pro_customize_partial_vw_stock_images_pro_radio_our_features_enable',
 ));
 
-$wp_customize->add_setting('vw_stock_images_pro_professional_services_bg_color', array(
+$wp_customize->add_setting('vw_stock_images_pro_our_features_bg_color', array(
 	'default' => '',
 	'sanitize_callback' => 'sanitize_hex_color'
 ));
-$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vw_stock_images_pro_professional_services_bg_color', array(
+$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vw_stock_images_pro_our_features_bg_color', array(
 	'label' => __('Background Color', 'vw-stock-images-pro'),
 	'description' => __('Either add background color or background image, if you add both background color will be top most priority', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_professional_services_sec',
-	'settings' => 'vw_stock_images_pro_professional_services_bg_color',
+	'section' => 'vw_stock_images_pro_our_features_sec',
+	'settings' => 'vw_stock_images_pro_our_features_bg_color',
 )));
-$wp_customize->add_setting('vw_stock_images_pro_professional_services_image', array(
+$wp_customize->add_setting('vw_stock_images_pro_our_features_image', array(
 	'default' => '',
 	'sanitize_callback' => 'esc_url_raw',
 ));
-$wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'vw_stock_images_pro_professional_services_image', array(
+$wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'vw_stock_images_pro_our_features_image', array(
 	'label' => __('Background image ', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_professional_services_sec',
-	'settings' => 'vw_stock_images_pro_professional_services_image'
+	'section' => 'vw_stock_images_pro_our_features_sec',
+	'settings' => 'vw_stock_images_pro_our_features_image'
 )));
 
-$wp_customize->add_setting('vw_stock_images_pro_professional_services_image_bg_attachement', array(
+$wp_customize->add_setting('vw_stock_images_pro_our_features_image_bg_attachement', array(
 	'default' => '',
 	'sanitize_callback' => 'vw_stock_images_pro_sanitize_choices'
 ));
-$wp_customize->add_control('vw_stock_images_pro_professional_services_image_bg_attachement', array(
+$wp_customize->add_control('vw_stock_images_pro_our_features_image_bg_attachement', array(
 	'type' => 'radio',
 	'label' => __('Choose image option', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_professional_services_sec',
+	'section' => 'vw_stock_images_pro_our_features_sec',
 	'choices' => array(
 		'vw-fixed' => __('Fixed', 'vw-stock-images-pro'),
 		'vw-scroll' => __('Scroll', 'vw-stock-images-pro'),
 	)
 ));
 
+
+for ($i = 1; $i <= 4; $i++ ) {
+
+	$wp_customize->add_setting('vw_stock_images_pro_our_features_sec_image' . $i, array(
+		'default' => get_theme_mod('vw_stock_images_pro_our_features_sec_image' . $i),
+		'sanitize_callback' => 'esc_url_raw',
+	));
+	$wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'vw_stock_images_pro_our_features_sec_image' . $i, array(
+		'label' => __('Feature ' . $i . ' Image', 'vw-stock-images-pro'),
+		'description' => __('choose image', 'vw-stock-images-pro'),
+		'section' => 'vw_stock_images_pro_our_features_sec',
+		'settings' => 'vw_stock_images_pro_our_features_sec_image' . $i,
+	)));
+
+	$wp_customize->add_setting(
+		'vw_stock_images_pro_our_features_sec_feature_title_' . $i,
+		array(
+			'default' => '',
+			'sanitize_callback' => 'sanitize_text_field'
+		)
+	);
+	$wp_customize->add_control(
+		'vw_stock_images_pro_our_features_sec_feature_title_' . $i,
+		array(
+			'label' => __('Feature ' . $i . ' Title', 'vw-stock-images-pro'),
+			'section' => 'vw_stock_images_pro_our_features_sec',
+			'setting' => 'vw_stock_images_pro_our_features_sec_feature_title_' . $i,
+			'type' => 'text'
+		)
+	);
+
+	$wp_customize->add_setting(
+		'vw_stock_images_pro_our_features_sec_feature_desc_' . $i,
+		array(
+			'default' => '',
+			'sanitize_callback' => 'sanitize_text_field'
+		)
+	);
+	$wp_customize->add_control(
+		'vw_stock_images_pro_our_features_sec_feature_desc_' . $i,
+		array(
+			'label' => __('Feature ' . $i . ' Descreption', 'vw-stock-images-pro'),
+			'section' => 'vw_stock_images_pro_our_features_sec',
+			'setting' => 'vw_stock_images_pro_our_features_sec_feature_desc_' . $i,
+			'type' => 'text'
+		)
+	);
+
+
+}
+
+
 $wp_customize->add_setting(
-	'vw_stock_images_pro_professional_services_section_settings',
+	'vw_stock_images_pro_our_features_sec_feature_heading_settings',
 	array(
 		'default' => '',
 		'transport' => 'postMessage',
@@ -1246,35 +697,74 @@ $wp_customize->add_setting(
 );
 $wp_customize->add_control(new VW_Themes_Seperator_custom_Control(
 	$wp_customize,
-	'vw_stock_images_pro_professional_services_section_settings',
+	'vw_stock_images_pro_our_features_sec_feature_heading_settings',
 	array(
-		'label' => __('Section Typoghraphy', 'vw-stock-images-pro'),
-		'section' => 'vw_stock_images_pro_professional_services_sec'
+		'label' => __('Feature Heading settings', 'vw-stock-images-pro'),
+		'section' => 'vw_stock_images_pro_our_features_sec'
 	)
 ));
 
-$wp_customize->add_setting('vw_stock_images_pro_professional_services_heading', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_text_field'
-));
-$wp_customize->add_control('vw_stock_images_pro_professional_services_heading', array(
-	'label' => __('Heading', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_professional_services_sec',
-	'setting' => 'vw_stock_images_pro_professional_services_heading',
-	'type' => 'text'
-));
-$wp_customize->add_setting('vw_stock_images_pro_professional_services_paragraph', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_text_field'
-));
-$wp_customize->add_control('vw_stock_images_pro_professional_services_paragraph', array(
-	'label' => __('Paragraph', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_professional_services_sec',
-	'setting' => 'vw_stock_images_pro_professional_services_paragraph',
-	'type' => 'text'
-));
+
+
+
+
 $wp_customize->add_setting(
-	'vw_stock_images_pro_professional_services_section_color_font_settings',
+	'vw_stock_images_pro_our_features_sec_feature_title_font_family',
+	array(
+		'default' => '',
+		'capability' => 'edit_theme_options',
+		'sanitize_callback' => 'sanitize_text_field'
+	)
+);
+$wp_customize->add_control(
+	'vw_stock_images_pro_our_features_sec_feature_title_font_family',
+	array(
+		'section' => 'vw_stock_images_pro_our_features_sec',
+		'label' => __('Font Family', 'vw-stock-images-pro'),
+		'type' => 'select',
+		'choices' => $font_array,
+	)
+);
+
+$wp_customize->add_setting(
+	'vw_stock_images_pro_our_features_sec_feature_title_font_size',
+	array(
+		'default' => '',
+		'sanitize_callback' => 'sanitize_text_field'
+	)
+);
+$wp_customize->add_control(
+	'vw_stock_images_pro_our_features_sec_feature_title_font_size',
+	array(
+		'label' => __('Font Size', 'vw-stock-images-pro'),
+		'description' => __('Add font size in px', 'vw-stock-images-pro'),
+		'section' => 'vw_stock_images_pro_our_features_sec',
+		'setting' => 'vw_stock_images_pro_our_features_sec_feature_title_font_size',
+		'type' => 'number'
+	)
+);
+$wp_customize->add_setting(
+	'vw_stock_images_pro_our_features_sec_feature_title_color',
+	array(
+		'default' => '',
+		'sanitize_callback' => 'sanitize_hex_color'
+	)
+);
+$wp_customize->add_control(
+	new WP_Customize_Color_Control(
+		$wp_customize,
+		'vw_stock_images_pro_our_features_sec_feature_title_color',
+		array(
+			'label' => __('Color', 'vw-stock-images-pro'),
+			'section' => 'vw_stock_images_pro_our_features_sec',
+			'settings' => 'vw_stock_images_pro_our_features_sec_feature_title_color',
+		)
+	)
+);
+
+
+$wp_customize->add_setting(
+	'vw_stock_images_pro_our_features_sec_feature_settings',
 	array(
 		'default' => '',
 		'transport' => 'postMessage',
@@ -1283,335 +773,67 @@ $wp_customize->add_setting(
 );
 $wp_customize->add_control(new VW_Themes_Seperator_custom_Control(
 	$wp_customize,
-	'vw_stock_images_pro_professional_services_section_color_font_settings',
+	'vw_stock_images_pro_our_features_sec_feature_settings',
 	array(
-		'label' => __('Section Color & font Setting', 'vw-stock-images-pro'),
-		'section' => 'vw_stock_images_pro_professional_services_sec'
+		'label' => __('Feature Descreption', 'vw-stock-images-pro'),
+		'section' => 'vw_stock_images_pro_our_features_sec'
 	)
 ));
-$wp_customize->add_setting('vw_stock_images_pro_professional_services_heading_color', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_hex_color'
-));
-$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vw_stock_images_pro_professional_services_heading_color', array(
-	'label' => __('Heading Color', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_professional_services_sec',
-	'settings' => 'vw_stock_images_pro_professional_services_heading_color',
-)));
-
-$wp_customize->add_setting('vw_stock_images_pro_professional_services_heading_font_size', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_text_field'
-));
-$wp_customize->add_control('vw_stock_images_pro_professional_services_heading_font_size', array(
-	'label' => __(' Heading Font Size', 'vw-stock-images-pro'),
-	'description' => __('Add font size in px', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_professional_services_sec',
-	'setting' => 'vw_stock_images_pro_professional_services_heading_font_size',
-	'type' => 'number'
-));
-
-$wp_customize->add_setting('vw_stock_images_pro_professional_services_heading_font_family', array(
-	'default' => '',
-	'capability' => 'edit_theme_options',
-	'sanitize_callback' => 'vw_stock_images_pro_sanitize_choices'
-));
-$wp_customize->add_control(
-	'vw_stock_images_pro_professional_services_heading_font_family',
-	array(
-		'section' => 'vw_stock_images_pro_professional_services_sec',
-		'label' => __('Heading Font Family', 'vw-stock-images-pro'),
-		'type' => 'select',
-		'choices' => $font_array
-	)
-);
-$wp_customize->add_setting('vw_stock_images_pro_professional_services_paragraph_color', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_hex_color'
-));
-$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vw_stock_images_pro_professional_services_paragraph_color', array(
-	'label' => __('Paragraph Color', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_professional_services_sec',
-	'settings' => 'vw_stock_images_pro_professional_services_paragraph_color',
-)));
-
-$wp_customize->add_setting('vw_stock_images_pro_professional_services_paragraph_font_size', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_text_field'
-));
-$wp_customize->add_control('vw_stock_images_pro_professional_services_paragraph_font_size', array(
-	'label' => __(' Paragraph Font Size', 'vw-stock-images-pro'),
-	'description' => __('Add font size in px', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_professional_services_sec',
-	'setting' => 'vw_stock_images_pro_professional_services_paragraph_font_size',
-	'type' => 'number'
-));
-
-$wp_customize->add_setting('vw_stock_images_pro_professional_services_paragraph_font_family', array(
-	'default' => '',
-	'capability' => 'edit_theme_options',
-	'sanitize_callback' => 'vw_stock_images_pro_sanitize_choices'
-));
-$wp_customize->add_control(
-	'vw_stock_images_pro_professional_services_paragraph_font_family',
-	array(
-		'section' => 'vw_stock_images_pro_professional_services_sec',
-		'label' => __('Paragraph Font Family', 'vw-stock-images-pro'),
-		'type' => 'select',
-		'choices' => $font_array
-	)
-);
-
-$wp_customize->add_setting('vw_stock_images_pro_professional_services_tab_btn_color', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_hex_color'
-));
-$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vw_stock_images_pro_professional_services_tab_btn_color', array(
-	'label' => __('Tab button Color', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_professional_services_sec',
-	'settings' => 'vw_stock_images_pro_professional_services_tab_btn_color',
-)));
-$wp_customize->add_setting('vw_stock_images_pro_professional_services_tab_btn_font_size', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_text_field'
-));
-$wp_customize->add_control('vw_stock_images_pro_professional_services_tab_btn_font_size', array(
-	'label' => __(' Tab button Font Size', 'vw-stock-images-pro'),
-	'description' => __('Add font size in px', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_professional_services_sec',
-	'setting' => 'vw_stock_images_pro_professional_services_tab_btn_font_size',
-	'type' => 'number'
-));
-$wp_customize->add_setting('vw_stock_images_pro_professional_services_tab_btn_font_family', array(
-	'default' => '',
-	'capability' => 'edit_theme_options',
-	'sanitize_callback' => 'vw_stock_images_pro_sanitize_choices'
-));
-$wp_customize->add_control(
-	'vw_stock_images_pro_professional_services_tab_btn_font_family',
-	array(
-		'section' => 'vw_stock_images_pro_professional_services_sec',
-		'label' => __('Tab button Font Family', 'vw-stock-images-pro'),
-		'type' => 'select',
-		'choices' => $font_array
-	)
-);
-
-$wp_customize->add_setting('vw_stock_images_pro_professional_services_tab_btn_bg_color', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_hex_color'
-));
-$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vw_stock_images_pro_professional_services_tab_btn_bg_color', array(
-	'label' => __('Tab button Background Color', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_professional_services_sec',
-	'settings' => 'vw_stock_images_pro_professional_services_tab_btn_bg_color',
-)));
 
 
 $wp_customize->add_setting(
-	'vw_stock_images_pro_professional_services_section_card_color_font_settings',
+	'vw_stock_images_pro_our_features_sec_feature_desc_font_family',
 	array(
 		'default' => '',
-		'transport' => 'postMessage',
-		'sanitize_callback' => 'vw_stock_images_pro_text_sanitization'
+		'capability' => 'edit_theme_options',
+		'sanitize_callback' => 'sanitize_text_field'
 	)
 );
-$wp_customize->add_control(new VW_Themes_Seperator_custom_Control(
-	$wp_customize,
-	'vw_stock_images_pro_professional_services_section_card_color_font_settings',
-	array(
-		'label' => __('Section Card Color & font Setting', 'vw-stock-images-pro'),
-		'section' => 'vw_stock_images_pro_professional_services_sec'
-	)
-));
-
-$wp_customize->add_setting('vw_stock_images_pro_professional_services_card_heading_color', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_hex_color'
-));
-$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vw_stock_images_pro_professional_services_card_heading_color', array(
-	'label' => __('Card Heading Color', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_professional_services_sec',
-	'settings' => 'vw_stock_images_pro_professional_services_card_heading_color',
-)));
-
-$wp_customize->add_setting('vw_stock_images_pro_professional_services_card_heading_font_size', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_text_field'
-));
-$wp_customize->add_control('vw_stock_images_pro_professional_services_card_heading_font_size', array(
-	'label' => __('Card Heading Font Size', 'vw-stock-images-pro'),
-	'description' => __('Add font size in px', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_professional_services_sec',
-	'setting' => 'vw_stock_images_pro_professional_services_card_heading_font_size',
-	'type' => 'number'
-));
-
-$wp_customize->add_setting('vw_stock_images_pro_professional_services_card_heading_font_family', array(
-	'default' => '',
-	'capability' => 'edit_theme_options',
-	'sanitize_callback' => 'vw_stock_images_pro_sanitize_choices'
-));
 $wp_customize->add_control(
-	'vw_stock_images_pro_professional_services_card_heading_font_family',
+	'vw_stock_images_pro_our_features_sec_feature_desc_font_family',
 	array(
-		'section' => 'vw_stock_images_pro_professional_services_sec',
-		'label' => __('Card Heading Font Family', 'vw-stock-images-pro'),
+		'section' => 'vw_stock_images_pro_our_features_sec',
+		'label' => __('Font Family', 'vw-stock-images-pro'),
 		'type' => 'select',
-		'choices' => $font_array
+		'choices' => $font_array,
 	)
 );
-$wp_customize->add_setting('vw_stock_images_pro_professional_services_card_heading_border_bottom_color', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_hex_color'
-));
-$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vw_stock_images_pro_professional_services_card_heading_border_bottom_color', array(
-	'label' => __('Card Heading Border Bottom Color', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_professional_services_sec',
-	'settings' => 'vw_stock_images_pro_professional_services_card_heading_border_bottom_color',
-)));
-$wp_customize->add_setting('vw_stock_images_pro_professional_services_card_paragraph_color', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_hex_color'
-));
-$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vw_stock_images_pro_professional_services_card_paragraph_color', array(
-	'label' => __('Card Paragraph Color', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_professional_services_sec',
-	'settings' => 'vw_stock_images_pro_professional_services_card_paragraph_color',
-)));
-$wp_customize->add_setting('vw_stock_images_pro_professional_services_card_paragraph_font_size', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_text_field'
-));
-$wp_customize->add_control('vw_stock_images_pro_professional_services_card_paragraph_font_size', array(
-	'label' => __(' Card Paragraph Font Size', 'vw-stock-images-pro'),
-	'description' => __('Add font size in px', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_professional_services_sec',
-	'setting' => 'vw_stock_images_pro_professional_services_card_paragraph_font_size',
-	'type' => 'number'
-));
-$wp_customize->add_setting('vw_stock_images_pro_professional_services_card_paragraph_font_family', array(
-	'default' => '',
-	'capability' => 'edit_theme_options',
-	'sanitize_callback' => 'vw_stock_images_pro_sanitize_choices'
-));
+
+$wp_customize->add_setting(
+	'vw_stock_images_pro_our_features_sec_feature_desc_font_size',
+	array(
+		'default' => '',
+		'sanitize_callback' => 'sanitize_text_field'
+	)
+);
 $wp_customize->add_control(
-	'vw_stock_images_pro_professional_services_card_paragraph_font_family',
+	'vw_stock_images_pro_our_features_sec_feature_desc_font_size',
 	array(
-		'section' => 'vw_stock_images_pro_professional_services_sec',
-		'label' => __('Card Paragraph Font Family', 'vw-stock-images-pro'),
-		'type' => 'select',
-		'choices' => $font_array
+		'label' => __('Font Size', 'vw-stock-images-pro'),
+		'description' => __('Add font size in px', 'vw-stock-images-pro'),
+		'section' => 'vw_stock_images_pro_our_features_sec',
+		'setting' => 'vw_stock_images_pro_our_features_sec_feature_desc_font_size',
+		'type' => 'number'
 	)
 );
-
-$wp_customize->add_setting('vw_stock_images_pro_professional_services_card_background_color', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_hex_color'
-));
-$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vw_stock_images_pro_professional_services_card_background_color', array(
-	'label' => __('Card Background Color', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_professional_services_sec',
-	'settings' => 'vw_stock_images_pro_professional_services_card_background_color',
-)));
-
-
-$wp_customize->add_setting('vw_stock_images_pro_professional_services_card_small_image_color', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_hex_color'
-));
-$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vw_stock_images_pro_professional_services_card_small_image_color', array(
-	'label' => __('Card Small Image Color', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_professional_services_sec',
-	'settings' => 'vw_stock_images_pro_professional_services_card_small_image_color',
-)));
-
-// $wp_customize->add_setting( 'vw_stock_images_pro_professional_services_card_hover_image_background_color', array(
-// 'default' => '',
-// 'sanitize_callback'	=> 'sanitize_hex_color'
-// ));
-// $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'vw_stock_images_pro_professional_services_card_hover_image_background_color',array(
-// 'label' => __('Card Hover Image Background Color', 'vw-stock-images-pro'),
-// 'section' => 'vw_stock_images_pro_professional_services_sec',
-// 'settings' => 'vw_stock_images_pro_professional_services_card_hover_image_background_color',
-// )));
-//
-
-
-$wp_customize->add_setting('vw_stock_images_pro_professional_services_card_btn_color', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_hex_color'
-));
-$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vw_stock_images_pro_professional_services_card_btn_color', array(
-	'label' => __('Button Color', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_professional_services_sec',
-	'settings' => 'vw_stock_images_pro_professional_services_card_btn_color',
-)));
-$wp_customize->add_setting('vw_stock_images_pro_professional_services_card_btn_font_size', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_text_field'
-));
-$wp_customize->add_control('vw_stock_images_pro_professional_services_card_btn_font_size', array(
-	'label' => __(' Button Font Size', 'vw-stock-images-pro'),
-	'description' => __('Add font size in px', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_professional_services_sec',
-	'setting' => 'vw_stock_images_pro_professional_services_card_btn_font_size',
-	'type' => 'number'
-));
-$wp_customize->add_setting('vw_stock_images_pro_professional_services_card_btn_font_family', array(
-	'default' => '',
-	'capability' => 'edit_theme_options',
-	'sanitize_callback' => 'vw_stock_images_pro_sanitize_choices'
-));
+$wp_customize->add_setting(
+	'vw_stock_images_pro_our_features_sec_feature_desc_color',
+	array(
+		'default' => '',
+		'sanitize_callback' => 'sanitize_hex_color'
+	)
+);
 $wp_customize->add_control(
-	'vw_stock_images_pro_professional_services_card_btn_font_family',
-	array(
-		'section' => 'vw_stock_images_pro_professional_services_sec',
-		'label' => __('Button Font Family', 'vw-stock-images-pro'),
-		'type' => 'select',
-		'choices' => $font_array
+	new WP_Customize_Color_Control(
+		$wp_customize,
+		'vw_stock_images_pro_our_features_sec_feature_desc_color',
+		array(
+			'label' => __('Color', 'vw-stock-images-pro'),
+			'section' => 'vw_stock_images_pro_our_features_sec',
+			'settings' => 'vw_stock_images_pro_our_features_sec_feature_desc_color',
+		)
 	)
 );
-
-$wp_customize->add_setting('vw_stock_images_pro_professional_services_card_btn_bg_color', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_hex_color'
-));
-$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vw_stock_images_pro_professional_services_card_btn_bg_color', array(
-	'label' => __('Button Background Color', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_professional_services_sec',
-	'settings' => 'vw_stock_images_pro_professional_services_card_btn_bg_color',
-)));
-$wp_customize->add_setting('vw_stock_images_pro_professional_services_card_btn_hover_bg_color', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_hex_color'
-));
-$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vw_stock_images_pro_professional_services_card_btn_hover_bg_color', array(
-	'label' => __('Button Hover Background Color', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_professional_services_sec',
-	'settings' => 'vw_stock_images_pro_professional_services_card_btn_hover_bg_color',
-)));
-
-
-$wp_customize->add_setting('vw_stock_images_pro_professional_services_card_owl_dots_color', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_hex_color'
-));
-$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vw_stock_images_pro_professional_services_card_owl_dots_color', array(
-	'label' => __('Dots Color', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_professional_services_sec',
-	'settings' => 'vw_stock_images_pro_professional_services_card_owl_dots_color',
-)));
-$wp_customize->add_setting('vw_stock_images_pro_professional_services_card_owl_dots_active_color', array(
-	'default' => '',
-	'sanitize_callback' => 'sanitize_hex_color'
-));
-$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vw_stock_images_pro_professional_services_card_owl_dots_active_color', array(
-	'label' => __('Dots Active Color', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_professional_services_sec',
-	'settings' => 'vw_stock_images_pro_professional_services_card_owl_dots_active_color',
-)));
-
 // -----------------------------Counter Offer Section-------------------------------------
 $wp_customize->add_section('vw_stock_images_pro_counter_offer_sec', array(
 	'title' => __('Counter Offer Section', 'vw-stock-images-pro'),
@@ -2617,23 +1839,23 @@ $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vw_sto
 	'section' => 'vw_stock_images_pro_counter_sec',
 	'settings' => 'vw_stock_images_pro_counter_card_background_color',
 )));
-// about page settings start
-$wp_customize->add_section('vw_stock_images_pro_about_page_settings', array(
-	'title' => __('About Page Counter Settings', 'vw-stock-images-pro'),
-	'description' => __('About Page Section setting here.', 'vw-stock-images-pro'),
+// category_slider page settings start
+$wp_customize->add_section('vw_stock_images_pro_category_slider_page_settings', array(
+	'title' => __('category_slider Page Counter Settings', 'vw-stock-images-pro'),
+	'description' => __('category_slider Page Section setting here.', 'vw-stock-images-pro'),
 	'panel' => 'vw_stock_images_pro_panel_id',
 ));
 
-$wp_customize->add_setting('vw_stock_images_pro_counter_card_background_color_about', array(
+$wp_customize->add_setting('vw_stock_images_pro_counter_card_background_color_category_slider', array(
 	'default' => '',
 	'sanitize_callback' => 'sanitize_hex_color'
 ));
-$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vw_stock_images_pro_counter_card_background_color_about', array(
+$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vw_stock_images_pro_counter_card_background_color_category_slider', array(
 	'label' => __('Counter Card Background Color', 'vw-stock-images-pro'),
-	'section' => 'vw_stock_images_pro_about_page_settings',
-	'settings' => 'vw_stock_images_pro_counter_card_background_color_about',
+	'section' => 'vw_stock_images_pro_category_slider_page_settings',
+	'settings' => 'vw_stock_images_pro_counter_card_background_color_category_slider',
 )));
-// ---------------------about page settings end---------------------
+// ---------------------category_slider page settings end---------------------
 
 /*-----------------------Popular Product Settings--------------------------*/
 $wp_customize->add_section('vw_stock_images_pro_popular_product_sec', array(
@@ -4467,7 +3689,7 @@ $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vw_sto
 
 
 $wp_customize->add_setting(
-	'vw_home_automation_pro_our_pricing_featue_heading',
+	'vw_stock_images_pro_our_pricing_featue_heading',
 	array(
 		'default' => '',
 		'transport' => 'postMessage',
@@ -4477,7 +3699,7 @@ $wp_customize->add_setting(
 
 $wp_customize->add_control(new VW_Themes_Seperator_custom_Control(
 	$wp_customize,
-	'vw_home_automation_pro_our_pricing_featue_heading',
+	'vw_stock_images_pro_our_pricing_featue_heading',
 	array(
 		'label' => __('Pricing Featues Table', 'vw-stock-images-pro'),
 		'section' => 'vw_stock_images_pro_our_pricing_sec'
@@ -4486,50 +3708,50 @@ $wp_customize->add_control(new VW_Themes_Seperator_custom_Control(
 
 for ($i = 1; $i <= 4; $i++) {
 	$wp_customize->add_setting(
-		'vw_home_automation_pro_our_pricing_feature_text_'.$i,
+		'vw_stock_images_pro_our_pricing_feature_text_' . $i,
 		array(
 			'default' => '',
 			'sanitize_callback' => 'sanitize_text_field'
 		)
 	);
 	$wp_customize->add_control(
-		'vw_home_automation_pro_our_pricing_feature_text_'.$i,
+		'vw_stock_images_pro_our_pricing_feature_text_' . $i,
 		array(
-			'label' => __('Feature Text '.$i, 'vw-stock-images-pro'),
+			'label' => __('Feature Text ' . $i, 'vw-stock-images-pro'),
 			'section' => 'vw_stock_images_pro_our_pricing_sec',
-			'setting' => 'vw_home_automation_pro_our_pricing_feature_text_'.$i,
+			'setting' => 'vw_stock_images_pro_our_pricing_feature_text_' . $i,
 			'type' => 'text'
 		)
 	);
 	$wp_customize->add_setting(
-		'vw_home_automation_pro_our_pricing_free_text_'.$i,
+		'vw_stock_images_pro_our_pricing_free_text_' . $i,
 		array(
 			'default' => '',
 			'sanitize_callback' => 'sanitize_text_field'
 		)
 	);
 	$wp_customize->add_control(
-		'vw_home_automation_pro_our_pricing_free_text_'.$i,
+		'vw_stock_images_pro_our_pricing_free_text_' . $i,
 		array(
-			'label' => __('Free Text'.$i, 'vw-stock-images-pro'),
+			'label' => __('Free Text' . $i, 'vw-stock-images-pro'),
 			'section' => 'vw_stock_images_pro_our_pricing_sec',
-			'setting' => 'vw_home_automation_pro_our_pricing_free_text_'.$i,
+			'setting' => 'vw_stock_images_pro_our_pricing_free_text_' . $i,
 			'type' => 'text'
 		)
 	);
 	$wp_customize->add_setting(
-		'vw_home_automation_pro_our_pricing_premium_text_'.$i,
+		'vw_stock_images_pro_our_pricing_premium_text_' . $i,
 		array(
 			'default' => '',
 			'sanitize_callback' => 'sanitize_text_field'
 		)
 	);
 	$wp_customize->add_control(
-		'vw_home_automation_pro_our_pricing_premium_text_'.$i,
+		'vw_stock_images_pro_our_pricing_premium_text_' . $i,
 		array(
-			'label' => __('Premium Text '.$i, 'vw-stock-images-pro'),
+			'label' => __('Premium Text ' . $i, 'vw-stock-images-pro'),
 			'section' => 'vw_stock_images_pro_our_pricing_sec',
-			'setting' => 'vw_home_automation_pro_our_pricing_premium_text_'.$i,
+			'setting' => 'vw_stock_images_pro_our_pricing_premium_text_' . $i,
 			'type' => 'text'
 		)
 	);
@@ -4539,7 +3761,7 @@ for ($i = 1; $i <= 4; $i++) {
 
 
 $wp_customize->add_setting(
-	'vw_home_automation_pro_our_pricing_features_checkbox_heading',
+	'vw_stock_images_pro_our_pricing_features_checkbox_heading',
 	array(
 		'default' => '',
 		'transport' => 'postMessage',
@@ -4548,7 +3770,7 @@ $wp_customize->add_setting(
 );
 $wp_customize->add_control(new VW_Themes_Seperator_custom_Control(
 	$wp_customize,
-	'vw_home_automation_pro_our_pricing_features_checkbox_heading',
+	'vw_stock_images_pro_our_pricing_features_checkbox_heading',
 	array(
 		'label' => __('Plas Icon Values', 'vw-stock-images-pro'),
 		'section' => 'vw_stock_images_pro_our_pricing_sec'
@@ -4557,40 +3779,40 @@ $wp_customize->add_control(new VW_Themes_Seperator_custom_Control(
 
 
 $wp_customize->add_setting(
-	'vw_home_automation_pro_our_pricing_features_checkboxs_checkbox_count',
+	'vw_stock_images_pro_our_pricing_features_checkboxs_checkbox_count',
 	array(
 		'default' => '',
 		'sanitize_callback' => 'sanitize_text_field'
 	)
 );
 $wp_customize->add_control(
-	'vw_home_automation_pro_our_pricing_features_checkboxs_checkbox_count',
+	'vw_stock_images_pro_our_pricing_features_checkboxs_checkbox_count',
 	array(
 		'label' => __('Number of features Checkboxs', 'vw-stock-images-pro'),
 		'section' => 'vw_stock_images_pro_our_pricing_sec',
-		'setting' => 'vw_home_automation_pro_our_pricing_features_checkboxs_checkbox_count',
+		'setting' => 'vw_stock_images_pro_our_pricing_features_checkboxs_checkbox_count',
 		'type' => 'text'
 	)
 );
 for ($i = 1; $i <= 4; $i++) {
 	$wp_customize->add_setting(
-		'vw_home_automation_pro_our_pricing_features_checkbox_text_'.$i,
+		'vw_stock_images_pro_our_pricing_features_checkbox_text_' . $i,
 		array(
 			'default' => '',
 			'sanitize_callback' => 'sanitize_text_field'
 		)
 	);
 	$wp_customize->add_control(
-		'vw_home_automation_pro_our_pricing_features_checkbox_text_'.$i,
+		'vw_stock_images_pro_our_pricing_features_checkbox_text_' . $i,
 		array(
-			'label' => __('features checkbox Text '.$i, 'vw-stock-images-pro'),
+			'label' => __('features checkbox Text ' . $i, 'vw-stock-images-pro'),
 			'section' => 'vw_stock_images_pro_our_pricing_sec',
-			'setting' => 'vw_home_automation_pro_our_pricing_features_checkbox_text_'.$i,
+			'setting' => 'vw_stock_images_pro_our_pricing_features_checkbox_text_' . $i,
 			'type' => 'text'
 		)
 	);
 	$wp_customize->add_setting(
-		'vw_home_automation_pro_our_pricing_free_checkbox_text_'.$i,
+		'vw_stock_images_pro_our_pricing_free_checkbox_text_' . $i,
 		array(
 			'default' => '',
 			'sanitize_callback' => 'sanitize_text_field'
@@ -4599,17 +3821,17 @@ for ($i = 1; $i <= 4; $i++) {
 	$wp_customize->add_control(
 		new vw_stock_images_pro_Fontawesome_Icon_Chooser(
 			$wp_customize,
-			'vw_home_automation_pro_our_pricing_free_checkbox_text_'.$i,
+			'vw_stock_images_pro_our_pricing_free_checkbox_text_' . $i,
 			array(
-				'settings' => 'vw_home_automation_pro_our_pricing_free_checkbox_text_'.$i,
+				'settings' => 'vw_stock_images_pro_our_pricing_free_checkbox_text_' . $i,
 				'section' => 'vw_stock_images_pro_our_pricing_sec',
 				'type' => 'icon',
-				'label' => esc_html__('Free Column '.$i.' Icon', 'vw-stock-images-pro'),
+				'label' => esc_html__('Free Column ' . $i . ' Icon', 'vw-stock-images-pro'),
 			)
 		)
 	);
 	$wp_customize->add_setting(
-		'vw_home_automation_pro_our_pricing_premium_text_checkbox_'.$i,
+		'vw_stock_images_pro_our_pricing_premium_text_checkbox_' . $i,
 		array(
 			'default' => '',
 			'sanitize_callback' => 'sanitize_text_field'
@@ -4618,12 +3840,12 @@ for ($i = 1; $i <= 4; $i++) {
 	$wp_customize->add_control(
 		new vw_stock_images_pro_Fontawesome_Icon_Chooser(
 			$wp_customize,
-			'vw_home_automation_pro_our_pricing_premium_text_checkbox_'.$i,
+			'vw_stock_images_pro_our_pricing_premium_text_checkbox_' . $i,
 			array(
-				'settings' => 'vw_home_automation_pro_our_pricing_premium_text_checkbox_'.$i,
+				'settings' => 'vw_stock_images_pro_our_pricing_premium_text_checkbox_' . $i,
 				'section' => 'vw_stock_images_pro_our_pricing_sec',
 				'type' => 'icon',
-				'label' => esc_html__('Premium Column '.$i.' Icon ', 'vw-stock-images-pro'),
+				'label' => esc_html__('Premium Column ' . $i . ' Icon ', 'vw-stock-images-pro'),
 			)
 		)
 	);

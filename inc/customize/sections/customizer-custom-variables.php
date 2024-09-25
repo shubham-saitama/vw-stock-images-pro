@@ -660,15 +660,15 @@
     'section' => 'vw_stock_images_pro_color_pallette'
   )));
 
-  $wp_customize->add_setting( 'vw_stock_images_pro_hi_scnd_color', array(
-    'default' => '#FCB900',
-    'sanitize_callback' => 'sanitize_hex_color'
-  ));
-  $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'vw_stock_images_pro_hi_scnd_color', array(
-    'label' => __('Secondry Color', 'vw-stock-images-pro'),
-    'section' => 'vw_stock_images_pro_color_pallette',
-    'settings' => 'vw_stock_images_pro_hi_scnd_color',
-  )));
+  // $wp_customize->add_setting( 'vw_stock_images_pro_hi_scnd_color', array(
+  //   'default' => '#FCB900',
+  //   'sanitize_callback' => 'sanitize_hex_color'
+  // ));
+  // $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'vw_stock_images_pro_hi_scnd_color', array(
+  //   'label' => __('Secondry Color', 'vw-stock-images-pro'),
+  //   'section' => 'vw_stock_images_pro_color_pallette',
+  //   'settings' => 'vw_stock_images_pro_hi_scnd_color',
+  // )));
   /*------------------------ Button ---------------------------*/
   $wp_customize->add_section('vw_stock_images_pro_section_button_settings',array(
       'title' => __('Button Typography','vw-stock-images-pro'),

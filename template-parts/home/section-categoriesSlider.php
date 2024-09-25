@@ -1,5 +1,5 @@
 <?php
-$category_slider_section = get_theme_mod('vw_stock_images_pro_radio_category_slider_enable');
+$category_slider_section = get_theme_mod('vw_stock_images_pro_category_slider_enable');
 if ('Disable' == $category_slider_section) {
     return;
 }
@@ -19,14 +19,14 @@ $img_bg = get_theme_mod('vw_stock_images_pro_our_category_slider_image_bg_attach
         <div class="row">
             <div class="col-lg-12 col-md-12 news-col-1 news-content-main p-md-0">
                 <div class="category_slider-content text-center">
-                    <?php if (get_theme_mod('vw_stock_images_pro_our_category_slider_heading') != '') { ?>
+                    <?php if (get_theme_mod('vw_stock_images_pro_category_slider_heading') != '') { ?>
                         <h2 class="section-heading text-center">
-                            <?php echo esc_html(get_theme_mod('vw_stock_images_pro_our_category_slider_heading')); ?>
+                            <?php echo esc_html(get_theme_mod('vw_stock_images_pro_category_slider_heading')); ?>
                         </h2>
                     <?php } ?>
-                    <?php if (get_theme_mod('vw_stock_images_pro_our_category_slider_para') != '') { ?>
+                    <?php if (get_theme_mod('vw_stock_images_pro_category_slider_heading_text') != '') { ?>
                         <p class="section-heading-text text-center">
-                            <?php echo esc_html(get_theme_mod('vw_stock_images_pro_our_category_slider_para')); ?>
+                            <?php echo esc_html(get_theme_mod('vw_stock_images_pro_category_slider_heading_text')); ?>
                         </p>
                     <?php } ?>
                 </div>

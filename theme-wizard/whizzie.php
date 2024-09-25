@@ -1618,10 +1618,9 @@ class ThemeWhizzie
 		// -----------------Pests Problem-------------------
 
 
-		set_theme_mod('vw_stock_images_pro_pests_problem_heading', 'Common Pests Problems');
-		set_theme_mod('vw_stock_images_pro_pests_problem_paragraph', 'Lorem Ipsum is simply dummy text of the printing and typesetting');
-		set_theme_mod('vw_stock_images_pro_pests_problem_btn_text', 'View More');
-		set_theme_mod('vw_stock_images_pro_pests_problem_btn_url', get_permalink(ThemeWhizzie::get_page_id_by_title('Pest Library')));
+		set_theme_mod('vw_stock_images_pro_pests_problem_heading', 'Trending Images & Videos');
+		set_theme_mod('vw_stock_images_pro_pests_problem_paragraph', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.');
+
 
 
 		//========================================== adding terms and setting term meta images =====================================================
@@ -3862,13 +3861,13 @@ class ThemeWhizzie
 						for (var i = 0; i < premium_data.length; i++) {
 							var premium_product = premium_data[i];
 							var card_content = `<div class="o-products-col" data-id="` + premium_product.id + `">
-																							  <div class="o-products-image">
-																								  <img src="`+ premium_product.image + `">
-																							  </div>
-																							  <h3>`+ premium_product.title + `</h3>
-																							  <a href="`+ premium_product.permalink + `" target="_blank">Buy Now</a>
-																							  <a href="`+ premium_product.demo_url + `" target="_blank">View Demo</a>
-																						  </div>`;
+																									  <div class="o-products-image">
+																										  <img src="`+ premium_product.image + `">
+																									  </div>
+																									  <h3>`+ premium_product.title + `</h3>
+																									  <a href="`+ premium_product.permalink + `" target="_blank">Buy Now</a>
+																									  <a href="`+ premium_product.demo_url + `" target="_blank">View Demo</a>
+																								  </div>`;
 							jQuery('.wz-spinner-wrap').css('display', 'none');
 							jQuery('#other-products .o-product-row').append(card_content);
 						}
@@ -3884,8 +3883,8 @@ class ThemeWhizzie
 							}
 							let premium_product = premium_category[i];
 							let card_content = `<li data-ids="` + premium_product.product_ids + `" onclick="other_products(this);" class="` + active_class + `">
-																							  `+ premium_product.name + `<span class="badge badge-info">` + premium_product.product_ids.length + `</span>
-																						  </li>`;
+																									  `+ premium_product.name + `<span class="badge badge-info">` + premium_product.product_ids.length + `</span>
+																								  </li>`;
 							jQuery('.o-product-col-1 ul').append(card_content);
 						}
 					});
@@ -3955,13 +3954,15 @@ class ThemeWhizzie
 	}
 }
 
-// set_theme_mod('vw_stock_images_pro_slider_paragraph', "Lorem Ipsum is simply dummy text of the printing and typesetting industry.");
+
+
+		// set_theme_mod('vw_stock_images_pro_slider_paragraph', "Lorem Ipsum is simply dummy text of the printing and typesetting industry.");
 // features 
 
 for ($i = 1; $i <= 4; $i++) {
-	set_theme_mod('vw_stock_images_pro_features_image_' . $i, get_template_directory_uri() . '/assets/images/features/feature_' . $i . '.png');
-	set_theme_mod('vw_stock_images_pro_features_title_' . $i, 'Title Here');
-	set_theme_mod('vw_stock_images_pro_features_text_' . $i, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.');
+	set_theme_mod('vw_stock_images_pro_our_features_sec_image' . $i, get_template_directory_uri() . '/assets/images/features/feature_' . $i . '.png');
+	set_theme_mod('vw_stock_images_pro_our_features_sec_feature_title_' . $i, 'Title Here');
+	set_theme_mod('vw_stock_images_pro_our_features_sec_feature_desc_' . $i, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.');
 }
 
 // premium features 
@@ -3989,8 +3990,8 @@ set_theme_mod('vw_stock_images_pro_our_newsletter_para', 'Lorem ipsum dolor sit 
 
 // category slider 
 
-set_theme_mod('vw_stock_images_pro_our_category_slider_heading','Categories Images & Video');
-set_theme_mod('vw_stock_images_pro_our_category_slider_para','Lorem Ipsum is simply dummy text of the printing and typesetting industry.');
+set_theme_mod('vw_stock_images_pro_category_slider_heading', 'Categories Images & Video');
+set_theme_mod('vw_stock_images_pro_category_slider_heading_text', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.');
 
 
 set_theme_mod('vw_stock_images_pro_section_ordering_settings_repeater', "slider,categoriesSlider,ourFeatures,designers-fev,premiumFeatures,designandearn,out-contributers,pests-problem,our-newsletter,plans,partners");

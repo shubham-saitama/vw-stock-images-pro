@@ -33,9 +33,9 @@ $img_bg = get_theme_mod('vw_stock_images_pro_our_pricing_image_bg_attachement');
 
                                 <?php for ($i = 1; $i <= 4; $i++) { ?>
                                     <?php
-                                    $feature_text = get_theme_mod('vw_home_automation_pro_our_pricing_feature_text_' . $i);
-                                    $free_text = get_theme_mod('vw_home_automation_pro_our_pricing_free_text_' . $i);
-                                    $premium_text = get_theme_mod('vw_home_automation_pro_our_pricing_premium_text_' . $i);
+                                    $feature_text = get_theme_mod('vw_stock_images_pro_our_pricing_feature_text_' . $i);
+                                    $free_text = get_theme_mod('vw_stock_images_pro_our_pricing_free_text_' . $i);
+                                    $premium_text = get_theme_mod('vw_stock_images_pro_our_pricing_premium_text_' . $i);
                                     ?>
                                     <tr>
                                         <?php if (!empty($feature_text)) { ?>
@@ -54,9 +54,9 @@ $img_bg = get_theme_mod('vw_stock_images_pro_our_pricing_image_bg_attachement');
                                 <?php } ?>
                                 <?php for ($i = 1; $i <= 4; $i++) { ?>
                                     <?php
-                                    $feature_text = get_theme_mod('vw_home_automation_pro_our_pricing_features_checkbox_text_' . $i);
-                                    $free_text = get_theme_mod('vw_home_automation_pro_our_pricing_free_checkbox_text_' . $i);
-                                    $premium_text = get_theme_mod('vw_home_automation_pro_our_pricing_premium_text_checkbox_' . $i);
+                                    $feature_text = get_theme_mod('vw_stock_images_pro_our_pricing_features_checkbox_text_' . $i);
+                                    $free_text = get_theme_mod('vw_stock_images_pro_our_pricing_free_checkbox_text_' . $i);
+                                    $premium_text = get_theme_mod('vw_stock_images_pro_our_pricing_premium_text_checkbox_' . $i);
                                     ?>
                                     <tr>
                                         <?php if (!empty($feature_text)) { ?>

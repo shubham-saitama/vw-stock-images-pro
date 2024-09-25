@@ -27,15 +27,16 @@ if (get_theme_mod('vw_stock_images_pro_slider_bgcolor_2', '')) {
 } else {
   $slider_back_2 = '';
 }
-$img_bg = get_theme_mod('vw_stock_images_pro_slider_bgimage_setting_2');
+$img_bg = get_theme_mod('vw_stock_images_pro_slider_bgimage_setting');
 
 ?>
-<section id="slider" style="<?php echo esc_attr($slider_back); ?>">
+<section id="slider" style="<?php echo esc_attr($slider_back); ?>" class="<?php echo $img_bg; ?>">
   <div class="slider-mask-img">
     <div class="container  pt-4 ">
       <div class="row align-items-center slidder-inner-content-row">
         <div class="col-lg-12">
-          <div class="slider-left-content  text-lg-center text-md-center text-sm-center text-center" style="<?php echo esc_attr($slider_back_2); ?>">
+          <div class="slider-left-content  text-lg-center text-md-center text-sm-center text-center"
+            style="<?php echo esc_attr($slider_back_2); ?>">
             <?php if (get_theme_mod('vw_stock_images_pro_slider_paragraph') != ''): ?>
               <p class="theme-para text-lg-center text-md-center text-sm-center text-center">
                 <?php echo esc_html(get_theme_mod('vw_stock_images_pro_slider_paragraph')); ?>

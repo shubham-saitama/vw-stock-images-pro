@@ -135,7 +135,7 @@ if (get_theme_mod('vw_stock_images_pro_header_widgets_bgcolor', '')) {
               </div>
             <?php endif; ?>
           </div>
-          <div class="menu" id="menu-toggleBtn"><i class="fa-solid fa-bars"></i></div>
+          <div class="menu" id="menu-toggleBtn"><i class="<?php echo get_theme_mod('vw_stock_images_pro_res_open_menu_icon'); ?>"></i></div>
         </div>
       </div>
     </div>
