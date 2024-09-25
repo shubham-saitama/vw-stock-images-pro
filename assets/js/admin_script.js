@@ -165,3 +165,32 @@ jQuery(function($){
 
 
 });
+
+
+jQuery(document).ready(function($) {
+    var mediaUploader;
+
+    $('#upload_video_button').click(function(e) {
+        e.preventDefault();
+
+        if (mediaUploader) {
+            mediaUploader.open();
+            return;
+        }
+
+        mediaUploader = wp.media({
+            title: 'Upload Video',
+            button: {
+                text: 'Use this video'
+            },
+            multiple: false
+        });
+
+        mediaUploader.on('select', function() {
+            var attachment = mediaUploader.state().get('selection').first().toJSON();
+            $('#product_image_video_url').val(attachment.url);
+        });
+
+        mediaUploader.open();
+    });
+});

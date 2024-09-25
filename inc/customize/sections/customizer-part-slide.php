@@ -658,4 +658,3 @@ $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'vw_s
 'section' => 'vw_stock_images_pro_slider_sec',
 'settings' => 'vw_stock_images_pro_slider_social_icon_hover_bg_color',
 )));
- ?>

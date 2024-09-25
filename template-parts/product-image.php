@@ -3,10 +3,9 @@ $user_id = get_current_user_id();
 $post_id = get_the_ID();
 // Get the image type (free or premium)
 $image_type = get_post_meta($post_id, '_image_type', true);
-// Get the author of the image
 $author_id = get_post_field('post_author', get_the_ID());
 $author_name = get_the_author_meta('display_name', $author_id);
-$author_avatar = get_avatar($author_id, 64); // 64 is the size in pixels
+$author_avatar = get_avatar($author_id, 64); 
 
 // sinle collection 
 $collection_id = isset($args['collection_id']) ? $args['collection_id'] : null;
@@ -16,7 +15,7 @@ $collection_id = isset($args['collection_id']) ? $args['collection_id'] : null;
 <div class="product-image" data-post-id="<?php echo $post_id; ?>">
     <div class="post-options">
         <?php add_save_post_buttons($post_id, '') ?>
-        <?php render_remove_post_from_collection_button($collection_id,$post_id); ?>
+        <?php render_remove_post_from_collection_button($collection_id, $post_id); ?>
     </div>
     <?php if ($image_type == 'premium') { ?>
         <div class="preimum-icon">

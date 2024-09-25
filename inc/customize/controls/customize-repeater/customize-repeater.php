@@ -45,7 +45,7 @@ class vw_stock_images_pro_Repeater_Custom_Control extends WP_Customize_Control {
 	 */
 	public function render_content() {
 
-		$section_name = array("slider","pests-problem","about","professional-services","counter-offer","why-choose-us","counter","popular-products","faq","our-newsletter","our-clients","professional-team","latest-news","gallery","partners");
+		$section_name = array("slider","categoriesSlider","ourFeatures","designers-fev","premiumFeatures","designandearn","out-contributers","pests-problem","our-newsletter","plans","partners");
 		$string_array = rtrim(implode(',', $section_name), ',');
 	?>
 	    <div class="sortable_repeater_control">

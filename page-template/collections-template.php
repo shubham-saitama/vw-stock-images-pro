@@ -4,9 +4,9 @@
  */
 
 get_header();
-get_template_part('template-parts/banner'); ?>
+?>
 
-<div id="primary" class="content-area pt-5">
+<div id="primary" class="content-area">
     <main id="main" class="site-main">
         <div class="container">
             <h3>My Collections</h3>

@@ -17,18 +17,10 @@ if( get_theme_mod('vw_stock_images_pro_partners_bgcolor','') ) {
 }
 $img_bg = get_theme_mod('vw_stock_images_pro_partners_bg_image_attachment');
 ?>
-<section id="partner" style="<?php echo esc_attr($partner_backg); ?>" class="<?php echo esc_attr($img_bg); ?> pt-0">
+<section id="partner" style="<?php echo esc_attr($partner_backg); ?>" class="<?php echo esc_attr($img_bg); ?>">
 	<div class="container">
     <div class="row">
-      <div class="col-lg-4">
-          <?php if(get_theme_mod('vw_stock_images_pro_partners_heading')!=''){ ?>
-            <h2 class="main-head text-lg-start text-md-start text-sm-center text-center"><?php echo esc_html(get_theme_mod('vw_stock_images_pro_partners_heading')); ?></h2>
-          <?php } ?>
-          <?php if(get_theme_mod('vw_stock_images_pro_partners_paragraph')!=''){ ?>
-            <p class="theme-para  mb-md-0  mb-2 text-lg-start text-md-start text-sm-center text-center"><?php echo esc_html(get_theme_mod('vw_stock_images_pro_partners_paragraph')); ?></p>
-          <?php } ?>
-      </div>
-      <div class="col-lg-8">
+      <div class="col-lg-12">
         <div class="row justify-content-center owl-carousel">
            <?php $partner_number = get_theme_mod('vw_stock_images_pro_partners_number');
              for ($i=1; $i <=$partner_number; $i++) { ?>

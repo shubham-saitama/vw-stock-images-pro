@@ -13,6 +13,7 @@ if( get_theme_mod('vw_stock_images_pro_counter_bgcolor','') ) {
 }
 $img_bg = get_theme_mod('vw_stock_images_pro_counter_bgimage_setting');
 ?>
+
 <section id="counter-sec"  style="<?php echo esc_attr( $counter_sec_back ); ?>"  class="<?php echo esc_attr($img_bg); ?>">
   <div class="container">
     <div class="row">

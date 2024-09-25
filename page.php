@@ -17,27 +17,6 @@ $background_img = get_theme_mod('vw_stock_images_pro_inner_page_banner_bgimage')
 
 
 
-<div class="title-box banner-img" style="background-image:url(<?php echo esc_url( $background_img); ?>)">
-  <div class="banner-page-text container">
-    <div class="row">
-      <div class="col-lg-5 col-sm-7 col-7 banner-left-col">
-        <div class="above_title">
-            <h1><?php echo the_title(); ?></h1>
-            <?php if ( get_theme_mod('vw_stock_images_pro_site_breadcrumb_enable', true) != '' ) { ?>
-                  <div class=" bradcrumbs">
-                    <?php vw_stock_images_pro_the_breadcrumb(); ?>
-                  </div>
-              <?php }
-              ?>
-      </div>
-      </div>
-      <div class="col-lg-7 col-sm-5 col-5" >
-
-      </div>
-    </div>
-  </div>
-</div>
-
 <div class="outer_dpage">
 	<div class="container">
 		<div class="middle-content">

@@ -39,103 +39,103 @@
       'setting'   => 'vw_stock_images_pro_slider_padding_top',
       'type'  => 'number'
   ));
-  $wp_customize->add_setting('vw_stock_images_pro_pests_problem_padding_top',array(
+  $wp_customize->add_setting('vw_stock_images_pro_category_slider_padding_top',array(
       'default'   => '',
       'sanitize_callback' => 'sanitize_text_field',
   ));
-  $wp_customize->add_control('vw_stock_images_pro_pests_problem_padding_top',array(
-      'label' => __('Pests Problem Padding Top','vw-stock-images-pro'),
+  $wp_customize->add_control('vw_stock_images_pro_category_slider_padding_top',array(
+      'label' => __('Category Slider Padding Top','vw-stock-images-pro'),
       'description' => __('Add Padding Top in Pixels','vw-stock-images-pro'),
       'section' => 'vw_stock_images_pro_section_ordering_settings',
-      'setting'   => 'vw_stock_images_pro_pests_problem_padding_top',
+      'setting'   => 'vw_stock_images_pro_category_slider_padding_top',
       'type'  => 'number'
   ));
-  $wp_customize->add_setting('vw_stock_images_pro_about_padding_top',array(
+  $wp_customize->add_setting('vw_stock_images_pro_our_feat_padding_top',array(
       'default'   => '',
       'sanitize_callback' => 'sanitize_text_field',
   ));
-  $wp_customize->add_control('vw_stock_images_pro_about_padding_top',array(
-      'label' => __('About Padding Top','vw-stock-images-pro'),
+  $wp_customize->add_control('vw_stock_images_pro_our_feat_padding_top',array(
+      'label' => __('Our Features Padding Top','vw-stock-images-pro'),
       'description' => __('Add Padding Top in Pixels','vw-stock-images-pro'),
       'section' => 'vw_stock_images_pro_section_ordering_settings',
-      'setting'   => 'vw_stock_images_pro_about_padding_top',
+      'setting'   => 'vw_stock_images_pro_our_feat_padding_top',
       'type'  => 'number'
   ));
-  $wp_customize->add_setting('vw_stock_images_pro_professional_services_padding_top',array(
+  $wp_customize->add_setting('vw_stock_images_pro_designers_fav_padding_top',array(
       'default'   => '',
       'sanitize_callback' => 'sanitize_text_field',
   ));
-  $wp_customize->add_control('vw_stock_images_pro_professional_services_padding_top',array(
-      'label' => __('Professional Services Padding Top','vw-stock-images-pro'),
+  $wp_customize->add_control('vw_stock_images_pro_designers_fav_padding_top',array(
+      'label' => __('Designers Fav Padding Top','vw-stock-images-pro'),
       'description' => __('Add Padding Top in Pixels','vw-stock-images-pro'),
       'section' => 'vw_stock_images_pro_section_ordering_settings',
-      'setting'   => 'vw_stock_images_pro_professional_services_padding_top',
+      'setting'   => 'vw_stock_images_pro_designers_fav_padding_top',
       'type'  => 'number'
   ));
-  $wp_customize->add_setting('vw_stock_images_pro_counter_offer_padding_top',array(
+  $wp_customize->add_setting('vw_stock_images_pro_premium_feat_padding_top',array(
       'default'   => '',
       'sanitize_callback' => 'sanitize_text_field',
   ));
-  $wp_customize->add_control('vw_stock_images_pro_counter_offer_padding_top',array(
-      'label' => __('Counter Offer Padding Top','vw-stock-images-pro'),
+  $wp_customize->add_control('vw_stock_images_pro_premium_feat_padding_top',array(
+      'label' => __('Premium Features Padding Top','vw-stock-images-pro'),
       'description' => __('Add Padding Top in Pixels','vw-stock-images-pro'),
       'section' => 'vw_stock_images_pro_section_ordering_settings',
-      'setting'   => 'vw_stock_images_pro_counter_offer_padding_top',
+      'setting'   => 'vw_stock_images_pro_premium_feat_padding_top',
       'type'  => 'number'
   ));
-  $wp_customize->add_setting('vw_stock_images_pro_why_choose_us_padding_top',array(
+  $wp_customize->add_setting('vw_stock_images_pro_desgn_earn_padding_top',array(
       'default'   => '',
       'sanitize_callback' => 'sanitize_text_field',
   ));
-  $wp_customize->add_control('vw_stock_images_pro_why_choose_us_padding_top',array(
-      'label' => __('Why Choose Us Padding Top','vw-stock-images-pro'),
+  $wp_customize->add_control('vw_stock_images_pro_desgn_earn_padding_top',array(
+      'label' => __('Design And Earn Padding Top','vw-stock-images-pro'),
       'description' => __('Add Padding Top in Pixels','vw-stock-images-pro'),
       'section' => 'vw_stock_images_pro_section_ordering_settings',
-      'setting'   => 'vw_stock_images_pro_why_choose_us_padding_top',
+      'setting'   => 'vw_stock_images_pro_desgn_earn_padding_top',
       'type'  => 'number'
   ));
-  $wp_customize->add_setting('vw_stock_images_pro_counter_padding_top',array(
+  $wp_customize->add_setting('vw_stock_images_pro_top_contributer_padding_top',array(
       'default'   => '',
       'sanitize_callback' => 'sanitize_text_field',
   ));
-  $wp_customize->add_control('vw_stock_images_pro_counter_padding_top',array(
-      'label' => __('Counter Padding Top','vw-stock-images-pro'),
+  $wp_customize->add_control('vw_stock_images_pro_top_contributer_padding_top',array(
+      'label' => __('Top Contributer Paddning Top','vw-stock-images-pro'),
       'description' => __('Add Padding Top in Pixels','vw-stock-images-pro'),
       'section' => 'vw_stock_images_pro_section_ordering_settings',
-      'setting'   => 'vw_stock_images_pro_counter_padding_top',
+      'setting'   => 'vw_stock_images_pro_top_contributer_padding_top',
       'type'  => 'number'
   ));
-  $wp_customize->add_setting('vw_stock_images_pro_our_popular_products_padding_top',array(
+  $wp_customize->add_setting('vw_stock_images_pro_trending_padding_top',array(
       'default'   => '',
       'sanitize_callback' => 'sanitize_text_field',
   ));
-  $wp_customize->add_control('vw_stock_images_pro_our_popular_products_padding_top',array(
-      'label' => __('Popular Product Padding Top','vw-stock-images-pro'),
+  $wp_customize->add_control('vw_stock_images_pro_trending_padding_top',array(
+      'label' => __('Trending Padding Top','vw-stock-images-pro'),
       'description' => __('Add Padding Top in Pixels','vw-stock-images-pro'),
       'section' => 'vw_stock_images_pro_section_ordering_settings',
-      'setting'   => 'vw_stock_images_pro_our_popular_products_padding_top',
+      'setting'   => 'vw_stock_images_pro_trending_padding_top',
       'type'  => 'number'
   ));
-  $wp_customize->add_setting('vw_stock_images_pro_faq_padding_top',array(
+  $wp_customize->add_setting('vw_stock_images_pro_subscribe_padding_top',array(
       'default'   => '',
       'sanitize_callback' => 'sanitize_text_field',
   ));
-  $wp_customize->add_control('vw_stock_images_pro_faq_padding_top',array(
-      'label' => __('Faq Padding Top','vw-stock-images-pro'),
-      'description' => __('Add Padding Top in Pixels','vw-stock-images-pro'),
-      'section' => 'vw_stock_images_pro_section_ordering_settings',
-      'setting'   => 'vw_stock_images_pro_faq_padding_top',
-      'type'  => 'number'
-  ));
-  $wp_customize->add_setting('vw_stock_images_pro_our_newsletter_padding_top',array(
-      'default'   => '',
-      'sanitize_callback' => 'sanitize_text_field',
-  ));
-  $wp_customize->add_control('vw_stock_images_pro_our_newsletter_padding_top',array(
+  $wp_customize->add_control('vw_stock_images_pro_subscribe_padding_top',array(
       'label' => __('Newsletter Padding Top','vw-stock-images-pro'),
       'description' => __('Add Padding Top in Pixels','vw-stock-images-pro'),
       'section' => 'vw_stock_images_pro_section_ordering_settings',
-      'setting'   => 'vw_stock_images_pro_our_newsletter_padding_top',
+      'setting'   => 'vw_stock_images_pro_subscribe_padding_top',
+      'type'  => 'number'
+  ));
+  $wp_customize->add_setting('vw_stock_images_pro_pricing_padding_top',array(
+      'default'   => '',
+      'sanitize_callback' => 'sanitize_text_field',
+  ));
+  $wp_customize->add_control('vw_stock_images_pro_pricing_padding_top',array(
+      'label' => __('Pricing Plans Padding Top','vw-stock-images-pro'),
+      'description' => __('Add Padding Top in Pixels','vw-stock-images-pro'),
+      'section' => 'vw_stock_images_pro_section_ordering_settings',
+      'setting'   => 'vw_stock_images_pro_pricing_padding_top',
       'type'  => 'number'
   ));
   $wp_customize->add_setting('vw_stock_images_pro_our_clients_padding_top',array(
@@ -149,15 +149,15 @@
       'setting'   => 'vw_stock_images_pro_our_clients_padding_top',
       'type'  => 'number'
   ));
-  $wp_customize->add_setting('vw_stock_images_pro_professional_team_padding_top',array(
+  $wp_customize->add_setting('vw_stock_images_pro_our_partners_padding_top',array(
       'default'   => '',
       'sanitize_callback' => 'sanitize_text_field',
   ));
-  $wp_customize->add_control('vw_stock_images_pro_professional_team_padding_top',array(
+  $wp_customize->add_control('vw_stock_images_pro_our_partners_padding_top',array(
       'label' => __('Professional Team Padding Top','vw-stock-images-pro'),
       'description' => __('Add Padding Top in Pixels','vw-stock-images-pro'),
       'section' => 'vw_stock_images_pro_section_ordering_settings',
-      'setting'   => 'vw_stock_images_pro_professional_team_padding_top',
+      'setting'   => 'vw_stock_images_pro_our_partners_padding_top',
       'type'  => 'number'
   ));
   $wp_customize->add_setting('vw_stock_images_pro_latest_news_padding_top',array(

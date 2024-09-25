@@ -19,91 +19,120 @@ VW Stock Images WordPress Theme is released under the terms of GNU GPL
 
 @import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300..700;1,300..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-:root{
+
+
+:root {
   --gray: #F2F2F2;
   --primary: #00963F;
 }
 
+
 /* Basic Style */
 
- html body {
-     margin: 0;
-     padding: 0;
-     -ms-word-wrap: break-word;
-     word-wrap: break-word;
-     background-color: white;
-     position: relative;
-     font-size: 14px;
-     color: #000;
- font-family: "Rubik", sans-serif;
-}
- label {
-     margin-bottom: 0 !important;
-}
- img {
-     margin: 0;
-     padding: 0;
-     border: none;
-     max-width: 100%;
-     height: auto;
-     width: auto;
-}
- section img {
-     max-width: 100%;
-}
- h1, h2, h3, h4, h5, h6 {
-     margin: 0;
-     /* line-height: 1.4; */
-     color: #000;
- font-family: "Rubik", sans-serif;
-     font-weight: bold;
-}
- p {
-     margin: 0 0 15px;
-     padding: 0;
-     font-size: 14px;
-     font-weight: normal;
-}
- p, ul li a {
-     letter-spacing: 0px;
-       font-family: "Rubik", sans-serif;
-}
- body a {
-     text-decoration: none;
-     color: #277BF8;
-}
- a:hover {
-     text-decoration: none;
-     color: var(--black1);
-}
- a:focus, a:hover {
-     text-decoration: none !important;
-}
- ul, ol {
-     margin: 0 0 0 0;
-     padding: 0;
+html body {
+  margin: 0;
+  padding: 0;
+  -ms-word-wrap: break-word;
+  word-wrap: break-word;
+  background-color: white;
+  position: relative;
+  font-size: 14px;
+  color: #000;
+  font-family: "Rubik", sans-serif;
 }
 
- input[type="text"], input[type="tel"], input[type="email"], input[type="phno"], input[type="password"], textarea , .form-group input, .form-group select{
-     border: 1px solid #bdbdbd;
-     font-size: 14px;
-     padding: 10px 10px;
-     margin: 0 0 0px 0;
-     height: auto;
-     width: 100%;
-     background: #FFFFFF;
-     border-radius: 5px;
-}
- section{
-     background-size: cover !important;
-     background-repeat: no-repeat !important;
-     padding: 60px 0;
-     background-attachment: scroll;
+label {
+  margin-bottom: 0 !important;
 }
 
-.theme-btn{
+img {
+  margin: 0;
+  padding: 0;
+  border: none;
+  max-width: 100%;
+  height: auto;
+  width: auto;
+}
+
+section img {
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  /* line-height: 1.4; */
+  color: #000;
+  font-family: "Rubik", sans-serif;
+  font-weight: bold;
+}
+
+p {
+  margin: 0 0 15px;
+  padding: 0;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+p,
+ul li a {
+  letter-spacing: 0px;
+  font-family: "Rubik", sans-serif;
+}
+
+body a {
+  text-decoration: none;
+  color: #277BF8;
+}
+
+a:hover {
+  text-decoration: none;
+  color: var(--black1);
+}
+
+a:focus,
+a:hover {
+  text-decoration: none !important;
+}
+
+ul,
+ol {
+  margin: 0 0 0 0;
+  padding: 0;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="phno"],
+input[type="password"],
+textarea,
+.form-group input,
+.form-group select {
+  border: 1px solid #bdbdbd;
+  font-size: 14px;
+  padding: 10px 10px;
+  margin: 0 0 0px 0;
+  height: auto;
+  width: 100%;
+  background: #FFFFFF;
+  border-radius: 5px;
+}
+
+section {
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  padding: 60px 0;
+  background-attachment: scroll;
+}
+
+.theme-btn {
   background: var(--green);
-  border-color:var(--green);
+  border-color: var(--green);
   border-radius: 4px;
   padding: 10px 30px;
   font: 500 14px / 19px Rubik;
@@ -113,42 +142,74 @@ VW Stock Images WordPress Theme is released under the terms of GNU GPL
   display: inline-block;
   width: max-content;
 }
-.theme-btn-yellow{
-    background: var(--yellow);
-    color: #000;
+
+.theme-btn-yellow {
+  background: var(--yellow);
+  color: #000;
 }
-.theme-btn:hover{
+
+.theme-btn:hover {
   box-shadow: inset 6em 0 0 0 #000, inset -6em 0 0 0 #000;
   border-color: var(--black);
   color: #fff;
 }
-.theme-para{
+
+.theme-para {
   font: 400 15px/25px Rubik;
   letter-spacing: 0px;
   color: #fff;
 }
- .screen-reader-text {
-     position: absolute;
-     top: -9999em;
-     left: -9999em;
+
+.screen-reader-text {
+  position: absolute;
+  top: -9999em;
+  left: -9999em;
 }
 
+@media(min-width:1399px) {
+  section.featuress .container {
+    max-width: 1530px;
+  }
+}
 
 /*------------------------- Headings --------------------------*/
- section h2 {
-   font: 700 30px / 44px Rubik;
-   color: #ffff;
+h2.section-heading {
+  font: normal normal bold 34px / 40px Outfit;
+  letter-spacing: 0px;
+  color: #000000;
+  text-transform: capitalize;
+  margin-bottom: 10px;
+}
 
+section h3 {
+  font-weight: 500;
+  color: #000;
+  font-size: 26px;
 }
- section h3 {
-   font-weight: 500;
-   color: #fff;
-   font-size: 26px;
+
+section h5 {
+  color: #000;
+  font-weight: bold;
+  padding: 0;
 }
- section h5 {
-     color: #000;
-     font-weight: bold;
-     padding: 0;
+
+p.section-heading-text {
+  font: normal normal normal 18px / 23px Outfit;
+  letter-spacing: 0px;
+  color: #000000;
+}
+
+a.theme-button {
+  width: max-content;
+  background: #000;
+  font: normal normal 500 16px / 20px Outfit;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  padding: 14px 26px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 /*----------------- Banner form--------------*/
@@ -159,10 +220,12 @@ VW Stock Images WordPress Theme is released under the terms of GNU GPL
 .vw-logo {
   max-width: 170px;
 }
+
 div#site_top {
   border: 1px solid #E94C4C;
   background: #fff;
 }
+
 div#site_top p {
   margin: 0px;
 }
@@ -178,6 +241,7 @@ select#image_category {
 input#s {
   width: 570px;
 }
+
 input#searchsubmit {
   font: normal normal normal 18px / 23px Outfit;
   color: #fff;
@@ -186,6 +250,7 @@ input#searchsubmit {
   padding: 10px 42px;
   border-radius: 6px;
 }
+
 form#searchform {
   display: flex;
   gap: 10px;
@@ -197,6 +262,19 @@ form#searchform {
   background: rgba(255, 255, 255, 0.2);
   border-radius: 6px;
 }
+
 .slider-left-content {
   padding: 150px 0px;
+}
+
+
+
+/* pmpro pages  */
+
+body.pmpro-login .pmpro {
+  max-width: 35%;
+  margin: 0px auto;
+}
+body {
+  overflow: hidden;
 }

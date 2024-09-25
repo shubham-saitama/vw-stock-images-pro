@@ -738,4 +738,3 @@ $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize,'vw_stoc
     'section' => 'vw_stock_images_pro_contact_page_section',
     'settings' => 'vw_stock_images_pro_contactform_button_hover_bg_color',
     )));
-?>

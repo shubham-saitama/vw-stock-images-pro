@@ -8,16 +8,16 @@
 $custom_css = '';
 
 	$vw_stock_images_pro_slider_padding_top = get_theme_mod('vw_stock_images_pro_slider_padding_top');
-	$vw_stock_images_pro_pests_problem_padding_top = get_theme_mod('vw_stock_images_pro_pests_problem_padding_top');
-	$vw_stock_images_pro_about_padding_top = get_theme_mod('vw_stock_images_pro_about_padding_top');
-	$vw_stock_images_pro_professional_services_padding_top = get_theme_mod('vw_stock_images_pro_professional_services_padding_top');
-	$vw_stock_images_pro_counter_offer_padding_top = get_theme_mod('vw_stock_images_pro_counter_offer_padding_top');
-	$vw_stock_images_pro_why_choose_us_padding_top = get_theme_mod('vw_stock_images_pro_why_choose_us_padding_top');
-	$vw_stock_images_pro_counter_padding_top = get_theme_mod('vw_stock_images_pro_counter_padding_top');
-	$vw_stock_images_pro_our_popular_products_padding_top = get_theme_mod('vw_stock_images_pro_our_popular_products_padding_top');
-	$vw_stock_images_pro_faq_padding_top = get_theme_mod('vw_stock_images_pro_faq_padding_top');
-	$vw_stock_images_pro_our_newsletter_padding_top = get_theme_mod('vw_stock_images_pro_our_newsletter_padding_top');
-	$vw_stock_images_pro_professional_team_padding_top = get_theme_mod('vw_stock_images_pro_professional_team_padding_top');
+	$vw_stock_images_pro_category_slider_padding_top = get_theme_mod('vw_stock_images_pro_category_slider_padding_top');
+	$vw_stock_images_pro_our_feat_padding_top = get_theme_mod('vw_stock_images_pro_our_feat_padding_top');
+	$vw_stock_images_pro_designers_fav_padding_top = get_theme_mod('vw_stock_images_pro_designers_fav_padding_top');
+	$vw_stock_images_pro_premium_feat_padding_top = get_theme_mod('vw_stock_images_pro_premium_feat_padding_top');
+	$vw_stock_images_pro_desgn_earn_padding_top = get_theme_mod('vw_stock_images_pro_desgn_earn_padding_top');
+	$vw_stock_images_pro_top_contributer_padding_top = get_theme_mod('vw_stock_images_pro_top_contributer_padding_top');
+	$vw_stock_images_pro_trending_padding_top = get_theme_mod('vw_stock_images_pro_trending_padding_top');
+	$vw_stock_images_pro_subscribe_padding_top = get_theme_mod('vw_stock_images_pro_subscribe_padding_top');
+	$vw_stock_images_pro_pricing_padding_top = get_theme_mod('vw_stock_images_pro_pricing_padding_top');
+	$vw_stock_images_pro_our_partners_padding_top = get_theme_mod('vw_stock_images_pro_our_partners_padding_top');
 	$vw_stock_images_pro_our_clients_padding_top = get_theme_mod('vw_stock_images_pro_our_clients_padding_top');
 	$vw_stock_images_pro_latest_news_padding_top = get_theme_mod('vw_stock_images_pro_latest_news_padding_top');
 	$vw_stock_images_pro_gallery_padding_top = get_theme_mod('vw_stock_images_pro_gallery_padding_top');
@@ -28,54 +28,54 @@ $custom_css = '';
 				padding-top: '.esc_html($vw_stock_images_pro_slider_padding_top).'px !important;
 			}';
 		}
-		if($vw_stock_images_pro_pests_problem_padding_top){
-			$custom_css .='#pests-problem{
-				padding-top: '.esc_html($vw_stock_images_pro_pests_problem_padding_top).'px !important;
+		if($vw_stock_images_pro_category_slider_padding_top){
+			$custom_css .='.featuress{
+				padding-top: '.esc_html($vw_stock_images_pro_category_slider_padding_top).'px !important;
 			}';
 		}
-		if($vw_stock_images_pro_about_padding_top != false){
+		if($vw_stock_images_pro_our_feat_padding_top != false){
 			$custom_css .='#about-us{
-				padding-top: '.esc_html($vw_stock_images_pro_about_padding_top).'px!important;
+				padding-top: '.esc_html($vw_stock_images_pro_our_feat_padding_top).'px!important;
 			}';
 		}
-		if($vw_stock_images_pro_professional_services_padding_top != false){
-			$custom_css .='#professional-services{
-				padding-top: '.esc_html($vw_stock_images_pro_professional_services_padding_top).'px!important;
+		if($vw_stock_images_pro_designers_fav_padding_top != false){
+			$custom_css .='section#designer-fav-sec{
+				padding-top: '.esc_html($vw_stock_images_pro_designers_fav_padding_top).'px!important;
 			}';
 		}
-		if($vw_stock_images_pro_counter_offer_padding_top != false){
-			$custom_css .='#counter-offer{
-				padding-top: '.esc_html($vw_stock_images_pro_counter_offer_padding_top).'px!important;
+		if($vw_stock_images_pro_premium_feat_padding_top != false){
+			$custom_css .='section.premium-featuress{
+				padding-top: '.esc_html($vw_stock_images_pro_premium_feat_padding_top).'px!important;
 			}';
 		}
-		if($vw_stock_images_pro_why_choose_us_padding_top != false){
-			$custom_css .='#choose-sec{
-				padding-top: '.esc_html($vw_stock_images_pro_why_choose_us_padding_top).'px!important;
+		if($vw_stock_images_pro_desgn_earn_padding_top != false){
+			$custom_css .='section.design-earn{
+				padding-top: '.esc_html($vw_stock_images_pro_desgn_earn_padding_top).'px!important;
 			}';
 		}
-		if($vw_stock_images_pro_counter_padding_top != false){
-			$custom_css .='#counter-sec{
-				padding-top: '.esc_html($vw_stock_images_pro_counter_padding_top).'px!important;
+		if($vw_stock_images_pro_top_contributer_padding_top != false){
+			$custom_css .='section.contributers{
+				padding-top: '.esc_html($vw_stock_images_pro_top_contributer_padding_top).'px!important;
 			}';
 		}
-		if($vw_stock_images_pro_our_popular_products_padding_top != false){
-			$custom_css .='#popular-product{
-				padding-top: '.esc_html($vw_stock_images_pro_our_popular_products_padding_top).'px!important;
+		if($vw_stock_images_pro_trending_padding_top != false){
+			$custom_css .='section#pests-problem{
+				padding-top: '.esc_html($vw_stock_images_pro_trending_padding_top).'px!important;
 			}';
 		}
-		if($vw_stock_images_pro_faq_padding_top != false){
-			$custom_css .='#faq-sec{
-				padding-top: '.esc_html($vw_stock_images_pro_faq_padding_top).'px !important;
+		if($vw_stock_images_pro_subscribe_padding_top != false){
+			$custom_css .='section#our-newsletter{
+				padding-top: '.esc_html($vw_stock_images_pro_subscribe_padding_top).'px !important;
 			}';
 		}
-		if($vw_stock_images_pro_our_newsletter_padding_top != false){
-			$custom_css .='#our-newsletter{
-				padding-top: '.esc_html($vw_stock_images_pro_our_newsletter_padding_top).'px !important;
+		if($vw_stock_images_pro_pricing_padding_top != false){
+			$custom_css .='section#plans{
+				padding-top: '.esc_html($vw_stock_images_pro_pricing_padding_top).'px !important;
 			}';
 		}
-		if($vw_stock_images_pro_professional_team_padding_top != false){
-			$custom_css .='#professionals-team{
-				padding-top: '.esc_html($vw_stock_images_pro_professional_team_padding_top).'px !important;
+		if($vw_stock_images_pro_our_partners_padding_top != false){
+			$custom_css .='section#partner{
+				padding-top: '.esc_html($vw_stock_images_pro_our_partners_padding_top).'px !important;
 			}';
 		}
 		if($vw_stock_images_pro_our_clients_padding_top != false){

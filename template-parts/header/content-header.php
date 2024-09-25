@@ -14,7 +14,7 @@ if (get_theme_mod('vw_stock_images_pro_header_widgets_bgcolor', '')) {
 <div id="vw-sticky-menu">
   <div class="container header-inner">
     <div class="row align-items-center justify-content-between">
-      <div class="col-lg-3 col-md-3 col-12">
+      <div class="col-lg-3 col-md-3 col-6">
         <div class="vw-logo" id="site-sticky-menu1">
           <?php
           $logo = get_theme_mod('custom_logo');
@@ -24,7 +24,7 @@ if (get_theme_mod('vw_stock_images_pro_header_widgets_bgcolor', '')) {
             }
           } else { ?>
             <?php if (get_theme_mod('vw_stock_images_pro_display_default_logo', true) != false) { ?>
-              <a href="<?php echo esc_url(home_url('/')); ?>" rel="home" target="_blank"><img
+              <a href="<?php echo esc_url(home_url('/')); ?>" rel="home"><img
                   src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/Logo.png"
                   alt="<?php bloginfo('name'); ?>" /></a>
             <?php } ?>
@@ -45,13 +45,9 @@ if (get_theme_mod('vw_stock_images_pro_header_widgets_bgcolor', '')) {
           </div>
         </div>
       </div>
-      <div class="col-xl-7 col-1 d-none">
+      <div class="menu-wrapper-primary">
         <div class="innermenubox">
           <div class="toggle-nav mobile-menu">
-            <div role="button" on="tap:sidebar1.toggle" tabindex="0" class="hamburger" id="open_nav"><span
-                class="screen-reader-text"><?php echo esc_html('Menu', 'vw-stock-images-pro'); ?></span><i
-                class="<?php echo esc_html(get_theme_mod('vw_stock_images_pro_res_open_menu_icon', 'fas fa-bars')); ?>"></i>
-            </div>
           </div>
           <div class="main-header">
             <div id="mySidenav" class="sidenav">
@@ -67,37 +63,79 @@ if (get_theme_mod('vw_stock_images_pro_header_widgets_bgcolor', '')) {
                 ?>
               </nav>
             </div>
-          </div>
-          <amp-sidebar id="sidebar1" layout="nodisplay" side="left">
-            <div role="button" aria-label="close sidebar" on="tap:sidebar1.toggle" tabindex="0"
-              class="close-sidebar closebtn mobile-menu" id="close_nav"><i
-                class="<?php echo esc_html(get_theme_mod('vw_stock_images_pro_res_close_menu_icon', 'fas fa-times')); ?>"></i>
-            </div>
-            <div id="mySidenav" class="nav sidenav">
-              <nav id="site-navigation" class="main-navigation">
-                <?php
-                wp_nav_menu(array(
-                  'theme_location' => 'primary',
-                  'container_class' => 'menu clearfix',
-                  'menu_class' => 'clearfix',
-                  'items_wrap' => '<ul id="%1$s" class="%2$s mobile_nav">%3$s</ul>',
-                  'fallback_cb' => 'wp_page_menu',
-                ));
-                ?>
-              </nav>
-            </div>
-          </amp-sidebar>
+              </div>
         </div>
       </div>
-      <div class="col-lg-2 col-md-2 col-6">
+      <div class="col-lg-3 col-md-4 col-6">
+        <?php
+        // Define an array of page titles
+        $page_titles = array(
+          'Membership Account',
+          'Collections Page',
+          'Liked Page',
+          'Membership Levels',
+          'Log In' // Ensure this is exactly the page title
+        );
+
+        // Initialize an empty array to store the URLs
+        $page_urls = array();
+
+        foreach ($page_titles as $title) {
+          // Set up the query arguments for each page
+          $args = array(
+            'post_type' => 'page',
+            'title' => $title,
+            'posts_per_page' => 1,
+          );
+
+          // Get the page based on title
+          $pages = get_posts($args);
+
+          if (!empty($pages)) {
+            // Save the title as key and URL as value in the array
+            $page_urls[$title] = get_permalink($pages[0]->ID);
+          } else {
+            // If the page is not found, store a placeholder value
+            $page_urls[$title] = '#'; // Default fallback if page is not found
+          }
+        }
+        ?>
         <div class="profile-search">
-          <div class="login">
-            <a href="#">Login</a>
+          <div class="profile-search">
+            <?php if (is_user_logged_in()):
+              $user_id = get_current_user_id();
+              $user_avatar = get_avatar($user_id, 100); // 100px size avatar
+              ?>
+              <div class="profile">
+                <a class="border-right" href="<?php echo esc_url($page_urls['Membership Levels']); ?>">
+                  Pricing
+                </a>
+                <div class="user-profile">
+                  <?php echo $user_avatar; ?>
+                  <div class="user-menu-modal">
+                    <ul>
+                      <li><a href="<?php echo esc_url($page_urls['Membership Account']); ?>"><i
+                            class="fa-regular fa-user"></i> Profile</a></li>
+                      <li><a href="<?php echo esc_url($page_urls['Liked Page']); ?>"><i class="fa-regular fa-heart"></i>
+                          Favorites</a></li>
+                      <li><a href="<?php echo esc_url($page_urls['Collections Page']); ?>"><i
+                            class="fa-regular fa-folder"></i> Collections</a></li>
+                      <li><a href="<?php echo esc_url(wp_logout_url(home_url())); ?>"><i
+                            class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            <?php else: ?>
+              <div class="login">
+                <a href="<?php echo isset($page_urls['Log In']) ? esc_url($page_urls['Log In']) : '#'; ?>">Login</a>
+              </div>
+              <div class="sign-in">
+                <a href="<?php echo esc_url(wp_registration_url()); ?>">Sign In</a>
+              </div>
+            <?php endif; ?>
           </div>
-          <div class="sign-in">
-            <a href="#">Sign In</a>
-          </div>
-          <div class="menu"><i class="fa-solid fa-bars"></i></div>
+          <div class="menu" id="menu-toggleBtn"><i class="fa-solid fa-bars"></i></div>
         </div>
       </div>
     </div>

@@ -9,9 +9,9 @@ function vw_stock_images_pro_register_recommended_plugins()
 {
 	$plugins = array(
 		array(
-			'name' => __('VW Stock Images Posttype', 'vw-stock-images-pro'),
-			'slug' => 'vw-stock-images-pro-posttype',
-			'source' => get_template_directory() . '/inc/plugins/vw-stock-images-pro-posttype.zip',
+			'name' => __('Classic Widgets', 'vw-stock-images-pro'),
+			'slug' => 'classic-widgets',
+			'source' => '',
 			'required' => true,
 			'force_activation' => false,
 		),
@@ -77,12 +77,6 @@ function vw_stock_images_pro_register_recommended_plugins()
 			'source' => '',
 			'required' => true,
 			'force_activation' => false,
-		),
-		array(
-			'name' => __('Instagram Feed Pro', 'vw-stock-images-pro'),
-			'slug' => 'instagram-feed',
-			'source' => '',
-			'required' => true,
 		),
 	);
 	$vw_stock_images_pro_config = array();

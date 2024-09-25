@@ -244,6 +244,8 @@ function vw_stock_images_pro_scripts()
 		if (is_front_page() || is_home()) {
 			wp_enqueue_style('home-page-style', get_template_directory_uri() . '/assets/css/main-css/home-page.css', true, null, 'all');
 			wp_add_inline_style('home-page-style', $custom_css);
+			wp_enqueue_style('other-page-style', get_template_directory_uri() . '/assets/css/main-css/other-pages.css', true, null, 'all');
+			wp_add_inline_style('other-page-style', $custom_css);
 		} else {
 			wp_enqueue_style('other-page-style', get_template_directory_uri() . '/assets/css/main-css/other-pages.css', true, null, 'all');
 			wp_add_inline_style('other-page-style', $custom_css);
@@ -253,18 +255,18 @@ function vw_stock_images_pro_scripts()
 			wp_add_inline_style('other-page-style', $custom_css);
 		}
 		wp_enqueue_style('header-footer-style', get_template_directory_uri() . '/assets/css/main-css/header-footer.css', true, null, 'all');
-		wp_enqueue_style('responsive-style', get_template_directory_uri() . '/assets/css/main-css/mobile-main.css', true, null, 'screen and (max-width: 3000px) and (min-width: 320px)');
 
 		wp_add_inline_style('header-footer-style', $custom_css);
 		wp_add_inline_style('responsive-media-style', $custom_css);
 	}
 
 	if (function_exists('is_amp_endpoint') && is_amp_endpoint()) {
-		wp_enqueue_style('amp-style', get_template_directory_uri() . '/assets/css/main-css/amp-style.css', true, null, 'all');
+
 	} else {
 		wp_enqueue_style('animation-wow', get_template_directory_uri() . '/assets/css/animate.css');
 		wp_enqueue_style('owl-carousel-style', get_template_directory_uri() . '/assets/css/owl.carousel.css');
 	}
+	wp_enqueue_style('responsive-style', get_template_directory_uri() . '/assets/css/main-css/mobile-main.css', true, null, 'screen and (max-width: 3000px) and (min-width: 320px)');
 
 	// wp_enqueue_style( 'animation-wow', get_template_directory_uri().'/assets/css/animate.css' );
 	wp_enqueue_style('font-awesome', get_template_directory_uri() . '/assets/css/fontawesome-all.min.css');
@@ -308,7 +310,7 @@ function vw_stock_images_pro_scripts()
 		'upgradeUrl' => 'https://example.com/upgrade', // Replace with your actual upgrade URL
 		'ajax_url' => admin_url('admin-ajax.php'),
 		'liked_posts_page_url' => esc_url(get_permalink(get_page_by_title("Liked Page"))),
-		"isUserLoggedIn" =>is_user_logged_in() ? 'yes' : 'no',
+		"isUserLoggedIn" => is_user_logged_in() ? 'yes' : 'no',
 	);
 
 	wp_localize_script('vw-stock-images-pro-customscripts', 'vw_stock_images_pro_customscripts_obj', $vw_stock_images_pro_customscripts_obj);
@@ -919,25 +921,6 @@ function add_download_link_for_virtual_products()
 
 
 
-// // custom search from query 
-// add_action('pre_get_posts', 'filter_search_by_category');
-
-// function filter_search_by_category($query)
-// {
-// 	if ($query->is_search && !is_admin() && $query->is_main_query()) {
-// 		if (!empty($_GET['image_cat'])) {
-// 			$category = sanitize_text_field($_GET['image_cat']);
-// 			$query->set('tax_query', array(
-// 				array(
-// 					'taxonomy' => 'image_cat',
-// 					'field' => 'slug',
-// 					'terms' => $category,
-// 				),
-// 			));
-// 		}
-// 	}
-// }
-
 
 
 function create_product_images_cpt()
@@ -952,7 +935,7 @@ function create_product_images_cpt()
 	$args = array(
 		'label' => __('Product Image'),
 		'labels' => $labels,
-		'supports' => array('title', 'editor', 'thumbnail', 'author'),
+		'supports' => array('title', 'editor', 'thumbnail', 'author', 'page-attributes', 'revisions', 'media'),
 		// 'taxonomies'          => array( 'category' ), 
 		'public' => true,
 		'show_ui' => true,
@@ -1011,7 +994,15 @@ function register_image_cat_taxonomy()
 }
 
 add_action('init', 'register_image_cat_taxonomy');
+function custom_upload_mimes($mimes) {
+    $mimes['mp4'] = 'video/mp4';
+    $mimes['webm'] = 'video/webm';
+    $mimes['ogg'] = 'video/ogg';
+    return $mimes;
+}
+add_filter('upload_mimes', 'custom_upload_mimes');
 // Register Custom Taxonomies for Product Images
+
 function register_product_images_taxonomies()
 {
 
@@ -1160,6 +1151,38 @@ function enqueue_image_cat_media_uploader()
 }
 add_action('admin_enqueue_scripts', 'enqueue_image_cat_media_uploader');
 
+function add_video_meta_box() {
+    add_meta_box(
+        'product_image_video_meta',
+        'Product Image Video',
+        'render_video_meta_box',
+        'product_images',
+        'normal',
+        'high'
+    );
+}
+add_action('add_meta_boxes', 'add_video_meta_box');
+
+function render_video_meta_box($post) {
+    $video_url = get_post_meta($post->ID, '_product_image_video_url', true);
+    ?>
+    <label for="product_image_video_url">Video URL:</label>
+    <input type="text" id="product_image_video_url" name="product_image_video_url" value="<?php echo esc_attr($video_url); ?>" style="width:100%;" />
+    <p>Or upload a video file from the media library.</p>
+    <button class="button" id="upload_video_button">Upload Video</button>
+    <?php
+}
+function save_video_meta_box($post_id) {
+    if (array_key_exists('product_image_video_url', $_POST)) {
+        update_post_meta(
+            $post_id,
+            '_product_image_video_url',
+            sanitize_text_field($_POST['product_image_video_url'])
+        );
+    }
+}
+add_action('save_post', 'save_video_meta_box');
+
 
 // category image meta ------------------------------------------------------------------------------------------------
 
@@ -1218,6 +1241,39 @@ function assign_product_images_caps_to_admin()
 add_action('admin_init', 'assign_product_images_caps_to_admin');
 
 
+// Add custom field to user profile page
+function custom_user_profile_fields($user)
+{ ?>
+	<h3><?php _e("Extra User Information", "blank"); ?></h3>
+	<table class="form-table">
+		<tr>
+			<th><label for="country"><?php _e("Country"); ?></label></th>
+			<td>
+				<input type="text" name="country" id="country"
+					value="<?php echo esc_attr(get_user_meta($user->ID, 'country', true)); ?>" class="regular-text" /><br />
+				<span class="description"><?php _e("Please enter your country."); ?></span>
+			</td>
+		</tr>
+	</table>
+<?php }
+
+add_action('show_user_profile', 'custom_user_profile_fields');
+add_action('edit_user_profile', 'custom_user_profile_fields');
+
+// Save custom field data
+function save_custom_user_profile_fields($user_id)
+{
+	if (!current_user_can('edit_user', $user_id)) {
+		return false;
+	}
+
+	update_user_meta($user_id, 'country', $_POST['country']);
+}
+
+add_action('personal_options_update', 'save_custom_user_profile_fields');
+add_action('edit_user_profile_update', 'save_custom_user_profile_fields');
+
+
 // --------------------------------meta field for cpt prod_images ----------------------------------------------
 
 // Add a meta box in the post editor
@@ -1252,48 +1308,51 @@ add_action('save_post', 'save_image_type_meta');
 
 // meta field for location =======================================================================================\
 // Add meta box for location field
-function add_location_meta_box() {
-    add_meta_box(
-        'product_image_location',       // Unique ID
-        'Location',       // Box title
-        'render_location_meta_box',     // Content callback
-        'product_images',               // Post type
-        'normal',                         // Context (where to display the meta box)
-        'default'                       // Priority
-    );
+function add_location_meta_box()
+{
+	add_meta_box(
+		'product_image_location',       // Unique ID
+		'Location',       // Box title
+		'render_location_meta_box',     // Content callback
+		'product_images',               // Post type
+		'normal',                         // Context (where to display the meta box)
+		'default'                       // Priority
+	);
 }
 add_action('add_meta_boxes', 'add_location_meta_box');
 
 // Render the location meta box
-function render_location_meta_box($post) {
-    // Retrieve the current value of the 'location' meta field
-    $location = get_post_meta($post->ID, '_product_image_location', true);
+function render_location_meta_box($post)
+{
+	// Retrieve the current value of the 'location' meta field
+	$location = get_post_meta($post->ID, '_product_image_location', true);
 
-    // Nonce field for security
-    wp_nonce_field('save_location_meta_box', 'location_meta_box_nonce');
+	// Nonce field for security
+	wp_nonce_field('save_location_meta_box', 'location_meta_box_nonce');
 
-    // Display the text input field for location
-    echo '<label for="product_image_location">Location:</label>';
-    echo '<input type="text" id="product_image_location" name="product_image_location" value="' . esc_attr($location) . '" size="25" />';
+	// Display the text input field for location
+	echo '<label for="product_image_location">Location:</label>';
+	echo '<input type="text" id="product_image_location" name="product_image_location" value="' . esc_attr($location) . '" size="25" />';
 }
 
 // Save the location meta field value
-function save_location_meta_box($post_id) {
-    // Check if nonce is set and valid
-    if (!isset($_POST['location_meta_box_nonce']) || !wp_verify_nonce($_POST['location_meta_box_nonce'], 'save_location_meta_box')) {
-        return;
-    }
+function save_location_meta_box($post_id)
+{
+	// Check if nonce is set and valid
+	if (!isset($_POST['location_meta_box_nonce']) || !wp_verify_nonce($_POST['location_meta_box_nonce'], 'save_location_meta_box')) {
+		return;
+	}
 
-    // Check if the current user has permission to edit the post
-    if (!current_user_can('edit_post', $post_id)) {
-        return;
-    }
+	// Check if the current user has permission to edit the post
+	if (!current_user_can('edit_post', $post_id)) {
+		return;
+	}
 
-    // Check if the 'product_image_location' is set and sanitize it
-    if (isset($_POST['product_image_location'])) {
-        $location = sanitize_text_field($_POST['product_image_location']);
-        update_post_meta($post_id, '_product_image_location', $location);
-    }
+	// Check if the 'product_image_location' is set and sanitize it
+	if (isset($_POST['product_image_location'])) {
+		$location = sanitize_text_field($_POST['product_image_location']);
+		update_post_meta($post_id, '_product_image_location', $location);
+	}
 }
 add_action('save_post', 'save_location_meta_box');
 
@@ -1477,6 +1536,51 @@ add_action('pmpro_save_membership_level', 'pmpro_save_download_limit');
 
 
 
+
+// Add the 'Best Value' checkbox to the membership level settings
+function my_pmpro_best_value_field()
+{
+	// Get the level ID from the request
+	$level_id = isset($_REQUEST['edit']) ? intval($_REQUEST['edit']) : 0;
+
+	// If no valid level ID is found, return early
+	if ($level_id <= 0) {
+		return;
+	}
+
+	// Fetch the best value metadata
+	$best_value = get_post_meta($level_id, 'best_value', true);
+
+	?>
+	<h3 class="topborder"><?php esc_html_e('Best Value', 'pmpro'); ?></h3>
+	<table class="form-table">
+		<tbody>
+			<tr>
+				<th scope="row" valign="top"><label for="best_value"><?php esc_html_e('Best Value', 'pmpro'); ?>:</label>
+				</th>
+				<td>
+					<input type="checkbox" id="best_value" name="best_value" value="1" <?php checked($best_value, 1); ?> />
+					<label for="best_value"><?php esc_html_e('Mark this plan as Best Value', 'pmpro'); ?></label>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<?php
+}
+add_action('pmpro_membership_level_after_other_settings', 'my_pmpro_best_value_field');
+function my_pmpro_save_best_value_field($level_id)
+{
+	if (isset($_REQUEST['best_value'])) {
+		update_post_meta($level_id, 'best_value', 1);
+	} else {
+		update_post_meta($level_id, 'best_value', 0);
+	}
+}
+add_action('pmpro_save_membership_level', 'my_pmpro_save_best_value_field');
+
+
+
+
 // ---------------------------------code to manage number of download count in mambership level -------------------------------
 
 function download_image_file($file_url)
@@ -1498,7 +1602,8 @@ function download_image_file($file_url)
 	} else {
 		wp_die('File not found.');
 	}
-}function handle_image_download_request()
+}
+function handle_image_download_request()
 {
 	if (isset($_GET['download_image'])) {
 		$post_id = intval($_GET['download_image']);
@@ -1773,39 +1878,39 @@ function is_post_saved_by_user($post_id, $user_id)
 
 
 // Function to display the save or remove post button
-function add_save_post_buttons($post_id, $context="")
+function add_save_post_buttons($post_id, $context = "")
 {
-    $user_id = get_current_user_id();
-    $is_saved = is_post_saved_by_user($post_id, $user_id);
+	$user_id = get_current_user_id();
+	$is_saved = is_post_saved_by_user($post_id, $user_id);
 
-    // Check if the user is logged in
-    if ($user_id) {
-        // If we are on the liked posts page, show the "Remove Like" button
-        if (is_page('liked-page') && $is_saved) {
-            $button_text = '<i class="fa-solid fa-heart-circle-xmark"></i>';
-            $button_class = 'remove-liked-post-btn';
-            $href_attr = 'href="javascript:void(0)"';
+	// Check if the user is logged in
+	if ($user_id) {
+		// If we are on the liked posts page, show the "Remove Like" button
+		if (is_page('liked-page') && $is_saved) {
+			$button_text = '<i class="fa-solid fa-heart-circle-xmark"></i>';
+			$button_class = 'remove-liked-post-btn';
+			$href_attr = 'href="javascript:void(0)"';
 
-            echo '<a class="' . esc_attr($button_class) . '" data-post-id="' . esc_attr($post_id) . '" ' . $href_attr . '>' . $button_text . '</a>';
-        } else {
-            // Otherwise, show the "Like" button
-            $button_text = $is_saved ? '<i class="fa-solid fa-heart"></i>' : '<i class="fa-regular fa-heart"></i>';
-            $button_class = $is_saved ? 'saved' : 'save';
-            $button_href = $is_saved ? esc_url(get_permalink(get_page_by_title("Liked Page"))) : '';
-            $href_attr = $is_saved ? 'href="' . $button_href . '"' : 'href="javascript:void(0)"';
+			echo '<a class="' . esc_attr($button_class) . '" data-post-id="' . esc_attr($post_id) . '" ' . $href_attr . '>' . $button_text . '</a>';
+		} else {
+			// Otherwise, show the "Like" button
+			$button_text = $is_saved ? '<i class="fa-solid fa-heart"></i>' : '<i class="fa-regular fa-heart"></i>';
+			$button_class = $is_saved ? 'saved' : 'save';
+			$button_href = $is_saved ? esc_url(get_permalink(get_page_by_title("Liked Page"))) : '';
+			$href_attr = $is_saved ? 'href="' . $button_href . '"' : 'href="javascript:void(0)"';
 
-            // Add "Like" text if the context is for the main post button
-            if ($context === 'main-post-button') {
-                $button_text .= ' Like';
-            }
+			// Add "Like" text if the context is for the main post button
+			if ($context === 'main-post-button') {
+				$button_text .= ' Like';
+			}
 
-            echo '<a class="save-post-button ' . esc_attr($button_class) . '" data-post-id="' . esc_attr($post_id) . '" ' . $href_attr . '>' . $button_text . '</a>';
-        }
-    } else {
-		
-        // Show login prompt when the user is not logged in
-        echo '<a href="#" class="save-post-button" data-type="like"><i class="fa-solid fa-heart"></i> </a>';
-    }
+			echo '<a class="save-post-button ' . esc_attr($button_class) . '" data-post-id="' . esc_attr($post_id) . '" ' . $href_attr . '>' . $button_text . '</a>';
+		}
+	} else {
+
+		// Show login prompt when the user is not logged in
+		echo '<a href="#" class="save-post-button" data-type="like"><i class="fa-solid fa-heart"></i> </a>';
+	}
 }
 
 // Hook the function to display the button
@@ -1890,23 +1995,24 @@ add_action('wp_ajax_nopriv_load_post_content', 'load_post_content');
 
 
 
-function load_collections_content($post_id) {
+function load_collections_content($post_id)
+{
 	$post_id = intval($_POST['post_id']);
 	// error_log('Requested Post ID: ' . $post_id); 
 
 	$post = get_post($post_id);
-    // Verify the request is coming from an authenticated user if necessary
-    if (!is_user_logged_in()) {
-        wp_send_json_error('User not logged in');
-        wp_die(); // Properly terminate AJAX request
-    }
-        ob_start();
-        include(get_template_directory() . '/page-template/collections-modal-template.php');
-        $output = ob_get_clean();
-        wp_reset_postdata();
-        echo $output;
+	// Verify the request is coming from an authenticated user if necessary
+	if (!is_user_logged_in()) {
+		wp_send_json_error('User not logged in');
+		wp_die(); // Properly terminate AJAX request
+	}
+	ob_start();
+	include(get_template_directory() . '/page-template/collections-modal-template.php');
+	$output = ob_get_clean();
+	wp_reset_postdata();
+	echo $output;
 
-    wp_die(); // Properly terminate AJAX request
+	wp_die(); // Properly terminate AJAX request
 }
 
 add_action('wp_ajax_load_collections_content', 'load_collections_content');
@@ -1971,79 +2077,84 @@ function format_size_units($bytes)
 // registering collectons cpt 
 
 
-function register_collections_post_type() {
-    $args = array(
-        'public'    => true,
-        'label'     => 'Collections',
-        'supports'  => array('title',),
-        'show_in_rest' => true,
-        'show_ui'   => true,
-        'show_in_menu' => true,
-    );
-    register_post_type('collection', $args);
+function register_collections_post_type()
+{
+	$args = array(
+		'public' => true,
+		'label' => 'Collections',
+		'supports' => array('title', ),
+		'show_in_rest' => true,
+		'show_ui' => true,
+		'show_in_menu' => true,
+	);
+	register_post_type('collection', $args);
 }
 add_action('init', 'register_collections_post_type');
 
 // post registerred 
 
 // Register the meta box
-function collections_meta_box() {
-    add_meta_box(
-        'collections_meta_box',        // Unique ID for the meta box
-        'Manage Collections',          // Meta box title
-        'collections_meta_box_callback', // Callback function to display the fields
-        'collections',                 // Post type where the meta box should appear
-        'normal',                      // Context where the box appears (normal, side, advanced)
-        'high'                         // Priority within the context
-    );
+function collections_meta_box()
+{
+	add_meta_box(
+		'collections_meta_box',        // Unique ID for the meta box
+		'Manage Collections',          // Meta box title
+		'collections_meta_box_callback', // Callback function to display the fields
+		'collections',                 // Post type where the meta box should appear
+		'normal',                      // Context where the box appears (normal, side, advanced)
+		'high'                         // Priority within the context
+	);
 }
 add_action('add_meta_boxes', 'collections_meta_box');
 
 // Meta box display callback function
-function collections_meta_box_callback($post) {
-    // Use a nonce field for security
-    wp_nonce_field('save_collections_meta_box', 'collections_meta_box_nonce');
+function collections_meta_box_callback($post)
+{
+	// Use a nonce field for security
+	wp_nonce_field('save_collections_meta_box', 'collections_meta_box_nonce');
 
-    // Get the current value of the meta field if it exists
-    $collections_data = get_post_meta($post->ID, '_collections', true);
+	// Get the current value of the meta field if it exists
+	$collections_data = get_post_meta($post->ID, '_collections', true);
 
-    // Display the form field
-    ?>
-    <label for="collections_data">Collections Data</label>
-    <input type="text" name="collections_data" id="collections_data" value="<?php echo esc_attr($collections_data); ?>" size="25" />
-    <?php
+	// Display the form field
+	?>
+	<label for="collections_data">Collections Data</label>
+	<input type="text" name="collections_data" id="collections_data" value="<?php echo esc_attr($collections_data); ?>"
+		size="25" />
+	<?php
 }
 
 
 // Save the meta box data
-function save_collections_meta_box_data($post_id) {
-    // Check if our nonce is set
-    if (!isset($_POST['collections_meta_box_nonce'])) {
-        return;
-    }
+function save_collections_meta_box_data($post_id)
+{
+	// Check if our nonce is set
+	if (!isset($_POST['collections_meta_box_nonce'])) {
+		return;
+	}
 
-    // Verify the nonce for security
-    if (!wp_verify_nonce($_POST['collections_meta_box_nonce'], 'save_collections_meta_box')) {
-        return;
-    }
+	// Verify the nonce for security
+	if (!wp_verify_nonce($_POST['collections_meta_box_nonce'], 'save_collections_meta_box')) {
+		return;
+	}
 
-    // Check if this is an autosave (don't save if it is)
-    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
-        return;
-    }
+	// Check if this is an autosave (don't save if it is)
+	if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+		return;
+	}
 
-    // Check user permissions
-    if (!current_user_can('edit_post', $post_id)) {
-        return;
-    }
+	// Check user permissions
+	if (!current_user_can('edit_post', $post_id)) {
+		return;
+	}
 
-    // Sanitize and save the data
-    if (isset($_POST['collections_data'])) {
-        $collections_data = sanitize_text_field($_POST['collections_data']);
+	// Sanitize and save the data
+	if (isset($_POST['collections_data'])) {
+		$collections_data = sanitize_text_field($_POST['collections_data']);
 
-        // Update the meta field in the database
-        update_post_meta($post_id, '_collections', $collections_data);
-    }
+		// Update the meta field in the database
+		update_post_meta($post_id, '_collections', $collections_data);
+	}
 }
 add_action('save_post', 'save_collections_meta_box_data');
 
@@ -2054,71 +2165,74 @@ add_action('wp_ajax_remove_collection', 'handle_remove_collection');
 add_action('wp_ajax_add_product_image_to_collection', 'handle_add_product_image_to_collection');
 add_action('wp_ajax_remove_product_image_from_collection', 'handle_remove_product_image_from_collection');
 
-function handle_add_collection() {
-    if (isset($_POST['collection_name']) && is_user_logged_in()) {
-        $collection_name = sanitize_text_field($_POST['collection_name']);
-        $post_id = wp_insert_post(array(
-            'post_type' => 'collection',
-            'post_title' => $collection_name,
-            'post_status' => 'publish',
-            'post_author' => get_current_user_id(),
-        ));
-        
-        if ($post_id) {
-            wp_send_json_success(array(
-                'message' => 'Collection added successfully',
-                'new_collection_id' => $post_id
-            ));
-			
-        } else {
-            wp_send_json_error('Failed to add collection');
-        }
-    } else {
-        wp_send_json_error('User not logged in or missing data');
-    }
+function handle_add_collection()
+{
+	if (isset($_POST['collection_name']) && is_user_logged_in()) {
+		$collection_name = sanitize_text_field($_POST['collection_name']);
+		$post_id = wp_insert_post(array(
+			'post_type' => 'collection',
+			'post_title' => $collection_name,
+			'post_status' => 'publish',
+			'post_author' => get_current_user_id(),
+		));
+
+		if ($post_id) {
+			wp_send_json_success(array(
+				'message' => 'Collection added successfully',
+				'new_collection_id' => $post_id
+			));
+
+		} else {
+			wp_send_json_error('Failed to add collection');
+		}
+	} else {
+		wp_send_json_error('User not logged in or missing data');
+	}
 }
 
-function handle_remove_collection() {
-    if (isset($_POST['collection_id']) && is_user_logged_in()) {
-        $collection_id = intval($_POST['collection_id']);
-        
-        // Check if the collection belongs to the current user
-        $collection = get_post($collection_id);
-        if ($collection && $collection->post_author == get_current_user_id()) {
-            wp_delete_post($collection_id, true);
-            wp_send_json_success('Collection removed successfully');
-        } else {
-            wp_send_json_error('Collection not found or you do not have permission to delete it');
-        }
-    } else {
-        wp_send_json_error('User not logged in or missing data');
-    }
+function handle_remove_collection()
+{
+	if (isset($_POST['collection_id']) && is_user_logged_in()) {
+		$collection_id = intval($_POST['collection_id']);
+
+		// Check if the collection belongs to the current user
+		$collection = get_post($collection_id);
+		if ($collection && $collection->post_author == get_current_user_id()) {
+			wp_delete_post($collection_id, true);
+			wp_send_json_success('Collection removed successfully');
+		} else {
+			wp_send_json_error('Collection not found or you do not have permission to delete it');
+		}
+	} else {
+		wp_send_json_error('User not logged in or missing data');
+	}
 }
 
 add_action('wp_ajax_fetch_user_collections', 'fetch_user_collections');
-function fetch_user_collections() {
-    if (is_user_logged_in()) {
-        $user_collections = get_posts(array(
-            'post_type' => 'collection',
-            'author'    => get_current_user_id(),
-            'posts_per_page' => -1
-        ));
+function fetch_user_collections()
+{
+	if (is_user_logged_in()) {
+		$user_collections = get_posts(array(
+			'post_type' => 'collection',
+			'author' => get_current_user_id(),
+			'posts_per_page' => -1
+		));
 
-        if ($user_collections) {
-            $collections_data = array();
-            foreach ($user_collections as $collection) {
-                $collections_data[] = array(
-                    'ID' => $collection->ID,
-                    'post_title' => $collection->post_title
-                );
-            }
-            wp_send_json_success($collections_data);
-        } else {
-            wp_send_json_error('No collections found.');
-        }
-    } else {
-        wp_send_json_error('User not logged in.');
-    }
+		if ($user_collections) {
+			$collections_data = array();
+			foreach ($user_collections as $collection) {
+				$collections_data[] = array(
+					'ID' => $collection->ID,
+					'post_title' => $collection->post_title
+				);
+			}
+			wp_send_json_success($collections_data);
+		} else {
+			wp_send_json_error('No collections found.');
+		}
+	} else {
+		wp_send_json_error('User not logged in.');
+	}
 }
 
 
@@ -2126,32 +2240,33 @@ function fetch_user_collections() {
 add_action('wp_ajax_add_post_to_collection', 'handle_add_post_to_collection');
 
 
-function handle_add_post_to_collection() {
-    if (isset($_POST['post_id']) && isset($_POST['collection_id']) && is_user_logged_in()) {
-        $post_id = intval($_POST['collection_id']);
-        $collection_id = intval($_POST['post_id']);
+function handle_add_post_to_collection()
+{
+	if (isset($_POST['post_id']) && isset($_POST['collection_id']) && is_user_logged_in()) {
+		$post_id = intval($_POST['collection_id']);
+		$collection_id = intval($_POST['post_id']);
 
-        // Validate if post and collection exist
-        if (get_post($post_id) && get_post($collection_id)) {
-            // Add post to the collection (you may need a custom field or taxonomy to manage this)
-            $existing_collections = get_post_meta($post_id, '_collections', true);
-            if (!$existing_collections) {
-                $existing_collections = array();
-            }
+		// Validate if post and collection exist
+		if (get_post($post_id) && get_post($collection_id)) {
+			// Add post to the collection (you may need a custom field or taxonomy to manage this)
+			$existing_collections = get_post_meta($post_id, '_collections', true);
+			if (!$existing_collections) {
+				$existing_collections = array();
+			}
 
-            if (!in_array($collection_id, $existing_collections)) {
-                $existing_collections[] = $collection_id;
-                update_post_meta($post_id, '_collections', $existing_collections);
-                wp_send_json_success('Post added to collection successfully.');
-            } else {
-                wp_send_json_error('Post is already in this collection.');
-            }
-        } else {
-            wp_send_json_error('Invalid post or collection.');
-        }
-    } else {
-        wp_send_json_error('User not logged in or missing data.');
-    }
+			if (!in_array($collection_id, $existing_collections)) {
+				$existing_collections[] = $collection_id;
+				update_post_meta($post_id, '_collections', $existing_collections);
+				wp_send_json_success('Post added to collection successfully.');
+			} else {
+				wp_send_json_error('Post is already in this collection.');
+			}
+		} else {
+			wp_send_json_error('Invalid post or collection.');
+		}
+	} else {
+		wp_send_json_error('User not logged in or missing data.');
+	}
 }
 
 
@@ -2159,51 +2274,51 @@ function handle_add_post_to_collection() {
 
 function handle_remove_post_from_collection()
 {
-    // Check nonce for security
-    // check_ajax_referer('manage_collection_nonce', 'nonce');
+	// Check nonce for security
+	// check_ajax_referer('manage_collection_nonce', 'nonce');
 
-    // Get the collection ID and post ID from the AJAX request
-    $collection_id = isset($_POST['collection_id']) ? intval($_POST['collection_id']) : 0; 
-    $post_id = isset($_POST['post_id']) ? intval($_POST['post_id']) : 0;
+	// Get the collection ID and post ID from the AJAX request
+	$collection_id = isset($_POST['collection_id']) ? intval($_POST['collection_id']) : 0;
+	$post_id = isset($_POST['post_id']) ? intval($_POST['post_id']) : 0;
 
-    // Verify that both IDs are valid
-    if ($collection_id && $post_id) {
-        // Get the current collection items
-        $collection_items = get_post_meta($collection_id, '_collections', true);
-        error_log('collection items: ' . print_r($collection_items, true));
+	// Verify that both IDs are valid
+	if ($collection_id && $post_id) {
+		// Get the current collection items
+		$collection_items = get_post_meta($collection_id, '_collections', true);
+		error_log('collection items: ' . print_r($collection_items, true));
 
-        // Check if the collection items are an array
-        if (is_array($collection_items)) {
-            // Check if the post is in the collection
-            if (in_array($post_id, $collection_items)) {
-                // Remove the post ID from the array
-                $updated_items = array_diff($collection_items, array($post_id));
+		// Check if the collection items are an array
+		if (is_array($collection_items)) {
+			// Check if the post is in the collection
+			if (in_array($post_id, $collection_items)) {
+				// Remove the post ID from the array
+				$updated_items = array_diff($collection_items, array($post_id));
 
-                // Update the collection meta
-                update_post_meta($collection_id, '_collections', $updated_items);
+				// Update the collection meta
+				update_post_meta($collection_id, '_collections', $updated_items);
 
-                // Send success response
-                wp_send_json_success(array(
-                    'message' => 'Post removed from collection.',
-                    'collection_id' => $collection_id,
-                    'post_id' => $post_id,
-                    'remaining_items' => count($updated_items) // Return the number of remaining items in the collection
-                ));
-            } else {
-                // Send error response if the post isn't in the collection
-                wp_send_json_error(array('message' => 'Post not found in the collection.'));
-            }
-        } else {
-            // Send error response if the collection doesn't have any posts
-            wp_send_json_error(array('message' => 'Invalid collection or no posts found.'));
-        }
-    } else {
-        // Send error response if the IDs are invalid
-        wp_send_json_error(array('message' => 'Invalid collection or post ID.'));
-    }
+				// Send success response
+				wp_send_json_success(array(
+					'message' => 'Post removed from collection.',
+					'collection_id' => $collection_id,
+					'post_id' => $post_id,
+					'remaining_items' => count($updated_items) // Return the number of remaining items in the collection
+				));
+			} else {
+				// Send error response if the post isn't in the collection
+				wp_send_json_error(array('message' => 'Post not found in the collection.'));
+			}
+		} else {
+			// Send error response if the collection doesn't have any posts
+			wp_send_json_error(array('message' => 'Invalid collection or no posts found.'));
+		}
+	} else {
+		// Send error response if the IDs are invalid
+		wp_send_json_error(array('message' => 'Invalid collection or post ID.'));
+	}
 
-    // End the AJAX request
-    wp_die();
+	// End the AJAX request
+	wp_die();
 }
 
 // Hook the function into WordPress for AJAX requests
@@ -2211,18 +2326,19 @@ add_action('wp_ajax_remove_post_from_collection', 'handle_remove_post_from_colle
 
 
 // render remove post button 
-function render_remove_post_from_collection_button($collection_id, $post_id) {
-    // Check if it's a single post of the 'collection' post type
-    if (is_singular('collection')) {
-        ?>
-        <button class="remove-post-from-collection-btn" 
-            data-collection-id="<?php echo esc_attr($collection_id); ?>" 
-            data-post-id="<?php echo esc_attr($post_id); ?>">
-            <i class="fa-solid fa-file-excel"></i>
-        </button>
-        <?php
-    }
+function render_remove_post_from_collection_button($collection_id, $post_id)
+{
+	// Check if it's a single post of the 'collection' post type
+	if (is_singular('collection')) {
+		?>
+		<button class="remove-post-from-collection-btn" data-collection-id="<?php echo esc_attr($collection_id); ?>"
+			data-post-id="<?php echo esc_attr($post_id); ?>">
+			<i class="fa-solid fa-file-excel"></i>
+		</button>
+		<?php
+	}
 }
+//==================================Collections functionality ===================================================================================
 
 
 // function runOnce() {
@@ -2233,58 +2349,102 @@ function render_remove_post_from_collection_button($collection_id, $post_id) {
 // add_action('after_theme_switch', 'runOnce');
 
 
-//==================================Collections functionality ===================================================================================
-// function ajax_search() {
-//     $s = sanitize_text_field( $_GET['s'] );
-//     $cat = isset( $_GET['cat'] ) ? intval( $_GET['cat'] ) : 0;
+function custom_search_filter($query)
+{
+	if (!is_admin() && $query->is_search() && $query->is_main_query()) {
+		$query->set('post_type', 'product_images');
 
-//     $args = array(
-//         's' => $s,
-//         'posts_per_page' => 10,
-//         'cat' => $cat,
-//     );
+		if (!empty($_GET['taxonomy_term'])) {
+			$taxonomy_term = sanitize_text_field($_GET['taxonomy_term']);
 
-//     $search_query = new WP_Query( $args );
+			if (strpos($taxonomy_term, ':') !== false) {
+				list($taxonomy, $term_slug) = explode(':', $taxonomy_term, 2);
 
-//     if ( $search_query->have_posts() ) {
-//         while ( $search_query->have_posts() ) {
-//             $search_query->the_post();
-//             echo '<li><a href="' . get_permalink() . '">' . get_the_title() . '</a></li>';
-//         }
-//     } else {
-//         echo '<li>No results found.</li>';
-//     }
+				if (taxonomy_exists($taxonomy)) {
+					$query->set('tax_query', array(
+						array(
+							'taxonomy' => $taxonomy,
+							'field' => 'slug',
+							'terms' => $term_slug,
+						),
+					));
+				}
+			}
+		}
 
-//     wp_die(); // Terminate and return the response
-// }
-// add_action( 'wp_ajax_ajax_search', 'ajax_search' );
-// add_action( 'wp_ajax_nopriv_ajax_search', 'ajax_search' );
-
-
-function custom_search_filter($query) {
-    if (!is_admin() && $query->is_search() && $query->is_main_query()) {
-        $query->set('post_type', 'product_images');
-
-        if (!empty($_GET['taxonomy_term'])) {
-            $taxonomy_term = sanitize_text_field($_GET['taxonomy_term']);
-
-            if (strpos($taxonomy_term, ':') !== false) {
-                list($taxonomy, $term_slug) = explode(':', $taxonomy_term, 2);
-
-                if (taxonomy_exists($taxonomy)) {
-                    $query->set('tax_query', array(
-                        array(
-                            'taxonomy' => $taxonomy,
-                            'field'    => 'slug',
-                            'terms'    => $term_slug,
-                        ),
-                    ));
-                }
-            }
-        }
-
-        // Ensure pagination is working correctly
-        $query->set('posts_per_page', -1); // For debugging, retrieve all posts
-    }
+		// Ensure pagination is working correctly
+		$query->set('posts_per_page', -1); // For debugging, retrieve all posts
+	}
 }
 add_action('pre_get_posts', 'custom_search_filter');
+
+function get_images_by_post_type_category_author($post_type, $number_of_posts, $category_name = '', $author = '')
+{
+	// Set up the query arguments
+	$args = array(
+		'post_type' => $post_type,
+		'posts_per_page' => $number_of_posts,
+		'post_status' => 'publish',
+		'no_found_rows' => true, // optimize performance if pagination is not needed
+	);
+
+	// Add the category filter if a category is provided
+	if (!empty($category_name)) {
+		$args['tax_query'] = array(
+			array(
+				'taxonomy' => 'category', // Replace 'category' with your custom taxonomy if applicable
+				'field' => 'slug',
+				'terms' => $category_name,
+			),
+		);
+	}
+
+	// Add the author filter if provided (can be author ID or name)
+	if (!empty($author)) {
+		// Check if the author is provided as a numeric ID or a string (name)
+		if (is_numeric($author)) {
+			$args['author'] = intval($author); // Filter by author ID
+		} else {
+			$author_data = get_user_by('slug', $author);
+			if ($author_data) {
+				$args['author'] = $author_data->ID; // Filter by author slug
+			}
+		}
+	}
+
+	// Run the query
+	$query = new WP_Query($args);
+
+	// Initialize an array to store the image URLs
+	$image_urls = array();
+
+	// Loop through the posts
+	if ($query->have_posts()) {
+		while ($query->have_posts()) {
+			$query->the_post();
+
+			// Get the post thumbnail (featured image)
+			$thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'full');
+
+			// Add the image URL to the array
+			if ($thumbnail_url) {
+				$image_urls[] = $thumbnail_url;
+			}
+		}
+		wp_reset_postdata(); // Reset the global $post variable
+	}
+
+	return $image_urls; // Return the array of image URLs
+}
+
+
+
+// pland table featuers================================================================================
+
+
+
+// pland table featuers================================================================================
+function enqueue_media_uploader() {
+    wp_enqueue_media(); // Enqueue the WordPress media uploader scripts
+}
+add_action('admin_enqueue_scripts', 'enqueue_media_uploader');

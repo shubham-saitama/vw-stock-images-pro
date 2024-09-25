@@ -598,7 +598,7 @@ cite a {
 
 /*-------------- Woocommerce ---------------*/
 .woocommerce .summary h1 {
-  font: normal normal bold 30px/46px Poppins;
+  font: normal normal bold 30px/46px Outfit;
   letter-spacing: 0px;
   color: #000000;
 }
@@ -2561,9 +2561,6 @@ h2.product_title.entry-title {
   background: var(--gray);
 }
 
-div#header {
-  background: var(--primary);
-}
 
 
 
@@ -2590,14 +2587,15 @@ div#header {
 .product-image {
   border-radius: 15px;
   overflow: hidden;
+  z-index: 0;
 }
 
 
 /* templ  */
-h2,
+/* h2,
 h3 {
   color: #000 !important;
-}
+} */
 
 div#filters button {
   font-size: 14px;
@@ -2710,7 +2708,12 @@ a.save-post-button {
   border-radius: 3px;
 }
 
-
+#site-navigation ul li a {
+  font-size: 18px;
+  color: #fff;
+  /* margin-top: 60px; */
+  line-height: 20px;
+}
 
 .post-options {
   animation-duration: 0.3s;
@@ -2947,29 +2950,35 @@ div#myNewModal {
   background: #FFFFFF 0% 0% no-repeat padding-box;
   box-shadow: 0px 3px 16px #0000005C;
 }
-
 div#myNewModal {
   position: fixed;
-  top: 5%;
+  top: 0;
   right: 0;
   left: 0;
   margin: auto;
-  max-width: 68%;
+  max-width: 100%;
   /* bottom: 0; */
   height: 100%;
   /* text-align: center; */
   z-index: 99;
   overflow-y: scroll;
   overflow-x: visible;
+  background: #00000066;
 }
-
+div#myNewModal .container {
+  background: #fff;
+  margin-top: 5%;
+  border-radius: 20px;
+  padding: 20px;
+}
 button.close-one {
   background: #0000;
   border: none;
   font-size: 40px;
   position: absolute;
-  left: 0%;
+  left: -5%;
   z-index: 99;
+  top: -20px;
 }
 
 
@@ -3265,4 +3274,7 @@ a.remove-liked-post-btn {
 h1.page-title {
   font-size: 28px;
   margin: 30px 20px;
+}
+div#primary {
+  padding-top: 120px;
 }

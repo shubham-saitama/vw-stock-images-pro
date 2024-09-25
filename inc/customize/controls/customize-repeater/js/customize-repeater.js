@@ -13,7 +13,7 @@ jQuery( document ).ready(function($) {
 	$('.sortable_repeater_control').each(function() {
 		// If there is an existing customizer value, populate our rows
 		// var defaultValuesArray = $(this).find('.customize-control-sortable-repeater').val().split(',');
-		var defaultValuesArray = new Array("slider","pests-problem","about","professional-services","counter-offer","why-choose-us","counter","popular-products","faq","our-newsletter","our-clients","professional-team","latest-news","gallery","partners");
+		var defaultValuesArray = new Array("slider","categoriesSlider","ourFeatures","designers-fev","premiumFeatures","designandearn","out-contributers","pests-problem","our-newsletter","plans","partners");
 		var numRepeaterItems = defaultValuesArray.length;
 
 		if(numRepeaterItems > 0) {

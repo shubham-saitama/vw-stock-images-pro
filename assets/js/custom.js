@@ -15,15 +15,19 @@ window.onscroll = function () {
 }
 
 var navbar = document.getElementById("vw-sticky-menu");
+let header = jQuery('header#masthead');
 var sticky = navbar.offsetTop;
 function myScrollNav() {
   if (window.pageYOffset > sticky) {
     //alert(window.pageYOffset);
     navbar.classList.add("sticky");
     navbar.classList.add("stickynavbar");
+    header.addClass('sticky-header');
+
   } else {
     navbar.classList.remove("sticky");
     navbar.classList.remove("stickynavbar");
+    header.removeClass('sticky-header');
   }
 }
 jQuery(function ($) {
@@ -946,67 +950,67 @@ jQuery(document).ready(function ($) {
   });
 
 
-// Use event delegation for Remove Collection Form submission
-$(document).on('submit', '#remove-collection-form', function (e) {
-  e.preventDefault(); // Prevent default form submission
+  // Use event delegation for Remove Collection Form submission
+  $(document).on('submit', '#remove-collection-form', function (e) {
+    e.preventDefault(); // Prevent default form submission
 
-  var formData = $(this).serialize(); // Serialize form data
-  // console.log('Form Data:', formData); // Debug form data
+    var formData = $(this).serialize(); // Serialize form data
+    // console.log('Form Data:', formData); // Debug form data
 
-  $.ajax({
-    url: vw_stock_images_pro_customscripts_obj.ajax_url, // Ensure this is correct
-    type: 'POST',
-    data: {
-      action: 'remove_collection',
-      collection_id: $('select[name="collection_id"]').val()
-    },
-    success: function (response) {
-      // console.log('Response:', response); // Debug AJAX response
-      if (response.success) {
-        alert(response.data); // Success message
-        updateCollectionSelect(); // Optionally update the select options
-      } else {
-        alert(response.data); // Error message
+    $.ajax({
+      url: vw_stock_images_pro_customscripts_obj.ajax_url, // Ensure this is correct
+      type: 'POST',
+      data: {
+        action: 'remove_collection',
+        collection_id: $('select[name="collection_id"]').val()
+      },
+      success: function (response) {
+        // console.log('Response:', response); // Debug AJAX response
+        if (response.success) {
+          alert(response.data); // Success message
+          updateCollectionSelect(); // Optionally update the select options
+        } else {
+          alert(response.data); // Error message
+        }
+      },
+      error: function (xhr, status, error) {
+        // console.log('AJAX Error:', status, error); // Debug AJAX error
+        alert('An error occurred while removing the collection.');
       }
-    },
-    error: function (xhr, status, error) {
-      // console.log('AJAX Error:', status, error); // Debug AJAX error
-      alert('An error occurred while removing the collection.');
-    }
+    });
   });
-});
 
-// Use event delegation for Add Post to Collection Form submission
-$(document).on('submit', '#add-post-to-collection-form', function (e) {
-  e.preventDefault(); // Prevent default form submission
+  // Use event delegation for Add Post to Collection Form submission
+  $(document).on('submit', '#add-post-to-collection-form', function (e) {
+    e.preventDefault(); // Prevent default form submission
 
-  var formData = $(this).serialize(); // Serialize form data
-  // console.log('Form Data:', formData); // Debug form data
+    var formData = $(this).serialize(); // Serialize form data
+    // console.log('Form Data:', formData); // Debug form data
 
-  $.ajax({
-    url: vw_stock_images_pro_customscripts_obj.ajax_url, // Ensure this is correct
-    type: 'POST',
-    data: {
-      action: 'add_post_to_collection',
-      post_id: $('input[name="post_id"]').val(),
-      collection_id: $('select[name="post_collection_id"]').val()
-    },
-    success: function (response) {
-      // console.log('Response:', response); // Debug AJAX response
-      if (response.success) {
-        alert(response.data); // Success message
-        $('#add-post-to-collection-form')[0].reset(); // Reset the form
+    $.ajax({
+      url: vw_stock_images_pro_customscripts_obj.ajax_url, // Ensure this is correct
+      type: 'POST',
+      data: {
+        action: 'add_post_to_collection',
+        post_id: $('input[name="post_id"]').val(),
+        collection_id: $('select[name="post_collection_id"]').val()
+      },
+      success: function (response) {
+        // console.log('Response:', response); // Debug AJAX response
+        if (response.success) {
+          alert(response.data); // Success message
+          $('#add-post-to-collection-form')[0].reset(); // Reset the form
 
-      } else {
-        alert(response.data); // Error message
+        } else {
+          alert(response.data); // Error message
+        }
+      },
+      error: function (xhr, status, error) {
+        // console.log('AJAX Error:', status, error); // Debug AJAX error
+        alert('An error occurred while adding the post to the collection.');
       }
-    },
-    error: function (xhr, status, error) {
-      // console.log('AJAX Error:', status, error); // Debug AJAX error
-      alert('An error occurred while adding the post to the collection.');
-    }
+    });
   });
-});
 });
 
 
@@ -1168,3 +1172,94 @@ jQuery('.filter-dropdown').on('click', function () {
 //     console.log('No "taxonomy_term" parameter found in URL.');
 //   }
 // });
+
+
+// home page grids ===================================================================================
+jQuery('.user-profile').on('click', function (event) {
+  event.stopPropagation();  // Prevents event bubbling to body click
+  jQuery('.user-menu-modal').toggleClass('active');
+});
+
+jQuery('body').on('click', function () {
+  jQuery('.user-menu-modal').removeClass('active');
+});
+
+jQuery('.user-menu-modal').on('click', function (event) {
+  event.stopPropagation();  // Prevents the modal from closing when clicked
+});
+
+// home page grids ===================================================================================
+
+jQuery(document).ready(function ($) {
+  $('.category-slider').slick({
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    centerMode: true,
+    centerPadding: '40px',
+    nav: false,
+    prevArrow: $('.custom-prev'), // Assign custom previous button
+    nextArrow: $('.custom-next'), // Assign custom next button
+    responsive: [
+      {
+        breakpoint: 1400,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1
+        }
+      },
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1
+        }
+      },
+      {
+        breakpoint: 991,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1
+        }
+      },
+      {
+        breakpoint: 575,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          nav: true,
+          dots: true,
+        },
+        autoplay: true,
+
+      }
+    ]
+  });
+});
+
+jQuery(document).ready(function ($) {
+  // Create the div and Font Awesome icon element
+  var iconDiv = jQuery('<div class="cross-button"><i class="fa fa-times"></i></div>');
+
+  // Append the div with the icon to the element with the id 'menu-primary-menu'
+  jQuery('#menu-primary-menu').append(iconDiv);
+
+  jQuery('#menu-toggleBtn').on('click', function () {
+    jQuery('.primary_nav').addClass('menu_open');
+  })
+  jQuery('.cross-button').on('click', function () {
+    jQuery('.primary_nav').removeClass('menu_open');
+  })
+  var iconDiv = jQuery('<div class="dropdown-btn"><i class="fa-solid fa-chevron-down"></i></div>');
+  jQuery('.menu-item-has-children').append(iconDiv);
+  jQuery('.dropdown-btn').on('click', function () {
+    jQuery(this).siblings('ul.sub-menu').slideToggle();
+    console.log('slide toggled');
+    jQuery(this).toggleClass('active');
+  });
+}); 
+
+
+jQuery(document).ready(function($) {
+  var adminBarHeight = $('#wpadminbar').outerHeight();
+  jQuery('header#masthead').css('top',adminBarHeight);
+});

@@ -1544,7 +1544,7 @@ class ThemeWhizzie
 		add_post_meta($location_id, 'vw_title_banner_image_wp_custom_attachment', $banner_attachment_url);
 
 		// -------------- Section Ordering ---------------
-		set_theme_mod('vw_stock_images_pro_section_ordering_settings_repeater', 'slider,pests-problem,about,professional-services,counter-offer,why-choose-us,counter,popular-products,faq,our-newsletter,our-clients,professional-team,latest-news,gallery,partners');
+		set_theme_mod('vw_stock_images_pro_section_ordering_settings_repeater', "slider,categoriesSlider,ourFeatures,designers-fev,premiumFeatures,designandearn,out-contributers,pests-problem,our-newsletter,plans,partners");
 
 		// topbar
 
@@ -2271,8 +2271,8 @@ class ThemeWhizzie
 
 
 		// ---------------------Our Client Say----------------------------
-		set_theme_mod('vw_stock_images_pro_our_newsletter_heading', 'Subscribe Our Newsletter');
-		set_theme_mod('vw_stock_images_pro_our_newsletter_para', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry');
+		set_theme_mod('vw_stock_images_pro_our_newsletter_heading', 'Subscribe For A Stock Images & Video');
+		set_theme_mod('vw_stock_images_pro_our_newsletter_para', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.');
 
 		set_theme_mod('vw_stock_images_pro_appoinment_heading', 'Make an appointment');
 		set_theme_mod('vw_stock_images_pro_appoinment_para', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry');
@@ -2287,50 +2287,50 @@ class ThemeWhizzie
 		// Newsletter shortcode
 		$cf7title = "Newsletter Form";
 		$cf7content = '
-<div class="news-form-main">
-[email* your-email placeholder "Email Address"]
-<div class="theme-btn">[submit "Subscribe Now"]</div>
-</div>
-[_site_title] "[your-subject]"
-[_site_title] <abc@gmail.com>
-From: [your-name] <[your-email]>
-Subject: [your-subject]
+				<div class="news-form-main">
+				[email* your-email placeholder "Email Address"]
+				<div class="theme-btn">[submit "Subscribe Now"]</div>
+				</div>
+				[_site_title] "[your-subject]"
+				[_site_title] <abc@gmail.com>
+				From: [your-name] <[your-email]>
+				Subject: [your-subject]
 
-Message Body:
-[your-message]
+				Message Body:
+				[your-message]
 
---
-This e-mail was sent from a contact form on [_site_title] ([_site_url])
-[_site_admin_email]
-Reply-To: [your-email]
+				--
+				This e-mail was sent from a contact form on [_site_title] ([_site_url])
+				[_site_admin_email]
+				Reply-To: [your-email]
 
-0
-0
+				0
+				0
 
-[_site_title] "[your-subject]"
-[_site_title] <abc@gmail.com>
-Message Body:
-[your-message]
+				[_site_title] "[your-subject]"
+				[_site_title] <abc@gmail.com>
+				Message Body:
+				[your-message]
 
---
-This e-mail was sent from a contact form on [_site_title] ([_site_url])
-[your-email]
-Reply-To: [_site_admin_email]
+				--
+				This e-mail was sent from a contact form on [_site_title] ([_site_url])
+				[your-email]
+				Reply-To: [_site_admin_email]
 
-0
-0
-Thank you for your message. It has been sent.
-There was an error trying to send your message. Please try again later.
-One or more fields have an error. Please check and try again.
-There was an error trying to send your message. Please try again later.
-You must accept the terms and conditions before sending your message.
-The field is required.
-The field is too long.
-The field is too short.
-There was an unknown error uploading the file.
-You are not allowed to upload files of this type.
-The file is too big.
-There was an error uploading the file.';
+				0
+				0
+				Thank you for your message. It has been sent.
+				There was an error trying to send your message. Please try again later.
+				One or more fields have an error. Please check and try again.
+				There was an error trying to send your message. Please try again later.
+				You must accept the terms and conditions before sending your message.
+				The field is required.
+				The field is too long.
+				The field is too short.
+				There was an unknown error uploading the file.
+				You are not allowed to upload files of this type.
+				The file is too big.
+				There was an error uploading the file.';
 
 		$cf7_post = array(
 			'post_title' => wp_strip_all_tags($cf7title),
@@ -2342,21 +2342,21 @@ There was an error uploading the file.';
 		$cf7post_id = wp_insert_post($cf7_post);
 
 		add_post_meta($cf7post_id, "_form", '<div class="news-form-main">
-[email* your-email placeholder "Email Address"]
-<div class="theme-btn">[submit "Subscribe Now"]</div>
-</div>');
+			[email* your-email placeholder "Email Address"]
+			<div class="theme-btn">[submit "Subscribe Now"]</div>
+			</div>');
 
 		$cf7mail_data = array(
 			'subject' => '[_site_title] "[your-subject]"',
 			'sender' => '[_site_title] <abc@gmail.com>',
 			'body' => 'From: [your-name] <[your-email]>
-Subject: [your-subject]
+			Subject: [your-subject]
 
-Message Body:
-[your-message]
+			Message Body:
+			[your-message]
 
---
-This e-mail was sent from a contact form on [_site_title] ([_site_url])',
+			--
+			This e-mail was sent from a contact form on [_site_title] ([_site_url])',
 			'recipient' => '[_site_admin_email]',
 			'additional_headers' => 'Reply-To: [your-email]',
 			'attachments' => '',
@@ -3293,7 +3293,7 @@ This e-mail was sent from a contact form on [_site_title] ([_site_url])',
 		$cf7content = '
 			<div class="news-form-main">
 			[email* your-email placeholder "Email Address"]
-			<div class="theme-btn">[submit "Subscribe Now"]</div>
+			[submit "Subscribe Now"]
 			</div>
 			[_site_title] "[your-subject]"
 			[_site_title] <abc@gmail.com>
@@ -3347,7 +3347,7 @@ This e-mail was sent from a contact form on [_site_title] ([_site_url])',
 
 		add_post_meta($cf7post_id, "_form", '<div class="news-form-main">
 			[email* your-email placeholder "Email Address"]
-			<div class="theme-btn">[submit "Subscribe Now"]</div>
+			[submit "Subscribe Now"]
 			</div>');
 
 		$cf7mail_data = array(
@@ -3862,13 +3862,13 @@ This e-mail was sent from a contact form on [_site_title] ([_site_url])',
 						for (var i = 0; i < premium_data.length; i++) {
 							var premium_product = premium_data[i];
 							var card_content = `<div class="o-products-col" data-id="` + premium_product.id + `">
-																					  <div class="o-products-image">
-																						  <img src="`+ premium_product.image + `">
-																					  </div>
-																					  <h3>`+ premium_product.title + `</h3>
-																					  <a href="`+ premium_product.permalink + `" target="_blank">Buy Now</a>
-																					  <a href="`+ premium_product.demo_url + `" target="_blank">View Demo</a>
-																				  </div>`;
+																							  <div class="o-products-image">
+																								  <img src="`+ premium_product.image + `">
+																							  </div>
+																							  <h3>`+ premium_product.title + `</h3>
+																							  <a href="`+ premium_product.permalink + `" target="_blank">Buy Now</a>
+																							  <a href="`+ premium_product.demo_url + `" target="_blank">View Demo</a>
+																						  </div>`;
 							jQuery('.wz-spinner-wrap').css('display', 'none');
 							jQuery('#other-products .o-product-row').append(card_content);
 						}
@@ -3884,8 +3884,8 @@ This e-mail was sent from a contact form on [_site_title] ([_site_url])',
 							}
 							let premium_product = premium_category[i];
 							let card_content = `<li data-ids="` + premium_product.product_ids + `" onclick="other_products(this);" class="` + active_class + `">
-																					  `+ premium_product.name + `<span class="badge badge-info">` + premium_product.product_ids.length + `</span>
-																				  </li>`;
+																							  `+ premium_product.name + `<span class="badge badge-info">` + premium_product.product_ids.length + `</span>
+																						  </li>`;
 							jQuery('.o-product-col-1 ul').append(card_content);
 						}
 					});
@@ -3955,5 +3955,44 @@ This e-mail was sent from a contact form on [_site_title] ([_site_url])',
 	}
 }
 
-set_theme_mod('vw_stock_images_pro_slider_paragraph', "Lorem Ipsum is simply dummy text of the printing and typesetting industry.");
-set_theme_mod('vw_stock_images_pro_slider_heading', 'High Quality Stock Images & Videos');
+// set_theme_mod('vw_stock_images_pro_slider_paragraph', "Lorem Ipsum is simply dummy text of the printing and typesetting industry.");
+// features 
+
+for ($i = 1; $i <= 4; $i++) {
+	set_theme_mod('vw_stock_images_pro_features_image_' . $i, get_template_directory_uri() . '/assets/images/features/feature_' . $i . '.png');
+	set_theme_mod('vw_stock_images_pro_features_title_' . $i, 'Title Here');
+	set_theme_mod('vw_stock_images_pro_features_text_' . $i, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.');
+}
+
+// premium features 
+set_theme_mod('vw_stock_images_pro_premium_features_heading', 'Premium Package Benefits');
+set_theme_mod('vw_stock_images_pro_premium_features_heading_text', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.');
+for ($i = 1; $i <= 4; $i++) {
+	set_theme_mod('vw_stock_images_pro_premium_features_image_' . $i, get_template_directory_uri() . '/assets/images/premium-features/premium-features_' . $i . '.png');
+	set_theme_mod('vw_stock_images_pro_premium_features_title_' . $i, 'Title Here');
+	set_theme_mod('vw_stock_images_pro_premium_features_text_' . $i, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.');
+}
+
+// design and earn 
+
+set_theme_mod('vw_stock_images_pro_design_earn_heading', 'Sell Your Design And Earn Money.');
+set_theme_mod('vw_stock_images_pro_design_earn_heading_text', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.');
+set_theme_mod('vw_stock_images_pro_design_earn_button_text', 'Become On Contributor');
+set_theme_mod('vw_stock_images_pro_design_earn_img', get_template_directory_uri() . '/assets/images/using-laptop.png');
+set_theme_mod('vw_stock_images_pro_design_earn_bgimage', get_template_directory_uri() . '/assets/images/design-earn-bg.png');
+
+
+// newsletter 
+set_theme_mod('vw_stock_images_pro_our_newsletter_bg_image', get_template_directory_uri() . '/assets/images/News-Letter-BG.png');
+set_theme_mod('vw_stock_images_pro_our_newsletter_heading', 'Subscribe For A Stock Images & Video');
+set_theme_mod('vw_stock_images_pro_our_newsletter_para', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.');
+
+// category slider 
+
+set_theme_mod('vw_stock_images_pro_our_category_slider_heading','Categories Images & Video');
+set_theme_mod('vw_stock_images_pro_our_category_slider_para','Lorem Ipsum is simply dummy text of the printing and typesetting industry.');
+
+
+set_theme_mod('vw_stock_images_pro_section_ordering_settings_repeater', "slider,categoriesSlider,ourFeatures,designers-fev,premiumFeatures,designandearn,out-contributers,pests-problem,our-newsletter,plans,partners");
+
+set_theme_mod('vw_stock_images_pro_partners_bgcolor', '');

@@ -1,9 +1,8 @@
 <?php
 get_header();
-get_template_part('template-parts/banner');
 ?>
 
-<div id="primary" class="content-area my-5">
+<div id="primary" class="content-area mb-5">
     <main id="main" class="site-main">
         <div class="container">
             <?php
