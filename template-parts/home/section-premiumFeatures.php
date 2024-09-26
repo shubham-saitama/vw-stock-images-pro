@@ -5,31 +5,30 @@
  * @package vw-stock-images-pro
  */
 
-$section_hide = get_theme_mod('vw_stock_images_pro_premium_features_enable');
+$section_hide = get_theme_mod('vw_stock_images_pro_radio_premium_features_enable');
 if ('Disable' == $section_hide) {
     return;
 }
-if (get_theme_mod('vw_stock_images_pro_premium_features_bgcolor', '')) {
-    $premium_features_back = 'background-color:' . esc_attr(get_theme_mod('vw_stock_images_pro_premium_features_bgcolor', '')) . ';';
-} elseif (get_theme_mod('vw_stock_images_pro_premium_features_bgimage', '')) {
-    $premium_features_back = 'background-image:url(\'' . esc_url(get_theme_mod('vw_stock_images_pro_premium_features_bgimage')) . '\')';
+if (get_theme_mod('vw_stock_images_pro_premium_features_bg_color', '')) {
+    $premium_features_back = 'background-color:' . esc_attr(get_theme_mod('vw_stock_images_pro_premium_features_bg_color', '')) . ';';
+} elseif (get_theme_mod('vw_stock_images_pro_premium_features_image', '')) {
+    $premium_features_back = 'background-image:url(\'' . esc_url(get_theme_mod('vw_stock_images_pro_premium_features_image')) . '\')';
 } else {
     $premium_features_back = '';
 }
-$img_bg = get_theme_mod('vw_stock_images_pro_premium_features_bgimage_setting');
+$img_bg = get_theme_mod('vw_stock_images_pro_premium_features_image_bg_attachement');
 
 ?>
 
-<section class="premium-featuress" style="<?php echo esc_attr($premium_features_back); ?>"
-    class="<?php echo esc_attr($img_bg); ?>">
+<section class="premium-featuress <?php echo esc_attr($img_bg); ?>" style="<?php echo esc_attr($premium_features_back); ?>">
     <div class="container">
         <div class="row justify-content-center">
             <div class="section-head-wrap row justify-content-between align-items-center">
                 <div class="heading col-lg-12 col-md-12 col-12">
                     <h2 class="section-heading text-center">
-                        <?php echo get_theme_mod('vw_stock_images_pro_premium_features_heading'); ?></h2>
+                        <?php echo get_theme_mod('vw_stock_images_pro_premium_features_sec_heading'); ?></h2>
                     <p class="section-heading-text text-center">
-                        <?php echo get_theme_mod('vw_stock_images_pro_premium_features_heading_text'); ?>
+                        <?php echo get_theme_mod('vw_stock_images_pro_premium_features_sec_heading_text'); ?>
                     </p>
                 </div>
             </div>
@@ -39,11 +38,11 @@ $img_bg = get_theme_mod('vw_stock_images_pro_premium_features_bgimage_setting');
                 ?>
                 <div class="feature-card col-lg-3 col-md-3 col-6">
                     <div class="feature-img-wrap">
-                        <img src="<?php echo get_theme_mod('vw_stock_images_pro_premium_features_image_' . $i); ?>"
+                        <img src="<?php echo get_theme_mod('vw_stock_images_pro_premium_features_sec_image' . $i); ?>"
                             alt="Feature Image">
                     </div>
-                    <h4 class=""><?php echo get_theme_mod('vw_stock_images_pro_premium_features_title_' . $i); ?></h4>
-                    <p class="feature-text "><?php echo get_theme_mod('vw_stock_images_pro_premium_features_text_' . $i); ?>
+                    <h4 class=""><?php echo get_theme_mod('vw_stock_images_pro_premium_features_sec_feature_title_' . $i); ?></h4>
+                    <p class="feature-text "><?php echo get_theme_mod('vw_stock_images_pro_premium_features_sec_feature_desc_' . $i); ?>
                     </p>
                 </div>
                 <?php

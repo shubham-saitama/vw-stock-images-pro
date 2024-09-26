@@ -2270,8 +2270,8 @@ class ThemeWhizzie
 
 
 		// ---------------------Our Client Say----------------------------
-		set_theme_mod('vw_stock_images_pro_our_newsletter_heading', 'Subscribe For A Stock Images & Video');
-		set_theme_mod('vw_stock_images_pro_our_newsletter_para', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.');
+		set_theme_mod('vw_stock_images_pro_newsletter_section_heading', 'Subscribe For A Stock Images & Video');
+		set_theme_mod('vw_stock_images_pro_newsletter_section_heading_text', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.');
 
 		set_theme_mod('vw_stock_images_pro_appoinment_heading', 'Make an appointment');
 		set_theme_mod('vw_stock_images_pro_appoinment_para', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry');
@@ -2279,9 +2279,7 @@ class ThemeWhizzie
 		set_theme_mod('vw_stock_images_pro_appoinment_text', 'Appointment');
 		set_theme_mod('vw_stock_images_pro_appoinment_url', get_permalink(ThemeWhizzie::get_page_id_by_title('Appointment')));
 
-		set_theme_mod('vw_stock_images_pro_our_newsletter_beetle_img', get_template_directory_uri() . '/assets/images/newsletter/news-beetle.png');
-
-		set_theme_mod('vw_stock_images_pro_our_newsletter_man_image', get_template_directory_uri() . '/assets/images/newsletter/news-man.png');
+		
 
 		// Newsletter shortcode
 		$cf7title = "Newsletter Form";
@@ -3966,27 +3964,27 @@ for ($i = 1; $i <= 4; $i++) {
 }
 
 // premium features 
-set_theme_mod('vw_stock_images_pro_premium_features_heading', 'Premium Package Benefits');
-set_theme_mod('vw_stock_images_pro_premium_features_heading_text', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.');
+set_theme_mod('vw_stock_images_pro_premium_features_sec_heading', 'Premium Package Benefits');
+set_theme_mod('vw_stock_images_pro_premium_features_sec_heading_text', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.');
 for ($i = 1; $i <= 4; $i++) {
-	set_theme_mod('vw_stock_images_pro_premium_features_image_' . $i, get_template_directory_uri() . '/assets/images/premium-features/premium-features_' . $i . '.png');
-	set_theme_mod('vw_stock_images_pro_premium_features_title_' . $i, 'Title Here');
-	set_theme_mod('vw_stock_images_pro_premium_features_text_' . $i, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.');
+	set_theme_mod('vw_stock_images_pro_premium_features_sec_image' . $i, get_template_directory_uri() . '/assets/images/premium-features/premium-features_' . $i . '.png');
+	set_theme_mod('vw_stock_images_pro_premium_features_sec_feature_title_' . $i, 'Title Here');
+	set_theme_mod('vw_stock_images_pro_premium_features_sec_feature_desc_' . $i, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.');
 }
 
 // design and earn 
 
 set_theme_mod('vw_stock_images_pro_design_earn_heading', 'Sell Your Design And Earn Money.');
-set_theme_mod('vw_stock_images_pro_design_earn_heading_text', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.');
-set_theme_mod('vw_stock_images_pro_design_earn_button_text', 'Become On Contributor');
-set_theme_mod('vw_stock_images_pro_design_earn_img', get_template_directory_uri() . '/assets/images/using-laptop.png');
-set_theme_mod('vw_stock_images_pro_design_earn_bgimage', get_template_directory_uri() . '/assets/images/design-earn-bg.png');
+set_theme_mod('vw_stock_images_pro_design_and_earn_sec_heading_text', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.');
+set_theme_mod('vw_stock_images_pro_design_and_earn_sec_button', 'Become On Contributor');
+set_theme_mod('vw_stock_images_pro_design_and_earn_sec_image', get_template_directory_uri() . '/assets/images/using-laptop.png');
+set_theme_mod('vw_stock_images_pro_design_and_earn_bgimage', get_template_directory_uri() . '/assets/images/design-earn-bg.png');
 
 
 // newsletter 
-set_theme_mod('vw_stock_images_pro_our_newsletter_bg_image', get_template_directory_uri() . '/assets/images/News-Letter-BG.png');
-set_theme_mod('vw_stock_images_pro_our_newsletter_heading', 'Subscribe For A Stock Images & Video');
-set_theme_mod('vw_stock_images_pro_our_newsletter_para', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.');
+set_theme_mod('vw_stock_images_pro_our_newsletter_bgimage', get_template_directory_uri() . '/assets/images/News-Letter-BG.png');
+set_theme_mod('vw_stock_images_pro_newsletter_section_heading', 'Subscribe For A Stock Images & Video');
+set_theme_mod('vw_stock_images_pro_newsletter_section_heading_text', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.');
 
 // category slider 
 
@@ -3996,4 +3994,22 @@ set_theme_mod('vw_stock_images_pro_category_slider_heading_text', 'Lorem Ipsum i
 
 set_theme_mod('vw_stock_images_pro_section_ordering_settings_repeater', "slider,categoriesSlider,ourFeatures,designers-fev,premiumFeatures,designandearn,out-contributers,pests-problem,our-newsletter,plans,partners");
 
-set_theme_mod('vw_stock_images_pro_partners_bgcolor', '');
+
+
+// designers fav 
+
+set_theme_mod('vw_stock_images_pro_designers_fav_sec_heading', 'Designers’ Faves');
+set_theme_mod('vw_stock_images_pro_designers_fav_sec_heading_text', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.');
+set_theme_mod('vw_stock_images_pro_designers_fav_sec_button', 'Explore More');
+
+set_theme_mod('vw_stock_images_pro_contributer_sec_contri_heading', 'Top Contributors');
+set_theme_mod('vw_stock_images_pro_contributer_sec_contri_heading_text', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.');
+set_theme_mod('vw_stock_images_pro_contributer_sec_contri_button', 'Explore More');
+
+// plans section 
+
+set_theme_mod('vw_stock_images_pro_our_pricing_section_heading', 'Get A Premium Plans');
+set_theme_mod('vw_stock_images_pro_our_pricing_section_heading_text', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.');
+
+set_theme_mod('vw_stock_images_pro_our_pricing_section_plans_button', 'Subscribe Now');
+set_theme_mod('vw_stock_images_pro_our_pricing_section_best_planTag', 'Best Value');

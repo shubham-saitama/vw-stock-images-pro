@@ -4279,3 +4279,646 @@ if ($vw_stock_images_pro_our_features_sec_feature_desc_color != false || $vw_sto
 	}
 	$custom_css .= '}';
 }
+
+
+// designer fav section 
+
+$vw_stock_images_pro_designers_fav_sec_heading_color = get_theme_mod('vw_stock_images_pro_designers_fav_sec_heading_color');
+$vw_stock_images_pro_designers_fav_sec_heading_font_size = get_theme_mod('vw_stock_images_pro_designers_fav_sec_heading_font_size');
+$vw_stock_images_pro_designers_fav_sec_heading_font_family = get_theme_mod('vw_stock_images_pro_designers_fav_sec_heading_font_family');
+$vw_stock_images_pro_designers_fav_sec_heading_font_weight = get_theme_mod('vw_stock_images_pro_designers_fav_sec_heading_font_weight');
+
+if ($vw_stock_images_pro_designers_fav_sec_heading_color != false || $vw_stock_images_pro_designers_fav_sec_heading_font_family != false || $vw_stock_images_pro_designers_fav_sec_heading_font_size != false || $vw_stock_images_pro_designers_fav_sec_heading_font_weight != false) {
+	$custom_css .= 'section#designer-fav-sec h2.section-heading{';
+	if ($vw_stock_images_pro_designers_fav_sec_heading_color != false) {
+		$custom_css .= 'color: ' . esc_html($vw_stock_images_pro_designers_fav_sec_heading_color) . ' ;';
+	}
+	if ($vw_stock_images_pro_designers_fav_sec_heading_font_family != false) {
+		$custom_css .= 'font-family:' . esc_html($vw_stock_images_pro_designers_fav_sec_heading_font_family) . ' ;';
+	}
+	if ($vw_stock_images_pro_designers_fav_sec_heading_font_size != false) {
+		$custom_css .= 'font-size:' . esc_html($vw_stock_images_pro_designers_fav_sec_heading_font_size) . 'px ;';
+	}
+	if ($vw_stock_images_pro_designers_fav_sec_heading_font_weight != false) {
+		$custom_css .= 'font-weight:' . esc_html($vw_stock_images_pro_designers_fav_sec_heading_font_weight) . ' ;';
+	}
+	$custom_css .= '}';
+}
+
+
+$vw_stock_images_pro_designers_fav_sec_heading_text_color = get_theme_mod('vw_stock_images_pro_designers_fav_sec_heading_text_color');
+$vw_stock_images_pro_designers_fav_sec_heading_text_font_size = get_theme_mod('vw_stock_images_pro_designers_fav_sec_heading_text_font_size');
+$vw_stock_images_pro_designers_fav_sec_heading_text_font_family = get_theme_mod('vw_stock_images_pro_designers_fav_sec_heading_text_font_family');
+$vw_stock_images_pro_designers_fav_sec_heading_text_font_weight = get_theme_mod('vw_stock_images_pro_designers_fav_sec_heading_text_font_weight');
+
+if ($vw_stock_images_pro_designers_fav_sec_heading_text_color != false || $vw_stock_images_pro_designers_fav_sec_heading_text_font_family != false || $vw_stock_images_pro_designers_fav_sec_heading_text_font_size != false || $vw_stock_images_pro_designers_fav_sec_heading_text_font_weight != false) {
+	$custom_css .= 'section#designer-fav-sec p.section-heading-text{';
+	if ($vw_stock_images_pro_designers_fav_sec_heading_text_color != false) {
+		$custom_css .= 'color: ' . esc_html($vw_stock_images_pro_designers_fav_sec_heading_text_color) . ' ;';
+	}
+	if ($vw_stock_images_pro_designers_fav_sec_heading_text_font_family != false) {
+		$custom_css .= 'font-family:' . esc_html($vw_stock_images_pro_designers_fav_sec_heading_text_font_family) . ' ;';
+	}
+	if ($vw_stock_images_pro_designers_fav_sec_heading_text_font_size != false) {
+		$custom_css .= 'font-size:' . esc_html($vw_stock_images_pro_designers_fav_sec_heading_text_font_size) . 'px ;';
+	}
+	if ($vw_stock_images_pro_designers_fav_sec_heading_text_font_weight != false) {
+		$custom_css .= 'font-weight:' . esc_html($vw_stock_images_pro_designers_fav_sec_heading_text_font_weight) . ' ;';
+	}
+	$custom_css .= '}';
+}
+
+
+$vw_stock_images_pro_designers_fav_sec_button_color = get_theme_mod('vw_stock_images_pro_designers_fav_sec_button_color');
+$vw_stock_images_pro_designers_fav_sec_button_font_size = get_theme_mod('vw_stock_images_pro_designers_fav_sec_button_font_size');
+$vw_stock_images_pro_designers_fav_sec_button_font_family = get_theme_mod('vw_stock_images_pro_designers_fav_sec_button_font_family');
+$vw_stock_images_pro_designers_fav_sec_button_font_weight = get_theme_mod('vw_stock_images_pro_designers_fav_sec_button_font_weight');
+$vw_stock_images_pro_designers_fav_sec_button_bgcolor = get_theme_mod('vw_stock_images_pro_designers_fav_sec_button_bgcolor');
+if ($vw_stock_images_pro_designers_fav_sec_button_color != false || $vw_stock_images_pro_designers_fav_sec_button_font_family != false || $vw_stock_images_pro_designers_fav_sec_button_font_size != false || $vw_stock_images_pro_designers_fav_sec_button_font_weight != false || $vw_stock_images_pro_designers_fav_sec_button_bgcolor != false) {
+	$custom_css .= 'section#designer-fav-sec a.theme-button{';
+	if ($vw_stock_images_pro_designers_fav_sec_button_color != false) {
+		$custom_css .= 'color: ' . esc_html($vw_stock_images_pro_designers_fav_sec_button_color) . ' ;';
+	}
+	if ($vw_stock_images_pro_designers_fav_sec_button_font_family != false) {
+		$custom_css .= 'font-family:' . esc_html($vw_stock_images_pro_designers_fav_sec_button_font_family) . ' ;';
+	}
+	if ($vw_stock_images_pro_designers_fav_sec_button_font_size != false) {
+		$custom_css .= 'font-size:' . esc_html($vw_stock_images_pro_designers_fav_sec_button_font_size) . 'px ;';
+	}
+	if ($vw_stock_images_pro_designers_fav_sec_button_font_weight != false) {
+		$custom_css .= 'font-weight:' . esc_html($vw_stock_images_pro_designers_fav_sec_button_font_weight) . ' ;';
+	}
+	if ($vw_stock_images_pro_designers_fav_sec_button_bgcolor != false) {
+		$custom_css .= 'background-color:' . esc_html($vw_stock_images_pro_designers_fav_sec_button_bgcolor) . ' ;';
+	}
+	$custom_css .= '}';
+}
+
+$vw_stock_images_pro_designers_fav_sec_cateogry_title_color = get_theme_mod('vw_stock_images_pro_designers_fav_sec_cateogry_title_color');
+$vw_stock_images_pro_designers_fav_sec_cateogry_title_font_size = get_theme_mod('vw_stock_images_pro_designers_fav_sec_cateogry_title_font_size');
+$vw_stock_images_pro_designers_fav_sec_cateogry_title_font_family = get_theme_mod('vw_stock_images_pro_designers_fav_sec_cateogry_title_font_family');
+$vw_stock_images_pro_designers_fav_sec_cateogry_title_font_weight = get_theme_mod('vw_stock_images_pro_designers_fav_sec_cateogry_title_font_weight');
+
+if ($vw_stock_images_pro_designers_fav_sec_cateogry_title_color != false || $vw_stock_images_pro_designers_fav_sec_cateogry_title_font_family != false || $vw_stock_images_pro_designers_fav_sec_cateogry_title_font_size != false || $vw_stock_images_pro_designers_fav_sec_cateogry_title_font_weight != false) {
+	$custom_css .= '.fav-card h3 a{';
+	if ($vw_stock_images_pro_designers_fav_sec_cateogry_title_color != false) {
+		$custom_css .= 'color: ' . esc_html($vw_stock_images_pro_designers_fav_sec_cateogry_title_color) . ' ;';
+	}
+	if ($vw_stock_images_pro_designers_fav_sec_cateogry_title_font_family != false) {
+		$custom_css .= 'font-family:' . esc_html($vw_stock_images_pro_designers_fav_sec_cateogry_title_font_family) . ' ;';
+	}
+	if ($vw_stock_images_pro_designers_fav_sec_cateogry_title_font_size != false) {
+		$custom_css .= 'font-size:' . esc_html($vw_stock_images_pro_designers_fav_sec_cateogry_title_font_size) . 'px ;';
+	}
+	if ($vw_stock_images_pro_designers_fav_sec_cateogry_title_font_weight != false) {
+		$custom_css .= 'font-weight:' . esc_html($vw_stock_images_pro_designers_fav_sec_cateogry_title_font_weight) . ' ;';
+	}
+	$custom_css .= '}';
+}
+
+
+
+// premium FEatures 
+
+$vw_stock_images_pro_premium_features_sec_feature_title_color = get_theme_mod('vw_stock_images_pro_premium_features_sec_feature_title_color');
+$vw_stock_images_pro_premium_features_sec_feature_title_font_size = get_theme_mod('vw_stock_images_pro_premium_features_sec_feature_title_font_size');
+$vw_stock_images_pro_premium_features_sec_feature_title_font_family = get_theme_mod('vw_stock_images_pro_premium_features_sec_feature_title_font_family');
+$vw_stock_images_pro_premium_features_sec_feature_title_font_weight = get_theme_mod('vw_stock_images_pro_premium_features_sec_feature_title_font_weight');
+
+if ($vw_stock_images_pro_premium_features_sec_feature_title_color != false || $vw_stock_images_pro_premium_features_sec_feature_title_font_family != false || $vw_stock_images_pro_premium_features_sec_feature_title_font_size != false || $vw_stock_images_pro_premium_features_sec_feature_title_font_weight != false) {
+	$custom_css .= 'section.premium-featuress .feature-card h4{';
+	if ($vw_stock_images_pro_premium_features_sec_feature_title_color != false) {
+		$custom_css .= 'color: ' . esc_html($vw_stock_images_pro_premium_features_sec_feature_title_color) . ' ;';
+	}
+	if ($vw_stock_images_pro_premium_features_sec_feature_title_font_family != false) {
+		$custom_css .= 'font-family:' . esc_html($vw_stock_images_pro_premium_features_sec_feature_title_font_family) . ' ;';
+	}
+	if ($vw_stock_images_pro_premium_features_sec_feature_title_font_size != false) {
+		$custom_css .= 'font-size:' . esc_html($vw_stock_images_pro_premium_features_sec_feature_title_font_size) . 'px ;';
+	}
+	if ($vw_stock_images_pro_premium_features_sec_feature_title_font_weight != false) {
+		$custom_css .= 'font-weight:' . esc_html($vw_stock_images_pro_premium_features_sec_feature_title_font_weight) . ' ;';
+	}
+	$custom_css .= '}';
+}
+$vw_stock_images_pro_premium_features_sec_feature_desc_color = get_theme_mod('vw_stock_images_pro_premium_features_sec_feature_desc_color');
+$vw_stock_images_pro_premium_features_sec_feature_desc_font_size = get_theme_mod('vw_stock_images_pro_premium_features_sec_feature_desc_font_size');
+$vw_stock_images_pro_premium_features_sec_feature_desc_font_family = get_theme_mod('vw_stock_images_pro_premium_features_sec_feature_desc_font_family');
+$vw_stock_images_pro_premium_features_sec_feature_desc_font_weight = get_theme_mod('vw_stock_images_pro_premium_features_sec_feature_desc_font_weight');
+
+if ($vw_stock_images_pro_premium_features_sec_feature_desc_color != false || $vw_stock_images_pro_premium_features_sec_feature_desc_font_family != false || $vw_stock_images_pro_premium_features_sec_feature_desc_font_size != false || $vw_stock_images_pro_premium_features_sec_feature_desc_font_weight != false) {
+	$custom_css .= 'section.premium-featuress p.feature-text{';
+	if ($vw_stock_images_pro_premium_features_sec_feature_desc_color != false) {
+		$custom_css .= 'color: ' . esc_html($vw_stock_images_pro_premium_features_sec_feature_desc_color) . ' ;';
+	}
+	if ($vw_stock_images_pro_premium_features_sec_feature_desc_font_family != false) {
+		$custom_css .= 'font-family:' . esc_html($vw_stock_images_pro_premium_features_sec_feature_desc_font_family) . ' ;';
+	}
+	if ($vw_stock_images_pro_premium_features_sec_feature_desc_font_size != false) {
+		$custom_css .= 'font-size:' . esc_html($vw_stock_images_pro_premium_features_sec_feature_desc_font_size) . 'px ;';
+	}
+	if ($vw_stock_images_pro_premium_features_sec_feature_desc_font_weight != false) {
+		$custom_css .= 'font-weight:' . esc_html($vw_stock_images_pro_premium_features_sec_feature_desc_font_weight) . ' ;';
+	}
+	$custom_css .= '}';
+}
+
+
+$vw_stock_images_pro_premium_features_sec_heading_color = get_theme_mod('vw_stock_images_pro_premium_features_sec_heading_color');
+$vw_stock_images_pro_premium_features_sec_heading_font_size = get_theme_mod('vw_stock_images_pro_premium_features_sec_heading_font_size');
+$vw_stock_images_pro_premium_features_sec_heading_font_family = get_theme_mod('vw_stock_images_pro_premium_features_sec_heading_font_family');
+$vw_stock_images_pro_premium_features_sec_heading_font_weight = get_theme_mod('vw_stock_images_pro_premium_features_sec_heading_font_weight');
+
+if ($vw_stock_images_pro_premium_features_sec_heading_color != false || $vw_stock_images_pro_premium_features_sec_heading_font_family != false || $vw_stock_images_pro_premium_features_sec_heading_font_size != false || $vw_stock_images_pro_premium_features_sec_heading_font_weight != false) {
+	$custom_css .= 'section.premium-featuress h2.section-heading {';
+	if ($vw_stock_images_pro_premium_features_sec_heading_color != false) {
+		$custom_css .= 'color: ' . esc_html($vw_stock_images_pro_premium_features_sec_heading_color) . ' ;';
+	}
+	if ($vw_stock_images_pro_premium_features_sec_heading_font_family != false) {
+		$custom_css .= 'font-family:' . esc_html($vw_stock_images_pro_premium_features_sec_heading_font_family) . ' ;';
+	}
+	if ($vw_stock_images_pro_premium_features_sec_heading_font_size != false) {
+		$custom_css .= 'font-size:' . esc_html($vw_stock_images_pro_premium_features_sec_heading_font_size) . 'px ;';
+	}
+	if ($vw_stock_images_pro_premium_features_sec_heading_font_weight != false) {
+		$custom_css .= 'font-weight:' . esc_html($vw_stock_images_pro_premium_features_sec_heading_font_weight) . ' ;';
+	}
+	$custom_css .= '}';
+}
+
+$vw_stock_images_pro_premium_features_sec_heading_text_color = get_theme_mod('vw_stock_images_pro_premium_features_sec_heading_text_color');
+$vw_stock_images_pro_premium_features_sec_heading_text_font_size = get_theme_mod('vw_stock_images_pro_premium_features_sec_heading_text_font_size');
+$vw_stock_images_pro_premium_features_sec_heading_text_font_family = get_theme_mod('vw_stock_images_pro_premium_features_sec_heading_text_font_family');
+$vw_stock_images_pro_premium_features_sec_heading_text_font_weight = get_theme_mod('vw_stock_images_pro_premium_features_sec_heading_text_font_weight');
+
+if ($vw_stock_images_pro_premium_features_sec_heading_text_color != false || $vw_stock_images_pro_premium_features_sec_heading_text_font_family != false || $vw_stock_images_pro_premium_features_sec_heading_text_font_size != false || $vw_stock_images_pro_premium_features_sec_heading_text_font_weight != false) {
+	$custom_css .= 'section.premium-featuress p.section-heading-text{';
+	if ($vw_stock_images_pro_premium_features_sec_heading_text_color != false) {
+		$custom_css .= 'color: ' . esc_html($vw_stock_images_pro_premium_features_sec_heading_text_color) . ' ;';
+	}
+	if ($vw_stock_images_pro_premium_features_sec_heading_text_font_family != false) {
+		$custom_css .= 'font-family:' . esc_html($vw_stock_images_pro_premium_features_sec_heading_text_font_family) . ' ;';
+	}
+	if ($vw_stock_images_pro_premium_features_sec_heading_text_font_size != false) {
+		$custom_css .= 'font-size:' . esc_html($vw_stock_images_pro_premium_features_sec_heading_text_font_size) . 'px ;';
+	}
+	if ($vw_stock_images_pro_premium_features_sec_heading_text_font_weight != false) {
+		$custom_css .= 'font-weight:' . esc_html($vw_stock_images_pro_premium_features_sec_heading_text_font_weight) . ' ;';
+	}
+	$custom_css .= '}';
+}
+
+
+
+// design and earn section 
+
+
+$vw_stock_images_pro_design_and_earn_sec_heading_text_color = get_theme_mod('vw_stock_images_pro_design_and_earn_sec_heading_text_color');
+$vw_stock_images_pro_design_and_earn_sec_heading_text_font_size = get_theme_mod('vw_stock_images_pro_design_and_earn_sec_heading_text_font_size');
+$vw_stock_images_pro_design_and_earn_sec_heading_text_font_family = get_theme_mod('vw_stock_images_pro_design_and_earn_sec_heading_text_font_family');
+$vw_stock_images_pro_design_and_earn_sec_heading_text_font_weight = get_theme_mod('vw_stock_images_pro_design_and_earn_sec_heading_text_font_weight');
+
+if ($vw_stock_images_pro_design_and_earn_sec_heading_text_color != false || $vw_stock_images_pro_design_and_earn_sec_heading_text_font_family != false || $vw_stock_images_pro_design_and_earn_sec_heading_text_font_size != false || $vw_stock_images_pro_design_and_earn_sec_heading_text_font_weight != false) {
+	$custom_css .= 'section.design-earn p{';
+	if ($vw_stock_images_pro_design_and_earn_sec_heading_text_color != false) {
+		$custom_css .= 'color: ' . esc_html($vw_stock_images_pro_design_and_earn_sec_heading_text_color) . ' ;';
+	}
+	if ($vw_stock_images_pro_design_and_earn_sec_heading_text_font_family != false) {
+		$custom_css .= 'font-family:' . esc_html($vw_stock_images_pro_design_and_earn_sec_heading_text_font_family) . ' ;';
+	}
+	if ($vw_stock_images_pro_design_and_earn_sec_heading_text_font_size != false) {
+		$custom_css .= 'font-size:' . esc_html($vw_stock_images_pro_design_and_earn_sec_heading_text_font_size) . 'px ;';
+	}
+	if ($vw_stock_images_pro_design_and_earn_sec_heading_text_font_weight != false) {
+		$custom_css .= 'font-weight:' . esc_html($vw_stock_images_pro_design_and_earn_sec_heading_text_font_weight) . ' ;';
+	}
+	$custom_css .= '}';
+}
+
+$vw_stock_images_pro_design_and_earn_sec_heading_text_color = get_theme_mod('vw_stock_images_pro_design_and_earn_sec_heading_text_color');
+$vw_stock_images_pro_design_and_earn_sec_heading_text_font_size = get_theme_mod('vw_stock_images_pro_design_and_earn_sec_heading_text_font_size');
+$vw_stock_images_pro_design_and_earn_sec_heading_text_font_family = get_theme_mod('vw_stock_images_pro_design_and_earn_sec_heading_text_font_family');
+$vw_stock_images_pro_design_and_earn_sec_heading_text_font_weight = get_theme_mod('vw_stock_images_pro_design_and_earn_sec_heading_text_font_weight');
+
+if ($vw_stock_images_pro_design_and_earn_sec_heading_text_color != false || $vw_stock_images_pro_design_and_earn_sec_heading_text_font_family != false || $vw_stock_images_pro_design_and_earn_sec_heading_text_font_size != false || $vw_stock_images_pro_design_and_earn_sec_heading_text_font_weight != false) {
+	$custom_css .= 'section.design-earn h2{';
+	if ($vw_stock_images_pro_design_and_earn_sec_heading_text_color != false) {
+		$custom_css .= 'color: ' . esc_html($vw_stock_images_pro_design_and_earn_sec_heading_text_color) . ' ;';
+	}
+	if ($vw_stock_images_pro_design_and_earn_sec_heading_text_font_family != false) {
+		$custom_css .= 'font-family:' . esc_html($vw_stock_images_pro_design_and_earn_sec_heading_text_font_family) . ' ;';
+	}
+	if ($vw_stock_images_pro_design_and_earn_sec_heading_text_font_size != false) {
+		$custom_css .= 'font-size:' . esc_html($vw_stock_images_pro_design_and_earn_sec_heading_text_font_size) . 'px ;';
+	}
+	if ($vw_stock_images_pro_design_and_earn_sec_heading_text_font_weight != false) {
+		$custom_css .= 'font-weight:' . esc_html($vw_stock_images_pro_design_and_earn_sec_heading_text_font_weight) . ' ;';
+	}
+	$custom_css .= '}';
+}
+
+
+// top contributer section 
+
+
+$vw_stock_images_pro_contributer_sec_contri_heading_text_color = get_theme_mod('vw_stock_images_pro_contributer_sec_contri_heading_text_color');
+$vw_stock_images_pro_contributer_sec_contri_heading_text_font_size = get_theme_mod('vw_stock_images_pro_contributer_sec_contri_heading_text_font_size');
+$vw_stock_images_pro_contributer_sec_contri_heading_text_font_family = get_theme_mod('vw_stock_images_pro_contributer_sec_contri_heading_text_font_family');
+$vw_stock_images_pro_contributer_sec_contri_heading_text_font_weight = get_theme_mod('vw_stock_images_pro_contributer_sec_contri_heading_text_font_weight');
+
+if ($vw_stock_images_pro_contributer_sec_contri_heading_text_color != false || $vw_stock_images_pro_contributer_sec_contri_heading_text_font_family != false || $vw_stock_images_pro_contributer_sec_contri_heading_text_font_size != false || $vw_stock_images_pro_contributer_sec_contri_heading_text_font_weight != false) {
+	$custom_css .= 'section.contributers p.section-heading-text{';
+	if ($vw_stock_images_pro_contributer_sec_contri_heading_text_color != false) {
+		$custom_css .= 'color: ' . esc_html($vw_stock_images_pro_contributer_sec_contri_heading_text_color) . ' ;';
+	}
+	if ($vw_stock_images_pro_contributer_sec_contri_heading_text_font_family != false) {
+		$custom_css .= 'font-family:' . esc_html($vw_stock_images_pro_contributer_sec_contri_heading_text_font_family) . ' ;';
+	}
+	if ($vw_stock_images_pro_contributer_sec_contri_heading_text_font_size != false) {
+		$custom_css .= 'font-size:' . esc_html($vw_stock_images_pro_contributer_sec_contri_heading_text_font_size) . 'px ;';
+	}
+	if ($vw_stock_images_pro_contributer_sec_contri_heading_text_font_weight != false) {
+		$custom_css .= 'font-weight:' . esc_html($vw_stock_images_pro_contributer_sec_contri_heading_text_font_weight) . ' ;';
+	}
+	$custom_css .= '}';
+}
+
+$vw_stock_images_pro_contributer_sec_contri_button_color = get_theme_mod('vw_stock_images_pro_contributer_sec_contri_button_color');
+$vw_stock_images_pro_contributer_sec_contri_button_font_size = get_theme_mod('vw_stock_images_pro_contributer_sec_contri_button_font_size');
+$vw_stock_images_pro_contributer_sec_contri_button_font_family = get_theme_mod('vw_stock_images_pro_contributer_sec_contri_button_font_family');
+$vw_stock_images_pro_contributer_sec_contri_button_font_weight = get_theme_mod('vw_stock_images_pro_contributer_sec_contri_button_font_weight');
+$vw_stock_images_pro_contributer_sec_contri_button_bgcolor = get_theme_mod('vw_stock_images_pro_contributer_sec_contri_button_bgcolor');
+
+if ($vw_stock_images_pro_contributer_sec_contri_button_color != false || $vw_stock_images_pro_contributer_sec_contri_button_font_family != false || $vw_stock_images_pro_contributer_sec_contri_button_font_size != false || $vw_stock_images_pro_contributer_sec_contri_button_font_weight != false || $vw_stock_images_pro_contributer_sec_contri_button_bgcolor != false) {
+	$custom_css .= 'section.contributers a.theme-button{';
+	if ($vw_stock_images_pro_contributer_sec_contri_button_color != false) {
+		$custom_css .= 'color: ' . esc_html($vw_stock_images_pro_contributer_sec_contri_button_color) . ' ;';
+	}
+	if ($vw_stock_images_pro_contributer_sec_contri_button_font_family != false) {
+		$custom_css .= 'font-family:' . esc_html($vw_stock_images_pro_contributer_sec_contri_button_font_family) . ' ;';
+	}
+	if ($vw_stock_images_pro_contributer_sec_contri_button_font_size != false) {
+		$custom_css .= 'font-size:' . esc_html($vw_stock_images_pro_contributer_sec_contri_button_font_size) . 'px ;';
+	}
+	if ($vw_stock_images_pro_contributer_sec_contri_button_font_weight != false) {
+		$custom_css .= 'font-weight:' . esc_html($vw_stock_images_pro_contributer_sec_contri_button_font_weight) . ' ;';
+	}
+	if ($vw_stock_images_pro_contributer_sec_contri_button_bgcolor != false) {
+		$custom_css .= 'background-color:' . esc_html($vw_stock_images_pro_contributer_sec_contri_button_bgcolor) . ' ;';
+	}
+	$custom_css .= '}';
+}
+
+$vw_stock_images_pro_contributer_sec_contri_heading_color = get_theme_mod('vw_stock_images_pro_contributer_sec_contri_heading_color');
+$vw_stock_images_pro_contributer_sec_contri_heading_font_size = get_theme_mod('vw_stock_images_pro_contributer_sec_contri_heading_font_size');
+$vw_stock_images_pro_contributer_sec_contri_heading_font_family = get_theme_mod('vw_stock_images_pro_contributer_sec_contri_heading_font_family');
+$vw_stock_images_pro_contributer_sec_contri_heading_font_weight = get_theme_mod('vw_stock_images_pro_contributer_sec_contri_heading_font_weight');
+
+if ($vw_stock_images_pro_contributer_sec_contri_heading_color != false || $vw_stock_images_pro_contributer_sec_contri_heading_font_family != false || $vw_stock_images_pro_contributer_sec_contri_heading_font_size != false || $vw_stock_images_pro_contributer_sec_contri_heading_font_weight != false) {
+	$custom_css .= 'section.contributers h2.section-heading{';
+	if ($vw_stock_images_pro_contributer_sec_contri_heading_color != false) {
+		$custom_css .= 'color: ' . esc_html($vw_stock_images_pro_contributer_sec_contri_heading_color) . ' ;';
+	}
+	if ($vw_stock_images_pro_contributer_sec_contri_heading_font_family != false) {
+		$custom_css .= 'font-family:' . esc_html($vw_stock_images_pro_contributer_sec_contri_heading_font_family) . ' ;';
+	}
+	if ($vw_stock_images_pro_contributer_sec_contri_heading_font_size != false) {
+		$custom_css .= 'font-size:' . esc_html($vw_stock_images_pro_contributer_sec_contri_heading_font_size) . 'px ;';
+	}
+	if ($vw_stock_images_pro_contributer_sec_contri_heading_font_weight != false) {
+		$custom_css .= 'font-weight:' . esc_html($vw_stock_images_pro_contributer_sec_contri_heading_font_weight) . ' ;';
+	}
+	$custom_css .= '}';
+}
+
+
+$vw_stock_images_pro_contributer_sec_contri_name_color = get_theme_mod('vw_stock_images_pro_contributer_sec_contri_name_color');
+$vw_stock_images_pro_contributer_sec_contri_name_font_size = get_theme_mod('vw_stock_images_pro_contributer_sec_contri_name_font_size');
+$vw_stock_images_pro_contributer_sec_contri_name_font_family = get_theme_mod('vw_stock_images_pro_contributer_sec_contri_name_font_family');
+$vw_stock_images_pro_contributer_sec_contri_name_font_weight = get_theme_mod('vw_stock_images_pro_contributer_sec_contri_name_font_weight');
+
+if ($vw_stock_images_pro_contributer_sec_contri_name_color != false || $vw_stock_images_pro_contributer_sec_contri_name_font_family != false || $vw_stock_images_pro_contributer_sec_contri_name_font_size != false || $vw_stock_images_pro_contributer_sec_contri_name_font_weight != false) {
+	$custom_css .= '.user-header h3{';
+	if ($vw_stock_images_pro_contributer_sec_contri_name_color != false) {
+		$custom_css .= 'color: ' . esc_html($vw_stock_images_pro_contributer_sec_contri_name_color) . ' ;';
+	}
+	if ($vw_stock_images_pro_contributer_sec_contri_name_font_family != false) {
+		$custom_css .= 'font-family:' . esc_html($vw_stock_images_pro_contributer_sec_contri_name_font_family) . ' ;';
+	}
+	if ($vw_stock_images_pro_contributer_sec_contri_name_font_size != false) {
+		$custom_css .= 'font-size:' . esc_html($vw_stock_images_pro_contributer_sec_contri_name_font_size) . 'px ;';
+	}
+	if ($vw_stock_images_pro_contributer_sec_contri_name_font_weight != false) {
+		$custom_css .= 'font-weight:' . esc_html($vw_stock_images_pro_contributer_sec_contri_name_font_weight) . ' ;';
+	}
+	$custom_css .= '}';
+}
+
+
+$vw_stock_images_pro_contributer_sec_contri_location_color = get_theme_mod('vw_stock_images_pro_contributer_sec_contri_location_color');
+$vw_stock_images_pro_contributer_sec_contri_location_font_size = get_theme_mod('vw_stock_images_pro_contributer_sec_contri_location_font_size');
+$vw_stock_images_pro_contributer_sec_contri_location_font_family = get_theme_mod('vw_stock_images_pro_contributer_sec_contri_location_font_family');
+$vw_stock_images_pro_contributer_sec_contri_location_font_weight = get_theme_mod('vw_stock_images_pro_contributer_sec_contri_location_font_weight');
+
+if ($vw_stock_images_pro_contributer_sec_contri_location_color != false || $vw_stock_images_pro_contributer_sec_contri_location_font_family != false || $vw_stock_images_pro_contributer_sec_contri_location_font_size != false || $vw_stock_images_pro_contributer_sec_contri_location_font_weight != false) {
+	$custom_css .= '.user-header p{';
+	if ($vw_stock_images_pro_contributer_sec_contri_location_color != false) {
+		$custom_css .= 'color: ' . esc_html($vw_stock_images_pro_contributer_sec_contri_location_color) . ' ;';
+	}
+	if ($vw_stock_images_pro_contributer_sec_contri_location_font_family != false) {
+		$custom_css .= 'font-family:' . esc_html($vw_stock_images_pro_contributer_sec_contri_location_font_family) . ' ;';
+	}
+	if ($vw_stock_images_pro_contributer_sec_contri_location_font_size != false) {
+		$custom_css .= 'font-size:' . esc_html($vw_stock_images_pro_contributer_sec_contri_location_font_size) . 'px ;';
+	}
+	if ($vw_stock_images_pro_contributer_sec_contri_location_font_weight != false) {
+		$custom_css .= 'font-weight:' . esc_html($vw_stock_images_pro_contributer_sec_contri_location_font_weight) . ' ;';
+	}
+	$custom_css .= '}';
+}
+$vw_stock_images_pro_contributer_sec_contri_vontributer_card_bgcolor = get_theme_mod('vw_stock_images_pro_contributer_sec_contri_vontributer_card_bgcolor');
+if ($vw_stock_images_pro_contributer_sec_contri_vontributer_card_bgcolor != false) {
+	$custom_css .= '.user-card{';
+	if ($vw_stock_images_pro_contributer_sec_contri_vontributer_card_bgcolor != false) {
+		$custom_css .= 'background-color:' . esc_html($vw_stock_images_pro_contributer_sec_contri_vontributer_card_bgcolor) . ' ;';
+	}
+	$custom_css .= '}';
+}
+
+
+
+// newsletter 
+
+$vw_stock_images_pro_newsletter_section_form_button_color = get_theme_mod('vw_stock_images_pro_newsletter_section_form_button_color');
+$vw_stock_images_pro_newsletter_section_form_button_font_size = get_theme_mod('vw_stock_images_pro_newsletter_section_form_button_font_size');
+$vw_stock_images_pro_newsletter_section_form_button_font_family = get_theme_mod('vw_stock_images_pro_newsletter_section_form_button_font_family');
+$vw_stock_images_pro_newsletter_section_form_button_font_weight = get_theme_mod('vw_stock_images_pro_newsletter_section_form_button_font_weight');
+
+if ($vw_stock_images_pro_newsletter_section_form_button_color != false || $vw_stock_images_pro_newsletter_section_form_button_font_family != false || $vw_stock_images_pro_newsletter_section_form_button_font_size != false || $vw_stock_images_pro_newsletter_section_form_button_font_weight != false) {
+	$custom_css .= 'section#our-newsletter input[type="submit"]{';
+	if ($vw_stock_images_pro_newsletter_section_form_button_color != false) {
+		$custom_css .= 'color: ' . esc_html($vw_stock_images_pro_newsletter_section_form_button_color) . ' ;';
+	}
+	if ($vw_stock_images_pro_newsletter_section_form_button_font_family != false) {
+		$custom_css .= 'font-family:' . esc_html($vw_stock_images_pro_newsletter_section_form_button_font_family) . ' ;';
+	}
+	if ($vw_stock_images_pro_newsletter_section_form_button_font_size != false) {
+		$custom_css .= 'font-size:' . esc_html($vw_stock_images_pro_newsletter_section_form_button_font_size) . 'px ;';
+	}
+	if ($vw_stock_images_pro_newsletter_section_form_button_font_weight != false) {
+		$custom_css .= 'font-weight:' . esc_html($vw_stock_images_pro_newsletter_section_form_button_font_weight) . ' ;';
+	}
+	$custom_css .= '}';
+}
+$vw_stock_images_pro_newsletter_section_heading_text_color = get_theme_mod('vw_stock_images_pro_newsletter_section_heading_text_color');
+$vw_stock_images_pro_newsletter_section_heading_text_font_size = get_theme_mod('vw_stock_images_pro_newsletter_section_heading_text_font_size');
+$vw_stock_images_pro_newsletter_section_heading_text_font_family = get_theme_mod('vw_stock_images_pro_newsletter_section_heading_text_font_family');
+$vw_stock_images_pro_newsletter_section_heading_text_font_weight = get_theme_mod('vw_stock_images_pro_newsletter_section_heading_text_font_weight');
+
+if ($vw_stock_images_pro_newsletter_section_heading_text_color != false || $vw_stock_images_pro_newsletter_section_heading_text_font_family != false || $vw_stock_images_pro_newsletter_section_heading_text_font_size != false || $vw_stock_images_pro_newsletter_section_heading_text_font_weight != false) {
+	$custom_css .= 'section#our-newsletter p.theme-para{';
+	if ($vw_stock_images_pro_newsletter_section_heading_text_color != false) {
+		$custom_css .= 'color: ' . esc_html($vw_stock_images_pro_newsletter_section_heading_text_color) . ' ;';
+	}
+	if ($vw_stock_images_pro_newsletter_section_heading_text_font_family != false) {
+		$custom_css .= 'font-family:' . esc_html($vw_stock_images_pro_newsletter_section_heading_text_font_family) . ' ;';
+	}
+	if ($vw_stock_images_pro_newsletter_section_heading_text_font_size != false) {
+		$custom_css .= 'font-size:' . esc_html($vw_stock_images_pro_newsletter_section_heading_text_font_size) . 'px ;';
+	}
+	if ($vw_stock_images_pro_newsletter_section_heading_text_font_weight != false) {
+		$custom_css .= 'font-weight:' . esc_html($vw_stock_images_pro_newsletter_section_heading_text_font_weight) . ' ;';
+	}
+	$custom_css .= '}';
+}
+$vw_stock_images_pro_newsletter_section_heading_color = get_theme_mod('vw_stock_images_pro_newsletter_section_heading_color');
+$vw_stock_images_pro_newsletter_section_heading_font_size = get_theme_mod('vw_stock_images_pro_newsletter_section_heading_font_size');
+$vw_stock_images_pro_newsletter_section_heading_font_family = get_theme_mod('vw_stock_images_pro_newsletter_section_heading_font_family');
+$vw_stock_images_pro_newsletter_section_heading_font_weight = get_theme_mod('vw_stock_images_pro_newsletter_section_heading_font_weight');
+
+if ($vw_stock_images_pro_newsletter_section_heading_color != false || $vw_stock_images_pro_newsletter_section_heading_font_family != false || $vw_stock_images_pro_newsletter_section_heading_font_size != false || $vw_stock_images_pro_newsletter_section_heading_font_weight != false) {
+	$custom_css .= 'section#our-newsletter h2.main-head{';
+	if ($vw_stock_images_pro_newsletter_section_heading_color != false) {
+		$custom_css .= 'color: ' . esc_html($vw_stock_images_pro_newsletter_section_heading_color) . ' ;';
+	}
+	if ($vw_stock_images_pro_newsletter_section_heading_font_family != false) {
+		$custom_css .= 'font-family:' . esc_html($vw_stock_images_pro_newsletter_section_heading_font_family) . ' ;';
+	}
+	if ($vw_stock_images_pro_newsletter_section_heading_font_size != false) {
+		$custom_css .= 'font-size:' . esc_html($vw_stock_images_pro_newsletter_section_heading_font_size) . 'px ;';
+	}
+	if ($vw_stock_images_pro_newsletter_section_heading_font_weight != false) {
+		$custom_css .= 'font-weight:' . esc_html($vw_stock_images_pro_newsletter_section_heading_font_weight) . ' ;';
+	}
+	$custom_css .= '}';
+}
+
+
+$vw_stock_images_pro_our_pricing_section_heading_text_color = get_theme_mod('vw_stock_images_pro_our_pricing_section_heading_text_color');
+$vw_stock_images_pro_our_pricing_section_heading_text_font_size = get_theme_mod('vw_stock_images_pro_our_pricing_section_heading_text_font_size');
+$vw_stock_images_pro_our_pricing_section_heading_text_font_family = get_theme_mod('vw_stock_images_pro_our_pricing_section_heading_text_font_family');
+$vw_stock_images_pro_our_pricing_section_heading_text_font_weight = get_theme_mod('vw_stock_images_pro_our_pricing_section_heading_text_font_weight');
+
+if ($vw_stock_images_pro_our_pricing_section_heading_text_color != false || $vw_stock_images_pro_our_pricing_section_heading_text_font_family != false || $vw_stock_images_pro_our_pricing_section_heading_text_font_size != false || $vw_stock_images_pro_our_pricing_section_heading_text_font_weight != false) {
+	$custom_css .= 'section#plans p.section-heading-text{';
+	if ($vw_stock_images_pro_our_pricing_section_heading_text_color != false) {
+		$custom_css .= 'color: ' . esc_html($vw_stock_images_pro_our_pricing_section_heading_text_color) . ' ;';
+	}
+	if ($vw_stock_images_pro_our_pricing_section_heading_text_font_family != false) {
+		$custom_css .= 'font-family:' . esc_html($vw_stock_images_pro_our_pricing_section_heading_text_font_family) . ' ;';
+	}
+	if ($vw_stock_images_pro_our_pricing_section_heading_text_font_size != false) {
+		$custom_css .= 'font-size:' . esc_html($vw_stock_images_pro_our_pricing_section_heading_text_font_size) . 'px ;';
+	}
+	if ($vw_stock_images_pro_our_pricing_section_heading_text_font_weight != false) {
+		$custom_css .= 'font-weight:' . esc_html($vw_stock_images_pro_our_pricing_section_heading_text_font_weight) . ' ;';
+	}
+	$custom_css .= '}';
+}
+
+
+$vw_stock_images_pro_our_pricing_section_table_headings_color = get_theme_mod('vw_stock_images_pro_our_pricing_section_table_headings_color');
+$vw_stock_images_pro_our_pricing_section_table_headings_font_size = get_theme_mod('vw_stock_images_pro_our_pricing_section_table_headings_font_size');
+$vw_stock_images_pro_our_pricing_section_table_headings_font_family = get_theme_mod('vw_stock_images_pro_our_pricing_section_table_headings_font_family');
+$vw_stock_images_pro_our_pricing_section_table_headings_font_weight = get_theme_mod('vw_stock_images_pro_our_pricing_section_table_headings_font_weight');
+
+if ($vw_stock_images_pro_our_pricing_section_table_headings_color != false || $vw_stock_images_pro_our_pricing_section_table_headings_font_family != false || $vw_stock_images_pro_our_pricing_section_table_headings_font_size != false || $vw_stock_images_pro_our_pricing_section_table_headings_font_weight != false) {
+	$custom_css .= '.pricing-table th{';
+	if ($vw_stock_images_pro_our_pricing_section_table_headings_color != false) {
+		$custom_css .= 'color: ' . esc_html($vw_stock_images_pro_our_pricing_section_table_headings_color) . ' ;';
+	}
+	if ($vw_stock_images_pro_our_pricing_section_table_headings_font_family != false) {
+		$custom_css .= 'font-family:' . esc_html($vw_stock_images_pro_our_pricing_section_table_headings_font_family) . ' ;';
+	}
+	if ($vw_stock_images_pro_our_pricing_section_table_headings_font_size != false) {
+		$custom_css .= 'font-size:' . esc_html($vw_stock_images_pro_our_pricing_section_table_headings_font_size) . 'px ;';
+	}
+	if ($vw_stock_images_pro_our_pricing_section_table_headings_font_weight != false) {
+		$custom_css .= 'font-weight:' . esc_html($vw_stock_images_pro_our_pricing_section_table_headings_font_weight) . ' ;';
+	}
+	$custom_css .= '}';
+}
+
+$vw_stock_images_pro_our_pricing_section_table_items_color = get_theme_mod('vw_stock_images_pro_our_pricing_section_table_items_color');
+$vw_stock_images_pro_our_pricing_section_table_items_font_size = get_theme_mod('vw_stock_images_pro_our_pricing_section_table_items_font_size');
+$vw_stock_images_pro_our_pricing_section_table_items_font_family = get_theme_mod('vw_stock_images_pro_our_pricing_section_table_items_font_family');
+$vw_stock_images_pro_our_pricing_section_table_items_font_weight = get_theme_mod('vw_stock_images_pro_our_pricing_section_table_items_font_weight');
+
+if ($vw_stock_images_pro_our_pricing_section_table_items_color != false || $vw_stock_images_pro_our_pricing_section_table_items_font_family != false || $vw_stock_images_pro_our_pricing_section_table_items_font_size != false || $vw_stock_images_pro_our_pricing_section_table_items_font_weight != false) {
+	$custom_css .= '.pricing-table td{';
+	if ($vw_stock_images_pro_our_pricing_section_table_items_color != false) {
+		$custom_css .= 'color: ' . esc_html($vw_stock_images_pro_our_pricing_section_table_items_color) . ' ;';
+	}
+	if ($vw_stock_images_pro_our_pricing_section_table_items_font_family != false) {
+		$custom_css .= 'font-family:' . esc_html($vw_stock_images_pro_our_pricing_section_table_items_font_family) . ' ;';
+	}
+	if ($vw_stock_images_pro_our_pricing_section_table_items_font_size != false) {
+		$custom_css .= 'font-size:' . esc_html($vw_stock_images_pro_our_pricing_section_table_items_font_size) . 'px ;';
+	}
+	if ($vw_stock_images_pro_our_pricing_section_table_items_font_weight != false) {
+		$custom_css .= 'font-weight:' . esc_html($vw_stock_images_pro_our_pricing_section_table_items_font_weight) . ' ;';
+	}
+	$custom_css .= '}';
+}
+
+$vw_stock_images_pro_our_pricing_section_table_items_bgcolor = get_theme_mod('vw_stock_images_pro_our_pricing_section_table_items_bgcolor');
+
+
+if ($vw_stock_images_pro_our_pricing_section_table_items_bgcolor != false) {
+	$custom_css .= '.pricing-table td{';
+	if ($vw_stock_images_pro_our_pricing_section_table_items_bgcolor != false) {
+		$custom_css .= 'background-color: ' . esc_html($vw_stock_images_pro_our_pricing_section_table_items_bgcolor) . ' ;';
+	}
+	$custom_css .= '}';
+}
+
+$vw_stock_images_pro_our_pricing_section_plan_title_color = get_theme_mod('vw_stock_images_pro_our_pricing_section_plan_title_color');
+$vw_stock_images_pro_our_pricing_section_plan_title_font_size = get_theme_mod('vw_stock_images_pro_our_pricing_section_plan_title_font_size');
+$vw_stock_images_pro_our_pricing_section_plan_title_font_family = get_theme_mod('vw_stock_images_pro_our_pricing_section_plan_title_font_family');
+$vw_stock_images_pro_our_pricing_section_plan_title_font_weight = get_theme_mod('vw_stock_images_pro_our_pricing_section_plan_title_font_weight');
+
+if ($vw_stock_images_pro_our_pricing_section_plan_title_color != false || $vw_stock_images_pro_our_pricing_section_plan_title_font_family != false || $vw_stock_images_pro_our_pricing_section_plan_title_font_size != false || $vw_stock_images_pro_our_pricing_section_plan_title_font_weight != false) {
+	$custom_css .= '.plan-name{';
+	if ($vw_stock_images_pro_our_pricing_section_plan_title_color != false) {
+		$custom_css .= 'color: ' . esc_html($vw_stock_images_pro_our_pricing_section_plan_title_color) . ' ;';
+	}
+	if ($vw_stock_images_pro_our_pricing_section_plan_title_font_family != false) {
+		$custom_css .= 'font-family:' . esc_html($vw_stock_images_pro_our_pricing_section_plan_title_font_family) . ' ;';
+	}
+	if ($vw_stock_images_pro_our_pricing_section_plan_title_font_size != false) {
+		$custom_css .= 'font-size:' . esc_html($vw_stock_images_pro_our_pricing_section_plan_title_font_size) . 'px ;';
+	}
+	if ($vw_stock_images_pro_our_pricing_section_plan_title_font_weight != false) {
+		$custom_css .= 'font-weight:' . esc_html($vw_stock_images_pro_our_pricing_section_plan_title_font_weight) . ' ;';
+	}
+	$custom_css .= '}';
+}
+$vw_stock_images_pro_our_pricing_section_plan_price_color = get_theme_mod('vw_stock_images_pro_our_pricing_section_plan_price_color');
+$vw_stock_images_pro_our_pricing_section_plan_price_font_size = get_theme_mod('vw_stock_images_pro_our_pricing_section_plan_price_font_size');
+$vw_stock_images_pro_our_pricing_section_plan_price_font_family = get_theme_mod('vw_stock_images_pro_our_pricing_section_plan_price_font_family');
+$vw_stock_images_pro_our_pricing_section_plan_price_font_weight = get_theme_mod('vw_stock_images_pro_our_pricing_section_plan_price_font_weight');
+
+if ($vw_stock_images_pro_our_pricing_section_plan_price_color != false || $vw_stock_images_pro_our_pricing_section_plan_price_font_family != false || $vw_stock_images_pro_our_pricing_section_plan_price_font_size != false || $vw_stock_images_pro_our_pricing_section_plan_price_font_weight != false) {
+	$custom_css .= '.plan-price{';
+	if ($vw_stock_images_pro_our_pricing_section_plan_price_color != false) {
+		$custom_css .= 'color: ' . esc_html($vw_stock_images_pro_our_pricing_section_plan_price_color) . ' ;';
+	}
+	if ($vw_stock_images_pro_our_pricing_section_plan_price_font_family != false) {
+		$custom_css .= 'font-family:' . esc_html($vw_stock_images_pro_our_pricing_section_plan_price_font_family) . ' ;';
+	}
+	if ($vw_stock_images_pro_our_pricing_section_plan_price_font_size != false) {
+		$custom_css .= 'font-size:' . esc_html($vw_stock_images_pro_our_pricing_section_plan_price_font_size) . 'px ;';
+	}
+	if ($vw_stock_images_pro_our_pricing_section_plan_price_font_weight != false) {
+		$custom_css .= 'font-weight:' . esc_html($vw_stock_images_pro_our_pricing_section_plan_price_font_weight) . ' ;';
+	}
+	$custom_css .= '}';
+}
+$vw_stock_images_pro_our_pricing_section_plan_per_month_color = get_theme_mod('vw_stock_images_pro_our_pricing_section_plan_per_month_color');
+$vw_stock_images_pro_our_pricing_section_plan_per_month_font_size = get_theme_mod('vw_stock_images_pro_our_pricing_section_plan_per_month_font_size');
+$vw_stock_images_pro_our_pricing_section_plan_per_month_font_family = get_theme_mod('vw_stock_images_pro_our_pricing_section_plan_per_month_font_family');
+$vw_stock_images_pro_our_pricing_section_plan_per_month_font_weight = get_theme_mod('vw_stock_images_pro_our_pricing_section_plan_per_month_font_weight');
+
+if ($vw_stock_images_pro_our_pricing_section_plan_per_month_color != false || $vw_stock_images_pro_our_pricing_section_plan_per_month_font_family != false || $vw_stock_images_pro_our_pricing_section_plan_per_month_font_size != false || $vw_stock_images_pro_our_pricing_section_plan_per_month_font_weight != false) {
+	$custom_css .= '.plan-price span{';
+	if ($vw_stock_images_pro_our_pricing_section_plan_per_month_color != false) {
+		$custom_css .= 'color: ' . esc_html($vw_stock_images_pro_our_pricing_section_plan_per_month_color) . ' ;';
+	}
+	if ($vw_stock_images_pro_our_pricing_section_plan_per_month_font_family != false) {
+		$custom_css .= 'font-family:' . esc_html($vw_stock_images_pro_our_pricing_section_plan_per_month_font_family) . ' ;';
+	}
+	if ($vw_stock_images_pro_our_pricing_section_plan_per_month_font_size != false) {
+		$custom_css .= 'font-size:' . esc_html($vw_stock_images_pro_our_pricing_section_plan_per_month_font_size) . 'px ;';
+	}
+	if ($vw_stock_images_pro_our_pricing_section_plan_per_month_font_weight != false) {
+		$custom_css .= 'font-weight:' . esc_html($vw_stock_images_pro_our_pricing_section_plan_per_month_font_weight) . ' ;';
+	}
+	$custom_css .= '}';
+}
+
+$vw_stock_images_pro_our_pricing_section_plan_deatils_color = get_theme_mod('vw_stock_images_pro_our_pricing_section_plan_deatils_color');
+$vw_stock_images_pro_our_pricing_section_plan_deatils_font_size = get_theme_mod('vw_stock_images_pro_our_pricing_section_plan_deatils_font_size');
+$vw_stock_images_pro_our_pricing_section_plan_deatils_font_family = get_theme_mod('vw_stock_images_pro_our_pricing_section_plan_deatils_font_family');
+$vw_stock_images_pro_our_pricing_section_plan_deatils_font_weight = get_theme_mod('vw_stock_images_pro_our_pricing_section_plan_deatils_font_weight');
+
+if ($vw_stock_images_pro_our_pricing_section_plan_deatils_color != false || $vw_stock_images_pro_our_pricing_section_plan_deatils_font_family != false || $vw_stock_images_pro_our_pricing_section_plan_deatils_font_size != false || $vw_stock_images_pro_our_pricing_section_plan_deatils_font_weight != false) {
+	$custom_css .= '.plan-desc li{';
+	if ($vw_stock_images_pro_our_pricing_section_plan_deatils_color != false) {
+		$custom_css .= 'color: ' . esc_html($vw_stock_images_pro_our_pricing_section_plan_deatils_color) . ' ;';
+	}
+	if ($vw_stock_images_pro_our_pricing_section_plan_deatils_font_family != false) {
+		$custom_css .= 'font-family:' . esc_html($vw_stock_images_pro_our_pricing_section_plan_deatils_font_family) . ' ;';
+	}
+	if ($vw_stock_images_pro_our_pricing_section_plan_deatils_font_size != false) {
+		$custom_css .= 'font-size:' . esc_html($vw_stock_images_pro_our_pricing_section_plan_deatils_font_size) . 'px ;';
+	}
+	if ($vw_stock_images_pro_our_pricing_section_plan_deatils_font_weight != false) {
+		$custom_css .= 'font-weight:' . esc_html($vw_stock_images_pro_our_pricing_section_plan_deatils_font_weight) . ' ;';
+	}
+	$custom_css .= '}';
+}
+
+
+
+$vw_stock_images_pro_our_pricing_section_plans_button_color = get_theme_mod('vw_stock_images_pro_our_pricing_section_plans_button_color');
+$vw_stock_images_pro_our_pricing_section_plans_button_font_size = get_theme_mod('vw_stock_images_pro_our_pricing_section_plans_button_font_size');
+$vw_stock_images_pro_our_pricing_section_plans_button_font_family = get_theme_mod('vw_stock_images_pro_our_pricing_section_plans_button_font_family');
+$vw_stock_images_pro_our_pricing_section_plans_button_font_weight = get_theme_mod('vw_stock_images_pro_our_pricing_section_plans_button_font_weight');
+
+if ($vw_stock_images_pro_our_pricing_section_plans_button_color != false || $vw_stock_images_pro_our_pricing_section_plans_button_font_family != false || $vw_stock_images_pro_our_pricing_section_plans_button_font_size != false || $vw_stock_images_pro_our_pricing_section_plans_button_font_weight != false) {
+	$custom_css .= 'a.pmpro-btn.pmpro-btn-primary{';
+	if ($vw_stock_images_pro_our_pricing_section_plans_button_color != false) {
+		$custom_css .= 'color: ' . esc_html($vw_stock_images_pro_our_pricing_section_plans_button_color) . ' ;';
+	}
+	if ($vw_stock_images_pro_our_pricing_section_plans_button_font_family != false) {
+		$custom_css .= 'font-family:' . esc_html($vw_stock_images_pro_our_pricing_section_plans_button_font_family) . ' ;';
+	}
+	if ($vw_stock_images_pro_our_pricing_section_plans_button_font_size != false) {
+		$custom_css .= 'font-size:' . esc_html($vw_stock_images_pro_our_pricing_section_plans_button_font_size) . 'px ;';
+	}
+	if ($vw_stock_images_pro_our_pricing_section_plans_button_font_weight != false) {
+		$custom_css .= 'font-weight:' . esc_html($vw_stock_images_pro_our_pricing_section_plans_button_font_weight) . ' ;';
+	}
+	$custom_css .= '}';
+}
+$vw_stock_images_pro_our_pricing_section_best_planTag_color = get_theme_mod('vw_stock_images_pro_our_pricing_section_best_planTag_color');
+$vw_stock_images_pro_our_pricing_section_best_planTag_font_size = get_theme_mod('vw_stock_images_pro_our_pricing_section_best_planTag_font_size');
+$vw_stock_images_pro_our_pricing_section_best_planTag_font_family = get_theme_mod('vw_stock_images_pro_our_pricing_section_best_planTag_font_family');
+$vw_stock_images_pro_our_pricing_section_best_planTag_font_weight = get_theme_mod('vw_stock_images_pro_our_pricing_section_best_planTag_font_weight');
+
+if ($vw_stock_images_pro_our_pricing_section_best_planTag_color != false || $vw_stock_images_pro_our_pricing_section_best_planTag_font_family != false || $vw_stock_images_pro_our_pricing_section_best_planTag_font_size != false || $vw_stock_images_pro_our_pricing_section_best_planTag_font_weight != false) {
+	$custom_css .= '.isbest{';
+	if ($vw_stock_images_pro_our_pricing_section_best_planTag_color != false) {
+		$custom_css .= 'color: ' . esc_html($vw_stock_images_pro_our_pricing_section_best_planTag_color) . ' ;';
+	}
+	if ($vw_stock_images_pro_our_pricing_section_best_planTag_font_family != false) {
+		$custom_css .= 'font-family:' . esc_html($vw_stock_images_pro_our_pricing_section_best_planTag_font_family) . ' ;';
+	}
+	if ($vw_stock_images_pro_our_pricing_section_best_planTag_font_size != false) {
+		$custom_css .= 'font-size:' . esc_html($vw_stock_images_pro_our_pricing_section_best_planTag_font_size) . 'px ;';
+	}
+	if ($vw_stock_images_pro_our_pricing_section_best_planTag_font_weight != false) {
+		$custom_css .= 'font-weight:' . esc_html($vw_stock_images_pro_our_pricing_section_best_planTag_font_weight) . ' ;';
+	}
+	$custom_css .= '}';
+}

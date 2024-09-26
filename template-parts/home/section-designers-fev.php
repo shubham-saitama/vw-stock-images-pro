@@ -1,17 +1,17 @@
 <?php
 
-$section_hide = get_theme_mod('vw_stock_images_pro_designer_fav_enable');
+$section_hide = get_theme_mod('vw_stock_images_pro_designers_fav_enable');
 if ('Disable' == $section_hide) {
     return;
 }
-if (get_theme_mod('vw_stock_images_pro_designer_fav_bgcolor', '')) {
-    $designer_fav_sec_back = 'background-color:' . esc_attr(get_theme_mod('vw_stock_images_pro_designer_fav_bgcolor', '')) . ';';
-} elseif (get_theme_mod('vw_stock_images_pro_designer_fav_bgimage', '')) {
-    $designer_fav_sec_back = 'background-image:url(\'' . esc_url(get_theme_mod('vw_stock_images_pro_designer_fav_bgimage')) . '\')';
+if (get_theme_mod('vw_stock_images_pro_designers_fav_bgcolor', '')) {
+    $designer_fav_sec_back = 'background-color:' . esc_attr(get_theme_mod('vw_stock_images_pro_designers_fav_bgcolor', '')) . ';';
+} elseif (get_theme_mod('vw_stock_images_pro_designers_fav_bgimage', '')) {
+    $designer_fav_sec_back = 'background-image:url(\'' . esc_url(get_theme_mod('vw_stock_images_pro_designers_fav_bgimage')) . '\')';
 } else {
     $designer_fav_sec_back = '';
 }
-$img_bg = get_theme_mod('vw_stock_images_pro_designer_fav_bgimage_setting');
+$img_bg = get_theme_mod('vw_stock_images_pro_designers_fav_bgimage_setting');
 ?>
 
 
@@ -21,12 +21,12 @@ $img_bg = get_theme_mod('vw_stock_images_pro_designer_fav_bgimage_setting');
         <div class="row">
             <div class="section-head-wrap row justify-content-between align-items-center">
                 <div class="heading col-lg-8 col-md-6 col-12">
-                    <h2 class="section-heading">Designer's Faves</h2>
+                    <h2 class="section-heading"><?php echo get_theme_mod('vw_stock_images_pro_designers_fav_sec_heading'); ?></h2>
                     <p class="section-heading-text">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                        <?php echo get_theme_mod('vw_stock_images_pro_designers_fav_sec_heading_text'); ?>
                     </p>
                 </div>
-                <a href="#" class="theme-button">Explore More <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="#" class="theme-button"><?php echo get_theme_mod('vw_stock_images_pro_designers_fav_sec_button'); ?> <i class="fa-solid fa-arrow-right"></i></a>
             </div>
             <div class="mt-lg-5 mt-3">
                 <div id="category-grid" class="cat-grid">

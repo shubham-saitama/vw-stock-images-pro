@@ -15,9 +15,21 @@ if (get_theme_mod('vw_stock_images_pro_our_pricing_color', '')) {
     $partner_backg = '';
 }
 $img_bg = get_theme_mod('vw_stock_images_pro_our_pricing_image_bg_attachement'); ?>
+
 <section id="plans" style="<?php echo esc_attr($partner_backg); ?>" class="<?php echo esc_attr($img_bg); ?>">
     <div class="container">
         <div class="row">
+            <div class="section-head-wrap row justify-content-start align-items-center">
+                <div class="heading col-lg-8 col-md-6 col-12">
+                    <h2 class="section-heading">
+                        <?php echo get_theme_mod('vw_stock_images_pro_our_pricing_section_heading'); ?></h2>
+                    <p class="section-heading-text">
+                        <?php echo get_theme_mod('vw_stock_images_pro_our_pricing_section_heading_text'); ?>
+                    </p>
+                </div>
+            </div>
+        </div>  
+        <div class="row mt-5">
             <div class="col-lg-6 col-md-6 col-12">
                 <div class="pricing-table">
                     <div class="table-head">
@@ -100,10 +112,10 @@ $img_bg = get_theme_mod('vw_stock_images_pro_our_pricing_image_bg_attachement');
                                 <div class="plan-left">
                                     <?php if ($is_bestVal) {
                                         ?>
-                                        <div class="isbest">Best Value</div>
+                                        <div class="isbest"><?php echo get_theme_mod('vw_stock_images_pro_our_pricing_section_best_planTag'); ?></div>
                                     <?php } ?>
                                     <?php $checkout_url = pmpro_url('checkout', '?level=' . $level->id);
-                                    echo '<a href="' . esc_url($checkout_url) . '" class="pmpro-btn pmpro-btn-primary">Subscribe Now</a>';
+                                    echo '<a href="' . esc_url($checkout_url) . '" class="pmpro-btn pmpro-btn-primary">'.get_theme_mod('vw_stock_images_pro_our_pricing_section_plans_button').'</a>';
                                     ?>
                                 </div>
                             </div>

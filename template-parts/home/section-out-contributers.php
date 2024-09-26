@@ -19,18 +19,17 @@ if (get_theme_mod('vw_stock_images_pro_contributer_bgcolor', '')) {
 $img_bg = get_theme_mod('vw_stock_images_pro_contributer_bgimage_setting');
 
 ?>
-<section class="contributers" style="<?php echo esc_attr($contributer_back); ?>"
-  class="<?php echo esc_attr($img_bg); ?>">
+<section class="contributers <?php echo esc_attr($img_bg); ?>" style="<?php echo esc_attr($contributer_back); ?>">
   <div class="container">
     <div class="row">
       <div class="section-head-wrap row justify-content-between align-items-center">
         <div class="heading col-lg-8 col-md-6 col-12">
-          <h2 class="section-heading">Top Contributors</h2>
+          <h2 class="section-heading"><?php echo get_theme_mod('vw_stock_images_pro_contributer_sec_contri_heading'); ?></h2>
           <p class="section-heading-text">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+          <?php echo get_theme_mod('vw_stock_images_pro_contributer_sec_contri_heading_text'); ?>
           </p>
         </div>
-        <a href="#" class="theme-button">Explore More <i class="fa-solid fa-arrow-right"></i></a>
+        <a href="#" class="theme-button"><?php echo get_theme_mod('vw_stock_images_pro_contributer_sec_contri_button'); ?> <i class="fa-solid fa-arrow-right"></i></a>
       </div>
     </div>
     <div class="row mt-5">
