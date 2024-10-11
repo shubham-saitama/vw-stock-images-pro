@@ -78,6 +78,13 @@ function vw_stock_images_pro_register_recommended_plugins()
 			'required' => true,
 			'force_activation' => false,
 		),
+		array(
+			'name' => __('Translate WordPress with GTranslate', 'vw-stock-images-pro'),
+			'slug' => 'gtranslate',
+			'source' => '',
+			'required' => true,
+			'force_activation' => false,
+		),
 	);
 	$vw_stock_images_pro_config = array();
 	tgmpa($plugins, $vw_stock_images_pro_config);

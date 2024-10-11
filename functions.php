@@ -28,7 +28,7 @@ if (!function_exists('vw_stock_images_pro_setup')):
 		load_theme_textdomain('vw-stock-images-pro', get_template_directory() . '/languages');
 		add_theme_support('automatic-feed-links');
 		add_theme_support('post-thumbnails');
-		add_theme_support('woocommerce');
+		// add_theme_support('woocommerce');
 		add_theme_support('custom-header');
 		add_theme_support('title-tag');
 		add_theme_support('wc-product-gallery-zoom');
@@ -249,6 +249,7 @@ function vw_stock_images_pro_scripts()
 		} else {
 			wp_enqueue_style('other-page-style', get_template_directory_uri() . '/assets/css/main-css/other-pages.css', true, null, 'all');
 			wp_add_inline_style('other-page-style', $custom_css);
+			wp_enqueue_style('home-page-style', get_template_directory_uri() . '/assets/css/main-css/home-page.css', true, null, 'all');
 		}
 		if ('post' == get_post_type() && is_home()) {
 			wp_enqueue_style('other-page-style', get_template_directory_uri() . '/assets/css/main-css/other-pages.css', true, null, 'all');
@@ -286,7 +287,9 @@ function vw_stock_images_pro_scripts()
 	// wp_enqueue_script( 'smooth-scroll', get_template_directory_uri() . '/assets/js/SmoothScroll.js', array( 'jquery' ) );
 	wp_enqueue_script('jquery-ui-slider');
 	wp_enqueue_script('jquery-ui-touch-punch', get_template_directory_uri() . '/assets/js/jquery.ui.touch-punch.min.js', array('jquery-ui-slider'), '0.2.3', true);
-
+	wp_enqueue_style('html5-lightbox-css', 'https://cdnjs.cloudflare.com/ajax/libs/html5lightbox/3.2.2/html5lightbox.min.css');
+	wp_enqueue_script('jquery'); // Ensure jQuery is loaded
+	wp_enqueue_script('html5-lightbox-js', get_template_directory_uri() . '/assets/js/html5lightbox.js', array('jquery'), null, true);
 
 	global $wpdb;
 	$product_price_max_query = "SELECT MAX( CAST( $wpdb->postmeta.meta_value AS SIGNED ) ) AS product_max_price FROM $wpdb->postmeta WHERE meta_key='%s'";
@@ -294,17 +297,12 @@ function vw_stock_images_pro_scripts()
 
 	wp_register_script('vw-stock-images-pro-customscripts', get_template_directory_uri() . '/assets/js/custom.js', array('jquery'));
 
-	$get_woocommerce_currency_symbol = '';
-	if (class_exists('WooCommerce')) {
-		$get_woocommerce_currency_symbol = get_woocommerce_currency_symbol();
-	}
+
 
 	$vw_stock_images_pro_customscripts_obj = array(
 		'is_home' => (is_home() || is_front_page()),
 		'home_url' => home_url(),
 		'is_rtl' => is_rtl(),
-		'product_max_price' => $product_meta_price_max->product_max_price,
-		'get_woocommerce_currency_symbol' => $get_woocommerce_currency_symbol,
 		'ajaxurl' => admin_url('admin-ajax.php'),
 		'loginUrl' => wp_login_url(), // Pass the login URL
 		'upgradeUrl' => 'https://example.com/upgrade', // Replace with your actual upgrade URL
@@ -446,17 +444,6 @@ function vw_stock_images_pro_deactivate()
 }
 
 define('CUSTOM_TEXT_DOMAIN', 'vw-stock-images-pro');
-add_filter('woocommerce_add_to_cart_fragments', 'vw_stock_images_pro_wc_refresh_mini_cart_count');
-function vw_stock_images_pro_wc_refresh_mini_cart_count($fragments)
-{
-	ob_start();
-	$items_count = WC()->cart->get_cart_contents_count();
-	?>
-	<span class="cart-value count"><?php echo $items_count ? '(' . $items_count . ')' : '(0)'; ?></span>
-	<?php
-	$fragments['.cart-value'] = ob_get_clean();
-	return $fragments;
-}
 
 add_filter('loop_shop_columns', 'loop_columns', 999);
 if (!function_exists('loop_columns')) {
@@ -465,20 +452,6 @@ if (!function_exists('loop_columns')) {
 		return 3; // 3 products per row
 	}
 }
-// Remove default WC image sizes
-function remove_wc_image_sizes()
-{
-	remove_image_size('woocommerce_thumbnail');
-	remove_image_size('woocommerce_single');
-	remove_image_size('woocommerce_gallery_thumbnail');
-	remove_image_size('shop_thumbnail');
-}
-add_action('init', 'remove_wc_image_sizes');
-
-add_filter('woocommerce_gallery_thumbnail_size', function ($size) {
-	return 'full';
-});
-
 // add_action('wp_footer', 'single_added_to_cart_event');
 
 function aw_include_script()
@@ -510,105 +483,6 @@ function single_added_to_cart_event()
 		<?php
 	}
 }
-// buy now button
-function buy_now_submit_form()
-{
-	?>
-	<script>
-		jQuery(document).ready(function () {
-			// listen if someone clicks 'Buy Now' button
-			jQuery('#buy_now_button').click(function () {
-				// set value to 1
-				jQuery('#is_buy_now').val('1');
-				//submit the form
-				jQuery('form.cart').submit();
-			});
-		});
-	</script>
-	<?php
-}
-add_action('woocommerce_after_add_to_cart_form', 'buy_now_submit_form');
-
-add_filter('woocommerce_add_to_cart_redirect', 'redirect_to_checkout');
-function redirect_to_checkout($redirect_url)
-{
-	if (isset($_REQUEST['is_buy_now']) && $_REQUEST['is_buy_now']) {
-		global $woocommerce;
-		$redirect_url = wc_get_checkout_url();
-	}
-	return $redirect_url;
-}
-
-add_action('wp_ajax_get_wishlist_count', 'get_wishlist_count');
-add_action('wp_ajax_nopriv_get_wishlist_count', 'get_wishlist_count');
-function get_wishlist_count()
-{
-	$wishlist_count = YITH_WCWL()->count_products();
-	$resp = array(
-		"wishlist_count" => '(' . $wishlist_count . ')',
-		"status" => 200
-	);
-	wp_send_json($resp);
-	exit;
-}
-
-//additional info tab
-add_filter('woocommerce_product_tabs', 'woo_rename_tabs', 98);
-function woo_rename_tabs($tabs)
-{
-
-	$tabs['additional_information']['title'] = __('Additional Information');
-
-	$tabs['description']['priority'] = 5; // Description first
-	$tabs['reviews']['priority'] = 15;  //  Reviews third
-	$tabs['additional_information']['priority'] = 10;
-
-	$tabs['additional_information']['title'] = __('Additional Information');
-	$tabs['additional_information']['callback'] = 'woocommerce_additional_information_callback';
-
-	$tabs['description']['title'] = __('Description');
-
-	// Rename the additional information tab
-	return $tabs;
-}
-
-function woocommerce_additional_information_callback()
-{
-	echo 'This is the content of the additional information';
-}
-
-// add_filter( 'woocommerce_get_price_html', 'rounded_price_html', 100, 2 );
-// function rounded_price_html( $price, $product ){
-// return number_format( $price, 2, ‘,’, ‘.’);
-// }
-
-ini_set('upload_max_filesize', '50M');
-ini_set('post_max_size', '55M');
-
-
-// function vw_stock_images_pro_categories_with_count($attr)
-// {
-//   $args = array(
-//     'taxonomy'   => $attr['taxonomy'],
-//     'hide_empty' => false,
-//   );
-//
-//   $product_categories = get_terms($args);
-// 	$string = '';
-//   $string .= '<h3 class="widget-title">'. $attr['heading'] .'</h3>';
-//   $string .= '<ul class="product-categories">';
-//
-//   foreach ($product_categories as $key => $cat) {
-//     $string .= '<li class="cat-item mb-2 cat-item-'. $cat->term_id .'"><a target="_blank" href="'. get_term_link($cat) .'">'. $cat->name .'</a> <span class="count">'. $cat->count .'</span></li>';
-//   }
-//   $string .= '</ul>';
-//
-//   return $string;
-// }
-//
-// // Register shortcode
-// add_shortcode('sidebar-categories-with-count', 'vw_stock_images_pro_categories_with_count');
-
 function custom_comment_form_defaults($defaults)
 {
 	$defaults['title_reply'] = 'Leave a Comment';
@@ -617,62 +491,6 @@ function custom_comment_form_defaults($defaults)
 }
 
 add_filter('comment_form_defaults', 'custom_comment_form_defaults');
-function average_rating()
-{
-	global $wpdb;
-	$post_id = get_the_ID();
-	$ratings = $wpdb->get_results("
-
-		SELECT $wpdb->commentmeta.meta_value
-		FROM $wpdb->commentmeta
-		INNER JOIN $wpdb->comments on $wpdb->comments.comment_id=$wpdb->commentmeta.comment_id
-		WHERE $wpdb->commentmeta.meta_key='rating'
-		AND $wpdb->comments.comment_post_id=$post_id
-		AND $wpdb->comments.comment_approved =1
-
-		");
-	$counter = 0;
-	$average_rating = 0;
-	if ($ratings) {
-		foreach ($ratings as $rating) {
-			$average_rating = $average_rating + $rating->meta_value;
-			$counter++;
-		}
-		//round the average to the nearast 1/2 point
-		return (round(($average_rating / $counter) * 2, 0) / 2);
-	} else {
-		//no ratings
-		return '0';
-	}
-}
-
-
-// woo commerce function
-
-function get_star_rating()
-{
-	global $product;
-
-	$average = $product->get_average_rating();
-	$stars_html = '<div class="star-rating">';
-	$full_stars = ceil($average);
-
-	// Full stars
-	for ($i = 1; $i <= $full_stars; $i++) {
-		$stars_html .= '<span class="fa fa-star"></span>';
-	}
-
-	// Empty stars
-	for ($i = $full_stars + 1; $i <= 5; $i++) {
-		$stars_html .= '<span class="fa fa-star-o"></span>';
-	}
-
-	$stars_html .= '</div>';
-
-	return $stars_html;
-}
-
-
 
 
 if (is_admin()) {
@@ -893,36 +711,6 @@ function vw_pest_control_pro_professional_appoinment_section_shortcode()
 }
 add_shortcode('section-appoinment-sec', 'vw_pest_control_pro_professional_appoinment_section_shortcode');
 
-add_action('woocommerce_single_product_summary', 'add_download_link_for_virtual_products', 20);
-
-function add_download_link_for_virtual_products()
-{
-	global $product;
-
-	// Check if the product is virtual and downloadable
-	if ($product->is_virtual() && $product->is_downloadable()) {
-		// Get the download links
-		$downloads = $product->get_downloads();
-
-		// Display the download link
-		if (!empty($downloads)) {
-			echo '<h2>Download Your Product</h2>';
-			echo '<ul>';
-			foreach ($downloads as $download_id => $download) {
-				$download_url = $download['file'];
-				echo '<a href="' . esc_url($download_url) . '" download>' . esc_html('Dowinload Image') . '</a>';
-			}
-			echo '</ul>';
-		}
-	}
-}
-
-
-
-
-
-
-
 function create_product_images_cpt()
 {
 	$labels = array(
@@ -994,11 +782,12 @@ function register_image_cat_taxonomy()
 }
 
 add_action('init', 'register_image_cat_taxonomy');
-function custom_upload_mimes($mimes) {
-    $mimes['mp4'] = 'video/mp4';
-    $mimes['webm'] = 'video/webm';
-    $mimes['ogg'] = 'video/ogg';
-    return $mimes;
+function custom_upload_mimes($mimes)
+{
+	$mimes['mp4'] = 'video/mp4';
+	$mimes['webm'] = 'video/webm';
+	$mimes['ogg'] = 'video/ogg';
+	return $mimes;
 }
 add_filter('upload_mimes', 'custom_upload_mimes');
 // Register Custom Taxonomies for Product Images
@@ -1151,35 +940,39 @@ function enqueue_image_cat_media_uploader()
 }
 add_action('admin_enqueue_scripts', 'enqueue_image_cat_media_uploader');
 
-function add_video_meta_box() {
-    add_meta_box(
-        'product_image_video_meta',
-        'Product Image Video',
-        'render_video_meta_box',
-        'product_images',
-        'normal',
-        'high'
-    );
+function add_video_meta_box()
+{
+	add_meta_box(
+		'product_image_video_meta',
+		'Product Image Video',
+		'render_video_meta_box',
+		'product_images',
+		'normal',
+		'high'
+	);
 }
 add_action('add_meta_boxes', 'add_video_meta_box');
 
-function render_video_meta_box($post) {
-    $video_url = get_post_meta($post->ID, '_product_image_video_url', true);
-    ?>
-    <label for="product_image_video_url">Video URL:</label>
-    <input type="text" id="product_image_video_url" name="product_image_video_url" value="<?php echo esc_attr($video_url); ?>" style="width:100%;" />
-    <p>Or upload a video file from the media library.</p>
-    <button class="button" id="upload_video_button">Upload Video</button>
-    <?php
+function render_video_meta_box($post)
+{
+	$video_url = get_post_meta($post->ID, '_product_image_video_url', true);
+	?>
+	<label for="product_image_video_url">Video URL:</label>
+	<input type="text" id="product_image_video_url" name="product_image_video_url"
+		value="<?php echo esc_attr($video_url); ?>" style="width:100%;" />
+	<p>Or upload a video file from the media library.</p>
+	<button class="button" id="upload_video_button">Upload Video</button>
+	<?php
 }
-function save_video_meta_box($post_id) {
-    if (array_key_exists('product_image_video_url', $_POST)) {
-        update_post_meta(
-            $post_id,
-            '_product_image_video_url',
-            sanitize_text_field($_POST['product_image_video_url'])
-        );
-    }
+function save_video_meta_box($post_id)
+{
+	if (array_key_exists('product_image_video_url', $_POST)) {
+		update_post_meta(
+			$post_id,
+			'_product_image_video_url',
+			sanitize_text_field($_POST['product_image_video_url'])
+		);
+	}
 }
 add_action('save_post', 'save_video_meta_box');
 
@@ -1357,7 +1150,7 @@ function save_location_meta_box($post_id)
 add_action('save_post', 'save_location_meta_box');
 
 
-// meta field for location =======================================================================================\
+// meta field for location =======================================================================================
 
 
 // keeping track of number of images upoded by user 
@@ -1455,10 +1248,6 @@ function show_post_count_in_user_profile($user)
 add_action('show_user_profile', 'show_post_count_in_user_profile');
 add_action('edit_user_profile', 'show_post_count_in_user_profile');
 
-
-
-
-
 function filter_custom_post_type_posts_by_author($query)
 {
 	// Check if we're in the admin area and it's a post list query
@@ -1504,7 +1293,7 @@ add_filter('user_has_cap', 'restrict_custom_post_type_editing', 10, 4);
 function pmpro_add_download_limit_field()
 {
 	$level_id = intval($_REQUEST['edit']);
-	$download_limit = get_option('pmpro_download_limit_' . $level_id, 10); // Default to 10 downloads
+	$download_limit = get_option('pmpro_download_limit_' . $level_id, 10);
 
 	?>
 	<h3 class="topborder"><?php esc_html_e('Download Limit', 'pmpro'); ?></h3>
@@ -1603,83 +1392,116 @@ function download_image_file($file_url)
 		wp_die('File not found.');
 	}
 }
-function handle_image_download_request()
+function handle_media_download_request()
 {
-	if (isset($_GET['download_image'])) {
-		$post_id = intval($_GET['download_image']);
+	if (isset($_GET['download_media'])) {
+		$post_id = intval($_GET['download_media']);
 		$user_id = get_current_user_id();
-
-		// Get the image type (free or premium)
-		$image_type = get_post_meta($post_id, '_image_type', true);
-
-		// Check if user can download the image
-		if (!can_user_download($user_id, $image_type)) {
-			wp_die('You do not have permission to download this image.');
+		// Get the categories for the post
+		$categories = get_the_terms($post_id, 'image_cat'); // Assuming you're using 'category' for product_image CPT
+		// Check if this post belongs to the "Video" category
+		$is_video = false;
+		if ($categories) {
+			foreach ($categories as $category) {
+				if ($category->slug == 'videos') { // Assuming the slug of your video category is 'video'
+					$is_video = true;
+					break;
+				}
+			}
 		}
 
-		// Get the image URL from the post's featured image
-		$attachment_id = get_post_thumbnail_id($post_id);
-		$image_url = wp_get_attachment_url($attachment_id);
+		// Get the image type from the post meta
+		$image_type = get_post_meta($post_id, '_image_type', true);
 
-		// Securely download the image
-		if ($image_url) {
-			$image_path = str_replace(home_url('/'), ABSPATH, $image_url);
+		// Check if user can download the media
+		if (!can_user_download($user_id, $image_type)) {
+			wp_die('You do not have permission to download this file.');
+		}
+
+		// Handling for image download
+		if (!$is_video) {
+			// Get the image URL from the post's featured image
+			$attachment_id = get_post_thumbnail_id($post_id);
+			$media_url = wp_get_attachment_url($attachment_id);
+		} else {
+			// Handling for video download
+			$media_url = get_post_meta($post_id, '_product_image_video_url', true); // Assuming this is your video URL key
+		}
+
+		// Securely download the media
+		if ($media_url) {
+			$media_path = str_replace(home_url('/'), ABSPATH, $media_url);
 
 			// Increment user download count
 			increment_user_download_count($user_id);
 
-			// Increment the download count for the post using a new meta key
-			$post_download_count = get_post_meta($post_id, '_image_downloads', true);
+			// Increment the download count for the post
+			$post_download_count = get_post_meta($post_id, '_media_downloads', true);
 			$post_download_count = !empty($post_download_count) ? intval($post_download_count) : 0;
 			$post_download_count++;
-			update_post_meta($post_id, '_image_downloads', $post_download_count);
+			update_post_meta($post_id, '_media_downloads', $post_download_count);
 
-			if (file_exists($image_path)) {
+			if (file_exists($media_path)) {
+				// Get the file mime type
+				$mime_type = wp_check_filetype(basename($media_path), null)['type'];
+
+				// Set headers for the download
 				header('Content-Description: File Transfer');
-				header('Content-Type: application/octet-stream');
-				header('Content-Disposition: attachment; filename="' . basename($image_path) . '"');
+				header('Content-Type: ' . $mime_type);
+				header('Content-Disposition: attachment; filename="' . basename($media_path) . '"');
 				header('Expires: 0');
 				header('Cache-Control: must-revalidate');
 				header('Pragma: public');
-				header('Content-Length: ' . filesize($image_path));
-				readfile($image_path);
+				header('Content-Length: ' . filesize($media_path));
+
+				// Clear output buffer to prevent corruption
+				ob_clean();
+				flush();
+
+				// Read the file
+				readfile($media_path);
 				exit;
 			} else {
-				wp_die('Image file not found.');
+				wp_die('Media file not found.');
 			}
 		} else {
-			wp_die('Image not found.');
+			wp_die('Media not found.');
 		}
 	}
 }
-add_action('template_redirect', 'handle_image_download_request');
-
-
+add_action('template_redirect', 'handle_media_download_request');
 
 function add_download_button($content)
 {
-	if (is_singular('product_images')) {
-		$user_id = get_current_user_id();
-		$post_id = get_the_ID();
-		$image_type = get_post_meta($post_id, '_image_type', true);
-		$download_url = add_query_arg('download_image', $post_id, home_url('/product_images/' . get_post_field('post_name', $post_id)));
+	$user_id = get_current_user_id();
+	$post_id = get_the_ID();
+	$media_type = get_post_meta($post_id, '_image_type', true); // 'free' or 'premium'
+	$video_url = get_post_meta($post_id, '_product_image_video_url', true);
 
-		if (is_user_logged_in()) {
-			if ($image_type === 'free') {
-				$content .= '<a href="' . esc_url($download_url) . '" class="download-button">Download Free Image</a>';
-			} elseif ($image_type === 'premium') {
-				if (can_user_download($user_id, $image_type)) {
-					$content .= '<a href="' . esc_url($download_url) . '" class="download-button">Download Premium Image</a>';
-				} else {
-					$content .= '<p>You need a premium membership to download this image. <a href="upgrade_link">Upgrade here</a></p>';
-				}
-			}
-		} else {
-			$content .= '<p>You need to <a href="' . wp_login_url() . '">log in</a> to download images.</p>';
+	// Set up download URL
+	$download_url = add_query_arg('download_media', $post_id, home_url('/'));
+
+	// Check if the user is logged in
+	if (is_user_logged_in()) {
+		// Free media case
+		if ($media_type === 'free') {
+			$content .= '<a href="' . esc_url($download_url) . '" class="download-button" data-type="free"><i class="fa-solid fa-download"></i> <span class="download-text">Download</span></a>';
 		}
+		// Premium media case
+		elseif ($media_type === 'premium') {
+			if (can_user_download($user_id, $media_type)) {
+				$content .= '<a href="' . esc_url($download_url) . '" class="download-button"><i class="fa-solid fa-download"></i> <span class="download-text">Download</span></a>';
+			} else {
+				$content .= '<a href="#" class="download-button" data-type="premium"><i class="fa-solid fa-download"></i> <span class="download-text"> Download </span></a>';
+			}
+		}
+	} else {
+		// If the user is not logged in, show a login prompt
+		$content .= '<a href="#" class="download-button" data-type="login"><i class="fa-solid fa-download"></i> <span class="download-text">Download</span></a>';
 	}
 	return $content;
 }
+
 
 function increment_user_download_count($user_id)
 {
@@ -1709,23 +1531,40 @@ function get_user_download_limit($user_id)
 	$download_limit = get_option('pmpro_download_limit_' . $level_id, 10); // Default to 10 downloads if option not found
 	return $download_limit;
 }
-function can_user_download($user_id, $image_type)
+
+
+function can_user_download($user_id, $media_type)
 {
+	$use_levels = pmpro_getAllLevels();
+	$premium_levels = array();
+
+	// Build array of premium levels (levels with no initial payment)
+	foreach ($use_levels as $level) {
+		$level_id = $level->id;
+
+		$numeric_price = preg_replace('/[^0-9]/', '', $level->initial_payment);
+		if ($numeric_price > 1) {
+			array_push($premium_levels, $level_id);
+		}
+	}
+
 	// Get the user's download limit and current download count
 	$allowed_downloads = get_user_download_limit($user_id);
 	$current_download_count = get_user_download_count($user_id);
 
-	// Check if the image type is 'free'
-	if ($image_type === 'free' && $current_download_count < $allowed_downloads) {
-		return true;
-	}
-	// Check if the user has the required membership level and has not exceeded the download limit
-	else if (function_exists('pmpro_hasMembershipLevel') && pmpro_hasMembershipLevel('2', $user_id) && $current_download_count < $allowed_downloads) {
+	// Check if the media is 'free', and if the user hasn't exceeded the download limit
+	if ($media_type === 'free' && $current_download_count < $allowed_downloads) {
 		return true;
 	}
 
-	return false;
+	// Check if the user has any of the premium membership levels
+	if (pmpro_hasMembershipLevel($premium_levels, $user_id) && $current_download_count < $allowed_downloads) {
+		return true;
+	}
+
+	return false; // If no conditions match, user cannot download more assets
 }
+
 
 //-----------------------reseting all download counts daily ----------------------------
 
@@ -1765,19 +1604,22 @@ add_action('switch_theme', 'unschedule_daily_download_reset');
 
 
 // ----------------------------- watermark code -------------------------
-
 function generate_watermarked_image($original_image_url, $post_id)
 {
 	$upload_dir = wp_upload_dir();
+
+	// Convert URL to path
 	$original_image_path = str_replace($upload_dir['baseurl'], $upload_dir['basedir'], $original_image_url);
-	// error_log('original image =================>' . $original_image_path);
+	error_log('original image =================>' . $original_image_path);
+
 	// Set the watermarked image path
 	$watermarked_image_path = $upload_dir['basedir'] . '/watermarked-images/' . $post_id . '-watermarked.jpg';
+	error_log('watermarked image path =======>' . $watermarked_image_path);
 
-	// Check if the watermarked image already exists
-	if (file_exists($watermarked_image_path)) {
-		return $upload_dir['baseurl'] . '/watermarked-images/' . $post_id . '-watermarked.jpg';
-	}
+	// // Check if the watermarked image already exists
+	// if (file_exists($watermarked_image_path)) {
+	//     return $upload_dir['baseurl'] . '/watermarked-images/' . $post_id . '-watermarked.jpg';
+	// }
 
 	// Load the original image based on the format
 	$image_info = getimagesize($original_image_path);
@@ -1820,8 +1662,6 @@ function generate_watermarked_image($original_image_url, $post_id)
 
 	// Create a new true color image for the resized watermark
 	$stretched_watermark = imagecreatetruecolor($original_width, $original_height);
-
-	// Preserve transparency for PNG watermark
 	imagealphablending($stretched_watermark, false);
 	imagesavealpha($stretched_watermark, true);
 
@@ -1861,6 +1701,7 @@ function generate_watermarked_image($original_image_url, $post_id)
 	// Return the URL of the watermarked image
 	return $upload_dir['baseurl'] . '/watermarked-images/' . $post_id . '-watermarked.jpg';
 }
+
 
 
 // ----------------------------- watermark code -------------------------
@@ -1907,14 +1748,12 @@ function add_save_post_buttons($post_id, $context = "")
 			echo '<a class="save-post-button ' . esc_attr($button_class) . '" data-post-id="' . esc_attr($post_id) . '" ' . $href_attr . '>' . $button_text . '</a>';
 		}
 	} else {
-
 		// Show login prompt when the user is not logged in
 		echo '<a href="#" class="save-post-button" data-type="like"><i class="fa-solid fa-heart"></i> </a>';
 	}
 }
 
 // Hook the function to display the button
-add_action('wp_footer', 'add_save_post_buttons');
 
 // AJAX handler to save/remove a post
 function handle_save_post()
@@ -2339,15 +2178,59 @@ function render_remove_post_from_collection_button($collection_id, $post_id)
 	}
 }
 //==================================Collections functionality ===================================================================================
+function my_pmpro_generate_pages()
+{
+	// List of PMPro required pages and their respective shortcodes
+	$pages = array(
+		'Membership Levels' => '[pmpro_levels]',
+		'Account' => '[pmpro_account]',
+		'Checkout' => '[pmpro_checkout]',
+		'Cancel' => '[pmpro_cancel]',
+		'Confirmation' => '[pmpro_confirmation]',
+		'Login' => '[pmpro_login]', // Adding the login page
+	);
 
+	foreach ($pages as $title => $content) {
+		// Check if the page already exists
+		$page_check = get_page_by_title($title);
 
-// function runOnce() {
+		if (!isset($page_check->ID)) {
+			// If the page does not exist, create it
+			$new_page_id = wp_insert_post(array(
+				'post_title' => $title,
+				'post_content' => $content,
+				'post_status' => 'publish',
+				'post_type' => 'page',
+			));
 
-// }
+			// If the page is the login page, update the PMPro login page option
+			if ($title === 'Login') {
+				update_option('pmpro_login_page_id', $new_page_id);
+			}
+		} else {
+			// If the page already exists, update the login page ID if necessary
+			if ($title === 'Login') {
+				update_option('pmpro_login_page_id', $page_check->ID);
+			}
+		}
+	}
+}
 
-// // Example usage: Run this function on theme activation
-// add_action('after_theme_switch', 'runOnce');
+// Hook to ensure pages are created when PMPro is installed and theme is activated
+add_action('after_switch_theme', 'my_pmpro_generate_pages');
+add_action('pmpro_after_init', 'my_pmpro_generate_pages');
 
+// Ensure that the pages are generated when the PMPro plugin is activated
+function my_pmpro_plugin_activation()
+{
+	my_pmpro_generate_pages();
+}
+
+// Register the activation hook for PMPro
+add_action('activated_plugin', 'my_pmpro_plugin_activation');
+
+// Ensure the function runs on every init to handle potential changes
+add_action('init', 'my_pmpro_generate_pages');
 
 function custom_search_filter($query)
 {
@@ -2444,7 +2327,87 @@ function get_images_by_post_type_category_author($post_type, $number_of_posts, $
 
 
 // pland table featuers================================================================================
-function enqueue_media_uploader() {
-    wp_enqueue_media(); // Enqueue the WordPress media uploader scripts
+function enqueue_media_uploader()
+{
+	wp_enqueue_media(); // Enqueue the WordPress media uploader scripts
 }
 add_action('admin_enqueue_scripts', 'enqueue_media_uploader');
+
+
+
+
+
+// popular search functionalityy 
+
+
+// Function to track search queries
+function track_search_queries($query)
+{
+	if ($query->is_search() && $query->is_main_query()) {
+		$search_query = get_search_query();
+
+		if (!empty($search_query)) {
+			global $wpdb;
+			$table_name = $wpdb->prefix . 'search_queries';
+
+			// Check if the search query exists
+			$existing_query = $wpdb->get_var($wpdb->prepare(
+				"SELECT COUNT(*) FROM $table_name WHERE query = %s",
+				$search_query
+			));
+
+			if ($existing_query) {
+				// Increment search count if query exists
+				$wpdb->query($wpdb->prepare(
+					"UPDATE $table_name SET search_count = search_count + 1 WHERE query = %s",
+					$search_query
+				));
+			} else {
+				// Insert new query if it doesn't exist
+				$wpdb->insert($table_name, array(
+					'query' => $search_query,
+					'search_count' => 1
+				));
+			}
+		}
+	}
+}
+add_action('pre_get_posts', 'track_search_queries');
+
+
+function create_search_queries_table()
+{
+	global $wpdb;
+
+	$table_name = $wpdb->prefix . 'search_queries'; // Adjust for your prefix
+	$charset_collate = $wpdb->get_charset_collate();
+
+	$sql = "CREATE TABLE $table_name (
+        id mediumint(9) NOT NULL AUTO_INCREMENT,
+        query varchar(255) NOT NULL,
+        search_count bigint(20) DEFAULT 1 NOT NULL,
+        PRIMARY KEY  (id)
+    ) $charset_collate;";
+
+	require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+	dbDelta($sql);
+}
+
+// Run the function when the theme or plugin is activated
+add_action('after_switch_theme', 'create_search_queries_table');
+
+// Function to retrieve popular searches
+function get_popular_searches($limit = 5)
+{
+	global $wpdb;
+	$table_name = $wpdb->prefix . 'search_queries';
+
+	$popular_searches = $wpdb->get_results(
+		$wpdb->prepare(
+			"SELECT query FROM $table_name ORDER BY search_count DESC LIMIT %d",
+			$limit
+		)
+	);
+
+	return $popular_searches;
+}

@@ -1,4 +1,6 @@
 /* --------------------------Top Bar---------------------------- */
+
+
 :root {
   --cherry: #E94C4C;
   --green: #5fcac7;
@@ -6,7 +8,7 @@
 
 .site-header {
   position: absolute;
-  z-index: 2;
+  z-index: 99;
   left: 0;
   right: 0;
   width: 100%;
@@ -914,7 +916,7 @@ html{
 ul.sub-menu li a {
   font-size: 17px ;
   font-weight: 500;
-  font-family: 'Outfit';
+  font-family: 'Outfit','sans';
 }
 .dropdown-btn {
   position: absolute;

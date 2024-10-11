@@ -11,54 +11,48 @@ $background_img = get_theme_mod('vw_stock_images_pro_inner_page_banner_bgimage')
 // get_template_part('template-parts/banner');
 ?>
 
-<div class="title-box text-center banner-img" style="background-image:url(<?php echo esc_url( $background_img); ?>)">
-  <div class="banner-page-text container">
+<div class="banner-top ">
+  <div class="container">
     <div class="row">
-      <div class="col-lg-5 col-sm-7 col-7 banner-left-col">
-        <div class="above_title">
-            <h1><?php the_title();?></h1>
-            <?php if ( get_theme_mod('vw_stock_images_pro_site_breadcrumb_enable', true) != '' ) { ?>
-                  <div class=" bradcrumbs">
-                    <?php vw_stock_images_pro_the_breadcrumb(); ?>
-                  </div>
-              <?php }
-              ?>
-      </div>
-      </div>
-      <div class="col-lg-8">
-
+      <div class="breadcrumb-holder">
+        <?php echo vw_stock_images_pro_the_breadcrumb(); ?>
       </div>
     </div>
   </div>
 </div>
 <div class="container">
 	<div class="middle-align">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="row">
-					<?php if ( have_posts() ) : ?>
-						<header class="page-header mb-4">
-							<?php the_archive_title( '<h1 class="page-title">', '</h1>' );
-							the_archive_description( '<div class="taxonomy-description">', '</div>' );?>
-						</header>
+		<div class="">
+			<div class="">
+				<div class="">
+					<?php if (have_posts()): ?>
 						<?php /* Start the Loop */ ?>
-						<?php while ( have_posts() ) : the_post();
-							get_template_part( 'template-parts/post/post-content' );
-						endwhile;
+						<div class="grid row">
+							<?php while (have_posts()):
+								the_post();
+								?>
+								<div class="grid-item col-lg-4 col-md-6 col-12 <?php echo esc_attr($category_classes); ?>">
+									<?php get_template_part('template-parts/product-image'); ?>
+								</div>
+								<?php
+							endwhile;
+							?>
+						</div>
+						<?php
 						// Previous/next page navigation.
-						the_posts_pagination( array(
-							'prev_text'          => __( 'Previous page', 'vw-stock-images-pro' ),
-							'next_text'          => __( 'Next page', 'vw-stock-images-pro' ),
-							'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'vw-stock-images-pro' ) . ' </span>',
+						the_posts_pagination(array(
+							'prev_text' => __('Previous page', 'vw-stock-images-pro'),
+							'next_text' => __('Next page', 'vw-stock-images-pro'),
+							'before_page_number' => '<span class="meta-nav screen-reader-text">' . __('Page', 'vw-stock-images-pro') . ' </span>',
 						));
-					else :
-						get_template_part( 'no-results', 'archive' ); ?>
+					else:
+						get_template_part('no-results', 'archive'); ?>
 					<?php endif; ?>
 				</div>
 			</div>
 			<?php /*<div class="col-md-4">
-				<?php get_sidebar( 'page' ); ?>
-			</div> */ ?>
+						<?php get_sidebar( 'page' ); ?>
+					</div> */ ?>
 
 			<div class="clearfix"></div>
 		</div>

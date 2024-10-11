@@ -1,4 +1,5 @@
 <?php
+
 $wp_customize->add_section('vw_stock_images_pro_pest_problem_sec', array(
 	'title' => __('Trending Images and vids', 'vw-stock-images-pro'),
 	'description' => __('Add Pest Problem setting here.', 'vw-stock-images-pro'),
@@ -79,6 +80,7 @@ $wp_customize->add_control(new VW_Themes_Seperator_custom_Control(
 		'section' => 'vw_stock_images_pro_pest_problem_sec'
 	)
 ));
+
 $wp_customize->add_setting('vw_stock_images_pro_pests_problem_heading', array(
 	'default' => '',
 	'sanitize_callback' => 'sanitize_text_field'
@@ -656,34 +658,28 @@ for ($i = 1; $i <= 4; $i++ ) {
 			'sanitize_callback' => 'sanitize_text_field'
 		)
 	);
-	$wp_customize->add_control(
-		'vw_stock_images_pro_our_features_sec_feature_title_' . $i,
-		array(
-			'label' => __('Feature ' . $i . ' Title', 'vw-stock-images-pro'),
-			'section' => 'vw_stock_images_pro_our_features_sec',
-			'setting' => 'vw_stock_images_pro_our_features_sec_feature_title_' . $i,
-			'type' => 'text'
-		)
-	);
-
-	$wp_customize->add_setting(
-		'vw_stock_images_pro_our_features_sec_feature_desc_' . $i,
-		array(
-			'default' => '',
-			'sanitize_callback' => 'sanitize_text_field'
-		)
-	);
-	$wp_customize->add_control(
-		'vw_stock_images_pro_our_features_sec_feature_desc_' . $i,
-		array(
-			'label' => __('Feature ' . $i . ' Descreption', 'vw-stock-images-pro'),
-			'section' => 'vw_stock_images_pro_our_features_sec',
-			'setting' => 'vw_stock_images_pro_our_features_sec_feature_desc_' . $i,
-			'type' => 'text'
-		)
-	);
-
-
+	$wp_customize->add_setting('vw_stock_images_pro_plans_images_free_image' . $i, array(
+		'default' => get_theme_mod('vw_stock_images_pro_plans_images_free_image' . $i),
+		'sanitize_callback' => 'esc_url_raw',
+	));
+	$wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'vw_stock_images_pro_plans_images_free_image' . $i, array(
+		'label' => __('Free Row Image '. $i, 'vw-stock-images-pro'),
+		'description' => __('choose image', 'vw-stock-images-pro'),
+		'section' => 'vw_stock_images_pro_our_features_sec',
+		'settings' => 'vw_stock_images_pro_plans_images_free_image' . $i,
+	)));
+	
+	$wp_customize->add_setting('vw_stock_images_pro_plans_images_remium_image' . $i, array(
+		'default' => get_theme_mod('vw_stock_images_pro_plans_images_remium_image' . $i),
+		'sanitize_callback' => 'esc_url_raw',
+	));
+	$wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'vw_stock_images_pro_plans_images_remium_image' . $i, array(
+		'label' => __('Premium Row Image '. $i, 'vw-stock-images-pro'),
+		'description' => __('choose image', 'vw-stock-images-pro'),
+		'section' => 'vw_stock_images_pro_our_features_sec',
+		'settings' => 'vw_stock_images_pro_plans_images_remium_image' . $i,
+	)));
+	
 }
 
 
@@ -1496,6 +1492,7 @@ $wp_customize->add_control(
 		)
 	)
 );
+
 for ($i = 1; $i <= 4; $i++ ) {
 
 	$wp_customize->add_setting('vw_stock_images_pro_premium_features_sec_image' . $i, array(
@@ -1546,7 +1543,6 @@ for ($i = 1; $i <= 4; $i++ ) {
 
 }
 
-
 $wp_customize->add_setting(
 	'vw_stock_images_pro_premium_features_sec_feature_heading_settings',
 	array(
@@ -1563,10 +1559,6 @@ $wp_customize->add_control(new VW_Themes_Seperator_custom_Control(
 		'section' => 'vw_stock_images_pro_premium_features_sec'
 	)
 ));
-
-
-
-
 
 $wp_customize->add_setting(
 	'vw_stock_images_pro_premium_features_sec_feature_title_font_family',
@@ -2616,7 +2608,7 @@ $wp_customize->add_setting(
 $wp_customize->add_control(
 	'vw_stock_images_pro_newsletter_section_heading',
 	array(
-		'label' => __('contri_location Text', 'vw-stock-images-pro'),
+		'label' => __('Heading Text', 'vw-stock-images-pro'),
 		'section' => 'vw_stock_images_pro_newsletter_sec',
 		'setting' => 'vw_stock_images_pro_newsletter_section_heading',
 		'type' => 'text'
@@ -2928,7 +2920,7 @@ $wp_customize->add_setting(
 $wp_customize->add_control(
 	'vw_stock_images_pro_our_pricing_section_heading',
 	array(
-		'label' => __('contri_location Text', 'vw-stock-images-pro'),
+		'label' => __('Heading Text', 'vw-stock-images-pro'),
 		'section' => 'vw_stock_images_pro_our_pricing_sec',
 		'setting' => 'vw_stock_images_pro_our_pricing_section_heading',
 		'type' => 'text'
@@ -3002,7 +2994,7 @@ $wp_customize->add_control(new VW_Themes_Seperator_custom_Control(
 	$wp_customize,
 	'vw_stock_images_pro_our_pricing_section_heading_text_settings',
 	array(
-		'label' => __('Section heading_text Text', 'vw-stock-images-pro'),
+		'label' => __('Section Heading Text', 'vw-stock-images-pro'),
 		'section' => 'vw_stock_images_pro_our_pricing_sec'
 	)
 ));
@@ -3076,6 +3068,166 @@ $wp_customize->add_control(
 		)
 	)
 );
+
+$wp_customize->add_setting(
+	'vw_stock_images_pro_our_pricing_section_table_values_settings',
+	array(
+		'default' => '',
+		'transport' => 'postMessage',
+		'sanitize_callback' => 'vw_stock_images_pro_text_sanitization'
+	)
+);
+$wp_customize->add_control(new VW_Themes_Seperator_custom_Control(
+	$wp_customize,
+	'vw_stock_images_pro_our_pricing_section_table_values_settings',
+	array(
+		'label' => __('Pricing Table Settings', 'vw-stock-images-pro'),
+		'section' => 'vw_stock_images_pro_our_pricing_sec'
+	)
+));
+$wp_customize->add_setting(
+	'vw_stock_images_pro_our_pricing_feature_row_count',
+	array(
+		'default' => '',
+		'sanitize_callback' => 'sanitize_text_field'
+	)
+);
+$wp_customize->add_control(
+	'vw_stock_images_pro_our_pricing_feature_row_count',
+	array(
+		'label' => __('Number of rows in table.', 'vw-stock-images-pro'),
+		'section' => 'vw_stock_images_pro_our_pricing_sec',
+		'setting' => 'vw_stock_images_pro_our_pricing_feature_row_count',
+		'type' => 'number'
+	)
+);
+$table_rows = get_theme_mod('vw_stock_images_pro_our_pricing_feature_row_count');
+for($i=1; $i <= $table_rows; $i++){
+    $wp_customize->add_setting(
+        'vw_stock_images_pro_our_pricing_features_checkbox_text_'.$i,
+        array(
+            'default' => '',
+            'sanitize_callback' => 'sanitize_text_field'
+        )
+    );
+    $wp_customize->add_control(
+        'vw_stock_images_pro_our_pricing_features_checkbox_text_'.$i,
+        array(
+            'label' => __('Plan Feature '.$i.' Text', 'vw-stock-images-pro'),
+            'section' => 'vw_stock_images_pro_our_pricing_sec',
+            'setting' => 'vw_stock_images_pro_our_pricing_features_checkbox_text_'.$i,
+            'type' => 'text'
+        )
+    );
+    $wp_customize->add_setting(
+        'vw_stock_images_pro_our_pricing_free_text_'.$i,
+        array(
+            'default' => '',
+            'sanitize_callback' => 'sanitize_text_field'
+        )
+    );
+    $wp_customize->add_control(
+        'vw_stock_images_pro_our_pricing_free_text_'.$i,
+        array(
+            'label' => __('Free Row '.$i.' Field', 'vw-stock-images-pro'),
+            'section' => 'vw_stock_images_pro_our_pricing_sec',
+            'setting' => 'vw_stock_images_pro_our_pricing_free_text_'.$i,
+            'type' => 'text'
+        )
+    );
+    $wp_customize->add_setting(
+        'vw_stock_images_pro_our_pricing_premium_text_'.$i,
+        array(
+            'default' => '',
+            'sanitize_callback' => 'sanitize_text_field'
+        )
+    );
+    $wp_customize->add_control(
+        'vw_stock_images_pro_our_pricing_premium_text_'.$i,
+        array(
+            'label' => __('Premium Row '.$i.' Text', 'vw-stock-images-pro'),
+            'section' => 'vw_stock_images_pro_our_pricing_sec',
+            'setting' => 'vw_stock_images_pro_our_pricing_premium_text_'.$i,
+            'type' => 'text'
+        )
+    );
+}
+
+
+$wp_customize->add_setting(
+	'vw_stock_images_pro_our_pricing_section_table_checkVals_settings',
+	array(
+		'default' => '',
+		'transport' => 'postMessage',
+		'sanitize_callback' => 'vw_stock_images_pro_text_sanitization'
+	)
+);
+$wp_customize->add_control(new VW_Themes_Seperator_custom_Control(
+	$wp_customize,
+	'vw_stock_images_pro_our_pricing_section_table_checkVals_settings',
+	array(
+		'label' => __('Pricing Table Image Values', 'vw-stock-images-pro'),
+		'section' => 'vw_stock_images_pro_our_pricing_sec'
+	)
+));
+$wp_customize->add_setting(
+	'vw_stock_images_pro_our_pricing_feature_checkbox_row_count',
+	array(
+		'default' => '',
+		'sanitize_callback' => 'sanitize_text_field'
+	)
+);
+$wp_customize->add_control(
+	'vw_stock_images_pro_our_pricing_feature_checkbox_row_count',
+	array(
+		'label' => __('Number of rows in table.', 'vw-stock-images-pro'),
+		'section' => 'vw_stock_images_pro_our_pricing_sec',
+		'setting' => 'vw_stock_images_pro_our_pricing_feature_checkbox_row_count',
+		'type' => 'number'
+	)
+);
+
+
+$table_rows2 = get_theme_mod('vw_stock_images_pro_our_pricing_feature_checkbox_row_count');
+for($i=1; $i <= $table_rows2; $i++){
+    $wp_customize->add_setting(
+        'vw_stock_images_pro_our_pricing_feature_text__check'.$i,
+        array(
+            'default' => '',
+            'sanitize_callback' => 'sanitize_text_field'
+        )
+    );
+    $wp_customize->add_control(
+        'vw_stock_images_pro_our_pricing_feature_text__check'.$i,
+        array(
+            'label' => __('Plan Feature '.$i.' Text', 'vw-stock-images-pro'),
+            'section' => 'vw_stock_images_pro_our_pricing_sec',
+            'setting' => 'vw_stock_images_pro_our_pricing_feature_text__check'.$i,
+            'type' => 'text'
+        )
+    );
+    $wp_customize->add_setting('vw_stock_images_pro_free_feat_sec_image' . $i, array(
+		'default' => get_theme_mod('vw_stock_images_pro_free_feat_sec_image' . $i),
+		'sanitize_callback' => 'esc_url_raw',
+	));
+	$wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'vw_stock_images_pro_free_feat_sec_image' . $i, array(
+		'label' => __('Free Image', 'vw-stock-images-pro'),
+		'description' => __('choose image', 'vw-stock-images-pro'),
+		'section' => 'vw_stock_images_pro_our_pricing_sec',
+		'settings' => 'vw_stock_images_pro_free_feat_sec_image' . $i,
+	)));
+    $wp_customize->add_setting('vw_stock_images_pro_premium_feat_sec_image' . $i, array(
+		'default' => get_theme_mod('vw_stock_images_pro_premium_feat_sec_image' . $i),
+		'sanitize_callback' => 'esc_url_raw',
+	));
+	$wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'vw_stock_images_pro_premium_feat_sec_image' . $i, array(
+		'label' => __('Premium Image', 'vw-stock-images-pro'),
+		'description' => __('choose image', 'vw-stock-images-pro'),
+		'section' => 'vw_stock_images_pro_our_pricing_sec',
+		'settings' => 'vw_stock_images_pro_premium_feat_sec_image' . $i,
+	)));
+
+}
 
 $wp_customize->add_setting(
 	'vw_stock_images_pro_our_pricing_section_table_headings_settings',
@@ -3704,6 +3856,8 @@ $wp_customize->add_control(
 	)
 );
 
+
+
 /*-----------------------Partners Settings--------------------------*/
 
 $wp_customize->add_section('vw_stock_images_pro_partners_sec', array(
@@ -3890,7 +4044,7 @@ $wp_customize->add_control('vw_stock_images_pro_partners_number', array(
 	'setting' => 'vw_stock_images_pro_partners_number',
 	'type' => 'Number'
 ));
-for ($i = 1; $i <= $no_cards; $i++) {
+for ($i = 1; $i <= 4; $i++) {
 	$wp_customize->add_setting(
 		'vw_stock_images_pro_partners_number_settings' . $i,
 		array(

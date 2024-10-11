@@ -40,6 +40,7 @@ $img_bg = get_theme_mod('vw_stock_images_pro_our_category_slider_image_bg_attach
                         ));
 
                         foreach ($categories as $category) {
+                            $term_url = get_term_link($category);
                             // Get the first post in each category
                             $args = array(
                                 'post_type' => 'product_images', // Custom post type
@@ -60,13 +61,16 @@ $img_bg = get_theme_mod('vw_stock_images_pro_our_category_slider_image_bg_attach
                                     ?>
                                     <div class="category-card">
                                         <div class="card-image">
-                                            <?php if (has_post_thumbnail()) { ?>
-                                                <img src="<?php echo get_the_post_thumbnail_url(); ?>" alt="<?php the_title(); ?>">
-                                            <?php } ?>
+                                            <a href="<?php echo esc_url($term_url); ?>">
+                                                <?php if (has_post_thumbnail()) { ?>
+                                                    <img src="<?php echo get_the_post_thumbnail_url(); ?>" alt="<?php the_title(); ?>">
+                                                <?php } ?>
+                                            </a>
                                         </div>
                                         <div class="card-content">
                                             <h3 class="category-title"><?php echo esc_html($category->name); ?></h3>
-                                            <p class="category-description text-center"><?php echo esc_html($category->description); ?></p>
+                                            <p class="category-description text-center">
+                                                <?php echo esc_html($category->description); ?></p>
                                         </div>
                                     </div>
                                     <?php

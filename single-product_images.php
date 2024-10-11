@@ -32,7 +32,6 @@ if ($query->have_posts()):
                                 // Generate a watermarked preview
                                 $original_image = get_the_post_thumbnail_url(get_the_ID(), 'large');
                                 $watermarked_image = generate_watermarked_image($original_image, get_the_ID());
-
                                 if ($watermarked_image) {
                                     // Display the watermarked image
                                     echo '<img src="' . esc_url($watermarked_image) . '" alt="' . get_the_title() . '" />';
@@ -57,22 +56,15 @@ if ($query->have_posts()):
                         <div class="row utility-btn-holder gap-3">
                             <div class="image-download-btn p-0">
                                 <?php
-                                if (is_user_logged_in()) {
-                                    // Show download button by default
-                                    $download_url = add_query_arg('download_image', $post_id, get_permalink($post_id));
-                                    if ($image_type === 'free') {
-                                        echo '<a href="' . esc_url($download_url) . '" class="download-button in-modal" data-type="free"><i class="fa-solid fa-download"></i> Download</a>';
-                                    } elseif ($image_type === 'premium') {
-                                        echo '<a href="' . esc_url($download_url) . '" class="download-button in-modal" data-type="premium"><i class="fa-solid fa-download"></i> Download</a>';
-                                    }
-                                } else {
-                                    // Show download button for non-logged-in users with a class to handle modal
-                                    echo '<a href="#" class="download-button in-modal" data-type="login"><i class="fa-solid fa-download"></i> Download</a>';
-                                }
+                                echo add_download_button('');
                                 ?>
                             </div>
-                            <?php add_save_post_buttons($post_id, 'main-post-button'); ?>
-                            
+                            <?php
+                            if (is_user_logged_in()) {
+                                add_save_post_buttons($post_id, 'main-post-button');
+                            }
+                            ?>
+
                             <a href="#" class="collection-btn" data-post-id="<?php echo $post_id; ?>"><i
                                     class="fa-solid fa-bookmark"></i> Collections</a>
                         </div>

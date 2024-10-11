@@ -1,6 +1,5 @@
 <?php
-// error_reporting(E_ALL);
-// ini_set('display_errors', '1');
+
 /**
  * Wizard
  *
@@ -9,9 +8,6 @@
  * @since 1.0.0
  */
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 class ThemeWhizzie
 {
 
@@ -1019,6 +1015,374 @@ class ThemeWhizzie
 		ini_set('max_execution_time', '3000');
 
 
+
+		// Adding Primary Membership Page Setting Started///////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+		global $wpdb;
+
+
+		$page_data_list = array(
+			array(
+				'ID' => 117,
+				'post_author' => 1,
+				'post_date' => date('Y-m-d H:i:s'),
+				'post_date_gmt' => date('Y-m-d H:i:s'),
+				'post_content' => '[pmpro_account]',
+				'post_title' => 'Membership Account',
+				'post_status' => 'publish',
+				'comment_status' => 'closed',
+				'ping_status' => 'closed',
+				'post_name' => 'membership-account',
+				'post_modified' => date('Y-m-d H:i:s'),
+				'post_modified_gmt' => date('Y-m-d H:i:s'),
+				'post_parent' => 0,
+				'guid' => 'http://localhost/VW-Stock-Images/index.php/membership-account/',
+				'menu_order' => 0,
+				'post_type' => 'page',
+				'comment_count' => 0
+			),
+			array(
+				'ID' => 118,
+				'post_author' => 1,
+				'post_date' => date('Y-m-d H:i:s'),
+				'post_date_gmt' => date('Y-m-d H:i:s'),
+				'post_content' => '[pmpro_billing]',
+				'post_title' => 'Membership Billing',
+				'post_status' => 'publish',
+				'comment_status' => 'closed',
+				'ping_status' => 'closed',
+				'post_name' => 'membership-billing',
+				'post_modified' => date('Y-m-d H:i:s'),
+				'post_modified_gmt' => date('Y-m-d H:i:s'),
+				'post_parent' => 117,
+				'guid' => 'http://localhost/VW-Stock-Images/index.php/membership-account/membership-billing/',
+				'menu_order' => 0,
+				'post_type' => 'page',
+				'comment_count' => 0
+			),
+			array(
+				'ID' => 119,
+				'post_author' => 1,
+				'post_date' => date('Y-m-d H:i:s'),
+				'post_date_gmt' => date('Y-m-d H:i:s'),
+				'post_content' => '[pmpro_cancel]',
+				'post_title' => 'Membership Cancel',
+				'post_status' => 'publish',
+				'comment_status' => 'closed',
+				'ping_status' => 'closed',
+				'post_name' => 'membership-cancel',
+				'post_modified' => date('Y-m-d H:i:s'),
+				'post_modified_gmt' => date('Y-m-d H:i:s'),
+				'post_parent' => 117,
+				'guid' => 'http://localhost/VW-Stock-Images/index.php/membership-account/membership-cancel/',
+				'menu_order' => 0,
+				'post_type' => 'page',
+				'comment_count' => 0
+			),
+			array(
+				'ID' => 120,
+				'post_author' => 1,
+				'post_date' => date('Y-m-d H:i:s'),
+				'post_date_gmt' => date('Y-m-d H:i:s'),
+				'post_content' => '[pmpro_checkout]',
+				'post_title' => 'Membership Checkout',
+				'post_status' => 'publish',
+				'comment_status' => 'closed',
+				'ping_status' => 'closed',
+				'post_name' => 'membership-checkout',
+				'post_modified' => date('Y-m-d H:i:s'),
+				'post_modified_gmt' => date('Y-m-d H:i:s'),
+				'post_parent' => 0,
+				'guid' => 'http://localhost/VW-Stock-Images/index.php/membership-checkout/',
+				'menu_order' => 0,
+				'post_type' => 'page',
+				'comment_count' => 0
+			),
+			array(
+				'ID' => 121,
+				'post_author' => 1,
+				'post_date' => date('Y-m-d H:i:s'),
+				'post_date_gmt' => date('Y-m-d H:i:s'),
+				'post_content' => '[pmpro_confirmation]',
+				'post_title' => 'Membership Confirmation',
+				'post_status' => 'publish',
+				'comment_status' => 'closed',
+				'ping_status' => 'closed',
+				'post_name' => 'membership-confirmation',
+				'post_modified' => date('Y-m-d H:i:s'),
+				'post_modified_gmt' => date('Y-m-d H:i:s'),
+				'post_parent' => 120,
+				'guid' => 'http://localhost/VW-Stock-Images/index.php/membership-checkout/membership-confirmation/',
+				'menu_order' => 0,
+				'post_type' => 'page',
+				'comment_count' => 0
+			),
+			array(
+				'ID' => 122,
+				'post_author' => 1,
+				'post_date' => date('Y-m-d H:i:s'),
+				'post_date_gmt' => date('Y-m-d H:i:s'),
+				'post_content' => '[pmpro_invoice]',
+				'post_title' => 'Membership Orders',
+				'post_status' => 'publish',
+				'comment_status' => 'closed',
+				'ping_status' => 'closed',
+				'post_name' => 'membership-orders',
+				'post_modified' => date('Y-m-d H:i:s'),
+				'post_modified_gmt' => date('Y-m-d H:i:s'),
+				'post_parent' => 117,
+				'guid' => 'http://localhost/VW-Stock-Images/index.php/membership-account/membership-orders/',
+				'menu_order' => 0,
+				'post_type' => 'page',
+				'comment_count' => 0
+			),
+			array(
+				'ID' => 123,
+				'post_author' => 1,
+				'post_date' => date('Y-m-d H:i:s'),
+				'post_date_gmt' => date('Y-m-d H:i:s'),
+				'post_content' => '[pmpro_levels]',
+				'post_title' => 'Membership Levels',
+				'post_status' => 'publish',
+				'comment_status' => 'closed',
+				'ping_status' => 'closed',
+				'post_name' => 'membership-levels',
+				'post_modified' => date('Y-m-d H:i:s'),
+				'post_modified_gmt' => date('Y-m-d H:i:s'),
+				'post_parent' => 0,
+				'guid' => 'http://localhost/VW-Stock-Images/index.php/membership-levels/',
+				'menu_order' => 0,
+				'post_type' => 'page',
+				'comment_count' => 0
+			),
+			array(
+				'ID' => 124,
+				'post_author' => 1,
+				'post_date' => date('Y-m-d H:i:s'),
+				'post_date_gmt' => date('Y-m-d H:i:s'),
+				'post_content' => '[pmpro_login]',
+				'post_title' => 'Log In',
+				'post_status' => 'publish',
+				'comment_status' => 'closed',
+				'ping_status' => 'closed',
+				'post_name' => 'login',
+				'post_modified' => date('Y-m-d H:i:s'),
+				'post_modified_gmt' => date('Y-m-d H:i:s'),
+				'post_parent' => 0,
+				'guid' => 'http://localhost/VW-Stock-Images/index.php/login/',
+				'menu_order' => 0,
+				'post_type' => 'page',
+				'comment_count' => 0
+			),
+			array(
+				'ID' => 125,
+				'post_author' => 1,
+				'post_date' => date('Y-m-d H:i:s'),
+				'post_date_gmt' => date('Y-m-d H:i:s'),
+				'post_content' => '[pmpro_member_profile_edit]',
+				'post_title' => 'Your Profile',
+				'post_status' => 'publish',
+				'comment_status' => 'closed',
+				'ping_status' => 'closed',
+				'post_name' => 'your-profile',
+				'post_modified' => date('Y-m-d H:i:s'),
+				'post_modified_gmt' => date('Y-m-d H:i:s'),
+				'post_parent' => 117,
+				'guid' => 'http://localhost/VW-Stock-Images/index.php/membership-account/your-profile/',
+				'menu_order' => 0,
+				'post_type' => 'page',
+				'comment_count' => 0
+			),
+		);
+
+
+		foreach ($page_data_list as $page_data) {
+			$wpdb->insert($wpdb->prefix . 'posts', $page_data, array(
+				'%d', // ID
+				'%d', // post author
+				'%s', // post date
+				'%s', // post date gmt
+				'%s', // post content
+				'%s', // post title
+				'%s', // post status
+				'%s', // comment status
+				'%s', // ping status
+				'%s', // post name
+				'%s', // post modified
+				'%s', // post modified gmt
+				'%d', // post parent
+				'%s', // guid
+				'%d', // menu order
+				'%s', // post type
+				'%d', // comment count
+			));
+
+			if ($wpdb->insert_id) {
+				error_log('Page added successfully. ID: ' . $wpdb->insert_id . '<br>');
+			} else {
+				error_log('Failed to add Page<br>');
+			}
+		}
+
+		global $wpdb;
+
+		$membership_account = $wpdb->get_var("SELECT ID FROM {$wpdb->prefix}posts WHERE post_title = 'Membership Account'");
+		$membership_billing = $wpdb->get_var("SELECT ID FROM {$wpdb->prefix}posts WHERE post_title = 'Membership Billing'");
+		$membership_cancel = $wpdb->get_var("SELECT ID FROM {$wpdb->prefix}posts WHERE post_title = 'Membership Cancel'");
+		$membership_checkout = $wpdb->get_var("SELECT ID FROM {$wpdb->prefix}posts WHERE post_title = 'Membership Checkout'");
+		$membership_confirmation = $wpdb->get_var("SELECT ID FROM {$wpdb->prefix}posts WHERE post_title = 'Membership Confirmation'");
+		$membership_order = $wpdb->get_var("SELECT ID FROM {$wpdb->prefix}posts WHERE post_title = 'Membership Orders'");
+		$membership_level = $wpdb->get_var("SELECT ID FROM {$wpdb->prefix}posts WHERE post_title = 'Membership Levels'");
+		$log_in = $wpdb->get_var("SELECT ID FROM {$wpdb->prefix}posts WHERE post_title = 'Log In'");
+		$your_profile = $wpdb->get_var("SELECT ID FROM {$wpdb->prefix}posts WHERE post_title = 'Your Profile'");
+
+
+
+		update_option('pmpro_account_page_id', $membership_account);
+		update_option('pmpro_billing_page_id', $membership_billing);
+		update_option('pmpro_cancel_page_id', $membership_cancel);
+		update_option('pmpro_checkout_page_id', $membership_checkout);
+		update_option('pmpro_confirmation_page_id', $membership_confirmation);
+		update_option('pmpro_invoice_page_id', $membership_order);
+		update_option('pmpro_levels_page_id', $membership_level);
+		update_option('pmpro_login_page_id', $log_in);
+		update_option('pmpro_member_profile_edit_page_id', $your_profile);
+
+
+		// Adding Primary Membership Page Setting Started/////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+		/////////// Manually Adding the data of Paid Memberships Pro plugin Starting///////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+		//inserting 1st data
+		global $wpdb;
+
+		$data = array(
+			'name' => 'Maximum Membership',
+			'description' => 'Access to premium content',
+			'confirmation' => 'Your membership is active',
+			'initial_payment' => 49.99,
+			'billing_amount' => 10.00,
+			'cycle_number' => 1,
+			'cycle_period' => 'Month',
+			'billing_limit' => 0,
+			'trial_amount' => 0.00,
+			'trial_limit' => 1,
+			'allow_signups' => 1,
+			'expiration_number' => 0,
+			'expiration_period' => 0
+		);
+
+		// Insert data into the wp_pmpro_membership_levels table
+		$wpdb->insert(
+			$wpdb->prefix . 'pmpro_membership_levels',
+			$data,
+			array(
+				'%s', // name
+				'%s', // description
+				'%s', // confirmation
+				'%f', // initial_payment
+				'%f', // billing_amount
+				'%d', // cycle_number
+				'%s', // cycle_period
+				'%d', // billing_limit
+				'%f', // trial_amount
+				'%d', // trial limit
+				'%d', // allow signups
+				'%d', // expiration number
+				'%d', // expiration period
+			)
+		);
+
+
+		if ($wpdb->insert_id) {
+			echo 'Membership level added successfully. ID: ' . $wpdb->insert_id;
+		} else {
+			echo 'Failed to add membership level.';
+		}
+
+
+		//inserting 2nd data
+
+		global $wpdb;
+
+		$data = array(
+			'name' => 'Premium Membership',
+			'description' => 'Access to premium content',
+			'confirmation' => 'Your membership is active',
+			'initial_payment' => 49.99,
+			'billing_amount' => 10.00,
+			'cycle_number' => 1,
+			'cycle_period' => 'Month',
+			'billing_limit' => 0,
+			'trial_amount' => 0.00,
+			'trial_limit' => 1,
+			'allow_signups' => 1,
+			'expiration_number' => 0,
+			'expiration_period' => 0
+		);
+
+
+		$wpdb->insert(
+			$wpdb->prefix . 'pmpro_membership_levels',
+			$data,
+			array(
+				'%s',
+				'%s',
+				'%s',
+				'%f',
+				'%f',
+				'%d',
+				'%s',
+				'%d',
+				'%f',
+				'%d',
+				'%d',
+				'%d',
+				'%d',
+			)
+		);
+
+		if ($wpdb->insert_id) {
+			$membership_id = $wpdb->insert_id;
+			echo 'Membership level added successfully. ID: ' . $membership_id;
+
+
+			$meta_data = array(
+				'post_id' => $membership_id,
+				'meta_key' => 'best_value',
+				'meta_value' => 1
+			);
+
+			$wpdb->insert(
+				$wpdb->prefix . 'postmeta',
+				$meta_data,
+				array(
+					'%d', // post_id
+					'%s', // meta_key
+					'%d'  // meta_value
+				)
+			);
+
+			if ($wpdb->insert_id) {
+				echo ' Meta key added successfully.';
+			} else {
+				echo 'Failed to add meta key.';
+			}
+		} else {
+			echo 'Failed to add membership level.';
+		}
+
+
+		///////////////////////////////////////////////////////////////////////////////////////////////////////
+////////// Manually Adding the data of Paid Memberships Pro plugin Ended///////////////////////////////
+
 		// $this->custom_posttype_option();
 
 		set_theme_mod('vw_stock_images_pro_inner_page_banner_bgimage', get_template_directory_uri() . '/assets/images/title-banner.png');
@@ -1638,12 +2002,12 @@ class ThemeWhizzie
 
 		// Define the taxonomy slug
 		$taxonomy = 'image_cat'; // Replace with your custom taxonomy slug
-
+		$description = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.';
 		// Add the terms and set their meta data
 		foreach ($terms as $term_name => $meta_image_url) {
 			// Add term if it doesn't already exist
 			if (!term_exists($term_name, $taxonomy)) {
-				$term = wp_insert_term($term_name, $taxonomy);
+				$term = wp_insert_term($term_name, $taxonomy, array('description' => $description, ));
 				// Check if term was created successfully
 				if (!is_wp_error($term)) {
 					$term_id = $term['term_id']; // Access term ID from the returned array
@@ -1662,12 +2026,12 @@ class ThemeWhizzie
 		//========================================== adding terms and setting term meta images end =====================================================
 
 
-
-
-
-
 		$content = "Image description.";
-		$posts_title = array('Furniture', 'Swarwberry Cake', 'Beach Sunset', 'Pancake', 'Office Dark Furniture', 'Sity Skyline', 'Highway Exotic Car', 'Modern Office Architectue', 'Hot Air Baloon', 'Sunset Beach Blue', 'City Skyscrapers', 'Clothing Store', 'Sunset People', 'Gym Fitness Man', 'Food Bowl Asia', 'Gym Powerlifting', 'Hotel green Gallery', 'Science Doctor Microscope', 'Beach Colonut Tree', 'Camera Tech', 'Flowers Pink', 'Garden Temple', 'Gym Yoga Women', 'Laptop Store', 'Bars Graphics', 'Flower Tree Mansion', 'Sakura Garden', 'Fly Micro Image', 'Women Working', 'Steam Engine Trian', 'Lake Lamps', 'Wedding Bride Groom', 'Tech', 'Squreel Brown Drinking', 'Lake Boy Yellow', 'Lake Reflection', 'Gym Image Back', 'Northen Lights');
+		$posts_title = array('Furniture', 'Strawberry Cake', 'Beach Sunset', 'Pancake', 'Office Dark Furniture', 'City Skyline', 'Highway Exotic Car', 'Modern Office Architecture', 'Hot Air Balloon', 'Sunset Beach Blue', 'City Skyscrapers', 'Clothing Store', 'Sunset People', 'Gym Fitness Man', 'Food Bowl Asia', 'Gym Powerlifting', 'Hotel Green Gallery', 'Science Doctor Microscope', 'Beach Coconut Tree', 'Camera Tech', 'Flowers Pink', 'Garden Temple', 'Gym Yoga Women', 'Laptop Store', 'Bars Graphics', 'Flower Tree Mansion', 'Sakura Garden', 'Fly Micro Image', 'Women Working', 'Steam Engine Train', 'Lake Lamps', 'Wedding Bride Groom', 'Tech', 'Squirrel Brown Drinking', 'Lake Boy Yellow', 'Lake Reflection', 'Gym Image Back', 'Northern Lights');
+
+		// Define your categories (terms) to randomly assign to posts
+		$terms = array('Photos', 'Videos', 'Vectors', 'Icons', 'Gallery', 'Wallpapers', 'Games', 'Graphics');
+
 		for ($i = 1; $i <= 38; $i++) {
 			// Create post object
 			$my_post = array(
@@ -1680,20 +2044,23 @@ class ThemeWhizzie
 			// Insert the post into the database
 			$post_id = wp_insert_post($my_post);
 
-			// select if free or premium 
+			// Select if free or premium
 			$values = ['free', 'premium'];
 			$random_value = $values[array_rand($values)];
 			update_post_meta($post_id, '_image_type', $random_value);
 
 			add_post_meta($post_id, 'vw_title_banner_image_wp_custom_attachment', $banner_attachment_url);
 
-			// selection images 
+			// Assign category (term) randomly to post
+			$random_term = $terms[array_rand($terms)]; // Select a random term from the array
+			wp_set_object_terms($post_id, $random_term, 'image_cat'); // Assign the term to the post
 
+			// Selection images
 			$image_url = get_template_directory_uri() . '/assets/images/shop-page/product-' . $i . '.png';
-			// error_log('Image Url ==============>' . $image_url);
 
 			$image_name = 'problem' . $i . '.png';
 			$upload_dir = wp_upload_dir();
+
 			// Set upload folder
 			$image_data = file_get_contents($image_url);
 			// Get image data
@@ -1701,16 +2068,19 @@ class ThemeWhizzie
 			// Generate unique name
 			$filename = basename($unique_file_name);
 			// Create image file name
+
 			// Check folder permission and define file location
 			if (wp_mkdir_p($upload_dir['path'])) {
 				$file = $upload_dir['path'] . '/' . $filename;
 			} else {
 				$file = $upload_dir['basedir'] . '/' . $filename;
 			}
-			// Create the image  file on the server
+
+			// Create the image file on the server
 			file_put_contents($file, $image_data);
 			// Check image file type
 			$wp_filetype = wp_check_filetype($filename, null);
+
 			// Set attachment data
 			$attachment = array(
 				'post_mime_type' => $wp_filetype['type'],
@@ -1768,181 +2138,6 @@ class ThemeWhizzie
 		set_theme_mod('vw_stock_images_pro_professional_services_paragraph', "Lorem Ipsum is simply dummy text of the printing and typesetting industry");
 		set_theme_mod('vw_stock_images_pro_professional_services_bg_color', "#F1F1F1");
 
-		$services_categories_array = array();
-
-		$parent_category_arr = array(
-			'Commercial' => array(
-				'Medical Cleaning',
-				'Office Cleaning',
-				'Industrial Cleaning',
-				'School Cleaning',
-				'Building Cleaning',
-				'Education Centre',
-				'Warehouse Cleaning',
-				'Factory Cleaning'
-			),
-			'Residential' => array('Mattress Sanitizing', 'Carpet Sanitizing', 'Whole Home Sanitize', 'Kitchen'),
-
-		);
-		$cat = 1;
-		foreach ($parent_category_arr as $parent_services_cat => $parent_services) {
-
-			$content = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.";
-			$parent_category = wp_insert_term(
-				$parent_services_cat,
-				'services-category',
-				array(
-					'description' => $content
-				)
-			);
-
-			// Check for WP_Error before proceeding
-			if (!is_wp_error($parent_category)) {
-				$term_category = get_term_by('id', $parent_category['term_id'], 'services-category');
-
-				update_term_meta($parent_category['term_id'], 'vw_title_banner_image_wp_custom_attachment', $banner_attachment_url);
-
-				if ($term_category) {
-					$term_slug = $term_category->slug;
-					array_push($services_categories_array, $term_slug);
-				}
-			} else {
-				// Handle the error, e.g., log it or display a message
-				error_log('Error inserting term: ' . $parent_category->get_error_message());
-			}
-
-			update_term_meta($parent_category['term_id'], 'vw_title_banner_image_wp_custom_attachment', $banner_attachment_url);
-
-			if ($term_category) {
-				$term_slug = $term_category->slug;
-
-				array_push($services_categories_array, $term_slug);//
-			}
-
-			set_theme_mod('vw_stock_images_pro_professional_services_categories', $services_categories_array);
-
-			update_term_meta($parent_category['term_id'], 'vw_title_banner_image_wp_custom_attachment', $banner_attachment_url);
-
-
-			update_term_meta($parent_category['term_id'], 'serv_cat_paragraph', "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.");
-			update_term_meta($parent_category['term_id'], 'serv_points_one', "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce laoreet");
-			update_term_meta($parent_category['term_id'], 'serv_points_two', "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce laoreet");
-			update_term_meta($parent_category['term_id'], 'serv_points_three', "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce laoreet");
-			update_term_meta($parent_category['term_id'], 'serv_points_four', "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce laoreet");
-
-
-			if ($parent_services_cat == 'Commercial') {
-				update_term_meta($parent_category['term_id'], 'serv_cat_heading', 'The Importance of Disinfecting and Sanitizing');
-				update_term_meta($parent_category['term_id'], 'serv_points_heading', "Professionalism, Quality and Reliability");
-				update_term_meta($parent_category['term_id'], 'category_image_one', get_template_directory_uri() . '/assets/images/services/commercial1.png');
-				update_term_meta($parent_category['term_id'], 'category_image_two', get_template_directory_uri() . '/assets/images/services/commercial2.png');
-			} else {
-				update_term_meta($parent_category['term_id'], 'serv_cat_heading', 'Top-Quality Solutions for Condos, Rentals & More');
-				update_term_meta($parent_category['term_id'], 'serv_points_heading', "Why Book Our Residential Services?");
-				update_term_meta($parent_category['term_id'], 'category_image_one', get_template_directory_uri() . '/assets/images/services/residential1.png');
-				update_term_meta($parent_category['term_id'], 'category_image_two', get_template_directory_uri() . '/assets/images/services/residential2.png');
-			}
-			$cat++;//
-
-			$services_meta = array(
-				array(
-					'points' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce laoreet'
-				),
-				array(
-					'points' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce laoreet'
-				),
-				array(
-					'points' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce laoreet'
-				),
-				array(
-					'points' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce laoreet'
-				),
-				array(
-					'points' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce laoreet'
-				),
-				array(
-					'points' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce laoreet'
-				),
-				array(
-					'points' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce laoreet'
-				),
-			);
-
-
-			foreach ($parent_services as $services) {
-				$serv_content = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged., when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting";
-				$my_post = array(
-					'post_title' => $services,
-					'post_content' => $serv_content,
-					'post_status' => 'publish',
-					'post_type' => 'services',
-				);
-				// Insert the post into the database
-				$services_id = wp_insert_post($my_post);
-				wp_set_object_terms($services_id, $parent_category['term_id'], 'services-category', true);
-
-				add_post_meta($services_id, 'vw_title_banner_image_wp_custom_attachment', $banner_attachment_url);
-
-				update_post_meta($services_id, 'read-more-text', 'Read More');
-				update_post_meta($services_id, 'services_inner_title', 'Other Ways to Clean a Mattress');
-				update_post_meta($services_id, 'services_inner_para', "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.");
-				update_post_meta($services_id, 'services_repeater_fields', $services_meta);
-				update_post_meta($services_id, 'services_inner_title', 'Other Ways to Clean a Mattress');
-				update_post_meta($services_id, 'get_service_btn', 'Get Service Now');
-				update_post_meta($services_id, 'get_service_btn_url', get_permalink(ThemeWhizzie::get_page_id_by_title('Appointment')));
-
-
-				$meta_img = get_template_directory_uri() . '/assets/images/services/' . $parent_services_cat . '/' . str_replace(" ", "-", $services) . '-Meta.png';
-				update_post_meta($services_id, 'service-img', $meta_img);
-
-				$image_url = get_template_directory_uri() . '/assets/images/services/' . $parent_services_cat . '/' . str_replace(" ", "-", $services) . '.png';
-				$image_name = $services . '.png';
-				$upload_dir = wp_upload_dir();
-				// Set upload folder
-				$image_data = file_get_contents(esc_url($image_url));
-
-				// Get image data
-				$unique_file_name = wp_unique_filename($upload_dir['path'], $image_name);
-				// Generate unique name
-				$filename = basename($unique_file_name);
-				// Create image file name
-
-				// Check folder permission and define file location
-				if (wp_mkdir_p($upload_dir['path'])) {
-					$file = $upload_dir['path'] . '/' . $filename;
-				} else {
-					$file = $upload_dir['basedir'] . '/' . $filename;
-				}
-				// Create the image  file on the server
-				file_put_contents($file, $image_data);
-
-				// Check image file type
-				$wp_filetype = wp_check_filetype($filename, null);
-
-				// Set attachment data
-				$attachment = array(
-					'post_mime_type' => $wp_filetype['type'],
-					'post_title' => sanitize_file_name($filename),
-					'post_type' => 'services',
-					'post_status' => 'inherit',
-				);
-				// Create the attachment
-				$attach_id = wp_insert_attachment($attachment, $file, $services_id);
-
-				// Include image.php
-				require_once(ABSPATH . 'wp-admin/includes/image.php');
-
-				// Define attachment metadata
-				$attach_data = wp_generate_attachment_metadata($attach_id, $file);
-
-
-				// And finally assign featured image to post
-				set_post_thumbnail($services_id, $attach_id);
-
-			}
-		}
-
-
 
 
 		// -------------Counter Section-------------------
@@ -1951,7 +2146,7 @@ class ThemeWhizzie
 		set_theme_mod('vw_stock_images_pro_counter_offer_paragraph', "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.");
 		set_theme_mod('vw_stock_images_pro_counter_offer_clock_timer_end', 'July 25 2024 11:00:00');
 		set_theme_mod('vw_stock_images_pro_counter_offer_sec_btn_text', 'Get Start');
-		set_theme_mod('vw_stock_images_pro_counter_offer_sec_btn_url', '#');
+		set_theme_mod('vw_stock_images_pro_counter_offer_se', '#');
 
 		set_theme_mod('vw_stock_images_pro_counter_offer_img', get_template_directory_uri() . '/assets/images/counter-offer/offer-men.png');
 		set_theme_mod('vw_stock_images_pro_counter_offer_bgcolor', '#F1F1F1');
@@ -2279,7 +2474,7 @@ class ThemeWhizzie
 		set_theme_mod('vw_stock_images_pro_appoinment_text', 'Appointment');
 		set_theme_mod('vw_stock_images_pro_appoinment_url', get_permalink(ThemeWhizzie::get_page_id_by_title('Appointment')));
 
-		
+
 
 		// Newsletter shortcode
 		$cf7title = "Newsletter Form";
@@ -2368,79 +2563,6 @@ class ThemeWhizzie
 
 
 		set_theme_mod('vw_stock_images_pro_our_newsletter_shortcode', $cf7shortcodeNews);
-
-		// ---------------------Our Client Say----------------------------
-
-
-		set_theme_mod('vw_stock_images_pro_team_heading', 'Professional Team');
-		set_theme_mod('vw_stock_images_pro_team_paragraph', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry');
-
-		$team_title = array('John Smith', 'Smith Jackson', 'Charlie Parker', 'John Smith');
-		$team_desig = array('Pest Cleaner', 'Pest Cleaner', 'Pest Cleaner', 'Pest Cleaner', 'Pest Cleaner');
-
-		for ($i = 1; $i <= 4; $i++) {
-			$title = $team_title[$i - 1];
-			$content = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrudexercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.';
-
-			// Create post object
-			$my_post = array(
-				'post_title' => wp_strip_all_tags($title),
-				'post_content' => $content,
-				'post_status' => 'publish',
-				'post_type' => 'pests-team',
-			);
-
-			// Insert the post into the database
-			$team_id = wp_insert_post($my_post);
-
-			update_post_meta($team_id, 'team_desig', $team_desig[$i - 1]);
-			update_post_meta($team_id, 'team_facebook', 'https://www.facebook.com/' . $title);
-			update_post_meta($team_id, 'team_twitter', 'https://www.twitter.com/' . $title);
-			update_post_meta($team_id, 'team_instagram', 'https://www.youtube.com/' . $title);
-			update_post_meta($team_id, 'team_youtube', 'https://www.instagram.com/' . $title);
-			add_post_meta($team_id, 'vw_title_banner_image_wp_custom_attachment', $banner_attachment_url);
-
-			$image_url = get_template_directory_uri() . '/assets/images/team/team' . $i . '.png';
-
-			$image_name = 'team' . $i . '.png';
-			$upload_dir = wp_upload_dir();
-			// Set upload folder
-			$image_data = file_get_contents($image_url);
-			// Get image data
-			$unique_file_name = wp_unique_filename($upload_dir['path'], $image_name);
-			// Generate unique name
-			$filename = basename($unique_file_name);
-			// Create image file name
-			// Check folder permission and define file location
-			if (wp_mkdir_p($upload_dir['path'])) {
-				$file = $upload_dir['path'] . '/' . $filename;
-			} else {
-				$file = $upload_dir['basedir'] . '/' . $filename;
-			}
-			// Create the image  file on the server
-			file_put_contents($file, $image_data);
-			// Check image file type
-			$wp_filetype = wp_check_filetype($filename, null);
-			// Set attachment data
-			$attachment = array(
-				'post_mime_type' => $wp_filetype['type'],
-				'post_title' => sanitize_file_name($filename),
-				'post_content' => '',
-				'post_type' => 'pests-team',
-				'post_status' => 'inherit'
-			);
-
-			// Create the attachment
-			$attach_id = wp_insert_attachment($attachment, $file, $team_id);
-			// Include image.php
-			require_once(ABSPATH . 'wp-admin/includes/image.php');
-			// Define attachment metadata
-			$attach_data = wp_generate_attachment_metadata($attach_id, $file);
-			// Assign metadata to attachment
-			wp_update_attachment_metadata($attach_id, $attach_data);
-			// And finally assign featured image to post
-			set_post_thumbnail($team_id, $attach_id);
-		}
 
 
 		// ---------------------Professional Team----------------------------
@@ -2532,17 +2654,18 @@ class ThemeWhizzie
 		set_theme_mod('vw_stock_images_pro_latest_news_btn_text', 'View More');
 
 		$post_category_name = array(
-			'Factory Cleaning' => array(
-				"Factory Shine Solutions",
-				'Sparkling Factory Floors'
+			'Images' => array(
+				"How to Effectively Organize and Manage Your Digital Media Assets",
+				'Top 10 Free and Premium Digital Assets Every Designer Should Have'
 			),
-			'House Cleaning' => array(
-				"Sparkling Home Solutions",
+			'Asset Management' => array(
+				"The Ultimate Guide to Protecting and Licensing Your Digital Media Files",
 				"Spotless Home Secrets"
 			),
-			'Office Cleaning' => array(
-				"Professional Office Cleaners Hub",
-				"Workspace Shine Chronicles"
+			'Videos' => array(
+				"Boost Your Creativity: Best Practices for Using Stock Images and Videos",
+				"How to Choose the Right Digital Asset for Your Project: A Step-by-Step Guide",
+				"Optimizing Your Digital Media for Faster Website Performance and SEO"
 			),
 		);
 
@@ -2588,7 +2711,7 @@ class ThemeWhizzie
 				update_post_meta($post_id, 'post-point-three', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.');
 				update_post_meta($post_id, 'post-point-four', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.');
 
-				$image_url = get_template_directory_uri() . '/assets/images/blog/' . str_replace(' ', '-', $post_title) . '.png';
+				$image_url = get_template_directory_uri() . '/assets/images/Blog/blog-' . $i . '.png';
 				$image_name = $post_title . '.png';
 				$upload_dir = wp_upload_dir();
 				$image_data = file_get_contents($image_url);
@@ -2632,7 +2755,6 @@ class ThemeWhizzie
 
 
 		// ------------------Partners Section------------
-		set_theme_mod('vw_stock_images_pro_partners_bgcolor', '#F1F1F1');
 		set_theme_mod('vw_stock_images_pro_partners_heading', 'Supplies & Partners');
 		set_theme_mod('vw_stock_images_pro_partners_paragraph', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.');
 
@@ -3007,6 +3129,10 @@ class ThemeWhizzie
 
 
 
+
+
+
+
 		$this->theme_create_customizer_nav_menu();
 		$this->theme_create_customizer_footer_services_menu();
 		$this->theme_create_customizer_footer_quick_links_menu();
@@ -3015,7 +3141,6 @@ class ThemeWhizzie
 		$VW_Widget_Importer = new VW_Widget_Importer;
 		$VW_Widget_Importer->import_widgets($this->widget_file_url);
 
-		// echo "string";
 		exit;
 	}
 
@@ -3110,166 +3235,7 @@ class ThemeWhizzie
 		set_theme_mod('vw_stock_images_pro_professional_services_paragraph', "Lorem Ipsum is simply dummy text of the printing and typesetting industry");
 		set_theme_mod('vw_stock_images_pro_professional_services_bg_color', "#F1F1F1");
 
-		$services_categories_array = array();
 
-		$parent_category_arr = array(
-			'Commercial' => array(
-				'Medical Cleaning',
-				'Office Cleaning',
-				'Industrial Cleaning',
-				'School Cleaning',
-				'Building Cleaning',
-				'Education Centre',
-				'Warehouse Cleaning',
-				'Factory Cleaning'
-			),
-			'Residential' => array('Mattress Sanitizing', 'Carpet Sanitizing', 'Whole Home Sanitize', 'Kitchen'),
-
-		);
-		$cat = 1;
-		foreach ($parent_category_arr as $parent_services_cat => $parent_services) {
-
-			$content = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.";
-			$parent_category = wp_insert_term(
-				$parent_services_cat,
-				'services-category',
-				array(
-					'description' => $content
-				)
-			);
-
-			$term_category = get_term_by('id', $parent_category['term_id'], 'services-category');
-
-			update_term_meta($parent_category['term_id'], 'vw_title_banner_image_wp_custom_attachment', $banner_attachment_url);
-
-			if ($term_category) {
-				$term_slug = $term_category->slug;
-
-				array_push($services_categories_array, $term_slug);//
-			}
-
-			set_theme_mod('vw_stock_images_pro_professional_services_categories', $services_categories_array);
-
-			update_term_meta($parent_category['term_id'], 'vw_title_banner_image_wp_custom_attachment', $banner_attachment_url);
-
-
-			update_term_meta($parent_category['term_id'], 'serv_cat_paragraph', "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.");
-			update_term_meta($parent_category['term_id'], 'serv_points_one', "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce laoreet");
-			update_term_meta($parent_category['term_id'], 'serv_points_two', "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce laoreet");
-			update_term_meta($parent_category['term_id'], 'serv_points_three', "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce laoreet");
-			update_term_meta($parent_category['term_id'], 'serv_points_four', "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce laoreet");
-
-
-			if ($parent_services_cat == 'Commercial') {
-				update_term_meta($parent_category['term_id'], 'serv_cat_heading', 'The Importance of Disinfecting and Sanitizing');
-				update_term_meta($parent_category['term_id'], 'serv_points_heading', "Professionalism, Quality and Reliability");
-				update_term_meta($parent_category['term_id'], 'category_image_one', get_template_directory_uri() . '/assets/images/services/commercial1.png');
-				update_term_meta($parent_category['term_id'], 'category_image_two', get_template_directory_uri() . '/assets/images/services/commercial2.png');
-			} else {
-				update_term_meta($parent_category['term_id'], 'serv_cat_heading', 'Top-Quality Solutions for Condos, Rentals & More');
-				update_term_meta($parent_category['term_id'], 'serv_points_heading', "Why Book Our Residential Services?");
-				update_term_meta($parent_category['term_id'], 'category_image_one', get_template_directory_uri() . '/assets/images/services/residential1.png');
-				update_term_meta($parent_category['term_id'], 'category_image_two', get_template_directory_uri() . '/assets/images/services/residential2.png');
-			}
-			$cat++;//
-
-			$services_meta = array(
-				array(
-					'points' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce laoreet'
-				),
-				array(
-					'points' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce laoreet'
-				),
-				array(
-					'points' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce laoreet'
-				),
-				array(
-					'points' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce laoreet'
-				),
-				array(
-					'points' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce laoreet'
-				),
-				array(
-					'points' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce laoreet'
-				),
-				array(
-					'points' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce laoreet'
-				),
-			);
-
-
-			foreach ($parent_services as $services) {
-				$serv_content = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged., when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting";
-				$my_post = array(
-					'post_title' => $services,
-					'post_content' => $serv_content,
-					'post_status' => 'publish',
-					'post_type' => 'services',
-				);
-				// Insert the post into the database
-				$services_id = wp_insert_post($my_post);
-				wp_set_object_terms($services_id, $parent_category['term_id'], 'services-category', true);
-
-				add_post_meta($services_id, 'vw_title_banner_image_wp_custom_attachment', $banner_attachment_url);
-
-				update_post_meta($services_id, 'read-more-text', 'Read More');
-				update_post_meta($services_id, 'services_inner_title', 'Other Ways to Clean a Mattress');
-				update_post_meta($services_id, 'services_inner_para', "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.");
-				update_post_meta($services_id, 'services_repeater_fields', $services_meta);
-				update_post_meta($services_id, 'services_inner_title', 'Other Ways to Clean a Mattress');
-				update_post_meta($services_id, 'get_service_btn', 'Get Service Now');
-				update_post_meta($services_id, 'get_service_btn_url', get_permalink(ThemeWhizzie::get_page_id_by_title('Appointment')));
-
-
-				$meta_img = get_template_directory_uri() . '/assets/images/services/' . $parent_services_cat . '/' . str_replace(" ", "-", $services) . '-Meta.png';
-				update_post_meta($services_id, 'service-img', $meta_img);
-
-				$image_url = get_template_directory_uri() . '/assets/images/services/' . $parent_services_cat . '/' . str_replace(" ", "-", $services) . '.png';
-				$image_name = $services . '.png';
-				$upload_dir = wp_upload_dir();
-				// Set upload folder
-				$image_data = file_get_contents(esc_url($image_url));
-
-				// Get image data
-				$unique_file_name = wp_unique_filename($upload_dir['path'], $image_name);
-				// Generate unique name
-				$filename = basename($unique_file_name);
-				// Create image file name
-
-				// Check folder permission and define file location
-				if (wp_mkdir_p($upload_dir['path'])) {
-					$file = $upload_dir['path'] . '/' . $filename;
-				} else {
-					$file = $upload_dir['basedir'] . '/' . $filename;
-				}
-				// Create the image  file on the server
-				file_put_contents($file, $image_data);
-
-				// Check image file type
-				$wp_filetype = wp_check_filetype($filename, null);
-
-				// Set attachment data
-				$attachment = array(
-					'post_mime_type' => $wp_filetype['type'],
-					'post_title' => sanitize_file_name($filename),
-					'post_type' => 'services',
-					'post_status' => 'inherit',
-				);
-				// Create the attachment
-				$attach_id = wp_insert_attachment($attachment, $file, $services_id);
-
-				// Include image.php
-				require_once(ABSPATH . 'wp-admin/includes/image.php');
-
-				// Define attachment metadata
-				$attach_data = wp_generate_attachment_metadata($attach_id, $file);
-
-
-				// And finally assign featured image to post
-				set_post_thumbnail($services_id, $attach_id);
-
-			}
-		}
 
 
 		set_theme_mod('vw_stock_images_pro_our_newsletter_heading', 'Subscribe Our Newsletter');
@@ -3506,7 +3472,7 @@ class ThemeWhizzie
 
 
 
-		$home_id;
+		$home_id = '';
 
 		$page_title = 'Home Page';
 		$page_slug = 'home-page';
@@ -3859,13 +3825,13 @@ class ThemeWhizzie
 						for (var i = 0; i < premium_data.length; i++) {
 							var premium_product = premium_data[i];
 							var card_content = `<div class="o-products-col" data-id="` + premium_product.id + `">
-																									  <div class="o-products-image">
-																										  <img src="`+ premium_product.image + `">
-																									  </div>
-																									  <h3>`+ premium_product.title + `</h3>
-																									  <a href="`+ premium_product.permalink + `" target="_blank">Buy Now</a>
-																									  <a href="`+ premium_product.demo_url + `" target="_blank">View Demo</a>
-																								  </div>`;
+																																							  <div class="o-products-image">
+																																								  <img src="`+ premium_product.image + `">
+																																							  </div>
+																																							  <h3>`+ premium_product.title + `</h3>
+																																							  <a href="`+ premium_product.permalink + `" target="_blank">Buy Now</a>
+																																							  <a href="`+ premium_product.demo_url + `" target="_blank">View Demo</a>
+																																						  </div>`;
 							jQuery('.wz-spinner-wrap').css('display', 'none');
 							jQuery('#other-products .o-product-row').append(card_content);
 						}
@@ -3881,8 +3847,8 @@ class ThemeWhizzie
 							}
 							let premium_product = premium_category[i];
 							let card_content = `<li data-ids="` + premium_product.product_ids + `" onclick="other_products(this);" class="` + active_class + `">
-																									  `+ premium_product.name + `<span class="badge badge-info">` + premium_product.product_ids.length + `</span>
-																								  </li>`;
+																																							  `+ premium_product.name + `<span class="badge badge-info">` + premium_product.product_ids.length + `</span>
+																																						  </li>`;
 							jQuery('.o-product-col-1 ul').append(card_content);
 						}
 					});
@@ -3954,7 +3920,7 @@ class ThemeWhizzie
 
 
 
-		// set_theme_mod('vw_stock_images_pro_slider_paragraph', "Lorem Ipsum is simply dummy text of the printing and typesetting industry.");
+// set_theme_mod('vw_stock_images_pro_slider_paragraph', "Lorem Ipsum is simply dummy text of the printing and typesetting industry.");
 // features 
 
 for ($i = 1; $i <= 4; $i++) {
@@ -4013,3 +3979,41 @@ set_theme_mod('vw_stock_images_pro_our_pricing_section_heading_text', 'Lorem Ips
 
 set_theme_mod('vw_stock_images_pro_our_pricing_section_plans_button', 'Subscribe Now');
 set_theme_mod('vw_stock_images_pro_our_pricing_section_best_planTag', 'Best Value');
+// ==========================
+
+set_theme_mod('vw_stock_images_pro_premium_why_join_us_heading_text', 'Why Become A VW Stock Images & Videos Contributor?');
+for ($i = 1; $i <= 3; $i++) {
+	set_theme_mod('vw_stock_images_pro_why_join_us_sec_image' . $i, get_template_directory_uri() . '/assets/images/sell-content/choose-' . $i . '.png');
+	set_theme_mod('vw_stock_images_pro_why_join_us_sec_feature_title_' . $i, 'Worldwide Visibility');
+	set_theme_mod('vw_stock_images_pro_why_join_us_sec_feature_desc_' . $i, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.');
+}
+
+
+set_theme_mod('vw_stock_images_pro_our_join_left_bgimage', get_template_directory_uri() . '/assets/images/sell-content/join-right.png');
+set_theme_mod('vw_stock_images_pro_our_join_right_bgimage', get_template_directory_uri() . '/assets/images/sell-content/join-left.png');
+
+set_theme_mod('vw_stock_images_pro_our_pricing_feature_row_count', '3');
+set_theme_mod('vw_stock_images_pro_our_pricing_feature_checkbox_row_count', '3');
+
+
+set_theme_mod('vw_stock_images_pro_partners_bgcolor', '');
+$plan_text = array('Lorem ipsum dolor sit amet, consectetur adipiscing elit,', 'Lorem ipsum dolor sit amet');
+$free_values = array('10/day', '20/day', 'Limited', '10/day');
+for ($i = 1; $i <= 3; $i++) {
+	set_theme_mod('vw_stock_images_pro_our_pricing_features_checkbox_text_' . $i, $plan_text[array_rand($plan_text)]);
+	set_theme_mod('vw_stock_images_pro_our_pricing_free_text_' . $i, $free_values[$i - 1]);
+	set_theme_mod('vw_stock_images_pro_our_pricing_premium_text_' . $i, 'Unlimited');
+}
+
+for ($i = 1; $i <= 3; $i++) {
+	set_theme_mod('vw_stock_images_pro_our_pricing_feature_text__check' . $i, $plan_text[array_rand($plan_text)]);
+	set_theme_mod('vw_stock_images_pro_free_feat_sec_image' . $i, get_template_directory_uri() . '/assets/images/cross.png');
+	set_theme_mod('vw_stock_images_pro_premium_feat_sec_image' . $i, get_template_directory_uri() . '/assets/images/6-Check.png');
+}
+
+set_theme_mod('vw_stock_images_freedom_card_1', get_template_directory_uri() . '/assets/images/sell-content/freedom-1.png');
+set_theme_mod('vw_stock_images_community_card_1', get_template_directory_uri() . '/assets/images/sell-content/community1.png');
+
+for ($i = 1; $i <= 5; $i++) {
+	set_theme_mod('vw_stock_images_sell_content_grid_' . $i, get_template_directory_uri() . '/assets/images/sell-content/grid-item-' . $i . '.png');
+}

@@ -45,7 +45,7 @@ $img_bg = get_theme_mod('vw_stock_images_pro_our_pricing_image_bg_attachement');
 
                                 <?php for ($i = 1; $i <= 4; $i++) { ?>
                                     <?php
-                                    $feature_text = get_theme_mod('vw_stock_images_pro_our_pricing_feature_text_' . $i);
+                                    $feature_text = get_theme_mod('vw_stock_images_pro_our_pricing_features_checkbox_text_' . $i);
                                     $free_text = get_theme_mod('vw_stock_images_pro_our_pricing_free_text_' . $i);
                                     $premium_text = get_theme_mod('vw_stock_images_pro_our_pricing_premium_text_' . $i);
                                     ?>
@@ -66,9 +66,9 @@ $img_bg = get_theme_mod('vw_stock_images_pro_our_pricing_image_bg_attachement');
                                 <?php } ?>
                                 <?php for ($i = 1; $i <= 4; $i++) { ?>
                                     <?php
-                                    $feature_text = get_theme_mod('vw_stock_images_pro_our_pricing_features_checkbox_text_' . $i);
-                                    $free_text = get_theme_mod('vw_stock_images_pro_our_pricing_free_checkbox_text_' . $i);
-                                    $premium_text = get_theme_mod('vw_stock_images_pro_our_pricing_premium_text_checkbox_' . $i);
+                                    $feature_text = get_theme_mod('vw_stock_images_pro_our_pricing_feature_text__check' . $i);
+                                    $free_text = get_theme_mod('vw_stock_images_pro_free_feat_sec_image' . $i);
+                                    $premium_text = get_theme_mod('vw_stock_images_pro_premium_feat_sec_image' . $i);
                                     ?>
                                     <tr>
                                         <?php if (!empty($feature_text)) { ?>
@@ -77,11 +77,11 @@ $img_bg = get_theme_mod('vw_stock_images_pro_our_pricing_image_bg_attachement');
                                         <?php } ?>
 
                                         <?php if (!empty($free_text)) { ?>
-                                            <td class="text-center"><i class="<?php echo $free_text; ?>"></i></td>
+                                            <td class="text-center"><img src="<?php echo $free_text; ?>"></td>
                                         <?php } ?>
 
                                         <?php if (!empty($premium_text)) { ?>
-                                            <td class="text-center"><i class="<?php echo $premium_text; ?>"></i></td>
+                                            <td class="text-center"><img src="<?php echo $premium_text; ?>"></td>
                                         <?php } ?>
                                     </tr>
                                 <?php } ?>
@@ -90,7 +90,7 @@ $img_bg = get_theme_mod('vw_stock_images_pro_our_pricing_image_bg_attachement');
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 col-md-6 col-12">
+            <div class="col-lg-6 col-md-6 col-12 pricing-right">
                 <?php
                 // Get all membership levels
                 $levels = pmpro_getAllLevels();

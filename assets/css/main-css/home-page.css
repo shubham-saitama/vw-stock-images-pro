@@ -9,11 +9,12 @@ h1.slider-heading {
   color: #fff;
   font: normal normal bold 44px / 55px Outfit;
 }
-
 .slider-left-content {
   padding: 150px 0px;
   border-radius: 30px;
   margin-bottom: -10%;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 section#slider {
@@ -49,6 +50,47 @@ section#slider {
 
 
 /* banner  */
+.popular-searches {
+  display: flex;
+  padding: 6px;
+  backdrop-filter: blur(30px);
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  color: #fff;
+  gap: 10px;
+  justify-content: center;
+  width: max-content;
+  margin: 0px auto;
+  flex-wrap: wrap;
+  max-width: 90%;
+}
+.popular-searches strong {
+  font: normal normal 600 18px / 23px Outfit;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+}
+
+.popular-searches ul {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.popular-searches ul li a {
+  font: normal normal normal 16px / 20px Outfit;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+}
+a.more-btn {
+  font: normal normal 600 16px / 16px Outfit;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.popular-searches ul {
+  list-style: none;
+}
 label {
   display: inline-block;
   width: 100%;
@@ -366,7 +408,7 @@ section#slider+section {
 
 /* our features  */
 
-section.featuress>.container {
+section.featuress>.container{
   background: var(--gray);
   padding: 40px 60px;
   border-radius: 20px;
@@ -478,7 +520,7 @@ h2.main-head {
   gap: 5px;
 }
 
-.news-form-main p {
+.news-form-main {
   backdrop-filter: blur(30px);
   -webkit-backdrop-filter: blur(30px);
   width: 100%;
@@ -505,15 +547,13 @@ section#our-newsletter input[type="submit"] {
 }
 
 .news-form-main p {
-  backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(30px);
   width: 100%;
   margin: 0px auto;
   text-align: center;
   max-width: 760px;
   justify-content: center;
-  padding: 10px;
-  background: #ffffff22;
+  /* padding: 10px; */
+  /* background: #ffffff22; */
   border-radius: 10px;
 }
 
@@ -547,7 +587,7 @@ section#our-newsletter {
   position: relative;
 }
 
-.category-card::after {
+/* .category-card::after {
   content: "";
   position: absolute;
   top: 0;
@@ -559,7 +599,7 @@ section#our-newsletter {
   background: #000000;
   z-index: 0;
   opacity: 0.2;
-}
+} */
 
 .card-content {
   position: absolute;
@@ -739,7 +779,11 @@ a.table-read-more {
   letter-spacing: 0px;
   color: var(--primary);
 }
-
+.pricing-right {
+  overflow-y: scroll;
+  max-height: 380px;
+  height: 100%;
+}
 .table-head {
   box-shadow: 0px 3px 6px #00000029;
   border-radius: 20px;

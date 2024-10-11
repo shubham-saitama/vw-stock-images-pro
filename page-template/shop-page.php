@@ -104,6 +104,9 @@ $categories = get_terms(array(
                     wp_reset_postdata();
                     ?>
                 </div>
+                <div class="filter-mobile-button">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
             </div>
         </div>
     </div>

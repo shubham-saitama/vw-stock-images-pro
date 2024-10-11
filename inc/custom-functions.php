@@ -75,7 +75,7 @@ if ( !function_exists('vw_stock_images_pro_social_share') ) {
                 <div class="socila_share position-relative">
                     <?php if(get_theme_mod('vw_stock_images_pro_post_general_settings_post_share_facebook',true)==1 || get_theme_mod('vw_stock_images_pro_post_general_settings_post_share_linkedin',true)==1 || get_theme_mod('vw_stock_images_pro_post_general_settings_post_share_twitter',true)==1){ ?>
 
-                    <div class="meta-heading" style="cursor:pointer"><?php echo esc_html('Share  ','vw-stock-images-pro'); ?><i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="meta-heading" style="cursor:pointer"><i class="fa-solid fa-share-nodes"></i><?php echo esc_html('Share  ','vw-stock-images-pro'); ?></div>
 
                   <?php }?>
                   <div class="social-share-icon-main">

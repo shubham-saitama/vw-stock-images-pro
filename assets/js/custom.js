@@ -185,14 +185,6 @@ jQuery(document).ready(function ($) {
 
   jQuery('.archive .product a.added').removeClass("loading");
 
-  const get_woocommerce_currency_symbol = vw_stock_images_pro_customscripts_obj.get_woocommerce_currency_symbol;
-  const finalAmount = get_woocommerce_currency_symbol + parseInt(vw_stock_images_pro_customscripts_obj.product_max_price);
-  const StartAmountProduct = get_woocommerce_currency_symbol + 0;
-
-
-  // jQuery("#product-amount-final").text(finalAmount);
-  // jQuery("#product-amount-start").text(StartAmountProduct);
-
   jQuery('.sidebar-filter [type="checkbox"]').on('change', function (event) {
     vw_stock_images_pro_filters();
     jQuery(this).parent('label').toggleClass('active-cat');
@@ -217,38 +209,6 @@ jQuery(document).ready(function ($) {
     // Call the setQueryParams function to update the URL
     setQueryParams(data_obj);
   });
-
-  if ($("#product-price-slider").length) {
-    jQuery("#product-price-slider").slider({
-      range: true,
-      min: 0,
-      max: parseInt(vw_stock_images_pro_customscripts_obj.product_max_price),
-      values: [0, parseInt(vw_stock_images_pro_customscripts_obj.product_max_price)],
-      change: function (event, ui) {
-
-        if (event.originalEvent) {
-          vw_stock_images_pro_filters();
-        }
-      },
-      slide: function (event, ui) {
-
-        jQuery("#product-amount-start").text(
-          get_woocommerce_currency_symbol + ui.values[0]
-        );
-        jQuery("#product-amount-end").text(
-          get_woocommerce_currency_symbol + ui.values[1]
-        );
-      }
-    });
-
-    var data_obj = {};
-    data_obj['values'] = $("#product-price-slider").slider("values");
-  }
-
-  jQuery('.yith-wcwl-add-button .add_to_wishlist').on('click', add_to_wishlist);
-
-  jQuery('a.add_to_wishlist.single_add_to_wishlist').on('click', add_to_wishlist)
-
 })
 
 function add_to_wishlist(e) {
@@ -745,21 +705,18 @@ jQuery(document).ready(function () {
 });
 
 
-
-
-// Define the function to handle the modal message display
-function handleButtonClick(type, className) {
+function handleButtonClick(type, button) {
   let message = '';
 
   if (type === 'login') {
-    message = 'You need to log in to download images. <a href="' + vw_stock_images_pro_customscripts_obj.loginUrl + '">Log in here</a>';
+      message = 'You need to log in to download images. <a href="' + vw_stock_images_pro_customscripts_obj.loginUrl + '">Log in here</a>';
   } else if (type === 'premium') {
-    message = 'You need a premium membership to download this image. <a href="upgrade_link">Upgrade here</a>';
+      message = 'You need a premium membership to download this image. <a href="upgrade_link">Upgrade here</a>';
   } else if (type === 'like') {
-    message = 'You need to log in to like images. <a href="' + vw_stock_images_pro_customscripts_obj.loginUrl + '">Log in here</a>';
+      message = 'You need to log in to like images. <a href="' + vw_stock_images_pro_customscripts_obj.loginUrl + '">Log in here</a>';
   } else {
-    window.location.href = className.href;
-    return;
+      window.location.href = button.href;
+      return;
   }
 
   // Inject message into modal and show it
@@ -767,20 +724,26 @@ function handleButtonClick(type, className) {
   const modal = new bootstrap.Modal(document.getElementById('notificationModal'));
   modal.show();
 }
-document.addEventListener('DOMContentLoaded', function () {
-  // Use event delegation to handle click events on dynamically added elements
-  document.body.addEventListener('click', function (event) {
-    if (event.target.matches('.download-button')) {
-      const button = event.target;
-      const type = button.getAttribute('data-type');
-      event.preventDefault();
-      event.stopPropagation();
 
-      // Call the function with the type and button element
-      handleButtonClick(type, button);
-    }
+
+document.addEventListener('DOMContentLoaded', function () {
+  document.body.addEventListener('click', function (event) {
+      // Check if the clicked element or its parent has the '.download-button' or '.save-post-button' class
+      const button = event.target.closest('.download-button, .save-post-button');
+      if (button) {
+          const type = button.getAttribute('data-type');
+          event.preventDefault();
+          event.stopPropagation();
+
+          if (type === 'save') {
+              handleSavePost(button);
+          } else {
+              handleButtonClick(type, button);
+          }
+      }
   });
 });
+
 jQuery(document).ready(function ($) {
   // Use event delegation by attaching to a parent element like body or a specific wrapper
   jQuery('body').on('click', '.save-post-button', function (evt) {
@@ -816,9 +779,8 @@ jQuery(document).ready(function ($) {
 });
 // Handle product image click
 jQuery(document).on('click', '.product-image', function (e) {
-
-
   e.preventDefault();
+  e.stopPropagation();
   var postID = jQuery(this).data('post-id');
 
   // Close the current modal (if it is open)
@@ -1250,16 +1212,29 @@ jQuery(document).ready(function ($) {
     jQuery('.primary_nav').removeClass('menu_open');
   })
   var iconDiv = jQuery('<div class="dropdown-btn"><i class="fa-solid fa-chevron-down"></i></div>');
-  jQuery('.menu-item-has-children').append(iconDiv);
+  jQuery('div#header .menu-item-has-children').append(iconDiv);
   jQuery('.dropdown-btn').on('click', function () {
     jQuery(this).siblings('ul.sub-menu').slideToggle();
     console.log('slide toggled');
     jQuery(this).toggleClass('active');
   });
-}); 
+});
 
 
-jQuery(document).ready(function($) {
+jQuery(document).ready(function ($) {
   var adminBarHeight = $('#wpadminbar').outerHeight();
-  jQuery('header#masthead').css('top',adminBarHeight);
+  jQuery('header#masthead').css('top', adminBarHeight);
+
+  jQuery('.filter-res').on('click', function () {
+    jQuery(this).parents('.sidebar-filter').removeClass('active-filter')
+  })
+  jQuery('.filter-mobile-button').on('click', function () {
+    jQuery('.sidebar-filter').addClass('active-filter');
+  })
+});
+
+
+jQuery(document).ready(function ($) {
+  // This initializes the HTML5 Lightbox
+  $('a[data-html5lightbox]').html5lightbox();
 });

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
 :root {
   --gray: #F2F2F2;
   --primary: #00963F;
@@ -7,8 +9,6 @@
 .post-section {
   padding: 20px 0;
 }
-
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 
 
 @keyframes fadeInBottom {
@@ -54,7 +54,7 @@
 }
 
 .contactpage-details h3 {
-  font: 600 30px / 26px Rubik;
+  font: 600 30px / 26px Outfit;
   color: #FFFFFF;
 }
 
@@ -69,7 +69,7 @@
 }
 
 .contactpage-details p {
-  font: 500 16px / 26px Rubik;
+  font: 500 16px / 26px Outfit;
   letter-spacing: 0px;
   color: #FFFFFF;
 }
@@ -94,13 +94,38 @@
   width: 100%;
   border: none;
 }
-
+.post-month-outer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 #full-width-blog .postbox h3 {
   font-weight: normal;
   font-size: 35px;
   text-align: center;
   margin: 0;
   padding: 0;
+}
+.post-month-outer {
+  font: normal normal 600 14px / 23px Outfit;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  background: #000;
+  padding: 5px 16px;
+  border-radius: 6px;
+  overflow: hidden;
+  width: max-content;
+}
+.post-month-outer {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+}
+
+.blog-title a {
+  font: normal normal bold 18px / 20px Outfit;
+  letter-spacing: 0px;
+  color: #000000;
 }
 
 .postbox h3 {
@@ -198,7 +223,7 @@ span.page-numbers.current {
   color: #fff;
   font-weight: 500 !important;
   font-size: 16px !important;
-  font-family: rubik;
+  font-family: Outfit;
   letter-spacing: 0px;
   color: #FFFFFF;
 }
@@ -231,19 +256,13 @@ aside#search-3 {
   gap: 5px;
 }
 
-.bradcrumbs a,
-.bradcrumbs span {
-  font: normal normal 600 14px / 19px Rubik;
-  color: #000;
-}
-
 /*------------------ Comments BOX ------------------*/
 #comments {
   float: left;
   width: 100%;
   margin-top: 10px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row-reverse;
   justify-content: space-between;
 }
 
@@ -272,6 +291,7 @@ aside#search-3 {
   height: 120px;
   background: #F1F1F1;
 }
+
 #comments input[type="submit"].submit {
   border-radius: 6px;
   background: #000;
@@ -310,7 +330,7 @@ aside#search-3 {
 
 #comments h2#reply-title {
   margin-bottom: 15px;
-  font: normal normal 600 24px / 28px Rubik;
+  font: normal normal 600 24px / 28px Outfit;
   letter-spacing: 0px;
   color: #000;
   text-align: center;
@@ -358,7 +378,7 @@ input#wp-comment-cookies-consent {
 }
 
 .comment-respond label {
-  font: 500 14px / 30px Rubik;
+  font: 500 14px / 30px Outfit;
   letter-spacing: 0px;
   color: #2F363C;
 }
@@ -376,7 +396,7 @@ input#wp-comment-cookies-consent {
 }
 
 cite a {
-  font: 500 20px / 28px Rubik;
+  font: 500 20px / 28px Outfit;
   letter-spacing: 0px;
   color: #000;
   text-transform: capitalize;
@@ -388,7 +408,7 @@ cite a {
 }
 
 .reply>a {
-  font: 500 14px / 26px Rubik;
+  font: 500 14px / 26px Outfit;
   letter-spacing: 0px;
   color: #000000;
 }
@@ -420,7 +440,7 @@ cite a {
 
 #sidebar h3,
 #sidebar label {
-  font: 500 18px / 24px Rubik;
+  font: 500 18px / 24px Outfit;
   color: #000000;
 }
 
@@ -461,13 +481,13 @@ cite a {
 }
 
 #sidebar .widget_recent_entries ul li a {
-  font: 500 16px/22px Rubik;
+  font: 500 16px/22px Outfit;
   color: #000000;
 }
 
 #sidebar .widget_categories a,
 #sidebar .widget_custom_html a {
-  font: 400 16px / 22px Rubik;
+  font: 400 16px / 22px Outfit;
   letter-spacing: 0px;
   color: #000000;
 }
@@ -537,7 +557,7 @@ cite a {
 }
 
 .title-box h1 {
-  font: 600 26px / 31px Rubik;
+  font: 600 26px / 31px Outfit;
   letter-spacing: 0px;
   color: #000000;
 }
@@ -904,7 +924,7 @@ input#reg_password {
 }
 
 .woocommerce-Address-title.title h3 {
-  font: 500 22px / 34px Rubik;
+  font: 500 22px / 34px Outfit;
   color: #000000;
 }
 
@@ -920,7 +940,7 @@ a.button.wc-forward,
 .woocommerce .woocommerce-form-login .woocommerce-form-login__submit,
 button.woocommerce-Button.woocommerce-button.button.woocommerce-form-register__submit {
   background: #339D55;
-  font: 500 14px / 20px Rubik;
+  font: 500 14px / 20px Outfit;
   color: #FFFFFF;
 }
 
@@ -963,7 +983,7 @@ header.woocommerce-Address-title.title {
 }
 
 .woocommerce .woocommerce-MyAccount-navigation ul li a {
-  font: 500 16px / 25px Rubik;
+  font: 500 16px / 25px Outfit;
   letter-spacing: 0px;
   color: #fff;
 }
@@ -1201,6 +1221,13 @@ h1.woocommerce-products-header__title.page-title {
   left: 41%;
 }
 
+.news-form-main {
+  display: flex;
+  justify-content: center;
+  max-width: 790px;
+  width: 100%;
+}
+
 section#page-with-left-sidebar,
 section#page-with-right-sidebar {
   padding: 40px 0;
@@ -1215,13 +1242,13 @@ section#page-with-right-sidebar {
 }
 
 #single-post .author-name {
-  font: normal normal 600 18px / 26px Rubik;
+  font: normal normal 600 18px / 26px Outfit;
   text-transform: capitalize;
   color: #000000;
 }
 
 .meta-heading {
-  font: 500 16px / 26px Rubik;
+  font: 500 16px / 26px Outfit;
   letter-spacing: 0px;
   color: #000000;
 }
@@ -1258,13 +1285,13 @@ section#page-with-right-sidebar {
 }
 
 .blog-que {
-  font: 600 20px / 26px Rubik;
+  font: 600 20px / 26px Outfit;
   letter-spacing: 0px;
   color: #000000;
 }
 
 .single-blog-content p {
-  font: 400 16px / 28px Rubik;
+  font: 400 16px / 28px Outfit;
   color: #000000;
   opacity: 0.7;
 }
@@ -1324,13 +1351,13 @@ section#page-with-right-sidebar {
 
 
 .error-page .error-heading {
-  font: 500 36px / 36px Rubik;
+  font: 500 36px / 36px Outfit;
   letter-spacing: 0px;
   color: #000000;
 }
 
 .error-page .error-para {
-  font: 400 18px / 27px Rubik;
+  font: 400 18px / 27px Outfit;
   letter-spacing: 0px;
   color: #313131;
 }
@@ -1411,14 +1438,15 @@ padding-top: 30px;
 /* -----------About Page------------ */
 #vission-mission h5,
 #our-values h5 {
-  font: 700 22px / 28px Rubik;
+  font: normal normal bold 24px / 28px Outfit;
   color: #182027;
 }
 
 #vission-mission p,
 .vision-points p,
 #our-values p {
-  font: 400 16px / 28px Rubik;
+  font: normal normal normal 18px/28px Outfit;
+  letter-spacing: 0px;
 }
 
 #vission-mission img,
@@ -1461,13 +1489,13 @@ padding-top: 30px;
 }
 
 #appoinment h3 {
-  font: 600 18px / 26px Rubik;
+  font: 600 18px / 26px Outfit;
   color: #000000;
   margin-bottom: 20px;
 }
 
 #appoinment label {
-  font: 500 14px / 26px Rubik;
+  font: 500 14px / 26px Outfit;
   color: #000000;
   width: 100%;
 }
@@ -1505,7 +1533,7 @@ padding-top: 30px;
 }
 
 #appoinment span.wpcf7-list-item-label {
-  font: normal normal normal 14px / 26px Rubik;
+  font: normal normal normal 14px / 26px Outfit;
   letter-spacing: 0px;
   color: #000000;
   padding-left: 5px;
@@ -1527,7 +1555,7 @@ padding-top: 30px;
 }
 
 .appoinment-heading {
-  font: 600 24px / 26px Rubik;
+  font: 600 24px / 26px Outfit;
   letter-spacing: 0px;
   color: #000000;
   position: relative;
@@ -1551,18 +1579,18 @@ padding-top: 30px;
 
 /* -------------Pest Problem single page */
 .pests-content h4 {
-  font: 600 24px / 33px Rubik;
+  font: 600 24px / 33px Outfit;
   color: #000000;
 }
 
 .pests-content-inner p {
-  font: 400 16px / 30px Rubik;
+  font: 400 16px / 30px Outfit;
   letter-spacing: 0px;
   color: #000000;
 }
 
 .pests-content-inner h5 {
-  font: 500 22px / 30px Rubik;
+  font: 500 22px / 30px Outfit;
   letter-spacing: 0px;
   color: #000000;
   margin-bottom: 14px;
@@ -1599,7 +1627,7 @@ padding-top: 30px;
 }
 
 .middle-content h2 {
-  font: 600 20px / 35px Rubik;
+  font: 600 20px / 35px Outfit;
   letter-spacing: 0px;
   color: #000000;
 }
@@ -1619,17 +1647,17 @@ padding-top: 30px;
 }
 
 #support-page .top-content h2 {
-  font: 400 26px / 40px Rubik;
+  font: 400 26px / 40px Outfit;
   color: #000000;
 }
 
 #support-page .top-content h4 {
-  font: 400 18px / 38px Rubik;
+  font: 400 18px / 38px Outfit;
   color: #000000;
 }
 
 #support-page p {
-  font: 400 14px / 30px Rubik;
+  font: 400 14px / 30px Outfit;
   color: #000000;
 }
 
@@ -1643,7 +1671,7 @@ padding-top: 30px;
 }
 
 #support-page li {
-  font: 400 14px / 25px Rubik;
+  font: 400 14px / 25px Outfit;
   letter-spacing: 0px;
   color: #000000;
 }
@@ -1660,7 +1688,7 @@ padding-top: 30px;
   background: #F1F1F1;
   padding: 10px 1.25rem;
   color: #000000;
-  font: 500 16px / 28px Rubik;
+  font: 500 16px / 28px Outfit;
   box-shadow: unset;
 }
 
@@ -1751,7 +1779,7 @@ html .ui-button.ui-state-disabled:active {
 }
 
 .shop-page-produts-category span {
-  font: 400 14px / 20px Rubik;
+  font: 400 14px / 20px Outfit;
   color: #000000;
   cursor: pointer;
 }
@@ -1797,7 +1825,7 @@ table.shop_table.wishlist_table thead {
 }
 
 .wishlist-items-wrapper .product-name a {
-  font: normal normal 600 22px / 26px Rubik;
+  font: normal normal 600 22px / 26px Outfit;
   color: #000000;
 }
 
@@ -1812,7 +1840,7 @@ table.shop_table.wishlist_table thead {
   color: #fff;
   border-radius: 6px;
   padding: 10px 14px;
-  font: 500 14px / 24px Rubik;
+  font: 500 14px / 24px Outfit;
   letter-spacing: 0px;
   color: #FFFFFF;
   width: max-content;
@@ -1933,7 +1961,7 @@ table.wishlist_table tr:hover .product-thumbnail:after,
 }
 
 h2.product_title.entry-title {
-  font: 600 36px / 52px Rubik;
+  font: 600 36px / 52px Outfit;
   color: #000000;
 }
 
@@ -1954,7 +1982,7 @@ h2.product_title.entry-title {
 }
 
 .woocommerce-product-details__short-description p {
-  font: normal normal normal 15px / 24px Rubik;
+  font: normal normal normal 15px / 24px Outfit;
   color: #000000;
   margin-bottom: 0;
 }
@@ -1976,7 +2004,7 @@ h2.product_title.entry-title {
 }
 
 .Discount-offer-text-box {
-  font: 500 14px / 19px Rubik;
+  font: 500 14px / 19px Outfit;
   letter-spacing: 0px;
   color: #000000;
   margin-top: 10px;
@@ -1996,7 +2024,7 @@ h2.product_title.entry-title {
 }
 
 .single.single-product .bold-rating span {
-  font: 500 80px / 80px Rubik;
+  font: 500 80px / 80px Outfit;
   letter-spacing: 0px;
   color: #000000;
 }
@@ -2107,18 +2135,18 @@ h2.product_title.entry-title {
 
 .single.single-product .total_sale,
 .single.single-product .count {
-  font: 500 14px / 19px Rubik !important;
+  font: 500 14px / 19px Outfit !important;
   letter-spacing: 0px;
   color: #000000;
   margin-top: 10px;
 }
 
 .desc-raing-head {
-  font: 600 18px / 19px Rubik !important;
+  font: 600 18px / 19px Outfit !important;
 }
 
 .helpline-text span {
-  font: 500 14px / 23px Rubik;
+  font: 500 14px / 23px Outfit;
   color: #000000;
 }
 
@@ -2152,7 +2180,7 @@ h2.product_title.entry-title {
 }
 
 .single.single-product .comment-text p.meta {
-  font: 400 18px / 32px Rubik !important;
+  font: 400 18px / 32px Outfit !important;
   letter-spacing: 0px;
   color: #000 !important;
   margin-bottom: 0 !important;
@@ -2162,7 +2190,7 @@ h2.product_title.entry-title {
 
 .single.single-product .single_add_to_cart_button {
   background: #339D55 !important;
-  font: normal normal normal 14px / 17px Rubik;
+  font: normal normal normal 14px / 17px Outfit;
   letter-spacing: 0px;
   color: #FFFFFF;
   position: relative;
@@ -2221,7 +2249,7 @@ h2.product_title.entry-title {
 
 .single.single-product .woocommerce-Tabs-panel--description p,
 .single.single-product li {
-  font: 400 14px / 26px Rubik;
+  font: 400 14px / 26px Outfit;
   letter-spacing: 0px;
   color: #000000;
 
@@ -2256,7 +2284,7 @@ h2.product_title.entry-title {
   background: #339D55 !important;
   padding: 10px 30px !important;
   color: #fff !important;
-  font: 400 14px / 16px Rubik !important;
+  font: 400 14px / 16px Outfit !important;
   letter-spacing: 0px;
   color: #FFFFFF;
 }
@@ -2267,7 +2295,7 @@ h2.product_title.entry-title {
 }
 
 .comment-form-cookies-consent label {
-  font: 400 13px / 21px Rubik !important;
+  font: 400 13px / 21px Outfit !important;
 }
 
 .related.products ul {
@@ -2275,7 +2303,7 @@ h2.product_title.entry-title {
 }
 
 .summary.entry-summary ins bdi {
-  font: normal normal 600 26px / 22px Rubik;
+  font: normal normal 600 26px / 22px Outfit;
 }
 
 .summary.entry-summary p.price {
@@ -2355,14 +2383,14 @@ h2.product_title.entry-title {
   border-radius: 6px;
   padding: 20px;
   text-align: center;
-  font: normal normal 600 18px / 15px Rubik;
+  font: normal normal 600 18px / 15px Outfit;
   letter-spacing: 0px;
   color: #000000;
   margin-bottom: 3px;
 }
 
 .single-cat-post-title {
-  font: 500 18px / 26px Rubik;
+  font: 500 18px / 26px Outfit;
   letter-spacing: 0px;
   color: #000;
 }
@@ -2398,14 +2426,14 @@ h2.product_title.entry-title {
 }
 
 #services-cat-pills-tabContent .post-title {
-  font: normal normal 600 30px / 26px Rubik;
+  font: normal normal 600 30px / 26px Outfit;
   letter-spacing: 0px;
   color: #000000;
   margin-bottom: 15px;
 }
 
 #services-cat-pills-tabContent p {
-  font: 400 15px / 25px Rubik;
+  font: 400 15px / 25px Outfit;
   letter-spacing: 0px;
   color: #000000;
 }
@@ -2420,7 +2448,7 @@ h2.product_title.entry-title {
 }
 
 .post-extra-content h4 {
-  font: 500 26px / 40px Rubik;
+  font: 500 26px / 40px Outfit;
   color: #000000;
 }
 
@@ -2433,18 +2461,18 @@ h2.product_title.entry-title {
 }
 
 .location-box h4 {
-  font: 500 18px / 25px Rubik;
+  font: 500 18px / 25px Outfit;
   color: #000000;
 }
 
 .location-box .location-address {
-  font: 400 18px / 27px Rubik;
+  font: 400 18px / 27px Outfit;
   letter-spacing: 0px;
   color: #000000;
 }
 
 .location-number {
-  font: 500 16px / 27px Rubik;
+  font: 500 16px / 27px Outfit;
   letter-spacing: 0px;
   color: #000000;
 }
@@ -2463,14 +2491,14 @@ h2.product_title.entry-title {
 }
 
 .wc-block-components-product-name {
-  font: normal normal 600 18px / 20px Rubik !important;
+  font: normal normal 600 18px / 20px Outfit !important;
   letter-spacing: 0px;
   color: #000000;
 }
 
 .wc-block-cart-items thead th,
 .wc-block-cart__totals-title {
-  font: normal normal 600 18px / 18px Rubik !important;
+  font: normal normal 600 18px / 18px Outfit !important;
   color: #000000;
 }
 
@@ -2501,7 +2529,7 @@ h2.product_title.entry-title {
 }
 
 .wc-block-cart-item__total .wc-block-components-product-price__value {
-  font: normal normal bold 24px / 23px Rubik;
+  font: normal normal bold 24px / 23px Outfit;
   letter-spacing: 0px;
   color: #000000;
 }
@@ -2518,7 +2546,7 @@ h2.product_title.entry-title {
   border-color: var(--green);
   border-radius: 4px;
   padding: 10px 30px;
-  font: 500 14px / 19px Rubik;
+  font: 500 14px / 19px Outfit;
   letter-spacing: 0px;
   color: #FFFFFF;
   transition: all 0.5s;
@@ -2534,7 +2562,7 @@ h2.product_title.entry-title {
   border-color: var(--green);
   border-radius: 4px;
   padding: 7px 29px;
-  font: 500 14px / 19px Rubik;
+  font: 500 14px / 19px Outfit;
   letter-spacing: 0px;
   color: #FFFFFF;
   border: none;
@@ -2614,9 +2642,10 @@ div#filters button {
 }
 
 .button-group {
-  margin: 20px 1rem;
+  margin: 30px 1rem 20px;
   display: flex;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 .sidebar-filter {
@@ -2895,7 +2924,7 @@ ul.filter-ul.colored li:nth-child(10) a {
 
 section#shop-main {
   padding: 0px;
-  /* margin: 50px 0px; */
+  position: relative;
 }
 
 .filter-over-manager {
@@ -2909,15 +2938,34 @@ section#shop-main {
   margin: 50px 0px;
 }
 
+a.author {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
 .shop-wrapper {
   display: flex;
   gap: 10px;
-  padding-top: 60px;
+  padding-top: 90px;
 }
 
 .filter-head.collapsed {
   margin: 0px;
 
+}
+
+.filter-mobile-button {
+  width: 40px;
+  height: 40px;
+  background: var(--primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  color: #fff;
+  border-radius: 4px;
+  display: none;
 }
 
 ul.filter-ul li input {
@@ -2985,6 +3033,7 @@ button.close-one {
   left: -5%;
   z-index: 99;
   top: -20px;
+  color: #fff;
 }
 
 
@@ -3284,4 +3333,488 @@ h1.page-title {
 
 div#primary {
   padding-top: 120px;
+}
+
+.bradcrumbs a,
+.bradcrumbs span {
+  font-family: Outfit;
+  letter-spacing: 0px;
+  color: #000000;
+  font-size: 24px;
+}
+
+.bradcrumbs h2 {
+  font: normal normal bold 24px / 30px Outfit;
+  letter-spacing: 0px;
+  color: #000000;
+}
+
+.above_title {
+  display: flex;
+  flex-direction: column;
+  padding-top: 100px;
+}
+
+section#single-post {
+  padding-top: 30px;
+}
+
+.single-post-img {
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+h1.my-3 {
+  font: normal normal bold 36px / 50px Outfit;
+  letter-spacing: 0px;
+  color: #000000;
+}
+
+.single-post .banner-container .above_title {
+  padding: 110px 20px 20px;
+}
+
+body:not(.home) div#vw-sticky-menu {
+  background: var(--primary);
+}
+
+
+/* sell content page  */
+
+
+.banner-top {
+  margin-top: 90px;
+  padding: 50px 0px;
+}
+
+
+.breadcrumb-holder {
+  font: normal normal bold 24px / 30px Outfit;
+  letter-spacing: 0px;
+  color: #000000;
+}
+
+.breadcrumb-holder a {
+  color: #000;
+}
+
+section.why-choose-us h2 {
+  max-width: 573px;
+  margin: 0px auto;
+  font: normal normal bold 36px / 48px Outfit;
+  letter-spacing: 0px;
+}
+
+section.join-counter h2 {
+  font: normal normal bold 36px / 48px Outfit;
+  letter-spacing: 0px;
+}
+
+.feature-img-wrap {
+  text-align: left;
+}
+
+section.why-choose-us .feature-img-wrap {
+  margin-bottom: 0px;
+  width: 50px;
+  height: 50px;
+}
+
+section.why-choose-us h4.text-start {
+  font: normal normal bold 22px / 38px Outfit;
+  letter-spacing: 0px;
+  color: #000000;
+}
+
+section.why-choose-us p.feature-text {
+  max-width: 360px;
+}
+
+.feature-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+section.join-counter p {
+  font: normal normal normal 16px / 25px Outfit;
+  letter-spacing: 0px;
+  color: #000000;
+}
+
+span.counter-num {
+  font: normal normal bold 46px / 48px Outfit;
+  letter-spacing: 0px;
+  /* color: #000000; */
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+.counter-name {
+  font: normal normal 500 24px / 25px Outfit;
+  letter-spacing: 0px;
+}
+
+section.join-counter .container {
+  background: var(--gray);
+  padding: 80px;
+  border-radius: 20px;
+}
+
+section.join-counter p {
+  font: normal normal normal 16px / 25px Outfit;
+  letter-spacing: 0px;
+  color: #000000;
+  max-width: 500px;
+}
+
+section.join-newletter h3 {
+  font: normal normal bold 34px / 43px Outfit;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  max-width: 610px;
+}
+
+a.button-sell-content {
+  text-align: left;
+  font: normal normal 500 16px / 20px Outfit;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  background: var(--primary);
+  padding: 14px 40px;
+  border-radius: 6px;
+  margin-top: 10px;
+  display: inline-block;
+  width: auto;
+}
+
+.join-left {
+  width: 640px;
+}
+
+.join-right {
+  max-width: 610px;
+}
+
+section.join-newletter p {
+  color: #fff;
+  display: flex;
+  gap: 5px;
+  display: inline-block;
+  width: 100%;
+  margin: 0px;
+}
+
+.outer {
+  padding: 90px 50px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.news-form-main {
+  margin-top: 10px;
+}
+
+section.join-newletter .outer {
+  width: 49%;
+}
+
+section.join-newletter .outer:nth-child(1) {
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+section.join-newletter .outer:nth-child(2) {
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.news-form-main {
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  width: 100%;
+  margin: 0px auto;
+  text-align: center;
+  max-width: 760px;
+  justify-content: center;
+  padding: 10px;
+  background: #ffffff22;
+  border-radius: 10px;
+  gap: 10px;
+}
+
+
+section.join-newletter p {
+  color: #fff;
+  display: flex;
+  gap: 5px;
+  justify-content: space-between;
+}
+
+.join-newletter input[type="submit"] {
+  font: normal normal normal 15px / 20px Outfit;
+  letter-spacing: 0px;
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 11px 24px;
+  border-radius: 6px;
+}
+
+section.join-newletter span.wpcf7-spinner {
+  position: absolute;
+}
+
+section.join-newletter span.wpcf7-form-control-wrap input {
+  max-width: 444px;
+  width: 100%;
+}
+
+.join-right {
+  max-width: 610px;
+  width: 100%;
+}
+
+.join-right .wpcf7-form-control-wrap {
+  position: relative;
+  max-width: 444px;
+  width: 100%;
+}
+
+.freedom-img-wrap {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -9;
+}
+
+.freedom-card {
+  height: 431px;
+  border-radius: 15px;
+  overflow: hidden;
+  padding: 35px;
+}
+
+.freedom-card h4 {
+  font: normal normal 600 24px / 25px Outfit;
+}
+
+.freedom-card p {
+  font: normal normal normal 16px / 23px Outfit;
+}
+
+section.creative-freedom p {
+  max-width: 760px;
+  margin: 10px auto 30px;
+}
+
+.community-card {
+  padding: 15px;
+  background: #F2F2F2;
+  border-radius: 15px;
+}
+
+.community-card h4 {
+  font: normal normal 600 24px / 26px Outfit;
+}
+
+.community-image {
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+/* table  */
+
+.table-wrapper th {
+  font: normal normal 600 20px / 28px Outfit;
+  letter-spacing: 0px;
+  color: #000000;
+}
+
+.table-wrapper tbody tr td:first-child {
+  font: normal normal 400 20px / 28px Outfit;
+  letter-spacing: 0px;
+  color: #000000;
+}
+
+.table-wrapper th,
+.table-wrapper td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+.table-wrapper th {
+  background-color: #e5eee4;
+  font-weight: bold;
+}
+
+.table-wrapper td {
+  background-color: white;
+}
+
+.table-wrapper table,
+.table-wrapper th,
+.table-wrapper td {
+  border: 1px solid #d6d6d6;
+  padding: 20px 30px;
+}
+
+.table-wrapper tbody tr:hover {
+  background-color: #f9f9f9;
+  /* Optional hover effect */
+}
+
+.table-wrapper table {
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.table-wrapper {
+  border: 1px solid #e5eee4;
+  width: max-content;
+  border-radius: 20px;
+  overflow: hidden;
+  padding: 0px;
+}
+
+section.commection td {
+  font: normal normal normal 20px / 28px Outfit;
+  letter-spacing: 0px;
+  color: #000000;
+}
+
+section.sell-content-main h2 {
+  font: normal normal bold 36px / 45px Outfit;
+}
+
+.sell-content-main p {
+  font: normal normal normal 18px / 25px Outfit;
+}
+
+.sell-content-grid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.grid-second-row {
+  display: flex;
+}
+
+.grid-row-left {
+  max-width: 344px;
+  max-height: 278px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0px 3px 6px #00000029;
+}
+
+.gird-first-row {
+  display: flex;
+  gap: 10px;
+  max-height: 278px;
+}
+
+.grid-row-right {
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.grid-row-right .grid-img-wrap:nth-child(1) {
+  height: 124px;
+  width: 80%;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0px 3px 6px #00000029;
+}
+
+.grid-img-wrap:nth-child(2) {
+  height: 144px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0px 3px 6px #00000029;
+}
+
+.grdi-img-wrap:nth-child(1) {
+  max-width: 261px;
+}
+
+.grdi-img-wrap:nth-child(2) {
+  max-width: 194px;
+}
+
+.grdi-img-wrap {
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.grid-second-row {
+  margin-left: -30px;
+}
+
+.grdi-img-wrap {
+  box-shadow: 0px 3px 6px #00000029;
+}
+
+/* about us page  */
+
+.aboutus-grid .gird-first-row {
+  flex-direction: row-reverse;
+}
+
+.aboutus-grid .grid-second-row {
+  justify-content: flex-end;
+}
+
+.aboutus-grid .grid-row-right {
+  align-items: flex-end;
+}
+
+.aboutus-grid .grdi-img-wrap {
+  width: calc(334px / 2);
+}
+
+.aboutus-grid .grid-second-row {
+  gap: 10px;
+}
+
+.sell-content-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.archive h1.page-title {
+  font-size: 28px;
+  margin: 30px 0px;
+  
+}
+a.play-video-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  margin: auto;
+  font-size: 22px;
+  color: #fff;
+  border: 1px solid #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.page-template-about .feature-img-wrap img {
+  object-fit: cover;
+  object-fit: contain;
+}
+.premium-icon {
+  position: absolute;
+  top: 10px;
+  left: 10px;
 }

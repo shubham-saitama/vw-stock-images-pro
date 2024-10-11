@@ -1,16 +1,20 @@
 <?php
-  /*
-  * Template part for the image filter
-  *
-  */
+/*
+ * Template part for the image filter
+ *
+ */
 ?>
 
 <div class="filter-over-manager">
-    <h6>
+    <h6 class="top-filter">
         <div class="filter-icon">
             <img src="<?php echo get_template_directory_uri() . '/assets/images/shop-page/icons/panel.png' ?>"
                 alt="Panel Icon">
         </div> Filter
+        <div class="filter-res">
+            <img src="<?php echo get_template_directory_uri() . '/assets/images/shop-page/icons/download.png' ?>"
+                alt="Panel Icon">
+        </div>
     </h6>
 
     <!-- Licence Filter -->
