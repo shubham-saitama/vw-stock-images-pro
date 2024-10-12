@@ -2711,7 +2711,7 @@ class ThemeWhizzie
 				update_post_meta($post_id, 'post-point-three', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.');
 				update_post_meta($post_id, 'post-point-four', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.');
 
-				$image_url = get_template_directory_uri() . '/assets/images/Blog/blog-' . $i . '.png';
+				$image_url = get_template_directory_uri() . '/assets/images/Blog/blog-0' . $i . '.png';
 				$image_name = $post_title . '.png';
 				$upload_dir = wp_upload_dir();
 				$image_data = file_get_contents($image_url);
@@ -2737,6 +2737,7 @@ class ThemeWhizzie
 				$attach_data = wp_generate_attachment_metadata($attach_id, $file);
 				wp_update_attachment_metadata($attach_id, $attach_data);
 				set_post_thumbnail($post_id, $attach_id);
+				$i++;
 			}
 			// create post END
 		}
